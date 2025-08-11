@@ -116,6 +116,16 @@ import {ApiClient, Env} from "../../src/index.js";
         //});
       });
     });
+    describe('deleteCryptoAddress', function() {
+      it('should call deleteCryptoAddress successfully', function() {
+        //uncomment below and update the code to test deleteCryptoAddress
+        //instance.deleteCryptoAddress().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('getExchangeRate', function() {
       it('should call getExchangeRate successfully', function() {
         //uncomment below and update the code to test getExchangeRate

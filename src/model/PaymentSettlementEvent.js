@@ -10,9 +10,12 @@
  */
 
 import ApiClient from '../ApiClient';
+import AcquiringType from './AcquiringType';
+import PayoutChannel from './PayoutChannel';
 import SettleRequestStatus from './SettleRequestStatus';
 import Settlement from './Settlement';
 import SettlementDetail from './SettlementDetail';
+import SettlementType from './SettlementType';
 import WebhookEventDataType from './WebhookEventDataType';
 
 /**
@@ -85,6 +88,15 @@ class PaymentSettlementEvent {
             }
             if (data.hasOwnProperty('initiator')) {
                 obj['initiator'] = ApiClient.convertToType(data['initiator'], 'String');
+            }
+            if (data.hasOwnProperty('acquiring_type')) {
+                obj['acquiring_type'] = AcquiringType.constructFromObject(data['acquiring_type']);
+            }
+            if (data.hasOwnProperty('payout_channel')) {
+                obj['payout_channel'] = PayoutChannel.constructFromObject(data['payout_channel']);
+            }
+            if (data.hasOwnProperty('settlement_type')) {
+                obj['settlement_type'] = SettlementType.constructFromObject(data['settlement_type']);
             }
         }
         return obj;
@@ -183,6 +195,21 @@ PaymentSettlementEvent.prototype['updated_timestamp'] = undefined;
  */
 PaymentSettlementEvent.prototype['initiator'] = undefined;
 
+/**
+ * @member {module:model/AcquiringType} acquiring_type
+ */
+PaymentSettlementEvent.prototype['acquiring_type'] = undefined;
+
+/**
+ * @member {module:model/PayoutChannel} payout_channel
+ */
+PaymentSettlementEvent.prototype['payout_channel'] = undefined;
+
+/**
+ * @member {module:model/SettlementType} settlement_type
+ */
+PaymentSettlementEvent.prototype['settlement_type'] = undefined;
+
 
 // Implement WebhookEventDataType interface:
 /**
@@ -224,6 +251,18 @@ Settlement.prototype['updated_timestamp'] = undefined;
  * @member {String} initiator
  */
 Settlement.prototype['initiator'] = undefined;
+/**
+ * @member {module:model/AcquiringType} acquiring_type
+ */
+Settlement.prototype['acquiring_type'] = undefined;
+/**
+ * @member {module:model/PayoutChannel} payout_channel
+ */
+Settlement.prototype['payout_channel'] = undefined;
+/**
+ * @member {module:model/SettlementType} settlement_type
+ */
+Settlement.prototype['settlement_type'] = undefined;
 
 
 

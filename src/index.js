@@ -153,6 +153,7 @@ import CustodialWalletInfo from './model/CustodialWalletInfo';
 import CustodialWeb3ContractCallSource from './model/CustodialWeb3ContractCallSource';
 import CustodialWeb3MessageSignSource from './model/CustodialWeb3MessageSignSource';
 import CustodialWeb3TransferSource from './model/CustodialWeb3TransferSource';
+import DeleteCryptoAddress201Response from './model/DeleteCryptoAddress201Response';
 import DeleteGuardPubkey201Response from './model/DeleteGuardPubkey201Response';
 import DeleteKeyShareHolderGroupById201Response from './model/DeleteKeyShareHolderGroupById201Response';
 import DeleteWalletById201Response from './model/DeleteWalletById201Response';
@@ -1561,6 +1562,12 @@ export {
      * @property {module:model/CustodialWeb3TransferSource}
      */
     CustodialWeb3TransferSource,
+
+    /**
+     * The DeleteCryptoAddress201Response model constructor.
+     * @property {module:model/DeleteCryptoAddress201Response}
+     */
+    DeleteCryptoAddress201Response,
 
     /**
      * The DeleteGuardPubkey201Response model constructor.
