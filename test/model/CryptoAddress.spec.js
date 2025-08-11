@@ -58,8 +58,8 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property address_id (base name: "address_id")', function() {
-      // uncomment below and update the code to test the property address_id
+    it('should have the property crypto_address_id (base name: "crypto_address_id")', function() {
+      // uncomment below and update the code to test the property crypto_address_id
       //var instance = new CoboWaas2.CryptoAddress();
       //expect(instance).to.be();
     });

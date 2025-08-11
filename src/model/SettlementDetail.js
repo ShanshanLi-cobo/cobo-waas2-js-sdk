@@ -94,6 +94,9 @@ class SettlementDetail {
             if (data.hasOwnProperty('settlement_request_id')) {
                 obj['settlement_request_id'] = ApiClient.convertToType(data['settlement_request_id'], 'String');
             }
+            if (data.hasOwnProperty('order_ids')) {
+                obj['order_ids'] = ApiClient.convertToType(data['order_ids'], ['String']);
+            }
         }
         return obj;
     }
@@ -151,6 +154,10 @@ class SettlementDetail {
         // ensure the json data is a string
         if (data['settlement_request_id'] && !(typeof data['settlement_request_id'] === 'string' || data['settlement_request_id'] instanceof String)) {
             throw new Error("Expected the field `settlement_request_id` to be a primitive type in the JSON string but got " + data['settlement_request_id']);
+        }
+        // ensure the json data is an array
+        if (!Array.isArray(data['order_ids'])) {
+            throw new Error("Expected the field `order_ids` to be an array in the JSON data but got " + data['order_ids']);
         }
 
         return true;
@@ -246,6 +253,12 @@ SettlementDetail.prototype['acquiring_type'] = undefined;
  * @member {String} settlement_request_id
  */
 SettlementDetail.prototype['settlement_request_id'] = undefined;
+
+/**
+ * A list of unique order IDs to be included in this settlement.  - This field is only applicable when `settlement_type` is set to `Merchant`. - If provided, the settlement will only apply to the specified orders. - The settlement `amount` must exactly match the total eligible amount from these orders. - This ensures consistency between the declared amount and the actual order-level data being settled. 
+ * @member {Array.<String>} order_ids
+ */
+SettlementDetail.prototype['order_ids'] = undefined;
 
 
 

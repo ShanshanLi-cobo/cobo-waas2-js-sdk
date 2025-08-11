@@ -107,6 +107,7 @@ Class | Method | HTTP request | Description
 *CoboWaas2.PaymentApi* | [**createPaymentOrder**](docs/PaymentApi.md#createPaymentOrder) | **POST** /payments/orders | Create pay-in order
 *CoboWaas2.PaymentApi* | [**createRefund**](docs/PaymentApi.md#createRefund) | **POST** /payments/refunds | Create refund order
 *CoboWaas2.PaymentApi* | [**createSettlementRequest**](docs/PaymentApi.md#createSettlementRequest) | **POST** /payments/settlement_requests | Create settlement request
+*CoboWaas2.PaymentApi* | [**deleteCryptoAddress**](docs/PaymentApi.md#deleteCryptoAddress) | **POST** /payments/crypto_addresses/{crypto_address_id}/delete | Delete crypto address
 *CoboWaas2.PaymentApi* | [**getExchangeRate**](docs/PaymentApi.md#getExchangeRate) | **GET** /payments/exchange_rates/{token_id}/{currency} | Get exchange rate
 *CoboWaas2.PaymentApi* | [**getPaymentOrderDetailById**](docs/PaymentApi.md#getPaymentOrderDetailById) | **GET** /payments/orders/{order_id} | Get pay-in order information
 *CoboWaas2.PaymentApi* | [**getPspBalance**](docs/PaymentApi.md#getPspBalance) | **GET** /payments/balance/psp | Get psp balance
@@ -402,6 +403,7 @@ Class | Method | HTTP request | Description
  - [CoboWaas2.CustodialWeb3ContractCallSource](docs/CustodialWeb3ContractCallSource.md)
  - [CoboWaas2.CustodialWeb3MessageSignSource](docs/CustodialWeb3MessageSignSource.md)
  - [CoboWaas2.CustodialWeb3TransferSource](docs/CustodialWeb3TransferSource.md)
+ - [CoboWaas2.DeleteCryptoAddress201Response](docs/DeleteCryptoAddress201Response.md)
  - [CoboWaas2.DeleteGuardPubkey201Response](docs/DeleteGuardPubkey201Response.md)
  - [CoboWaas2.DeleteKeyShareHolderGroupById201Response](docs/DeleteKeyShareHolderGroupById201Response.md)
  - [CoboWaas2.DeleteWalletById201Response](docs/DeleteWalletById201Response.md)

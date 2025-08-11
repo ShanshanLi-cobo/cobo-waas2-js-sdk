@@ -20,6 +20,7 @@ import CreatePaymentOrderRequest from '../model/CreatePaymentOrderRequest';
 import CreateRefundRequest from '../model/CreateRefundRequest';
 import CreateSettlementRequestRequest from '../model/CreateSettlementRequestRequest';
 import CryptoAddress from '../model/CryptoAddress';
+import DeleteCryptoAddress201Response from '../model/DeleteCryptoAddress201Response';
 import ErrorResponse from '../model/ErrorResponse';
 import ForcedSweep from '../model/ForcedSweep';
 import ForcedSweepRequest from '../model/ForcedSweepRequest';
@@ -454,6 +455,57 @@ export default class PaymentApi {
      */
     createSettlementRequest(opts) {
       return this.createSettlementRequestWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Delete crypto address
+     * This operation deletes a crypto address. 
+     * @param {String} crypto_address_id The crypto address ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DeleteCryptoAddress201Response} and HTTP response
+     */
+    deleteCryptoAddressWithHttpInfo(crypto_address_id) {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'crypto_address_id' is set
+      if (crypto_address_id === undefined || crypto_address_id === null) {
+        throw new Error("Missing the required parameter 'crypto_address_id' when calling deleteCryptoAddress");
+      }
+
+      let pathParams = {
+        'crypto_address_id': crypto_address_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = DeleteCryptoAddress201Response;
+      return this.apiClient.callApi(
+        '/payments/crypto_addresses/{crypto_address_id}/delete', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Delete crypto address
+     * This operation deletes a crypto address. 
+     * @param {String} crypto_address_id The crypto address ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DeleteCryptoAddress201Response}
+     */
+    deleteCryptoAddress(crypto_address_id) {
+      return this.deleteCryptoAddressWithHttpInfo(crypto_address_id)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

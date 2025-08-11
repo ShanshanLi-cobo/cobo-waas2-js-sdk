@@ -147,6 +147,7 @@ docs/CustodialWalletInfo.md
 docs/CustodialWeb3ContractCallSource.md
 docs/CustodialWeb3MessageSignSource.md
 docs/CustodialWeb3TransferSource.md
+docs/DeleteCryptoAddress201Response.md
 docs/DeleteGuardPubkey201Response.md
 docs/DeleteKeyShareHolderGroupById201Response.md
 docs/DeleteWalletById201Response.md
@@ -840,6 +841,7 @@ src/model/CustodialWalletInfo.js
 src/model/CustodialWeb3ContractCallSource.js
 src/model/CustodialWeb3MessageSignSource.js
 src/model/CustodialWeb3TransferSource.js
+src/model/DeleteCryptoAddress201Response.js
 src/model/DeleteGuardPubkey201Response.js
 src/model/DeleteKeyShareHolderGroupById201Response.js
 src/model/DeleteWalletById201Response.js
@@ -1505,6 +1507,7 @@ test/model/CustodialWalletInfo.spec.js
 test/model/CustodialWeb3ContractCallSource.spec.js
 test/model/CustodialWeb3MessageSignSource.spec.js
 test/model/CustodialWeb3TransferSource.spec.js
+test/model/DeleteCryptoAddress201Response.spec.js
 test/model/DeleteGuardPubkey201Response.spec.js
 test/model/DeleteKeyShareHolderGroupById201Response.spec.js
 test/model/DeleteWalletById201Response.spec.js

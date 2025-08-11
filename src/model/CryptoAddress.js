@@ -20,12 +20,12 @@ class CryptoAddress {
      * Constructs a new <code>CryptoAddress</code>.
      * @alias module:model/CryptoAddress
      * @param token_id {String} The token identifier (e.g., ETH_USDT, TRON_USDT) that this address is associated with.
-     * @param address_id {String} Unique identifier for the pre-approved crypto address, used to reference the address securely in requests. This ID is returned by the system and should be used instead of the raw blockchain address in API calls.
+     * @param crypto_address_id {String} Unique identifier for the pre-approved crypto address, used to reference the address securely in requests. This ID is returned by the system and should be used instead of the raw blockchain address in API calls.
      * @param address {String} The actual blockchain address to which funds will be transferred. This is for display purposes only; external clients should always use address_id to refer to the address in secure operations.
      */
-    constructor(token_id, address_id, address) { 
+    constructor(token_id, crypto_address_id, address) { 
         
-        CryptoAddress.initialize(this, token_id, address_id, address);
+        CryptoAddress.initialize(this, token_id, crypto_address_id, address);
     }
 
     /**
@@ -33,9 +33,9 @@ class CryptoAddress {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, token_id, address_id, address) { 
+    static initialize(obj, token_id, crypto_address_id, address) { 
         obj['token_id'] = token_id;
-        obj['address_id'] = address_id;
+        obj['crypto_address_id'] = crypto_address_id;
         obj['address'] = address;
     }
 
@@ -53,8 +53,8 @@ class CryptoAddress {
             if (data.hasOwnProperty('token_id')) {
                 obj['token_id'] = ApiClient.convertToType(data['token_id'], 'String');
             }
-            if (data.hasOwnProperty('address_id')) {
-                obj['address_id'] = ApiClient.convertToType(data['address_id'], 'String');
+            if (data.hasOwnProperty('crypto_address_id')) {
+                obj['crypto_address_id'] = ApiClient.convertToType(data['crypto_address_id'], 'String');
             }
             if (data.hasOwnProperty('address')) {
                 obj['address'] = ApiClient.convertToType(data['address'], 'String');
@@ -89,8 +89,8 @@ class CryptoAddress {
             throw new Error("Expected the field `token_id` to be a primitive type in the JSON string but got " + data['token_id']);
         }
         // ensure the json data is a string
-        if (data['address_id'] && !(typeof data['address_id'] === 'string' || data['address_id'] instanceof String)) {
-            throw new Error("Expected the field `address_id` to be a primitive type in the JSON string but got " + data['address_id']);
+        if (data['crypto_address_id'] && !(typeof data['crypto_address_id'] === 'string' || data['crypto_address_id'] instanceof String)) {
+            throw new Error("Expected the field `crypto_address_id` to be a primitive type in the JSON string but got " + data['crypto_address_id']);
         }
         // ensure the json data is a string
         if (data['address'] && !(typeof data['address'] === 'string' || data['address'] instanceof String)) {
@@ -107,7 +107,7 @@ class CryptoAddress {
 
 }
 
-CryptoAddress.RequiredProperties = ["token_id", "address_id", "address"];
+CryptoAddress.RequiredProperties = ["token_id", "crypto_address_id", "address"];
 
 /**
  * The token identifier (e.g., ETH_USDT, TRON_USDT) that this address is associated with.
@@ -117,9 +117,9 @@ CryptoAddress.prototype['token_id'] = undefined;
 
 /**
  * Unique identifier for the pre-approved crypto address, used to reference the address securely in requests. This ID is returned by the system and should be used instead of the raw blockchain address in API calls.
- * @member {String} address_id
+ * @member {String} crypto_address_id
  */
-CryptoAddress.prototype['address_id'] = undefined;
+CryptoAddress.prototype['crypto_address_id'] = undefined;
 
 /**
  * The actual blockchain address to which funds will be transferred. This is for display purposes only; external clients should always use address_id to refer to the address in secure operations.
