@@ -26,7 +26,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new CoboWaas2.CryptoAddress();
+    instance = new CoboWaas2.CreateCryptoAddressRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -45,46 +45,28 @@
       object[property] = value;
   }
 
-  describe('CryptoAddress', function() {
-    it('should create an instance of CryptoAddress', function() {
-      // uncomment below and update the code to test CryptoAddress
-      //var instance = new CoboWaas2.CryptoAddress();
-      //expect(instance).to.be.a(CoboWaas2.CryptoAddress);
+  describe('CreateCryptoAddressRequest', function() {
+    it('should create an instance of CreateCryptoAddressRequest', function() {
+      // uncomment below and update the code to test CreateCryptoAddressRequest
+      //var instance = new CoboWaas2.CreateCryptoAddressRequest();
+      //expect(instance).to.be.a(CoboWaas2.CreateCryptoAddressRequest);
     });
 
     it('should have the property token_id (base name: "token_id")', function() {
       // uncomment below and update the code to test the property token_id
-      //var instance = new CoboWaas2.CryptoAddress();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property crypto_address_id (base name: "crypto_address_id")', function() {
-      // uncomment below and update the code to test the property crypto_address_id
-      //var instance = new CoboWaas2.CryptoAddress();
+      //var instance = new CoboWaas2.CreateCryptoAddressRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property address (base name: "address")', function() {
       // uncomment below and update the code to test the property address
-      //var instance = new CoboWaas2.CryptoAddress();
+      //var instance = new CoboWaas2.CreateCryptoAddressRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property label (base name: "label")', function() {
       // uncomment below and update the code to test the property label
-      //var instance = new CoboWaas2.CryptoAddress();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property created_timestamp (base name: "created_timestamp")', function() {
-      // uncomment below and update the code to test the property created_timestamp
-      //var instance = new CoboWaas2.CryptoAddress();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property updated_timestamp (base name: "updated_timestamp")', function() {
-      // uncomment below and update the code to test the property updated_timestamp
-      //var instance = new CoboWaas2.CryptoAddress();
+      //var instance = new CoboWaas2.CreateCryptoAddressRequest();
       //expect(instance).to.be();
     });
 

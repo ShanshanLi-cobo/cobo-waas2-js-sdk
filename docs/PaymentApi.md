@@ -5,11 +5,13 @@ All URIs are relative to *https://api.dev.cobo.com/v2*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cancelRefundById**](PaymentApi.md#cancelRefundById) | **PUT** /payments/refunds/{refund_id}/cancel | Cancel refund order
-[**createForcedSweepRequest**](PaymentApi.md#createForcedSweepRequest) | **POST** /payments/force_sweep_requests | Create force sweep request
+[**createCryptoAddress**](PaymentApi.md#createCryptoAddress) | **POST** /payments/crypto_addresses | Create crypto address
+[**createForcedSweepRequest**](PaymentApi.md#createForcedSweepRequest) | **POST** /payments/force_sweep_requests | Create forced sweep
 [**createMerchant**](PaymentApi.md#createMerchant) | **POST** /payments/merchants | Create merchant
 [**createPaymentOrder**](PaymentApi.md#createPaymentOrder) | **POST** /payments/orders | Create pay-in order
 [**createRefund**](PaymentApi.md#createRefund) | **POST** /payments/refunds | Create refund order
 [**createSettlementRequest**](PaymentApi.md#createSettlementRequest) | **POST** /payments/settlement_requests | Create settlement request
+[**deleteCryptoAddress**](PaymentApi.md#deleteCryptoAddress) | **POST** /payments/crypto_addresses/{crypto_address_id}/delete | Delete crypto address
 [**getExchangeRate**](PaymentApi.md#getExchangeRate) | **GET** /payments/exchange_rates/{token_id}/{currency} | Get exchange rate
 [**getPaymentOrderDetailById**](PaymentApi.md#getPaymentOrderDetailById) | **GET** /payments/orders/{order_id} | Get pay-in order information
 [**getRefundDetailById**](PaymentApi.md#getRefundDetailById) | **GET** /payments/refunds/{refund_id} | Get refund order information
@@ -19,10 +21,11 @@ Method | HTTP request | Description
 [**getTopUpAddress**](PaymentApi.md#getTopUpAddress) | **GET** /payments/topup/address | Get top-up address
 [**listBankAccounts**](PaymentApi.md#listBankAccounts) | **GET** /payments/bank_accounts | List all bank accounts
 [**listCryptoAddresses**](PaymentApi.md#listCryptoAddresses) | **GET** /payments/crypto_addresses | List crypto addresses
-[**listForcedSweepRequests**](PaymentApi.md#listForcedSweepRequests) | **GET** /payments/force_sweep_requests | List force sweep requests
+[**listForcedSweepRequests**](PaymentApi.md#listForcedSweepRequests) | **GET** /payments/force_sweep_requests | List forced sweeps
 [**listMerchants**](PaymentApi.md#listMerchants) | **GET** /payments/merchants | List all merchants
 [**listPaymentOrders**](PaymentApi.md#listPaymentOrders) | **GET** /payments/orders | List all pay-in orders
 [**listPaymentSupportedTokens**](PaymentApi.md#listPaymentSupportedTokens) | **GET** /payments/supported_tokens | List all supported tokens
+[**listSettlementDetails**](PaymentApi.md#listSettlementDetails) | **GET** /payments/settlement_details | List all settlement details
 [**listSettlementRequests**](PaymentApi.md#listSettlementRequests) | **GET** /payments/settlement_requests | List all settlement requests
 [**listTopUpPayers**](PaymentApi.md#listTopUpPayers) | **GET** /payments/topup/payers | List payers
 [**updateMerchantById**](PaymentApi.md#updateMerchantById) | **PUT** /payments/merchants/{merchant_id} | Update merchant
@@ -82,13 +85,65 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
+## createCryptoAddress
+
+> CryptoAddress createCryptoAddress(opts)
+
+Create crypto address
+
+Create a new cryptocurrency address for receiving payouts or transfers.  The address must match the specified &#x60;token_id&#x60;&#39;s blockchain.  Optionally, a label can be provided to help categorize the address internally. 
+
+### Example
+
+```javascript
+const CoboWaas2 = require('@cobo/cobo-waas2');
+// Initialize the API client
+const apiClient = CoboWaas2.ApiClient.instance
+// Select the development environment. To use the production environment, replace `Env.DEV` with `Env.PROD`
+apiClient.setEnv(CoboWaas2.Env.DEV);
+// Replace `<YOUR_PRIVATE_KEY>` with your private key
+apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
+// Call the API
+const apiInstance = new CoboWaas2.PaymentApi();
+const opts = {
+  'CreateCryptoAddressRequest': new CoboWaas2.CreateCryptoAddressRequest()
+};
+apiInstance.createCryptoAddress(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **CreateCryptoAddressRequest** | [**CreateCryptoAddressRequest**](CreateCryptoAddressRequest.md)| The request body to create a crypto address. | [optional] 
+
+### Return type
+
+[**CryptoAddress**](CryptoAddress.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [CoboAuth](../README.md#CoboAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
 ## createForcedSweepRequest
 
 > ForcedSweep createForcedSweepRequest(opts)
 
-Create force sweep request
+Create forced sweep
 
-This operation creates a force sweep request to settle or refund available balances.  
+This operation creates a forced sweep to transfer funds from addresses within a specified wallet to its designated sweep-to address. 
 
 ### Example
 
@@ -118,7 +173,7 @@ apiInstance.createForcedSweepRequest(opts).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ForcedSweepRequest** | [**ForcedSweepRequest**](ForcedSweepRequest.md)| The request body to force sweep. | [optional] 
+ **ForcedSweepRequest** | [**ForcedSweepRequest**](ForcedSweepRequest.md)| The request body for forced sweep. | [optional] 
 
 ### Return type
 
@@ -342,6 +397,56 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
+## deleteCryptoAddress
+
+> DeleteCryptoAddress201Response deleteCryptoAddress(crypto_address_id)
+
+Delete crypto address
+
+This operation deletes a crypto address. 
+
+### Example
+
+```javascript
+const CoboWaas2 = require('@cobo/cobo-waas2');
+// Initialize the API client
+const apiClient = CoboWaas2.ApiClient.instance
+// Select the development environment. To use the production environment, replace `Env.DEV` with `Env.PROD`
+apiClient.setEnv(CoboWaas2.Env.DEV);
+// Replace `<YOUR_PRIVATE_KEY>` with your private key
+apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
+// Call the API
+const apiInstance = new CoboWaas2.PaymentApi();
+const crypto_address_id = "addr_ethusdt_20250506T123456_ab12cd";
+apiInstance.deleteCryptoAddress(crypto_address_id).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **crypto_address_id** | **String**| The crypto address ID. | 
+
+### Return type
+
+[**DeleteCryptoAddress201Response**](DeleteCryptoAddress201Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [CoboAuth](../README.md#CoboAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## getExchangeRate
 
 > GetExchangeRate200Response getExchangeRate(token_id, currency)
@@ -519,7 +624,8 @@ const opts = {
   'before': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGmk1",
   'after': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk",
   'merchant_id': "M1001",
-  'request_id': "random_request_id"
+  'request_id': "random_request_id",
+  'statuses': "Pending,Processing"
 };
 apiInstance.getRefunds(opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -539,6 +645,7 @@ Name | Type | Description  | Notes
  **after** | **String**| A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response.  | [optional] 
  **merchant_id** | **String**| The merchant ID. | [optional] 
  **request_id** | **String**| The request ID. | [optional] 
+ **statuses** | **String**| A list of  statuses of order, refund or settle request. | [optional] 
 
 ### Return type
 
@@ -610,7 +717,7 @@ Name | Type | Description  | Notes
 
 Get withdrawable balances
 
-This operation retrieves the current withdrawable balances of specified merchants or the developer. 
+This operation retrieves the balances of specified merchants or the developer. 
 
 ### Example
 
@@ -816,9 +923,9 @@ Name | Type | Description  | Notes
 
 > ListForcedSweepRequests200Response listForcedSweepRequests(opts)
 
-List force sweep requests
+List forced sweeps
 
-This operation retrieves the information of force_sweep requests. 
+This operation retrieves the information of all forced sweeps. 
 
 ### Example
 
@@ -955,7 +1062,8 @@ const opts = {
   'before': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGmk1",
   'after': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk",
   'merchant_id': "M1001",
-  'psp_order_id': "P20240201001"
+  'psp_order_id': "P20240201001",
+  'statuses': "Pending,Processing"
 };
 apiInstance.listPaymentOrders(opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -975,6 +1083,7 @@ Name | Type | Description  | Notes
  **after** | **String**| A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response.  | [optional] 
  **merchant_id** | **String**| The merchant ID. | [optional] 
  **psp_order_id** | **String**| A unique reference code assigned by the developer to identify this order in their system. | [optional] 
+ **statuses** | **String**| A list of  statuses of order, refund or settle request. | [optional] 
 
 ### Return type
 
@@ -1025,6 +1134,66 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**[SupportedToken]**](SupportedToken.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [CoboAuth](../README.md#CoboAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## listSettlementDetails
+
+> ListSettlementDetails200Response listSettlementDetails(opts)
+
+List all settlement details
+
+This operation retrieves the information of all settlement details. You can filter the result by merchant ID or status. 
+
+### Example
+
+```javascript
+const CoboWaas2 = require('@cobo/cobo-waas2');
+// Initialize the API client
+const apiClient = CoboWaas2.ApiClient.instance
+// Select the development environment. To use the production environment, replace `Env.DEV` with `Env.PROD`
+apiClient.setEnv(CoboWaas2.Env.DEV);
+// Replace `<YOUR_PRIVATE_KEY>` with your private key
+apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
+// Call the API
+const apiInstance = new CoboWaas2.PaymentApi();
+const opts = {
+  'limit': 10,
+  'before': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGmk1",
+  'after': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk",
+  'merchant_id': "M1001",
+  'statuses': "Pending,Processing"
+};
+apiInstance.listSettlementDetails(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **Number**| The maximum number of objects to return. For most operations, the value range is [1, 50]. | [optional] [default to 10]
+ **before** | **String**| A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response.  | [optional] 
+ **after** | **String**| A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response.  | [optional] 
+ **merchant_id** | **String**| The merchant ID. | [optional] 
+ **statuses** | **String**| A list of  statuses of order, refund or settle request. | [optional] 
+
+### Return type
+
+[**ListSettlementDetails200Response**](ListSettlementDetails200Response.md)
 
 ### Authorization
 
@@ -1322,7 +1491,7 @@ Name | Type | Description  | Notes
 
 Update top-up address
 
-Update the top-up address for a payer under a specific merchant and token. 
+This operation updates the dedicated top-up address assigned to a specific payer under a merchant on a specified chain. 
 
 ### Example
 
@@ -1352,7 +1521,7 @@ apiInstance.updateTopUpAddress(opts).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **UpdateTopUpAddress** | [**UpdateTopUpAddress**](UpdateTopUpAddress.md)| The request body to update top up address. | [optional] 
+ **UpdateTopUpAddress** | [**UpdateTopUpAddress**](UpdateTopUpAddress.md)| The request body to update top-up address. | [optional] 
 
 ### Return type
 

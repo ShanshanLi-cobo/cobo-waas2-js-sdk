@@ -102,6 +102,7 @@ docs/CreateBabylonStakingRegistration201Response.md
 docs/CreateBabylonStakingRegistrationRequest.md
 docs/CreateClaimActivity.md
 docs/CreateClaimActivityRequest.md
+docs/CreateCryptoAddressRequest.md
 docs/CreateCustodialWalletParams.md
 docs/CreateExchangeWalletParams.md
 docs/CreateKeyShareHolder.md
@@ -142,6 +143,7 @@ docs/CustodialWalletInfo.md
 docs/CustodialWeb3ContractCallSource.md
 docs/CustodialWeb3MessageSignSource.md
 docs/CustodialWeb3TransferSource.md
+docs/DeleteCryptoAddress201Response.md
 docs/DeleteGuardPubkey201Response.md
 docs/DeleteKeyShareHolderGroupById201Response.md
 docs/DeleteWalletById201Response.md
@@ -247,6 +249,7 @@ docs/ListMerchants200Response.md
 docs/ListMpcProjects200Response.md
 docs/ListMpcVaults200Response.md
 docs/ListPaymentOrders200Response.md
+docs/ListSettlementDetails200Response.md
 docs/ListSettlementRequests200Response.md
 docs/ListStakingActivities200Response.md
 docs/ListStakingPools200Response.md
@@ -765,6 +768,7 @@ src/model/CreateBabylonStakingRegistration201Response.js
 src/model/CreateBabylonStakingRegistrationRequest.js
 src/model/CreateClaimActivity.js
 src/model/CreateClaimActivityRequest.js
+src/model/CreateCryptoAddressRequest.js
 src/model/CreateCustodialWalletParams.js
 src/model/CreateExchangeWalletParams.js
 src/model/CreateKeyShareHolder.js
@@ -805,6 +809,7 @@ src/model/CustodialWalletInfo.js
 src/model/CustodialWeb3ContractCallSource.js
 src/model/CustodialWeb3MessageSignSource.js
 src/model/CustodialWeb3TransferSource.js
+src/model/DeleteCryptoAddress201Response.js
 src/model/DeleteGuardPubkey201Response.js
 src/model/DeleteKeyShareHolderGroupById201Response.js
 src/model/DeleteWalletById201Response.js
@@ -907,6 +912,7 @@ src/model/ListMerchants200Response.js
 src/model/ListMpcProjects200Response.js
 src/model/ListMpcVaults200Response.js
 src/model/ListPaymentOrders200Response.js
+src/model/ListSettlementDetails200Response.js
 src/model/ListSettlementRequests200Response.js
 src/model/ListStakingActivities200Response.js
 src/model/ListStakingPools200Response.js
@@ -1403,6 +1409,7 @@ test/model/CreateBabylonStakingRegistration201Response.spec.js
 test/model/CreateBabylonStakingRegistrationRequest.spec.js
 test/model/CreateClaimActivity.spec.js
 test/model/CreateClaimActivityRequest.spec.js
+test/model/CreateCryptoAddressRequest.spec.js
 test/model/CreateCustodialWalletParams.spec.js
 test/model/CreateExchangeWalletParams.spec.js
 test/model/CreateKeyShareHolder.spec.js
@@ -1443,6 +1450,7 @@ test/model/CustodialWalletInfo.spec.js
 test/model/CustodialWeb3ContractCallSource.spec.js
 test/model/CustodialWeb3MessageSignSource.spec.js
 test/model/CustodialWeb3TransferSource.spec.js
+test/model/DeleteCryptoAddress201Response.spec.js
 test/model/DeleteGuardPubkey201Response.spec.js
 test/model/DeleteKeyShareHolderGroupById201Response.spec.js
 test/model/DeleteWalletById201Response.spec.js
@@ -1545,6 +1553,7 @@ test/model/ListMerchants200Response.spec.js
 test/model/ListMpcProjects200Response.spec.js
 test/model/ListMpcVaults200Response.spec.js
 test/model/ListPaymentOrders200Response.spec.js
+test/model/ListSettlementDetails200Response.spec.js
 test/model/ListSettlementRequests200Response.spec.js
 test/model/ListStakingActivities200Response.spec.js
 test/model/ListStakingPools200Response.spec.js

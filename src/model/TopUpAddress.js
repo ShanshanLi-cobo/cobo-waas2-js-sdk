@@ -18,7 +18,6 @@ import ApiClient from '../ApiClient';
 class TopUpAddress {
     /**
      * Constructs a new <code>TopUpAddress</code>.
-     * The details of a top-up address
      * @alias module:model/TopUpAddress
      * @param address {String} The dedicated top-up address assigned to a specific payer under a merchant on a specified chain.
      * @param payer_id {String} A unique identifier assigned by Cobo to track and identify individual payers.

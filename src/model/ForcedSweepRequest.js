@@ -18,12 +18,11 @@ import ApiClient from '../ApiClient';
 class ForcedSweepRequest {
     /**
      * Constructs a new <code>ForcedSweepRequest</code>.
-     * The information about the request to force sweep.
      * @alias module:model/ForcedSweepRequest
-     * @param request_id {String} The request id of the force sweep.
-     * @param wallet_id {String} The wallet ID to force sweep, which is the unique identifier of a wallet.
-     * @param token_id {String} The token ID to force sweep, which is the unique identifier of a token.
-     * @param amount {String} The amount of needing force sweep.
+     * @param request_id {String} The request ID that is used to track a forced sweep. The request ID is provided by you and must be unique.
+     * @param wallet_id {String} The ID of the wallet in which the funds will be forcefully swept.
+     * @param token_id {String} The ID of the token to be forcefully swept.
+     * @param amount {String} The amount of the token to be forcefully swept.
      */
     constructor(request_id, wallet_id, token_id, amount) { 
         
@@ -107,25 +106,25 @@ class ForcedSweepRequest {
 ForcedSweepRequest.RequiredProperties = ["request_id", "wallet_id", "token_id", "amount"];
 
 /**
- * The request id of the force sweep.
+ * The request ID that is used to track a forced sweep. The request ID is provided by you and must be unique.
  * @member {String} request_id
  */
 ForcedSweepRequest.prototype['request_id'] = undefined;
 
 /**
- * The wallet ID to force sweep, which is the unique identifier of a wallet.
+ * The ID of the wallet in which the funds will be forcefully swept.
  * @member {String} wallet_id
  */
 ForcedSweepRequest.prototype['wallet_id'] = undefined;
 
 /**
- * The token ID to force sweep, which is the unique identifier of a token.
+ * The ID of the token to be forcefully swept.
  * @member {String} token_id
  */
 ForcedSweepRequest.prototype['token_id'] = undefined;
 
 /**
- * The amount of needing force sweep.
+ * The amount of the token to be forcefully swept.
  * @member {String} amount
  */
 ForcedSweepRequest.prototype['amount'] = undefined;

@@ -97,11 +97,13 @@ Class | Method | HTTP request | Description
 *CoboWaas2.OAuthApi* | [**refreshToken**](docs/OAuthApi.md#refreshToken) | **POST** /oauth/token | Refresh Org Access Token
 *CoboWaas2.OrganizationsApi* | [**getOrgInfo**](docs/OrganizationsApi.md#getOrgInfo) | **GET** /organizations/info | Get organization information
 *CoboWaas2.PaymentApi* | [**cancelRefundById**](docs/PaymentApi.md#cancelRefundById) | **PUT** /payments/refunds/{refund_id}/cancel | Cancel refund order
-*CoboWaas2.PaymentApi* | [**createForcedSweepRequest**](docs/PaymentApi.md#createForcedSweepRequest) | **POST** /payments/force_sweep_requests | Create force sweep request
+*CoboWaas2.PaymentApi* | [**createCryptoAddress**](docs/PaymentApi.md#createCryptoAddress) | **POST** /payments/crypto_addresses | Create crypto address
+*CoboWaas2.PaymentApi* | [**createForcedSweepRequest**](docs/PaymentApi.md#createForcedSweepRequest) | **POST** /payments/force_sweep_requests | Create forced sweep
 *CoboWaas2.PaymentApi* | [**createMerchant**](docs/PaymentApi.md#createMerchant) | **POST** /payments/merchants | Create merchant
 *CoboWaas2.PaymentApi* | [**createPaymentOrder**](docs/PaymentApi.md#createPaymentOrder) | **POST** /payments/orders | Create pay-in order
 *CoboWaas2.PaymentApi* | [**createRefund**](docs/PaymentApi.md#createRefund) | **POST** /payments/refunds | Create refund order
 *CoboWaas2.PaymentApi* | [**createSettlementRequest**](docs/PaymentApi.md#createSettlementRequest) | **POST** /payments/settlement_requests | Create settlement request
+*CoboWaas2.PaymentApi* | [**deleteCryptoAddress**](docs/PaymentApi.md#deleteCryptoAddress) | **POST** /payments/crypto_addresses/{crypto_address_id}/delete | Delete crypto address
 *CoboWaas2.PaymentApi* | [**getExchangeRate**](docs/PaymentApi.md#getExchangeRate) | **GET** /payments/exchange_rates/{token_id}/{currency} | Get exchange rate
 *CoboWaas2.PaymentApi* | [**getPaymentOrderDetailById**](docs/PaymentApi.md#getPaymentOrderDetailById) | **GET** /payments/orders/{order_id} | Get pay-in order information
 *CoboWaas2.PaymentApi* | [**getRefundDetailById**](docs/PaymentApi.md#getRefundDetailById) | **GET** /payments/refunds/{refund_id} | Get refund order information
@@ -111,10 +113,11 @@ Class | Method | HTTP request | Description
 *CoboWaas2.PaymentApi* | [**getTopUpAddress**](docs/PaymentApi.md#getTopUpAddress) | **GET** /payments/topup/address | Get top-up address
 *CoboWaas2.PaymentApi* | [**listBankAccounts**](docs/PaymentApi.md#listBankAccounts) | **GET** /payments/bank_accounts | List all bank accounts
 *CoboWaas2.PaymentApi* | [**listCryptoAddresses**](docs/PaymentApi.md#listCryptoAddresses) | **GET** /payments/crypto_addresses | List crypto addresses
-*CoboWaas2.PaymentApi* | [**listForcedSweepRequests**](docs/PaymentApi.md#listForcedSweepRequests) | **GET** /payments/force_sweep_requests | List force sweep requests
+*CoboWaas2.PaymentApi* | [**listForcedSweepRequests**](docs/PaymentApi.md#listForcedSweepRequests) | **GET** /payments/force_sweep_requests | List forced sweeps
 *CoboWaas2.PaymentApi* | [**listMerchants**](docs/PaymentApi.md#listMerchants) | **GET** /payments/merchants | List all merchants
 *CoboWaas2.PaymentApi* | [**listPaymentOrders**](docs/PaymentApi.md#listPaymentOrders) | **GET** /payments/orders | List all pay-in orders
 *CoboWaas2.PaymentApi* | [**listPaymentSupportedTokens**](docs/PaymentApi.md#listPaymentSupportedTokens) | **GET** /payments/supported_tokens | List all supported tokens
+*CoboWaas2.PaymentApi* | [**listSettlementDetails**](docs/PaymentApi.md#listSettlementDetails) | **GET** /payments/settlement_details | List all settlement details
 *CoboWaas2.PaymentApi* | [**listSettlementRequests**](docs/PaymentApi.md#listSettlementRequests) | **GET** /payments/settlement_requests | List all settlement requests
 *CoboWaas2.PaymentApi* | [**listTopUpPayers**](docs/PaymentApi.md#listTopUpPayers) | **GET** /payments/topup/payers | List payers
 *CoboWaas2.PaymentApi* | [**updateMerchantById**](docs/PaymentApi.md#updateMerchantById) | **PUT** /payments/merchants/{merchant_id} | Update merchant
@@ -320,6 +323,7 @@ Class | Method | HTTP request | Description
  - [CoboWaas2.CreateBabylonStakingRegistrationRequest](docs/CreateBabylonStakingRegistrationRequest.md)
  - [CoboWaas2.CreateClaimActivity](docs/CreateClaimActivity.md)
  - [CoboWaas2.CreateClaimActivityRequest](docs/CreateClaimActivityRequest.md)
+ - [CoboWaas2.CreateCryptoAddressRequest](docs/CreateCryptoAddressRequest.md)
  - [CoboWaas2.CreateCustodialWalletParams](docs/CreateCustodialWalletParams.md)
  - [CoboWaas2.CreateExchangeWalletParams](docs/CreateExchangeWalletParams.md)
  - [CoboWaas2.CreateKeyShareHolder](docs/CreateKeyShareHolder.md)
@@ -360,6 +364,7 @@ Class | Method | HTTP request | Description
  - [CoboWaas2.CustodialWeb3ContractCallSource](docs/CustodialWeb3ContractCallSource.md)
  - [CoboWaas2.CustodialWeb3MessageSignSource](docs/CustodialWeb3MessageSignSource.md)
  - [CoboWaas2.CustodialWeb3TransferSource](docs/CustodialWeb3TransferSource.md)
+ - [CoboWaas2.DeleteCryptoAddress201Response](docs/DeleteCryptoAddress201Response.md)
  - [CoboWaas2.DeleteGuardPubkey201Response](docs/DeleteGuardPubkey201Response.md)
  - [CoboWaas2.DeleteKeyShareHolderGroupById201Response](docs/DeleteKeyShareHolderGroupById201Response.md)
  - [CoboWaas2.DeleteWalletById201Response](docs/DeleteWalletById201Response.md)
@@ -462,6 +467,7 @@ Class | Method | HTTP request | Description
  - [CoboWaas2.ListMpcProjects200Response](docs/ListMpcProjects200Response.md)
  - [CoboWaas2.ListMpcVaults200Response](docs/ListMpcVaults200Response.md)
  - [CoboWaas2.ListPaymentOrders200Response](docs/ListPaymentOrders200Response.md)
+ - [CoboWaas2.ListSettlementDetails200Response](docs/ListSettlementDetails200Response.md)
  - [CoboWaas2.ListSettlementRequests200Response](docs/ListSettlementRequests200Response.md)
  - [CoboWaas2.ListStakingActivities200Response](docs/ListStakingActivities200Response.md)
  - [CoboWaas2.ListStakingPools200Response](docs/ListStakingPools200Response.md)
