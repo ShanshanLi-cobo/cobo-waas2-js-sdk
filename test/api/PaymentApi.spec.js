@@ -46,6 +46,16 @@ import {ApiClient, Env} from "../../src/index.js";
         //});
       });
     });
+    describe('createCryptoAddress', function() {
+      it('should call createCryptoAddress successfully', function() {
+        //uncomment below and update the code to test createCryptoAddress
+        //instance.createCryptoAddress().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('createForcedSweepRequest', function() {
       it('should call createForcedSweepRequest successfully', function() {
         //uncomment below and update the code to test createForcedSweepRequest
@@ -90,6 +100,16 @@ import {ApiClient, Env} from "../../src/index.js";
       it('should call createSettlementRequest successfully', function() {
         //uncomment below and update the code to test createSettlementRequest
         //instance.createSettlementRequest().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('deleteCryptoAddress', function() {
+      it('should call deleteCryptoAddress successfully', function() {
+        //uncomment below and update the code to test deleteCryptoAddress
+        //instance.deleteCryptoAddress().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);
@@ -220,6 +240,16 @@ import {ApiClient, Env} from "../../src/index.js";
       it('should call listPaymentSupportedTokens successfully', function() {
         //uncomment below and update the code to test listPaymentSupportedTokens
         //instance.listPaymentSupportedTokens().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('listSettlementDetails', function() {
+      it('should call listSettlementDetails successfully', function() {
+        //uncomment below and update the code to test listSettlementDetails
+        //instance.listSettlementDetails().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);

@@ -13,11 +13,13 @@
 import ApiClient from "../ApiClient";
 import AcquiringType from '../model/AcquiringType';
 import BankAccount from '../model/BankAccount';
+import CreateCryptoAddressRequest from '../model/CreateCryptoAddressRequest';
 import CreateMerchantRequest from '../model/CreateMerchantRequest';
 import CreatePaymentOrderRequest from '../model/CreatePaymentOrderRequest';
 import CreateRefundRequest from '../model/CreateRefundRequest';
 import CreateSettlementRequestRequest from '../model/CreateSettlementRequestRequest';
 import CryptoAddress from '../model/CryptoAddress';
+import DeleteCryptoAddress201Response from '../model/DeleteCryptoAddress201Response';
 import ErrorResponse from '../model/ErrorResponse';
 import ForcedSweep from '../model/ForcedSweep';
 import ForcedSweepRequest from '../model/ForcedSweepRequest';
@@ -27,6 +29,7 @@ import GetSettlementInfoByIds200Response from '../model/GetSettlementInfoByIds20
 import ListForcedSweepRequests200Response from '../model/ListForcedSweepRequests200Response';
 import ListMerchants200Response from '../model/ListMerchants200Response';
 import ListPaymentOrders200Response from '../model/ListPaymentOrders200Response';
+import ListSettlementDetails200Response from '../model/ListSettlementDetails200Response';
 import ListSettlementRequests200Response from '../model/ListSettlementRequests200Response';
 import ListTopUpPayers200Response from '../model/ListTopUpPayers200Response';
 import Merchant from '../model/Merchant';
@@ -111,10 +114,59 @@ export default class PaymentApi {
 
 
     /**
-     * Create force sweep request
-     * This operation creates a force sweep request to settle or refund available balances.  
+     * Create crypto address
+     * Create a new cryptocurrency address for receiving payouts or transfers.  The address must match the specified `token_id`'s blockchain.  Optionally, a label can be provided to help categorize the address internally. 
      * @param {Object} opts Optional parameters
-     * @param {module:model/ForcedSweepRequest} [ForcedSweepRequest] The request body to force sweep.
+     * @param {module:model/CreateCryptoAddressRequest} [CreateCryptoAddressRequest] The request body to create a crypto address.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/CryptoAddress} and HTTP response
+     */
+    createCryptoAddressWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['CreateCryptoAddressRequest'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = CryptoAddress;
+      return this.apiClient.callApi(
+        '/payments/crypto_addresses', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Create crypto address
+     * Create a new cryptocurrency address for receiving payouts or transfers.  The address must match the specified `token_id`'s blockchain.  Optionally, a label can be provided to help categorize the address internally. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateCryptoAddressRequest} opts.CreateCryptoAddressRequest The request body to create a crypto address.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/CryptoAddress}
+     */
+    createCryptoAddress(opts) {
+      return this.createCryptoAddressWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Create forced sweep
+     * This operation creates a forced sweep to transfer funds from addresses within a specified wallet to its designated sweep-to address. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/ForcedSweepRequest} [ForcedSweepRequest] The request body for forced sweep.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ForcedSweep} and HTTP response
      */
     createForcedSweepRequestWithHttpInfo(opts) {
@@ -145,10 +197,10 @@ export default class PaymentApi {
     }
 
     /**
-     * Create force sweep request
-     * This operation creates a force sweep request to settle or refund available balances.  
+     * Create forced sweep
+     * This operation creates a forced sweep to transfer funds from addresses within a specified wallet to its designated sweep-to address. 
      * @param {Object} opts Optional parameters
-     * @param {module:model/ForcedSweepRequest} opts.ForcedSweepRequest The request body to force sweep.
+     * @param {module:model/ForcedSweepRequest} opts.ForcedSweepRequest The request body for forced sweep.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ForcedSweep}
      */
     createForcedSweepRequest(opts) {
@@ -356,6 +408,57 @@ export default class PaymentApi {
 
 
     /**
+     * Delete crypto address
+     * This operation deletes a crypto address. 
+     * @param {String} crypto_address_id The crypto address ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DeleteCryptoAddress201Response} and HTTP response
+     */
+    deleteCryptoAddressWithHttpInfo(crypto_address_id) {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'crypto_address_id' is set
+      if (crypto_address_id === undefined || crypto_address_id === null) {
+        throw new Error("Missing the required parameter 'crypto_address_id' when calling deleteCryptoAddress");
+      }
+
+      let pathParams = {
+        'crypto_address_id': crypto_address_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = DeleteCryptoAddress201Response;
+      return this.apiClient.callApi(
+        '/payments/crypto_addresses/{crypto_address_id}/delete', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Delete crypto address
+     * This operation deletes a crypto address. 
+     * @param {String} crypto_address_id The crypto address ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DeleteCryptoAddress201Response}
+     */
+    deleteCryptoAddress(crypto_address_id) {
+      return this.deleteCryptoAddressWithHttpInfo(crypto_address_id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * Get exchange rate
      * This operation retrieves the current exchange rate between a specified currency pair. 
      * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
@@ -524,6 +627,7 @@ export default class PaymentApi {
      * @param {String} [after] A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
      * @param {String} [merchant_id] The merchant ID.
      * @param {String} [request_id] The request ID.
+     * @param {String} [statuses] A list of  statuses of order, refund or settle request.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetRefunds200Response} and HTTP response
      */
     getRefundsWithHttpInfo(opts) {
@@ -540,7 +644,8 @@ export default class PaymentApi {
         'before': opts['before'],
         'after': opts['after'],
         'merchant_id': opts['merchant_id'],
-        'request_id': opts['request_id']
+        'request_id': opts['request_id'],
+        'statuses': opts['statuses']
       };
       let headerParams = {
       };
@@ -567,6 +672,7 @@ export default class PaymentApi {
      * @param {String} opts.after A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
      * @param {String} opts.merchant_id The merchant ID.
      * @param {String} opts.request_id The request ID.
+     * @param {String} opts.statuses A list of  statuses of order, refund or settle request.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetRefunds200Response}
      */
     getRefunds(opts) {
@@ -630,7 +736,7 @@ export default class PaymentApi {
 
     /**
      * Get withdrawable balances
-     * This operation retrieves the current withdrawable balances of specified merchants or the developer. 
+     * This operation retrieves the balances of specified merchants or the developer. 
      * @param {Object} opts Optional parameters
      * @param {String} [merchant_ids] A list of merchant IDs to query.
      * @param {String} [currency = 'USD')] The currency for the operation. Currently, only `USD` is supported.
@@ -669,7 +775,7 @@ export default class PaymentApi {
 
     /**
      * Get withdrawable balances
-     * This operation retrieves the current withdrawable balances of specified merchants or the developer. 
+     * This operation retrieves the balances of specified merchants or the developer. 
      * @param {Object} opts Optional parameters
      * @param {String} opts.merchant_ids A list of merchant IDs to query.
      * @param {String} opts.currency The currency for the operation. Currently, only `USD` is supported. (default to 'USD')
@@ -844,8 +950,8 @@ export default class PaymentApi {
 
 
     /**
-     * List force sweep requests
-     * This operation retrieves the information of force_sweep requests. 
+     * List forced sweeps
+     * This operation retrieves the information of all forced sweeps. 
      * @param {Object} opts Optional parameters
      * @param {Number} [limit = 10)] The maximum number of objects to return. For most operations, the value range is [1, 50].
      * @param {String} [before] A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
@@ -885,8 +991,8 @@ export default class PaymentApi {
     }
 
     /**
-     * List force sweep requests
-     * This operation retrieves the information of force_sweep requests. 
+     * List forced sweeps
+     * This operation retrieves the information of all forced sweeps. 
      * @param {Object} opts Optional parameters
      * @param {Number} opts.limit The maximum number of objects to return. For most operations, the value range is [1, 50]. (default to 10)
      * @param {String} opts.before A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
@@ -973,6 +1079,7 @@ export default class PaymentApi {
      * @param {String} [after] A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
      * @param {String} [merchant_id] The merchant ID.
      * @param {String} [psp_order_id] A unique reference code assigned by the developer to identify this order in their system.
+     * @param {String} [statuses] A list of  statuses of order, refund or settle request.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListPaymentOrders200Response} and HTTP response
      */
     listPaymentOrdersWithHttpInfo(opts) {
@@ -989,7 +1096,8 @@ export default class PaymentApi {
         'before': opts['before'],
         'after': opts['after'],
         'merchant_id': opts['merchant_id'],
-        'psp_order_id': opts['psp_order_id']
+        'psp_order_id': opts['psp_order_id'],
+        'statuses': opts['statuses']
       };
       let headerParams = {
       };
@@ -1016,6 +1124,7 @@ export default class PaymentApi {
      * @param {String} opts.after A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
      * @param {String} opts.merchant_id The merchant ID.
      * @param {String} opts.psp_order_id A unique reference code assigned by the developer to identify this order in their system.
+     * @param {String} opts.statuses A list of  statuses of order, refund or settle request.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListPaymentOrders200Response}
      */
     listPaymentOrders(opts) {
@@ -1064,6 +1173,68 @@ export default class PaymentApi {
      */
     listPaymentSupportedTokens() {
       return this.listPaymentSupportedTokensWithHttpInfo()
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * List all settlement details
+     * This operation retrieves the information of all settlement details. You can filter the result by merchant ID or status. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} [limit = 10)] The maximum number of objects to return. For most operations, the value range is [1, 50].
+     * @param {String} [before] A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
+     * @param {String} [after] A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
+     * @param {String} [merchant_id] The merchant ID.
+     * @param {String} [statuses] A list of  statuses of order, refund or settle request.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListSettlementDetails200Response} and HTTP response
+     */
+    listSettlementDetailsWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'limit': opts['limit'],
+        'before': opts['before'],
+        'after': opts['after'],
+        'merchant_id': opts['merchant_id'],
+        'statuses': opts['statuses']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ListSettlementDetails200Response;
+      return this.apiClient.callApi(
+        '/payments/settlement_details', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * List all settlement details
+     * This operation retrieves the information of all settlement details. You can filter the result by merchant ID or status. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.limit The maximum number of objects to return. For most operations, the value range is [1, 50]. (default to 10)
+     * @param {String} opts.before A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
+     * @param {String} opts.after A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
+     * @param {String} opts.merchant_id The merchant ID.
+     * @param {String} opts.statuses A list of  statuses of order, refund or settle request.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListSettlementDetails200Response}
+     */
+    listSettlementDetails(opts) {
+      return this.listSettlementDetailsWithHttpInfo(opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -1365,9 +1536,9 @@ export default class PaymentApi {
 
     /**
      * Update top-up address
-     * Update the top-up address for a payer under a specific merchant and token. 
+     * This operation updates the dedicated top-up address assigned to a specific payer under a merchant on a specified chain. 
      * @param {Object} opts Optional parameters
-     * @param {module:model/UpdateTopUpAddress} [UpdateTopUpAddress] The request body to update top up address.
+     * @param {module:model/UpdateTopUpAddress} [UpdateTopUpAddress] The request body to update top-up address.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TopUpAddress} and HTTP response
      */
     updateTopUpAddressWithHttpInfo(opts) {
@@ -1399,9 +1570,9 @@ export default class PaymentApi {
 
     /**
      * Update top-up address
-     * Update the top-up address for a payer under a specific merchant and token. 
+     * This operation updates the dedicated top-up address assigned to a specific payer under a merchant on a specified chain. 
      * @param {Object} opts Optional parameters
-     * @param {module:model/UpdateTopUpAddress} opts.UpdateTopUpAddress The request body to update top up address.
+     * @param {module:model/UpdateTopUpAddress} opts.UpdateTopUpAddress The request body to update top-up address.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TopUpAddress}
      */
     updateTopUpAddress(opts) {

@@ -20,7 +20,7 @@ class SettlementInfo {
     /**
      * Constructs a new <code>SettlementInfo</code>.
      * @alias module:model/SettlementInfo
-     * @param available_amount {String} The amount available for settlement or refund, in the specified cryptocurrency.
+     * @param available_amount {String} This field is no longer in use and can be ignored.
      */
     constructor(available_amount) { 
         
@@ -157,25 +157,25 @@ SettlementInfo.prototype['merchant_id'] = undefined;
 SettlementInfo.prototype['token_id'] = undefined;
 
 /**
- * The amount available for settlement or refund, in the specified cryptocurrency.
+ * This field is no longer in use and can be ignored.
  * @member {String} available_amount
  */
 SettlementInfo.prototype['available_amount'] = undefined;
 
 /**
- * The amount available for settlement or refund, in the specified fiat currency.
+ * This field is no longer in use and can be ignored.
  * @member {String} available_currency_balance
  */
 SettlementInfo.prototype['available_currency_balance'] = undefined;
 
 /**
- * The amount unavailable for settlement or refund, in the specified cryptocurrency.
+ * This field is no longer in use and can be ignored.
  * @member {String} pending_amount
  */
 SettlementInfo.prototype['pending_amount'] = undefined;
 
 /**
- * The amount unavailable for settlement or refund, in the specified fiat currency.
+ * This field is no longer in use and can be ignored.
  * @member {String} pending_currency_balance
  */
 SettlementInfo.prototype['pending_currency_balance'] = undefined;
@@ -187,13 +187,13 @@ SettlementInfo.prototype['pending_currency_balance'] = undefined;
 SettlementInfo.prototype['settled_amount'] = undefined;
 
 /**
- * The balance available for settlement or refund, in the specified fiat currency.
+ * The balance available for settlement or refund, in the specified cryptocurrency.
  * @member {String} available_balance
  */
 SettlementInfo.prototype['available_balance'] = undefined;
 
 /**
- * The balance total for settlement or refund, in the specified fiat currency.
+ *  The total unsettled balance in the specified cryptocurrency, including: - Available balance that can be settled immediately - Amounts below the sweep threshold that require forced sweep before settlement 
  * @member {String} total_balance
  */
 SettlementInfo.prototype['total_balance'] = undefined;

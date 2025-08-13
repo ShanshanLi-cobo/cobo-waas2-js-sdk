@@ -136,6 +136,18 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property settlement_request_id (base name: "settlement_request_id")', function() {
+      // uncomment below and update the code to test the property settlement_request_id
+      //var instance = new CoboWaas2.SettlementDetail();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property order_ids (base name: "order_ids")', function() {
+      // uncomment below and update the code to test the property order_ids
+      //var instance = new CoboWaas2.SettlementDetail();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

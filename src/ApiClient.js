@@ -35,7 +35,7 @@ class ApiClient {
      * @param {Env} env
      * @param {String} privateKey
      */
-    constructor(env = Env.PROD, privateKey = "", curve_type = "" , signer ) {
+    constructor(env = Env.PROD, privateKey = "", curve_type = "" , signer, is_debug = false ) {
         /**
          * The base URL against which to resolve every API call's (relative) path.
          * @type {String}
@@ -70,7 +70,7 @@ class ApiClient {
          * @default {}
          */
         this.defaultHeaders = {
-            'User-Agent': 'cobo-waas2-js-sdk/1.20.0'
+            'User-Agent': 'cobo-waas2-js-sdk/1.21.0'
         };
 
         /**
@@ -112,6 +112,12 @@ class ApiClient {
          * Allow user to add superagent plugins
          */
         this.plugins = null;
+
+        /*
+         * If set to true, the client will log debug information
+         * @default false
+         */
+        this.isDebug = is_debug;
 
     }
 
@@ -462,7 +468,9 @@ class ApiClient {
 
        const nonce = String(new Date().getTime());
        const strToSign = [httpMethod, new URL(url).pathname, nonce, queryStr, bodyParam?JSON.stringify(bodyParam):''].join('|');
-       console.log("strToSign:", strToSign)
+       if (this.isDebug) {
+           console.log("strToSign:", strToSign)
+       }
        const hash2String = CryptoJS.SHA256(CryptoJS.SHA256(strToSign)).toString(CryptoJS.enc.Hex);
        const headers = {
            'BIZ-API-KEY': this.signer.getPublicKey(),

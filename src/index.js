@@ -109,6 +109,7 @@ import CreateBabylonStakingRegistration201Response from './model/CreateBabylonSt
 import CreateBabylonStakingRegistrationRequest from './model/CreateBabylonStakingRegistrationRequest';
 import CreateClaimActivity from './model/CreateClaimActivity';
 import CreateClaimActivityRequest from './model/CreateClaimActivityRequest';
+import CreateCryptoAddressRequest from './model/CreateCryptoAddressRequest';
 import CreateCustodialWalletParams from './model/CreateCustodialWalletParams';
 import CreateExchangeWalletParams from './model/CreateExchangeWalletParams';
 import CreateKeyShareHolder from './model/CreateKeyShareHolder';
@@ -149,6 +150,7 @@ import CustodialWalletInfo from './model/CustodialWalletInfo';
 import CustodialWeb3ContractCallSource from './model/CustodialWeb3ContractCallSource';
 import CustodialWeb3MessageSignSource from './model/CustodialWeb3MessageSignSource';
 import CustodialWeb3TransferSource from './model/CustodialWeb3TransferSource';
+import DeleteCryptoAddress201Response from './model/DeleteCryptoAddress201Response';
 import DeleteGuardPubkey201Response from './model/DeleteGuardPubkey201Response';
 import DeleteKeyShareHolderGroupById201Response from './model/DeleteKeyShareHolderGroupById201Response';
 import DeleteWalletById201Response from './model/DeleteWalletById201Response';
@@ -251,6 +253,7 @@ import ListMerchants200Response from './model/ListMerchants200Response';
 import ListMpcProjects200Response from './model/ListMpcProjects200Response';
 import ListMpcVaults200Response from './model/ListMpcVaults200Response';
 import ListPaymentOrders200Response from './model/ListPaymentOrders200Response';
+import ListSettlementDetails200Response from './model/ListSettlementDetails200Response';
 import ListSettlementRequests200Response from './model/ListSettlementRequests200Response';
 import ListStakingActivities200Response from './model/ListStakingActivities200Response';
 import ListStakingPools200Response from './model/ListStakingPools200Response';
@@ -683,7 +686,7 @@ import WalletsSmartContractWalletsApi from './api/WalletsSmartContractWalletsApi
 * </pre>
 * </p>
 * @module index
-* @version 1.20.0
+* @version 1.21.0
 */
 export {
     Env,
@@ -1272,6 +1275,12 @@ export {
     CreateClaimActivityRequest,
 
     /**
+     * The CreateCryptoAddressRequest model constructor.
+     * @property {module:model/CreateCryptoAddressRequest}
+     */
+    CreateCryptoAddressRequest,
+
+    /**
      * The CreateCustodialWalletParams model constructor.
      * @property {module:model/CreateCustodialWalletParams}
      */
@@ -1510,6 +1519,12 @@ export {
      * @property {module:model/CustodialWeb3TransferSource}
      */
     CustodialWeb3TransferSource,
+
+    /**
+     * The DeleteCryptoAddress201Response model constructor.
+     * @property {module:model/DeleteCryptoAddress201Response}
+     */
+    DeleteCryptoAddress201Response,
 
     /**
      * The DeleteGuardPubkey201Response model constructor.
@@ -2122,6 +2137,12 @@ export {
      * @property {module:model/ListPaymentOrders200Response}
      */
     ListPaymentOrders200Response,
+
+    /**
+     * The ListSettlementDetails200Response model constructor.
+     * @property {module:model/ListSettlementDetails200Response}
+     */
+    ListSettlementDetails200Response,
 
     /**
      * The ListSettlementRequests200Response model constructor.

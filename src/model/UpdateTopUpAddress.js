@@ -18,11 +18,11 @@ import ApiClient from '../ApiClient';
 class UpdateTopUpAddress {
     /**
      * Constructs a new <code>UpdateTopUpAddress</code>.
-     * The request body to update top up address.
+     * The request body to update top-up address.
      * @alias module:model/UpdateTopUpAddress
      * @param merchant_id {String} The merchant ID.
      * @param token_id {String} The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
-     * @param custom_payer_id {String} Unique customer identifier on the merchant side, used to allocate a dedicated top-up address 
+     * @param custom_payer_id {String} A unique identifier assigned by the developer to track and identify individual payers in their system.
      */
     constructor(merchant_id, token_id, custom_payer_id) { 
         
@@ -110,7 +110,7 @@ UpdateTopUpAddress.prototype['merchant_id'] = undefined;
 UpdateTopUpAddress.prototype['token_id'] = undefined;
 
 /**
- * Unique customer identifier on the merchant side, used to allocate a dedicated top-up address 
+ * A unique identifier assigned by the developer to track and identify individual payers in their system.
  * @member {String} custom_payer_id
  */
 UpdateTopUpAddress.prototype['custom_payer_id'] = undefined;

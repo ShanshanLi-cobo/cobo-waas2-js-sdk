@@ -10,8 +10,11 @@
  */
 
 import ApiClient from '../ApiClient';
+import AcquiringType from './AcquiringType';
+import PayoutChannel from './PayoutChannel';
 import SettleRequestStatus from './SettleRequestStatus';
 import SettlementDetail from './SettlementDetail';
+import SettlementType from './SettlementType';
 
 /**
  * The Settlement model module.
@@ -74,6 +77,15 @@ class Settlement {
             }
             if (data.hasOwnProperty('initiator')) {
                 obj['initiator'] = ApiClient.convertToType(data['initiator'], 'String');
+            }
+            if (data.hasOwnProperty('acquiring_type')) {
+                obj['acquiring_type'] = AcquiringType.constructFromObject(data['acquiring_type']);
+            }
+            if (data.hasOwnProperty('payout_channel')) {
+                obj['payout_channel'] = PayoutChannel.constructFromObject(data['payout_channel']);
+            }
+            if (data.hasOwnProperty('settlement_type')) {
+                obj['settlement_type'] = SettlementType.constructFromObject(data['settlement_type']);
             }
         }
         return obj;
@@ -161,6 +173,21 @@ Settlement.prototype['updated_timestamp'] = undefined;
  * @member {String} initiator
  */
 Settlement.prototype['initiator'] = undefined;
+
+/**
+ * @member {module:model/AcquiringType} acquiring_type
+ */
+Settlement.prototype['acquiring_type'] = undefined;
+
+/**
+ * @member {module:model/PayoutChannel} payout_channel
+ */
+Settlement.prototype['payout_channel'] = undefined;
+
+/**
+ * @member {module:model/SettlementType} settlement_type
+ */
+Settlement.prototype['settlement_type'] = undefined;
 
 
 
