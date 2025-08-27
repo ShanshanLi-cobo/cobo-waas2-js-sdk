@@ -22,11 +22,10 @@ class UpdateMpcWalletParams {
      * The information of MPC Wallets.
      * @alias module:model/UpdateMpcWalletParams
      * @param wallet_type {module:model/WalletType} 
-     * @param name {String} The wallet name.
      */
-    constructor(wallet_type, name) { 
+    constructor(wallet_type) { 
         
-        UpdateMpcWalletParams.initialize(this, wallet_type, name);
+        UpdateMpcWalletParams.initialize(this, wallet_type);
     }
 
     /**
@@ -34,9 +33,8 @@ class UpdateMpcWalletParams {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, wallet_type, name) { 
+    static initialize(obj, wallet_type) { 
         obj['wallet_type'] = wallet_type;
-        obj['name'] = name;
     }
 
     /**
@@ -55,6 +53,9 @@ class UpdateMpcWalletParams {
             }
             if (data.hasOwnProperty('name')) {
                 obj['name'] = ApiClient.convertToType(data['name'], 'String');
+            }
+            if (data.hasOwnProperty('enable_auto_sweep')) {
+                obj['enable_auto_sweep'] = ApiClient.convertToType(data['enable_auto_sweep'], 'Boolean');
             }
         }
         return obj;
@@ -83,7 +84,7 @@ class UpdateMpcWalletParams {
 
 }
 
-UpdateMpcWalletParams.RequiredProperties = ["wallet_type", "name"];
+UpdateMpcWalletParams.RequiredProperties = ["wallet_type"];
 
 /**
  * @member {module:model/WalletType} wallet_type
@@ -95,6 +96,12 @@ UpdateMpcWalletParams.prototype['wallet_type'] = undefined;
  * @member {String} name
  */
 UpdateMpcWalletParams.prototype['name'] = undefined;
+
+/**
+ * Enable the auto sweep feature for the wallet
+ * @member {Boolean} enable_auto_sweep
+ */
+UpdateMpcWalletParams.prototype['enable_auto_sweep'] = undefined;
 
 
 

@@ -46,6 +46,9 @@ docs/ApprovalUserDetail.md
 docs/AssetBalance.md
 docs/AssetInfo.md
 docs/AutoFuelType.md
+docs/AutoSweepApi.md
+docs/AutoSweepTask.md
+docs/AutoSweepTaskStatus.md
 docs/BTCBIP137MessageSignDestination.md
 docs/BTCBIP322MessageSignDestination.md
 docs/BTCEIP191MessageSignDestination.md
@@ -96,6 +99,7 @@ docs/CosmosContractCallDestination.md
 docs/CosmosContractCallMessage.md
 docs/CreateAddressRequest.md
 docs/CreateApprovalRequest201Response.md
+docs/CreateAutoSweepTask.md
 docs/CreateBabylonAirdropRegistration201Response.md
 docs/CreateBabylonAirdropRegistrationRequest.md
 docs/CreateBabylonStakingRegistration201Response.md
@@ -123,6 +127,7 @@ docs/CreateStakeActivity.md
 docs/CreateStakeActivity201Response.md
 docs/CreateStakeActivityExtra.md
 docs/CreateStakeActivityRequest.md
+docs/CreateSweepToAddress.md
 docs/CreateTokenListingRequest201Response.md
 docs/CreateTokenListingRequestRequest.md
 docs/CreateTransferTransaction201Response.md
@@ -218,6 +223,7 @@ docs/GetStakingEstimationFee201Response.md
 docs/GetStakingEstimationFeeRequest.md
 docs/GetToken2XXResponse.md
 docs/GetToken4XXResponse.md
+docs/GetTokenizationAllowlistActivation200Response.md
 docs/GetTransactionLimitation200Response.md
 docs/GraphQLError.md
 docs/GraphQLErrorLocationsInner.md
@@ -235,6 +241,7 @@ docs/ListAddressBooks200Response.md
 docs/ListAddresses200Response.md
 docs/ListApprovalRequests200Response.md
 docs/ListAssetBalancesForExchangeWallet200Response.md
+docs/ListAutoSweepTask200Response.md
 docs/ListBabylonAirdropRegistrations200Response.md
 docs/ListBabylonEligibleAirdrops200Response.md
 docs/ListBabylonEligibleStakings200Response.md
@@ -245,10 +252,12 @@ docs/ListExchanges200ResponseInner.md
 docs/ListForcedSweepRequests200Response.md
 docs/ListKeyShareHolderGroups200Response.md
 docs/ListKeyShareHolders200Response.md
+docs/ListMerchantBalances200Response.md
 docs/ListMerchants200Response.md
 docs/ListMpcProjects200Response.md
 docs/ListMpcVaults200Response.md
 docs/ListPaymentOrders200Response.md
+docs/ListPaymentWalletBalances200Response.md
 docs/ListSettlementDetails200Response.md
 docs/ListSettlementRequests200Response.md
 docs/ListStakingActivities200Response.md
@@ -262,12 +271,14 @@ docs/ListTokenBalancesForAddress200Response.md
 docs/ListTokenBalancesForFeeStation200Response.md
 docs/ListTokenBalancesForFeeStation200ResponseDataInner.md
 docs/ListTokenListingRequests200Response.md
+docs/ListTokenizationBlocklistAddresses200Response.md
 docs/ListTopUpPayers200Response.md
 docs/ListTopUpPayers200ResponseDataInner.md
 docs/ListTransactionApprovalDetails200Response.md
 docs/ListTransactions200Response.md
 docs/ListTssRequests200Response.md
 docs/ListUtxos200Response.md
+docs/ListWalletSweepToAddresses200Response.md
 docs/ListWallets200Response.md
 docs/ListWebhookEndpoints200Response.md
 docs/ListWebhookEventDefinitions200ResponseInner.md
@@ -285,6 +296,7 @@ docs/MPCWalletInfo.md
 docs/MaxFeeAmount.md
 docs/MaxTransferableValue.md
 docs/Merchant.md
+docs/MerchantBalance.md
 docs/MessageSignDestination.md
 docs/MessageSignDestinationType.md
 docs/MessageSignParams.md
@@ -309,6 +321,7 @@ docs/PaymentRefundEventData.md
 docs/PaymentSettlementEvent.md
 docs/PaymentTransaction.md
 docs/PaymentTransactionEventData.md
+docs/PaymentWalletBalance.md
 docs/PayoutChannel.md
 docs/PolicyAction.md
 docs/PolicyActionContent.md
@@ -320,10 +333,12 @@ docs/PoolDetails.md
 docs/PoolDetailsAllOfValidatorsInfo.md
 docs/PoolSummary.md
 docs/PrimeBrokerApi.md
+docs/PspBalance.md
 docs/QueryApprovalStatement200Response.md
 docs/QueryGuardPubkey200Response.md
 docs/QueryGuardPubkey200ResponseAddressesInner.md
 docs/RawMessageSignDestination.md
+docs/ReceivedAmountPerAddress.md
 docs/RefreshAddressBalancesByToken200Response.md
 docs/RefreshAddressBalancesByTokenRequest.md
 docs/RefreshPermissionTokenRequest.md
@@ -393,6 +408,8 @@ docs/SwapQuote.md
 docs/SwapSingingStatus.md
 docs/SwapToken.md
 docs/SwapType.md
+docs/SweepToAddress.md
+docs/SweepToAddressStatus.md
 docs/TSSBaseRequestEventData.md
 docs/TSSCallbackActionType.md
 docs/TSSCallbackRequest.md
@@ -446,6 +463,8 @@ docs/TokenizationAddressPermission.md
 docs/TokenizationAllowlistActivationParams.md
 docs/TokenizationAllowlistActivationRequest.md
 docs/TokenizationAllowlistAddressNote.md
+docs/TokenizationAllowlistAddressesResponse.md
+docs/TokenizationApi.md
 docs/TokenizationAppInitiator.md
 docs/TokenizationBlocklistAddressNote.md
 docs/TokenizationBurnEstimateFeeParams.md
@@ -481,6 +500,9 @@ docs/TokenizationOperationType.md
 docs/TokenizationPauseEstimateFeeParams.md
 docs/TokenizationPauseTokenParams.md
 docs/TokenizationPauseTokenRequest.md
+docs/TokenizationSOLTokenParams.md
+docs/TokenizationSolContractCallParams.md
+docs/TokenizationSolTokenPermissionParams.md
 docs/TokenizationStatus.md
 docs/TokenizationToggleAllowlistEstimateFeeParams.md
 docs/TokenizationTokenDetailInfo.md
@@ -654,6 +676,7 @@ src/PreRequestScript.js
 src/ServerDemo.js
 src/api/AddressBooksApi.js
 src/api/AppWorkflowsApi.js
+src/api/AutoSweepApi.js
 src/api/DevelopersApi.js
 src/api/DevelopersWebhooksApi.js
 src/api/FeeStationApi.js
@@ -662,6 +685,7 @@ src/api/OrganizationsApi.js
 src/api/PaymentApi.js
 src/api/PrimeBrokerApi.js
 src/api/StakingsApi.js
+src/api/TokenizationApi.js
 src/api/TransactionsApi.js
 src/api/TravelRuleApi.js
 src/api/WalletsApi.js
@@ -712,6 +736,8 @@ src/model/ApprovalUserDetail.js
 src/model/AssetBalance.js
 src/model/AssetInfo.js
 src/model/AutoFuelType.js
+src/model/AutoSweepTask.js
+src/model/AutoSweepTaskStatus.js
 src/model/BTCBIP137MessageSignDestination.js
 src/model/BTCBIP322MessageSignDestination.js
 src/model/BTCEIP191MessageSignDestination.js
@@ -762,6 +788,7 @@ src/model/CosmosContractCallDestination.js
 src/model/CosmosContractCallMessage.js
 src/model/CreateAddressRequest.js
 src/model/CreateApprovalRequest201Response.js
+src/model/CreateAutoSweepTask.js
 src/model/CreateBabylonAirdropRegistration201Response.js
 src/model/CreateBabylonAirdropRegistrationRequest.js
 src/model/CreateBabylonStakingRegistration201Response.js
@@ -789,6 +816,7 @@ src/model/CreateStakeActivity.js
 src/model/CreateStakeActivity201Response.js
 src/model/CreateStakeActivityExtra.js
 src/model/CreateStakeActivityRequest.js
+src/model/CreateSweepToAddress.js
 src/model/CreateTokenListingRequest201Response.js
 src/model/CreateTokenListingRequestRequest.js
 src/model/CreateTransferTransaction201Response.js
@@ -881,6 +909,7 @@ src/model/GetStakingEstimationFee201Response.js
 src/model/GetStakingEstimationFeeRequest.js
 src/model/GetToken2XXResponse.js
 src/model/GetToken4XXResponse.js
+src/model/GetTokenizationAllowlistActivation200Response.js
 src/model/GetTransactionLimitation200Response.js
 src/model/GraphQLError.js
 src/model/GraphQLErrorLocationsInner.js
@@ -898,6 +927,7 @@ src/model/ListAddressBooks200Response.js
 src/model/ListAddresses200Response.js
 src/model/ListApprovalRequests200Response.js
 src/model/ListAssetBalancesForExchangeWallet200Response.js
+src/model/ListAutoSweepTask200Response.js
 src/model/ListBabylonAirdropRegistrations200Response.js
 src/model/ListBabylonEligibleAirdrops200Response.js
 src/model/ListBabylonEligibleStakings200Response.js
@@ -908,10 +938,12 @@ src/model/ListExchanges200ResponseInner.js
 src/model/ListForcedSweepRequests200Response.js
 src/model/ListKeyShareHolderGroups200Response.js
 src/model/ListKeyShareHolders200Response.js
+src/model/ListMerchantBalances200Response.js
 src/model/ListMerchants200Response.js
 src/model/ListMpcProjects200Response.js
 src/model/ListMpcVaults200Response.js
 src/model/ListPaymentOrders200Response.js
+src/model/ListPaymentWalletBalances200Response.js
 src/model/ListSettlementDetails200Response.js
 src/model/ListSettlementRequests200Response.js
 src/model/ListStakingActivities200Response.js
@@ -925,12 +957,14 @@ src/model/ListTokenBalancesForAddress200Response.js
 src/model/ListTokenBalancesForFeeStation200Response.js
 src/model/ListTokenBalancesForFeeStation200ResponseDataInner.js
 src/model/ListTokenListingRequests200Response.js
+src/model/ListTokenizationBlocklistAddresses200Response.js
 src/model/ListTopUpPayers200Response.js
 src/model/ListTopUpPayers200ResponseDataInner.js
 src/model/ListTransactionApprovalDetails200Response.js
 src/model/ListTransactions200Response.js
 src/model/ListTssRequests200Response.js
 src/model/ListUtxos200Response.js
+src/model/ListWalletSweepToAddresses200Response.js
 src/model/ListWallets200Response.js
 src/model/ListWebhookEndpoints200Response.js
 src/model/ListWebhookEventDefinitions200ResponseInner.js
@@ -948,6 +982,7 @@ src/model/MPCWalletInfo.js
 src/model/MaxFeeAmount.js
 src/model/MaxTransferableValue.js
 src/model/Merchant.js
+src/model/MerchantBalance.js
 src/model/MessageSignDestination.js
 src/model/MessageSignDestinationType.js
 src/model/MessageSignParams.js
@@ -969,6 +1004,7 @@ src/model/PaymentRefundEventData.js
 src/model/PaymentSettlementEvent.js
 src/model/PaymentTransaction.js
 src/model/PaymentTransactionEventData.js
+src/model/PaymentWalletBalance.js
 src/model/PayoutChannel.js
 src/model/PolicyAction.js
 src/model/PolicyActionContent.js
@@ -979,10 +1015,12 @@ src/model/PolicyFieldValueType.js
 src/model/PoolDetails.js
 src/model/PoolDetailsAllOfValidatorsInfo.js
 src/model/PoolSummary.js
+src/model/PspBalance.js
 src/model/QueryApprovalStatement200Response.js
 src/model/QueryGuardPubkey200Response.js
 src/model/QueryGuardPubkey200ResponseAddressesInner.js
 src/model/RawMessageSignDestination.js
+src/model/ReceivedAmountPerAddress.js
 src/model/RefreshAddressBalancesByToken200Response.js
 src/model/RefreshAddressBalancesByTokenRequest.js
 src/model/RefreshPermissionTokenRequest.js
@@ -1051,6 +1089,8 @@ src/model/SwapQuote.js
 src/model/SwapSingingStatus.js
 src/model/SwapToken.js
 src/model/SwapType.js
+src/model/SweepToAddress.js
+src/model/SweepToAddressStatus.js
 src/model/TSSBaseRequestEventData.js
 src/model/TSSCallbackActionType.js
 src/model/TSSCallbackRequest.js
@@ -1104,6 +1144,7 @@ src/model/TokenizationAddressPermission.js
 src/model/TokenizationAllowlistActivationParams.js
 src/model/TokenizationAllowlistActivationRequest.js
 src/model/TokenizationAllowlistAddressNote.js
+src/model/TokenizationAllowlistAddressesResponse.js
 src/model/TokenizationAppInitiator.js
 src/model/TokenizationBlocklistAddressNote.js
 src/model/TokenizationBurnEstimateFeeParams.js
@@ -1139,6 +1180,9 @@ src/model/TokenizationOperationType.js
 src/model/TokenizationPauseEstimateFeeParams.js
 src/model/TokenizationPauseTokenParams.js
 src/model/TokenizationPauseTokenRequest.js
+src/model/TokenizationSOLTokenParams.js
+src/model/TokenizationSolContractCallParams.js
+src/model/TokenizationSolTokenPermissionParams.js
 src/model/TokenizationStatus.js
 src/model/TokenizationToggleAllowlistEstimateFeeParams.js
 src/model/TokenizationTokenDetailInfo.js
@@ -1299,6 +1343,7 @@ src/model/WebhookEventStatus.js
 src/model/WebhookEventType.js
 test/api/AddressBooksApi.spec.js
 test/api/AppWorkflowsApi.spec.js
+test/api/AutoSweepApi.spec.js
 test/api/DevelopersApi.spec.js
 test/api/DevelopersWebhooksApi.spec.js
 test/api/FeeStationApi.spec.js
@@ -1307,6 +1352,7 @@ test/api/OrganizationsApi.spec.js
 test/api/PaymentApi.spec.js
 test/api/PrimeBrokerApi.spec.js
 test/api/StakingsApi.spec.js
+test/api/TokenizationApi.spec.js
 test/api/TransactionsApi.spec.js
 test/api/TravelRuleApi.spec.js
 test/api/WalletsApi.spec.js
@@ -1353,6 +1399,8 @@ test/model/ApprovalUserDetail.spec.js
 test/model/AssetBalance.spec.js
 test/model/AssetInfo.spec.js
 test/model/AutoFuelType.spec.js
+test/model/AutoSweepTask.spec.js
+test/model/AutoSweepTaskStatus.spec.js
 test/model/BTCBIP137MessageSignDestination.spec.js
 test/model/BTCBIP322MessageSignDestination.spec.js
 test/model/BTCEIP191MessageSignDestination.spec.js
@@ -1403,6 +1451,7 @@ test/model/CosmosContractCallDestination.spec.js
 test/model/CosmosContractCallMessage.spec.js
 test/model/CreateAddressRequest.spec.js
 test/model/CreateApprovalRequest201Response.spec.js
+test/model/CreateAutoSweepTask.spec.js
 test/model/CreateBabylonAirdropRegistration201Response.spec.js
 test/model/CreateBabylonAirdropRegistrationRequest.spec.js
 test/model/CreateBabylonStakingRegistration201Response.spec.js
@@ -1430,6 +1479,7 @@ test/model/CreateStakeActivity.spec.js
 test/model/CreateStakeActivity201Response.spec.js
 test/model/CreateStakeActivityExtra.spec.js
 test/model/CreateStakeActivityRequest.spec.js
+test/model/CreateSweepToAddress.spec.js
 test/model/CreateTokenListingRequest201Response.spec.js
 test/model/CreateTokenListingRequestRequest.spec.js
 test/model/CreateTransferTransaction201Response.spec.js
@@ -1522,6 +1572,7 @@ test/model/GetStakingEstimationFee201Response.spec.js
 test/model/GetStakingEstimationFeeRequest.spec.js
 test/model/GetToken2XXResponse.spec.js
 test/model/GetToken4XXResponse.spec.js
+test/model/GetTokenizationAllowlistActivation200Response.spec.js
 test/model/GetTransactionLimitation200Response.spec.js
 test/model/GraphQLError.spec.js
 test/model/GraphQLErrorLocationsInner.spec.js
@@ -1539,6 +1590,7 @@ test/model/ListAddressBooks200Response.spec.js
 test/model/ListAddresses200Response.spec.js
 test/model/ListApprovalRequests200Response.spec.js
 test/model/ListAssetBalancesForExchangeWallet200Response.spec.js
+test/model/ListAutoSweepTask200Response.spec.js
 test/model/ListBabylonAirdropRegistrations200Response.spec.js
 test/model/ListBabylonEligibleAirdrops200Response.spec.js
 test/model/ListBabylonEligibleStakings200Response.spec.js
@@ -1549,10 +1601,12 @@ test/model/ListExchanges200ResponseInner.spec.js
 test/model/ListForcedSweepRequests200Response.spec.js
 test/model/ListKeyShareHolderGroups200Response.spec.js
 test/model/ListKeyShareHolders200Response.spec.js
+test/model/ListMerchantBalances200Response.spec.js
 test/model/ListMerchants200Response.spec.js
 test/model/ListMpcProjects200Response.spec.js
 test/model/ListMpcVaults200Response.spec.js
 test/model/ListPaymentOrders200Response.spec.js
+test/model/ListPaymentWalletBalances200Response.spec.js
 test/model/ListSettlementDetails200Response.spec.js
 test/model/ListSettlementRequests200Response.spec.js
 test/model/ListStakingActivities200Response.spec.js
@@ -1566,12 +1620,14 @@ test/model/ListTokenBalancesForAddress200Response.spec.js
 test/model/ListTokenBalancesForFeeStation200Response.spec.js
 test/model/ListTokenBalancesForFeeStation200ResponseDataInner.spec.js
 test/model/ListTokenListingRequests200Response.spec.js
+test/model/ListTokenizationBlocklistAddresses200Response.spec.js
 test/model/ListTopUpPayers200Response.spec.js
 test/model/ListTopUpPayers200ResponseDataInner.spec.js
 test/model/ListTransactionApprovalDetails200Response.spec.js
 test/model/ListTransactions200Response.spec.js
 test/model/ListTssRequests200Response.spec.js
 test/model/ListUtxos200Response.spec.js
+test/model/ListWalletSweepToAddresses200Response.spec.js
 test/model/ListWallets200Response.spec.js
 test/model/ListWebhookEndpoints200Response.spec.js
 test/model/ListWebhookEventDefinitions200ResponseInner.spec.js
@@ -1589,6 +1645,7 @@ test/model/MPCWalletInfo.spec.js
 test/model/MaxFeeAmount.spec.js
 test/model/MaxTransferableValue.spec.js
 test/model/Merchant.spec.js
+test/model/MerchantBalance.spec.js
 test/model/MessageSignDestination.spec.js
 test/model/MessageSignDestinationType.spec.js
 test/model/MessageSignParams.spec.js
@@ -1610,6 +1667,7 @@ test/model/PaymentRefundEventData.spec.js
 test/model/PaymentSettlementEvent.spec.js
 test/model/PaymentTransaction.spec.js
 test/model/PaymentTransactionEventData.spec.js
+test/model/PaymentWalletBalance.spec.js
 test/model/PayoutChannel.spec.js
 test/model/PolicyAction.spec.js
 test/model/PolicyActionContent.spec.js
@@ -1620,10 +1678,12 @@ test/model/PolicyFieldValueType.spec.js
 test/model/PoolDetails.spec.js
 test/model/PoolDetailsAllOfValidatorsInfo.spec.js
 test/model/PoolSummary.spec.js
+test/model/PspBalance.spec.js
 test/model/QueryApprovalStatement200Response.spec.js
 test/model/QueryGuardPubkey200Response.spec.js
 test/model/QueryGuardPubkey200ResponseAddressesInner.spec.js
 test/model/RawMessageSignDestination.spec.js
+test/model/ReceivedAmountPerAddress.spec.js
 test/model/RefreshAddressBalancesByToken200Response.spec.js
 test/model/RefreshAddressBalancesByTokenRequest.spec.js
 test/model/RefreshPermissionTokenRequest.spec.js
@@ -1692,6 +1752,8 @@ test/model/SwapQuote.spec.js
 test/model/SwapSingingStatus.spec.js
 test/model/SwapToken.spec.js
 test/model/SwapType.spec.js
+test/model/SweepToAddress.spec.js
+test/model/SweepToAddressStatus.spec.js
 test/model/TSSBaseRequestEventData.spec.js
 test/model/TSSCallbackActionType.spec.js
 test/model/TSSCallbackRequest.spec.js
@@ -1745,6 +1807,7 @@ test/model/TokenizationAddressPermission.spec.js
 test/model/TokenizationAllowlistActivationParams.spec.js
 test/model/TokenizationAllowlistActivationRequest.spec.js
 test/model/TokenizationAllowlistAddressNote.spec.js
+test/model/TokenizationAllowlistAddressesResponse.spec.js
 test/model/TokenizationAppInitiator.spec.js
 test/model/TokenizationBlocklistAddressNote.spec.js
 test/model/TokenizationBurnEstimateFeeParams.spec.js
@@ -1780,6 +1843,9 @@ test/model/TokenizationOperationType.spec.js
 test/model/TokenizationPauseEstimateFeeParams.spec.js
 test/model/TokenizationPauseTokenParams.spec.js
 test/model/TokenizationPauseTokenRequest.spec.js
+test/model/TokenizationSOLTokenParams.spec.js
+test/model/TokenizationSolContractCallParams.spec.js
+test/model/TokenizationSolTokenPermissionParams.spec.js
 test/model/TokenizationStatus.spec.js
 test/model/TokenizationToggleAllowlistEstimateFeeParams.spec.js
 test/model/TokenizationTokenDetailInfo.spec.js

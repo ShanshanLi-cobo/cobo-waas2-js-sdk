@@ -19,8 +19,8 @@ class CreateCryptoAddressRequest {
     /**
      * Constructs a new <code>CreateCryptoAddressRequest</code>.
      * @alias module:model/CreateCryptoAddressRequest
-     * @param token_id {String} The token ID that identifies the cryptocurrency and its corresponding blockchain.  **Supported values**:   - **USDC**: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - **USDT**: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
-     * @param address {String} The blockchain address where crypto withdrawals will be sent. Must be a valid address format for the blockchain specified by `token_id`. For example: - For `SOL_USDC`: Provide a Solana address. - For `ETH_USDT`: Provide an Ethereum address. 
+     * @param token_id {String} The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @param address {String} The blockchain address in its native format. This is the actual destination address where funds will be sent. The address must match the format required by the specified blockchain. For example:   - For `SOL_USDC`: Provide a Solana address   - For `ETH_USDT`: Provide an Ethereum address 
      */
     constructor(token_id, address) { 
         
@@ -95,19 +95,19 @@ class CreateCryptoAddressRequest {
 CreateCryptoAddressRequest.RequiredProperties = ["token_id", "address"];
 
 /**
- * The token ID that identifies the cryptocurrency and its corresponding blockchain.  **Supported values**:   - **USDC**: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - **USDT**: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+ * The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
  * @member {String} token_id
  */
 CreateCryptoAddressRequest.prototype['token_id'] = undefined;
 
 /**
- * The blockchain address where crypto withdrawals will be sent. Must be a valid address format for the blockchain specified by `token_id`. For example: - For `SOL_USDC`: Provide a Solana address. - For `ETH_USDT`: Provide an Ethereum address. 
+ * The blockchain address in its native format. This is the actual destination address where funds will be sent. The address must match the format required by the specified blockchain. For example:   - For `SOL_USDC`: Provide a Solana address   - For `ETH_USDT`: Provide an Ethereum address 
  * @member {String} address
  */
 CreateCryptoAddressRequest.prototype['address'] = undefined;
 
 /**
- * A label to help identify the address's purpose. 
+ * A label to help identify the address's purpose.
  * @member {String} label
  */
 CreateCryptoAddressRequest.prototype['label'] = undefined;

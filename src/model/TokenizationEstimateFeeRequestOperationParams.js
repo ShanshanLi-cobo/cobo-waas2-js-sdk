@@ -397,6 +397,12 @@ TokenizationEstimateFeeRequestOperationParams.prototype['token_params'] = undefi
 TokenizationEstimateFeeRequestOperationParams.prototype['operation_type'] = undefined;
 
 /**
+ * The request ID that is used to track a transaction request. The request ID is provided by you and must be unique within your organization.
+ * @member {String} request_id
+ */
+TokenizationEstimateFeeRequestOperationParams.prototype['request_id'] = undefined;
+
+/**
  * Details for each token mint, including amount and address to mint to.
  * @member {Array.<module:model/TokenizationMintTokenParamsMintsInner>} mints
  */

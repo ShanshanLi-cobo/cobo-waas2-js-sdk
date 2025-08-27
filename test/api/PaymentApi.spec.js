@@ -126,10 +126,30 @@ import {ApiClient, Env} from "../../src/index.js";
         //});
       });
     });
+    describe('getPayerBalanceByAddress', function() {
+      it('should call getPayerBalanceByAddress successfully', function() {
+        //uncomment below and update the code to test getPayerBalanceByAddress
+        //instance.getPayerBalanceByAddress().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('getPaymentOrderDetailById', function() {
       it('should call getPaymentOrderDetailById successfully', function() {
         //uncomment below and update the code to test getPaymentOrderDetailById
         //instance.getPaymentOrderDetailById().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('getPspBalance', function() {
+      it('should call getPspBalance successfully', function() {
+        //uncomment below and update the code to test getPspBalance
+        //instance.getPspBalance().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);
@@ -216,6 +236,16 @@ import {ApiClient, Env} from "../../src/index.js";
         //});
       });
     });
+    describe('listMerchantBalances', function() {
+      it('should call listMerchantBalances successfully', function() {
+        //uncomment below and update the code to test listMerchantBalances
+        //instance.listMerchantBalances().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('listMerchants', function() {
       it('should call listMerchants successfully', function() {
         //uncomment below and update the code to test listMerchants
@@ -240,6 +270,16 @@ import {ApiClient, Env} from "../../src/index.js";
       it('should call listPaymentSupportedTokens successfully', function() {
         //uncomment below and update the code to test listPaymentSupportedTokens
         //instance.listPaymentSupportedTokens().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('listPaymentWalletBalances', function() {
+      it('should call listPaymentWalletBalances successfully', function() {
+        //uncomment below and update the code to test listPaymentWalletBalances
+        //instance.listPaymentWalletBalances().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);

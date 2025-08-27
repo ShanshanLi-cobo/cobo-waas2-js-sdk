@@ -19,8 +19,8 @@ class TokenizationBurnTokenParamsBurnsInner {
     /**
      * Constructs a new <code>TokenizationBurnTokenParamsBurnsInner</code>.
      * @alias module:model/TokenizationBurnTokenParamsBurnsInner
-     * @param amount {String} The amount of tokens to burn from this source.
-     * @param from_address {String} The address to burn tokens from for this source.
+     * @param amount {String} The amount of tokens to burn.
+     * @param from_address {String} The address to burn tokens from.
      */
     constructor(amount, from_address) { 
         
@@ -88,13 +88,13 @@ class TokenizationBurnTokenParamsBurnsInner {
 TokenizationBurnTokenParamsBurnsInner.RequiredProperties = ["amount", "from_address"];
 
 /**
- * The amount of tokens to burn from this source.
+ * The amount of tokens to burn.
  * @member {String} amount
  */
 TokenizationBurnTokenParamsBurnsInner.prototype['amount'] = undefined;
 
 /**
- * The address to burn tokens from for this source.
+ * The address to burn tokens from.
  * @member {String} from_address
  */
 TokenizationBurnTokenParamsBurnsInner.prototype['from_address'] = undefined;

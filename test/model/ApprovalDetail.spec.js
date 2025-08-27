@@ -70,8 +70,8 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property broker_user (base name: "broker_user")', function() {
-      // uncomment below and update the code to test the property broker_user
+    it('should have the property address_owner (base name: "address_owner")', function() {
+      // uncomment below and update the code to test the property address_owner
       //var instance = new CoboWaas2.ApprovalDetail();
       //expect(instance).to.be();
     });

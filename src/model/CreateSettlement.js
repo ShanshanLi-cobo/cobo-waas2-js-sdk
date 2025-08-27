@@ -19,10 +19,11 @@ class CreateSettlement {
     /**
      * Constructs a new <code>CreateSettlement</code>.
      * @alias module:model/CreateSettlement
+     * @param token_id {String} The ID of the cryptocurrency you want to settle. Specify this field when `payout_channel` is set to `Crypto`. Supported values:  - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC` - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
      */
-    constructor() { 
+    constructor(token_id) { 
         
-        CreateSettlement.initialize(this);
+        CreateSettlement.initialize(this, token_id);
     }
 
     /**
@@ -30,7 +31,8 @@ class CreateSettlement {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj) { 
+    static initialize(obj, token_id) { 
+        obj['token_id'] = token_id;
     }
 
     /**
@@ -75,6 +77,12 @@ class CreateSettlement {
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>CreateSettlement</code>.
      */
     static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of CreateSettlement.RequiredProperties) {
+            if (!data.hasOwnProperty(property)) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
+        }
         // ensure the json data is a string
         if (data['merchant_id'] && !(typeof data['merchant_id'] === 'string' || data['merchant_id'] instanceof String)) {
             throw new Error("Expected the field `merchant_id` to be a primitive type in the JSON string but got " + data['merchant_id']);
@@ -110,7 +118,7 @@ class CreateSettlement {
 
 }
 
-
+CreateSettlement.RequiredProperties = ["token_id"];
 
 /**
  * The merchant ID. Specify this field when `settlement_type` is set to `Merchant`.

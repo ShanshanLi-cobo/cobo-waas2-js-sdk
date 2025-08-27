@@ -19,7 +19,7 @@ class DeleteCryptoAddress201Response {
     /**
      * Constructs a new <code>DeleteCryptoAddress201Response</code>.
      * @alias module:model/DeleteCryptoAddress201Response
-     * @param crypto_address_id {String} The crypto address ID.
+     * @param crypto_address_id {String} The ID of the deleted crypto address.
      */
     constructor(crypto_address_id) { 
         
@@ -79,7 +79,7 @@ class DeleteCryptoAddress201Response {
 DeleteCryptoAddress201Response.RequiredProperties = ["crypto_address_id"];
 
 /**
- * The crypto address ID.
+ * The ID of the deleted crypto address.
  * @member {String} crypto_address_id
  */
 DeleteCryptoAddress201Response.prototype['crypto_address_id'] = undefined;

@@ -27,13 +27,17 @@ import GetExchangeRate200Response from '../model/GetExchangeRate200Response';
 import GetRefunds200Response from '../model/GetRefunds200Response';
 import GetSettlementInfoByIds200Response from '../model/GetSettlementInfoByIds200Response';
 import ListForcedSweepRequests200Response from '../model/ListForcedSweepRequests200Response';
+import ListMerchantBalances200Response from '../model/ListMerchantBalances200Response';
 import ListMerchants200Response from '../model/ListMerchants200Response';
 import ListPaymentOrders200Response from '../model/ListPaymentOrders200Response';
+import ListPaymentWalletBalances200Response from '../model/ListPaymentWalletBalances200Response';
 import ListSettlementDetails200Response from '../model/ListSettlementDetails200Response';
 import ListSettlementRequests200Response from '../model/ListSettlementRequests200Response';
 import ListTopUpPayers200Response from '../model/ListTopUpPayers200Response';
 import Merchant from '../model/Merchant';
 import Order from '../model/Order';
+import PspBalance from '../model/PspBalance';
+import ReceivedAmountPerAddress from '../model/ReceivedAmountPerAddress';
 import Refund from '../model/Refund';
 import Settlement from '../model/Settlement';
 import SupportedToken from '../model/SupportedToken';
@@ -64,7 +68,7 @@ export default class PaymentApi {
 
     /**
      * Cancel refund order
-     * This operation cancels a specified refund order. 
+     * This operation cancels a specified refund order. You can only cancel refund orders that have not been processed yet. 
      * @param {String} refund_id The refund order ID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Refund} and HTTP response
      */
@@ -101,7 +105,7 @@ export default class PaymentApi {
 
     /**
      * Cancel refund order
-     * This operation cancels a specified refund order. 
+     * This operation cancels a specified refund order. You can only cancel refund orders that have not been processed yet. 
      * @param {String} refund_id The refund order ID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Refund}
      */
@@ -115,9 +119,9 @@ export default class PaymentApi {
 
     /**
      * Create crypto address
-     * Create a new cryptocurrency address for receiving payouts or transfers.  The address must match the specified `token_id`'s blockchain.  Optionally, a label can be provided to help categorize the address internally. 
+     * This operation registers a crypto address for crypto withdrawal.  The registered address can later be referenced by its ID when creating settlement requests. 
      * @param {Object} opts Optional parameters
-     * @param {module:model/CreateCryptoAddressRequest} [CreateCryptoAddressRequest] The request body to create a crypto address.
+     * @param {module:model/CreateCryptoAddressRequest} [CreateCryptoAddressRequest] The request body to register a crypto address.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/CryptoAddress} and HTTP response
      */
     createCryptoAddressWithHttpInfo(opts) {
@@ -149,9 +153,9 @@ export default class PaymentApi {
 
     /**
      * Create crypto address
-     * Create a new cryptocurrency address for receiving payouts or transfers.  The address must match the specified `token_id`'s blockchain.  Optionally, a label can be provided to help categorize the address internally. 
+     * This operation registers a crypto address for crypto withdrawal.  The registered address can later be referenced by its ID when creating settlement requests. 
      * @param {Object} opts Optional parameters
-     * @param {module:model/CreateCryptoAddressRequest} opts.CreateCryptoAddressRequest The request body to create a crypto address.
+     * @param {module:model/CreateCryptoAddressRequest} opts.CreateCryptoAddressRequest The request body to register a crypto address.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/CryptoAddress}
      */
     createCryptoAddress(opts) {
@@ -409,7 +413,7 @@ export default class PaymentApi {
 
     /**
      * Delete crypto address
-     * This operation deletes a crypto address. 
+     * This operation unregisters a crypto address from being used for crypto withdrawals. 
      * @param {String} crypto_address_id The crypto address ID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DeleteCryptoAddress201Response} and HTTP response
      */
@@ -446,7 +450,7 @@ export default class PaymentApi {
 
     /**
      * Delete crypto address
-     * This operation deletes a crypto address. 
+     * This operation unregisters a crypto address from being used for crypto withdrawals. 
      * @param {String} crypto_address_id The crypto address ID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DeleteCryptoAddress201Response}
      */
@@ -517,6 +521,71 @@ export default class PaymentApi {
 
 
     /**
+     * Get payer balance by address
+     * This operation retrieves aggregated balance details for a specific token and payer, with amounts grouped by address. 
+     * @param {String} merchant_id The merchant ID.
+     * @param {String} payer_id Unique payer identifier on the Cobo side, auto-generated by the system.
+     * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ReceivedAmountPerAddress>} and HTTP response
+     */
+    getPayerBalanceByAddressWithHttpInfo(merchant_id, payer_id, token_id) {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'merchant_id' is set
+      if (merchant_id === undefined || merchant_id === null) {
+        throw new Error("Missing the required parameter 'merchant_id' when calling getPayerBalanceByAddress");
+      }
+      // verify the required parameter 'payer_id' is set
+      if (payer_id === undefined || payer_id === null) {
+        throw new Error("Missing the required parameter 'payer_id' when calling getPayerBalanceByAddress");
+      }
+      // verify the required parameter 'token_id' is set
+      if (token_id === undefined || token_id === null) {
+        throw new Error("Missing the required parameter 'token_id' when calling getPayerBalanceByAddress");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'merchant_id': merchant_id,
+        'payer_id': payer_id,
+        'token_id': token_id
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = [ReceivedAmountPerAddress];
+      return this.apiClient.callApi(
+        '/payments/balance/payer/address', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Get payer balance by address
+     * This operation retrieves aggregated balance details for a specific token and payer, with amounts grouped by address. 
+     * @param {String} merchant_id The merchant ID.
+     * @param {String} payer_id Unique payer identifier on the Cobo side, auto-generated by the system.
+     * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ReceivedAmountPerAddress>}
+     */
+    getPayerBalanceByAddress(merchant_id, payer_id, token_id) {
+      return this.getPayerBalanceByAddressWithHttpInfo(merchant_id, payer_id, token_id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * Get pay-in order information
      * This operation retrieves details of a specific pay-in order. 
      * @param {String} order_id The pay-in order ID.
@@ -561,6 +630,57 @@ export default class PaymentApi {
      */
     getPaymentOrderDetailById(order_id) {
       return this.getPaymentOrderDetailByIdWithHttpInfo(order_id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Get psp balance
+     * This operation retrieves the information of psp balance. 
+     * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/PspBalance} and HTTP response
+     */
+    getPspBalanceWithHttpInfo(token_id) {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'token_id' is set
+      if (token_id === undefined || token_id === null) {
+        throw new Error("Missing the required parameter 'token_id' when calling getPspBalance");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'token_id': token_id
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = PspBalance;
+      return this.apiClient.callApi(
+        '/payments/balance/psp', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Get psp balance
+     * This operation retrieves the information of psp balance. 
+     * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/PspBalance}
+     */
+    getPspBalance(token_id) {
+      return this.getPspBalanceWithHttpInfo(token_id)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -627,7 +747,7 @@ export default class PaymentApi {
      * @param {String} [after] A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
      * @param {String} [merchant_id] The merchant ID.
      * @param {String} [request_id] The request ID.
-     * @param {String} [statuses] A list of  statuses of order, refund or settle request.
+     * @param {String} [statuses] A list of order, refund or settlement statuses. You can refer to the following operations for the possible status values:  - [Get pay-in order information](https://www.cobo.com/developers/v2/api-references/payment/get-pay-in-order-information)  - [Get refund order information](https://www.cobo.com/developers/v2/api-references/payment/get-refund-order-information)  - [List all settlement details](https://www.cobo.com/developers/v2/api-references/payment/list-all-settlement-details) 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetRefunds200Response} and HTTP response
      */
     getRefundsWithHttpInfo(opts) {
@@ -672,7 +792,7 @@ export default class PaymentApi {
      * @param {String} opts.after A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
      * @param {String} opts.merchant_id The merchant ID.
      * @param {String} opts.request_id The request ID.
-     * @param {String} opts.statuses A list of  statuses of order, refund or settle request.
+     * @param {String} opts.statuses A list of order, refund or settlement statuses. You can refer to the following operations for the possible status values:  - [Get pay-in order information](https://www.cobo.com/developers/v2/api-references/payment/get-pay-in-order-information)  - [Get refund order information](https://www.cobo.com/developers/v2/api-references/payment/get-refund-order-information)  - [List all settlement details](https://www.cobo.com/developers/v2/api-references/payment/list-all-settlement-details) 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetRefunds200Response}
      */
     getRefunds(opts) {
@@ -1009,6 +1129,70 @@ export default class PaymentApi {
 
 
     /**
+     * List merchant balances
+     * This operation retrieves the information of merchant balances. 
+     * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @param {module:model/AcquiringType} acquiring_type AcquiringType defines the acquisition logic used in the payment flow: - `Order`: Each order is created with a specific amount and associated payment request. Funds are settled on a per-order basis. - `TopUp`: Recharge-style flow where funds are topped up to a payer balance or account. Useful for flexible or usage-based payment models. 
+     * @param {Object} opts Optional parameters
+     * @param {String} [merchant_ids] A list of merchant IDs to query.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListMerchantBalances200Response} and HTTP response
+     */
+    listMerchantBalancesWithHttpInfo(token_id, acquiring_type, opts) {
+      opts = opts || {};
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'token_id' is set
+      if (token_id === undefined || token_id === null) {
+        throw new Error("Missing the required parameter 'token_id' when calling listMerchantBalances");
+      }
+      // verify the required parameter 'acquiring_type' is set
+      if (acquiring_type === undefined || acquiring_type === null) {
+        throw new Error("Missing the required parameter 'acquiring_type' when calling listMerchantBalances");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'merchant_ids': opts['merchant_ids'],
+        'token_id': token_id,
+        'acquiring_type': acquiring_type
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ListMerchantBalances200Response;
+      return this.apiClient.callApi(
+        '/payments/balance/merchants', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * List merchant balances
+     * This operation retrieves the information of merchant balances. 
+     * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @param {module:model/AcquiringType} acquiring_type AcquiringType defines the acquisition logic used in the payment flow: - `Order`: Each order is created with a specific amount and associated payment request. Funds are settled on a per-order basis. - `TopUp`: Recharge-style flow where funds are topped up to a payer balance or account. Useful for flexible or usage-based payment models. 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.merchant_ids A list of merchant IDs to query.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListMerchantBalances200Response}
+     */
+    listMerchantBalances(token_id, acquiring_type, opts) {
+      return this.listMerchantBalancesWithHttpInfo(token_id, acquiring_type, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * List all merchants
      * This operation retrieves the information of all merchants.   You can filter the results by using a keyword for fuzzy search on merchant names or by specifying a wallet ID. 
      * @param {Object} opts Optional parameters
@@ -1079,7 +1263,7 @@ export default class PaymentApi {
      * @param {String} [after] A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
      * @param {String} [merchant_id] The merchant ID.
      * @param {String} [psp_order_id] A unique reference code assigned by the developer to identify this order in their system.
-     * @param {String} [statuses] A list of  statuses of order, refund or settle request.
+     * @param {String} [statuses] A list of order, refund or settlement statuses. You can refer to the following operations for the possible status values:  - [Get pay-in order information](https://www.cobo.com/developers/v2/api-references/payment/get-pay-in-order-information)  - [Get refund order information](https://www.cobo.com/developers/v2/api-references/payment/get-refund-order-information)  - [List all settlement details](https://www.cobo.com/developers/v2/api-references/payment/list-all-settlement-details) 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListPaymentOrders200Response} and HTTP response
      */
     listPaymentOrdersWithHttpInfo(opts) {
@@ -1124,7 +1308,7 @@ export default class PaymentApi {
      * @param {String} opts.after A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
      * @param {String} opts.merchant_id The merchant ID.
      * @param {String} opts.psp_order_id A unique reference code assigned by the developer to identify this order in their system.
-     * @param {String} opts.statuses A list of  statuses of order, refund or settle request.
+     * @param {String} opts.statuses A list of order, refund or settlement statuses. You can refer to the following operations for the possible status values:  - [Get pay-in order information](https://www.cobo.com/developers/v2/api-references/payment/get-pay-in-order-information)  - [Get refund order information](https://www.cobo.com/developers/v2/api-references/payment/get-refund-order-information)  - [List all settlement details](https://www.cobo.com/developers/v2/api-references/payment/list-all-settlement-details) 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListPaymentOrders200Response}
      */
     listPaymentOrders(opts) {
@@ -1180,6 +1364,63 @@ export default class PaymentApi {
 
 
     /**
+     * List payment wallet balances
+     * This operation retrieves the information of payment wallet balances. 
+     * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @param {Object} opts Optional parameters
+     * @param {String} [wallet_ids] A list of wallet IDs to query.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListPaymentWalletBalances200Response} and HTTP response
+     */
+    listPaymentWalletBalancesWithHttpInfo(token_id, opts) {
+      opts = opts || {};
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'token_id' is set
+      if (token_id === undefined || token_id === null) {
+        throw new Error("Missing the required parameter 'token_id' when calling listPaymentWalletBalances");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'wallet_ids': opts['wallet_ids'],
+        'token_id': token_id
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ListPaymentWalletBalances200Response;
+      return this.apiClient.callApi(
+        '/payments/balance/payment_wallets', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * List payment wallet balances
+     * This operation retrieves the information of payment wallet balances. 
+     * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.wallet_ids A list of wallet IDs to query.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListPaymentWalletBalances200Response}
+     */
+    listPaymentWalletBalances(token_id, opts) {
+      return this.listPaymentWalletBalancesWithHttpInfo(token_id, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * List all settlement details
      * This operation retrieves the information of all settlement details. You can filter the result by merchant ID or status. 
      * @param {Object} opts Optional parameters
@@ -1187,7 +1428,7 @@ export default class PaymentApi {
      * @param {String} [before] A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
      * @param {String} [after] A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
      * @param {String} [merchant_id] The merchant ID.
-     * @param {String} [statuses] A list of  statuses of order, refund or settle request.
+     * @param {String} [statuses] A list of order, refund or settlement statuses. You can refer to the following operations for the possible status values:  - [Get pay-in order information](https://www.cobo.com/developers/v2/api-references/payment/get-pay-in-order-information)  - [Get refund order information](https://www.cobo.com/developers/v2/api-references/payment/get-refund-order-information)  - [List all settlement details](https://www.cobo.com/developers/v2/api-references/payment/list-all-settlement-details) 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListSettlementDetails200Response} and HTTP response
      */
     listSettlementDetailsWithHttpInfo(opts) {
@@ -1230,7 +1471,7 @@ export default class PaymentApi {
      * @param {String} opts.before A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
      * @param {String} opts.after A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
      * @param {String} opts.merchant_id The merchant ID.
-     * @param {String} opts.statuses A list of  statuses of order, refund or settle request.
+     * @param {String} opts.statuses A list of order, refund or settlement statuses. You can refer to the following operations for the possible status values:  - [Get pay-in order information](https://www.cobo.com/developers/v2/api-references/payment/get-pay-in-order-information)  - [Get refund order information](https://www.cobo.com/developers/v2/api-references/payment/get-refund-order-information)  - [List all settlement details](https://www.cobo.com/developers/v2/api-references/payment/list-all-settlement-details) 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListSettlementDetails200Response}
      */
     listSettlementDetails(opts) {
@@ -1479,8 +1720,8 @@ export default class PaymentApi {
 
 
     /**
-     * Update refund order information
-     * This operation updates a specified refund order. 
+     * Update refund order
+     * This operation updates a specified refund order by modifying its recipient address. You can only update the recipient address for refund orders that have not been processed yet. 
      * @param {String} refund_id The refund order ID.
      * @param {Object} opts Optional parameters
      * @param {module:model/UpdateRefundByIdRequest} [UpdateRefundByIdRequest] The request body to update a refund order.
@@ -1519,8 +1760,8 @@ export default class PaymentApi {
     }
 
     /**
-     * Update refund order information
-     * This operation updates a specified refund order. 
+     * Update refund order
+     * This operation updates a specified refund order by modifying its recipient address. You can only update the recipient address for refund orders that have not been processed yet. 
      * @param {String} refund_id The refund order ID.
      * @param {Object} opts Optional parameters
      * @param {module:model/UpdateRefundByIdRequest} opts.UpdateRefundByIdRequest The request body to update a refund order.

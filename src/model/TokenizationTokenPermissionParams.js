@@ -18,7 +18,7 @@ import ApiClient from '../ApiClient';
 class TokenizationTokenPermissionParams {
     /**
      * Constructs a new <code>TokenizationTokenPermissionParams</code>.
-     * Role-based permission settings for token contract. If not provided, all permissions will be granted to the issuance wallet by default.
+     * Role-based permission settings for token contract. If not provided, all permissions will be granted to the issuing wallet by default.
      * @alias module:model/TokenizationTokenPermissionParams
      */
     constructor() { 

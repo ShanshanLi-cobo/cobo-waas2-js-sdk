@@ -92,7 +92,7 @@ TokenizationUpdateBlocklistAddressesParamsAddressesInner.RequiredProperties = ["
 TokenizationUpdateBlocklistAddressesParamsAddressesInner.prototype['address'] = undefined;
 
 /**
- * An optional note for the address, primarily used when adding.
+ * An optional note for the address, primarily used when adding addresses.
  * @member {String} note
  */
 TokenizationUpdateBlocklistAddressesParamsAddressesInner.prototype['note'] = undefined;
