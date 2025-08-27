@@ -255,7 +255,7 @@ SettlementDetail.prototype['acquiring_type'] = undefined;
 SettlementDetail.prototype['settlement_request_id'] = undefined;
 
 /**
- * A list of unique order IDs to be included in this settlement.  - This field is only applicable when `settlement_type` is set to `Merchant`. - If provided, the settlement will only apply to the specified orders. - The settlement `amount` must exactly match the total eligible amount from these orders. - This ensures consistency between the declared amount and the actual order-level data being settled. 
+ * A list of unique order IDs to be included in this settlement.  - This field is only applicable when `settlement_type` is set to `Merchant`. - If provided, the settlement will only apply to the specified orders. 
  * @member {Array.<String>} order_ids
  */
 SettlementDetail.prototype['order_ids'] = undefined;

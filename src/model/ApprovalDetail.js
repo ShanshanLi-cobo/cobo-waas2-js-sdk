@@ -55,8 +55,8 @@ class ApprovalDetail {
             if (data.hasOwnProperty('request_id')) {
                 obj['request_id'] = ApiClient.convertToType(data['request_id'], 'String');
             }
-            if (data.hasOwnProperty('broker_user')) {
-                obj['broker_user'] = RoleDetail.constructFromObject(data['broker_user']);
+            if (data.hasOwnProperty('address_owner')) {
+                obj['address_owner'] = RoleDetail.constructFromObject(data['address_owner']);
             }
             if (data.hasOwnProperty('spender')) {
                 obj['spender'] = RoleDetail.constructFromObject(data['spender']);
@@ -86,10 +86,10 @@ class ApprovalDetail {
         if (data['request_id'] && !(typeof data['request_id'] === 'string' || data['request_id'] instanceof String)) {
             throw new Error("Expected the field `request_id` to be a primitive type in the JSON string but got " + data['request_id']);
         }
-        // validate the optional field `broker_user`
-        if (data['broker_user']) { // data not null
+        // validate the optional field `address_owner`
+        if (data['address_owner']) { // data not null
           if (!!RoleDetail.validateJSON) {
-            RoleDetail.validateJSON(data['broker_user']);
+            RoleDetail.validateJSON(data['address_owner']);
           }
         }
         // validate the optional field `spender`
@@ -132,9 +132,9 @@ ApprovalDetail.prototype['cobo_id'] = undefined;
 ApprovalDetail.prototype['request_id'] = undefined;
 
 /**
- * @member {module:model/RoleDetail} broker_user
+ * @member {module:model/RoleDetail} address_owner
  */
-ApprovalDetail.prototype['broker_user'] = undefined;
+ApprovalDetail.prototype['address_owner'] = undefined;
 
 /**
  * @member {module:model/RoleDetail} spender

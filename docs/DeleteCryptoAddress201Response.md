@@ -4,6 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**crypto_address_id** | **String** | The crypto address ID. | 
+**crypto_address_id** | **String** | The ID of the deleted crypto address. | 
 
 

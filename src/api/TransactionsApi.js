@@ -11,6 +11,8 @@
 
 
 import ApiClient from "../ApiClient";
+import ApprovalDetail from '../model/ApprovalDetail';
+import ApprovalTemplate from '../model/ApprovalTemplate';
 import BroadcastSignedTransactions201ResponseInner from '../model/BroadcastSignedTransactions201ResponseInner';
 import BroadcastSignedTransactionsRequest from '../model/BroadcastSignedTransactionsRequest';
 import CheckLoopTransfers200ResponseInner from '../model/CheckLoopTransfers200ResponseInner';
@@ -570,6 +572,62 @@ export default class TransactionsApi {
 
     /**
      * List transaction approval details
+     * This operation retrieves detailed approval information for a specified transaction. 
+     * @param {Object} opts Optional parameters
+     * @param {String} [transaction_ids] A list of transaction IDs, separated by comma.
+     * @param {String} [cobo_ids] A list of Cobo IDs, separated by comma. A Cobo ID can be used to track a transaction.
+     * @param {String} [request_ids] A list of request IDs, separated by comma.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ApprovalDetail>} and HTTP response
+     */
+    listApprovalDetailsWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'transaction_ids': opts['transaction_ids'],
+        'cobo_ids': opts['cobo_ids'],
+        'request_ids': opts['request_ids']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = [ApprovalDetail];
+      return this.apiClient.callApi(
+        '/transactions/approval/details', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * List transaction approval details
+     * This operation retrieves detailed approval information for a specified transaction. 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.transaction_ids A list of transaction IDs, separated by comma.
+     * @param {String} opts.cobo_ids A list of Cobo IDs, separated by comma. A Cobo ID can be used to track a transaction.
+     * @param {String} opts.request_ids A list of request IDs, separated by comma.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ApprovalDetail>}
+     */
+    listApprovalDetails(opts) {
+      return this.listApprovalDetailsWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * List transaction approval details
      * This operation retrieves detailed approval information for all transactions. 
      * @param {Object} opts Optional parameters
      * @param {String} [transaction_ids] A list of transaction IDs, separated by comma.
@@ -615,6 +673,63 @@ export default class TransactionsApi {
      */
     listTransactionApprovalDetails(opts) {
       return this.listTransactionApprovalDetailsWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * list transaction templates
+     * This operation retrieves transaction templates based on the specified transaction type and template version. The response includes a list of templates that can be used for creating transactions approval message. 
+     * @param {String} template_key The key of the transaction template to be used for creating a transaction approval message. 
+     * @param {Object} opts Optional parameters
+     * @param {String} [template_version] The version of the template used for the transaction approval.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ApprovalTemplate>} and HTTP response
+     */
+    listTransactionTemplatesWithHttpInfo(template_key, opts) {
+      opts = opts || {};
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'template_key' is set
+      if (template_key === undefined || template_key === null) {
+        throw new Error("Missing the required parameter 'template_key' when calling listTransactionTemplates");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'template_key': template_key,
+        'template_version': opts['template_version']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = [ApprovalTemplate];
+      return this.apiClient.callApi(
+        '/transactions/templates', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * list transaction templates
+     * This operation retrieves transaction templates based on the specified transaction type and template version. The response includes a list of templates that can be used for creating transactions approval message. 
+     * @param {String} template_key The key of the transaction template to be used for creating a transaction approval message. 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.template_version The version of the template used for the transaction approval.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ApprovalTemplate>}
+     */
+    listTransactionTemplates(template_key, opts) {
+      return this.listTransactionTemplatesWithHttpInfo(template_key, opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
