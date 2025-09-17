@@ -21,7 +21,7 @@ class CreateRefundRequest {
      * Constructs a new <code>CreateRefundRequest</code>.
      * @alias module:model/CreateRefundRequest
      * @param request_id {String} The request ID that is used to track a refund request. The request ID is provided by you and must be unique.
-     * @param payable_amount {String} The amount to refund in cryptocurrency. The amount must be a positive integer with up to two decimal places.
+     * @param payable_amount {String} The amount to refund in cryptocurrency. The amount must be a positive number and can have up to two decimal places
      * @param token_id {String} The ID of the cryptocurrency used for refund. Supported values:    - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
      * @param refund_type {module:model/RefundType} 
      */
@@ -153,7 +153,7 @@ CreateRefundRequest.prototype['request_id'] = undefined;
 CreateRefundRequest.prototype['merchant_id'] = undefined;
 
 /**
- * The amount to refund in cryptocurrency. The amount must be a positive integer with up to two decimal places.
+ * The amount to refund in cryptocurrency. The amount must be a positive number and can have up to two decimal places
  * @member {String} payable_amount
  */
 CreateRefundRequest.prototype['payable_amount'] = undefined;

@@ -569,7 +569,7 @@ export default class TokenizationApi {
 
 
     /**
-     * Lists addresses on blocklist
+     * List addresses on blocklist
      * This operation lists addresses on the blocklist. 
      * @param {String} token_id The token ID, which is the unique identifier of a token.
      * @param {Object} opts Optional parameters
@@ -616,7 +616,7 @@ export default class TokenizationApi {
     }
 
     /**
-     * Lists addresses on blocklist
+     * List addresses on blocklist
      * This operation lists addresses on the blocklist. 
      * @param {String} token_id The token ID, which is the unique identifier of a token.
      * @param {Object} opts Optional parameters

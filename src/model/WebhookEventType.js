@@ -249,6 +249,13 @@ export default class WebhookEventType {
 
     
         /**
+         * value: "compliance.disposition.status.updated"
+         * @const
+         */
+        "compliance.disposition.status.updated" = "compliance.disposition.status.updated";
+
+    
+        /**
          * value: "unknown_default_open_api"
          * @const
          */

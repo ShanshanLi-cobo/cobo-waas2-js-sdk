@@ -22,7 +22,7 @@ class CreatePaymentOrderRequest {
      * @param merchant_id {String} The merchant ID.
      * @param token_id {String} The ID of the cryptocurrency used for payment. Supported values:    - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
      * @param order_amount {String}  The base amount of the order, excluding the developer fee (specified in `fee_amount`), in the currency specified by `currency`. If `currency` is not specified, the amount is in the cryptocurrency specified by `token_id`.   Values must be greater than `0` and contain two decimal places.  
-     * @param fee_amount {String}  The developer fee for the order, in the currency specified by `currency`. If `currency` is not specified, the fee is in the cryptocurrency specified by `token_id`.  The developer fee is added to the base amount (`order_amount`) to determine the final charge. For example: - Base amount (`order_amount`): \"100.00\" - Developer fee (`fee_amount`): \"2.00\"  - Total charged to customer: \"102.00\"  Values must be greater than 0 and contain two decimal places. 
+     * @param fee_amount {String}  The developer fee for the order, in the currency specified by `currency`. If `currency` is not specified, the fee is in the cryptocurrency specified by `token_id`.  If you are a merchant directly serving payers, set this field to `0`. Developer fees are only relevant for platforms like payment service providers (PSPs) that charge fees to their downstream merchants.  The developer fee is added to the base amount (`order_amount`) to determine the final charge. For example: - Base amount (`order_amount`): \"100.00\" - Developer fee (`fee_amount`): \"2.00\"  - Total charged to customer: \"102.00\"  Values can contain up to two decimal places. 
      * @param psp_order_code {String} A unique reference code assigned by you as a developer to identify this order in your system. This code must be unique across all orders in your system. The code should have a maximum length of 128 characters. 
      */
     constructor(merchant_id, token_id, order_amount, fee_amount, psp_order_code) { 
@@ -160,7 +160,7 @@ CreatePaymentOrderRequest.prototype['currency'] = '';
 CreatePaymentOrderRequest.prototype['order_amount'] = undefined;
 
 /**
- *  The developer fee for the order, in the currency specified by `currency`. If `currency` is not specified, the fee is in the cryptocurrency specified by `token_id`.  The developer fee is added to the base amount (`order_amount`) to determine the final charge. For example: - Base amount (`order_amount`): \"100.00\" - Developer fee (`fee_amount`): \"2.00\"  - Total charged to customer: \"102.00\"  Values must be greater than 0 and contain two decimal places. 
+ *  The developer fee for the order, in the currency specified by `currency`. If `currency` is not specified, the fee is in the cryptocurrency specified by `token_id`.  If you are a merchant directly serving payers, set this field to `0`. Developer fees are only relevant for platforms like payment service providers (PSPs) that charge fees to their downstream merchants.  The developer fee is added to the base amount (`order_amount`) to determine the final charge. For example: - Base amount (`order_amount`): \"100.00\" - Developer fee (`fee_amount`): \"2.00\"  - Total charged to customer: \"102.00\"  Values can contain up to two decimal places. 
  * @member {String} fee_amount
  */
 CreatePaymentOrderRequest.prototype['fee_amount'] = undefined;
@@ -178,7 +178,7 @@ CreatePaymentOrderRequest.prototype['merchant_order_code'] = undefined;
 CreatePaymentOrderRequest.prototype['psp_order_code'] = undefined;
 
 /**
- * The number of seconds until the pay-in order expires, counted from when the request is sent. For example, if set to `1800`, the order will expire in 30 minutes. After expiration: - The order status becomes final and cannot be changed - The `received_token_amount` field will no longer be updated - Funds received after expiration will be categorized as late payments and can only be settled from the developer balance. - A late payment will trigger a `transactionLate` webhook event. 
+ * The number of seconds until the pay-in order expires, counted from when the request is sent. For example, if set to `1800`, the order will expire in 30 minutes. Must be greater than zero and cannot exceed 3 hours (10800 seconds). After expiration:  - The order status becomes final and cannot be changed - The `received_token_amount` field will no longer be updated - Funds received after expiration will be categorized as late payments and can only be settled from the developer balance. - A late payment will trigger a `transactionLate` webhook event. 
  * @member {Number} expired_in
  * @default 1800
  */

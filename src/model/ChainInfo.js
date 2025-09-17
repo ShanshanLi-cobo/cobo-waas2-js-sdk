@@ -56,6 +56,9 @@ class ChainInfo {
             if (data.hasOwnProperty('icon_url')) {
                 obj['icon_url'] = ApiClient.convertToType(data['icon_url'], 'String');
             }
+            if (data.hasOwnProperty('chain_identifier')) {
+                obj['chain_identifier'] = ApiClient.convertToType(data['chain_identifier'], 'String');
+            }
             if (data.hasOwnProperty('explorer_tx_url')) {
                 obj['explorer_tx_url'] = ApiClient.convertToType(data['explorer_tx_url'], 'String');
             }
@@ -100,6 +103,10 @@ class ChainInfo {
             throw new Error("Expected the field `icon_url` to be a primitive type in the JSON string but got " + data['icon_url']);
         }
         // ensure the json data is a string
+        if (data['chain_identifier'] && !(typeof data['chain_identifier'] === 'string' || data['chain_identifier'] instanceof String)) {
+            throw new Error("Expected the field `chain_identifier` to be a primitive type in the JSON string but got " + data['chain_identifier']);
+        }
+        // ensure the json data is a string
         if (data['explorer_tx_url'] && !(typeof data['explorer_tx_url'] === 'string' || data['explorer_tx_url'] instanceof String)) {
             throw new Error("Expected the field `explorer_tx_url` to be a primitive type in the JSON string but got " + data['explorer_tx_url']);
         }
@@ -123,7 +130,7 @@ ChainInfo.RequiredProperties = ["chain_id"];
 ChainInfo.prototype['chain_id'] = undefined;
 
 /**
- * The chain symbol, which is the abbreviated name of a chain.
+ * The chain symbol for display purposes, which is the abbreviated name of a chain.
  * @member {String} symbol
  */
 ChainInfo.prototype['symbol'] = undefined;
@@ -133,6 +140,12 @@ ChainInfo.prototype['symbol'] = undefined;
  * @member {String} icon_url
  */
 ChainInfo.prototype['icon_url'] = undefined;
+
+/**
+ * A functional identifier used to group blockchains with similar execution logic. For example, `ETH` for all EVM-compatible chains (Ethereum, BNB Smart Chain, Polygon).
+ * @member {String} chain_identifier
+ */
+ChainInfo.prototype['chain_identifier'] = undefined;
 
 /**
  * The transaction URL pattern on the blockchain explorer. You can use it to concatenate the transaction URLs.

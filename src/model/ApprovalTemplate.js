@@ -18,7 +18,7 @@ import ApiClient from '../ApiClient';
 class ApprovalTemplate {
     /**
      * Constructs a new <code>ApprovalTemplate</code>.
-     * The template for transaction approval details.
+     * Approval template details.
      * @alias module:model/ApprovalTemplate
      */
     constructor() { 
@@ -86,19 +86,19 @@ class ApprovalTemplate {
 
 
 /**
- * The business key that is used to identify the transaction.
+ * Business key used to identify the type of approval template.
  * @member {String} business_key
  */
 ApprovalTemplate.prototype['business_key'] = undefined;
 
 /**
- * The template text that is used for the transaction approval.
+ * Text content defined in the approval template used to generate approval messages shown to users
  * @member {String} template_text
  */
 ApprovalTemplate.prototype['template_text'] = undefined;
 
 /**
- * The version of the template used for the transaction approval.
+ * Version of the approval template.
  * @member {String} template_version
  */
 ApprovalTemplate.prototype['template_version'] = undefined;

@@ -139,7 +139,7 @@ CreateSettlement.prototype['token_id'] = undefined;
 CreateSettlement.prototype['currency'] = undefined;
 
 /**
- * The settlement amount. When settling merchant balance from orders (`acquiring_type` is `Order` and `settlement_type` is `Merchant`), do not specify this field as the settlement amount will be automatically calculated based on the order amounts. - If `payout_channel` is set to `Crypto`, this represents the settlement amount in the specified cryptocurrency. - If `payout_channel` is set to `OffRamp`, this represents the settlement amount in the specified fiat currency. 
+ * The amount of cryptocurrency to be settled. When settling merchant balance from orders (`acquiring_type` is `Order` and `settlement_type` is `Merchant`), do not specify this field as the amount will be automatically calculated based on the order amounts. 
  * @member {String} amount
  */
 CreateSettlement.prototype['amount'] = undefined;

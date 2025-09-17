@@ -39,10 +39,10 @@ export default class AutoSweepApi {
 
 
     /**
-     * create auto sweep task
-     * This operation create a new auto sweep task. 
+     * Create auto-sweep task
+     * This operation creates an auto-sweep task for the specified wallet and token. The task triggers transactions to sweep the full balance of the specified token to the configured sweep-to address. 
      * @param {Object} opts Optional parameters
-     * @param {module:model/CreateAutoSweepTask} [CreateAutoSweepTask] The request body to generates a new sweep to addresses within a specified wallet.
+     * @param {module:model/CreateAutoSweepTask} [CreateAutoSweepTask] The request body to create an auto-sweep task.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/AutoSweepTask} and HTTP response
      */
     createAutoSweepTaskWithHttpInfo(opts) {
@@ -73,10 +73,10 @@ export default class AutoSweepApi {
     }
 
     /**
-     * create auto sweep task
-     * This operation create a new auto sweep task. 
+     * Create auto-sweep task
+     * This operation creates an auto-sweep task for the specified wallet and token. The task triggers transactions to sweep the full balance of the specified token to the configured sweep-to address. 
      * @param {Object} opts Optional parameters
-     * @param {module:model/CreateAutoSweepTask} opts.CreateAutoSweepTask The request body to generates a new sweep to addresses within a specified wallet.
+     * @param {module:model/CreateAutoSweepTask} opts.CreateAutoSweepTask The request body to create an auto-sweep task.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/AutoSweepTask}
      */
     createAutoSweepTask(opts) {
@@ -88,10 +88,10 @@ export default class AutoSweepApi {
 
 
     /**
-     * create wallet sweep to addresses
-     * This operation create a new sweep to address for the wallet. The old sweep to address will become invalid. 
+     * create sweep-to address
+     * This operation creates a new sweep-to address for the specified wallet. The previously sweep-to address for the same token becomes invalid once the new one is created.  Use this operation to change the sweep-to address when your setup changes, you switch networks, or the current address is compromised or tainted by suspicious funds. You can withdraw any remaining balances from the old sweep-to addresses to the new address or another designated destination.  <Note>Sweep-to addresses are only applicable to MPC Wallets and Web3 Wallets with the auto-sweep feature enabled.</Note> 
      * @param {Object} opts Optional parameters
-     * @param {module:model/CreateSweepToAddress} [CreateSweepToAddress] The request body to generates a new sweep to addresses within a specified wallet.
+     * @param {module:model/CreateSweepToAddress} [CreateSweepToAddress] The request body to generates a new sweep-to address within a specified wallet.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/SweepToAddress} and HTTP response
      */
     createWalletSweepToAddressesWithHttpInfo(opts) {
@@ -122,10 +122,10 @@ export default class AutoSweepApi {
     }
 
     /**
-     * create wallet sweep to addresses
-     * This operation create a new sweep to address for the wallet. The old sweep to address will become invalid. 
+     * create sweep-to address
+     * This operation creates a new sweep-to address for the specified wallet. The previously sweep-to address for the same token becomes invalid once the new one is created.  Use this operation to change the sweep-to address when your setup changes, you switch networks, or the current address is compromised or tainted by suspicious funds. You can withdraw any remaining balances from the old sweep-to addresses to the new address or another designated destination.  <Note>Sweep-to addresses are only applicable to MPC Wallets and Web3 Wallets with the auto-sweep feature enabled.</Note> 
      * @param {Object} opts Optional parameters
-     * @param {module:model/CreateSweepToAddress} opts.CreateSweepToAddress The request body to generates a new sweep to addresses within a specified wallet.
+     * @param {module:model/CreateSweepToAddress} opts.CreateSweepToAddress The request body to generates a new sweep-to address within a specified wallet.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/SweepToAddress}
      */
     createWalletSweepToAddresses(opts) {
@@ -137,8 +137,8 @@ export default class AutoSweepApi {
 
 
     /**
-     * Get auto sweep task information
-     * This operation retrieves detailed information about a specified auto sweep task. 
+     * Get auto-sweep task details
+     * This operation retrieves detailed information about a specified auto-sweep task. 
      * @param {String} task_id The auto sweep task ID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/AutoSweepTask} and HTTP response
      */
@@ -174,8 +174,8 @@ export default class AutoSweepApi {
     }
 
     /**
-     * Get auto sweep task information
-     * This operation retrieves detailed information about a specified auto sweep task. 
+     * Get auto-sweep task details
+     * This operation retrieves detailed information about a specified auto-sweep task. 
      * @param {String} task_id The auto sweep task ID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/AutoSweepTask}
      */
@@ -188,12 +188,12 @@ export default class AutoSweepApi {
 
 
     /**
-     * List wallet auto sweep task
-     * This operation retrieves a list of auto sweep task. 
+     * List auto-sweep tasks
+     * This operation retrieves a list of auto-sweep tasks for the specified wallet. You can filter the results by token ID, task IDs, or a created-time range. 
      * @param {String} wallet_id The wallet ID.
      * @param {Object} opts Optional parameters
      * @param {String} [token_id] The token ID, which is the unique identifier of a token. You can retrieve the IDs of all the tokens you can use by calling [List enabled tokens](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-tokens).
-     * @param {String} [task_ids] A list of auto sweep task IDs, separated by comma.
+     * @param {String} [task_ids] A list of auto-sweep task IDs, separated by comma.
      * @param {Number} [min_created_timestamp] The time when the transaction was created, in Unix timestamp format, measured in milliseconds. You can use this parameter to filter transactions created on or after the specified time.  If not provided, the default value is 90 days before the current time. This default value is subject to change. 
      * @param {Number} [max_created_timestamp] The time when the transaction was created, in Unix timestamp format, measured in milliseconds. You can use this parameter to filter transactions created on or before the specified time.  If not provided, the default value is the current time. This default value is subject to change. 
      * @param {Number} [limit = 10)] The maximum number of objects to return. For most operations, the value range is [1, 50].
@@ -243,12 +243,12 @@ export default class AutoSweepApi {
     }
 
     /**
-     * List wallet auto sweep task
-     * This operation retrieves a list of auto sweep task. 
+     * List auto-sweep tasks
+     * This operation retrieves a list of auto-sweep tasks for the specified wallet. You can filter the results by token ID, task IDs, or a created-time range. 
      * @param {String} wallet_id The wallet ID.
      * @param {Object} opts Optional parameters
      * @param {String} opts.token_id The token ID, which is the unique identifier of a token. You can retrieve the IDs of all the tokens you can use by calling [List enabled tokens](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-tokens).
-     * @param {String} opts.task_ids A list of auto sweep task IDs, separated by comma.
+     * @param {String} opts.task_ids A list of auto-sweep task IDs, separated by comma.
      * @param {Number} opts.min_created_timestamp The time when the transaction was created, in Unix timestamp format, measured in milliseconds. You can use this parameter to filter transactions created on or after the specified time.  If not provided, the default value is 90 days before the current time. This default value is subject to change. 
      * @param {Number} opts.max_created_timestamp The time when the transaction was created, in Unix timestamp format, measured in milliseconds. You can use this parameter to filter transactions created on or before the specified time.  If not provided, the default value is the current time. This default value is subject to change. 
      * @param {Number} opts.limit The maximum number of objects to return. For most operations, the value range is [1, 50]. (default to 10)
@@ -266,8 +266,8 @@ export default class AutoSweepApi {
 
 
     /**
-     * List wallet sweep to addresses
-     * This operation retrieves a list of sweep to addresses within your wallet. 
+     * List sweep-to addresses
+     * This operation retrieves a list of sweep-to addresses within your wallet. <Note>Sweep-to addresses are only applicable to MPC Wallets and Web3 Wallets with the auto-sweep feature enabled.</Note> 
      * @param {String} wallet_id The wallet ID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListWalletSweepToAddresses200Response} and HTTP response
      */
@@ -303,8 +303,8 @@ export default class AutoSweepApi {
     }
 
     /**
-     * List wallet sweep to addresses
-     * This operation retrieves a list of sweep to addresses within your wallet. 
+     * List sweep-to addresses
+     * This operation retrieves a list of sweep-to addresses within your wallet. <Note>Sweep-to addresses are only applicable to MPC Wallets and Web3 Wallets with the auto-sweep feature enabled.</Note> 
      * @param {String} wallet_id The wallet ID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListWalletSweepToAddresses200Response}
      */

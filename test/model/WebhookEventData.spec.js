@@ -562,6 +562,30 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property disposition_type (base name: "disposition_type")', function() {
+      // uncomment below and update the code to test the property disposition_type
+      //var instance = new CoboWaas2.WebhookEventData();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property disposition_status (base name: "disposition_status")', function() {
+      // uncomment below and update the code to test the property disposition_status
+      //var instance = new CoboWaas2.WebhookEventData();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property destination_address (base name: "destination_address")', function() {
+      // uncomment below and update the code to test the property destination_address
+      //var instance = new CoboWaas2.WebhookEventData();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property disposition_amount (base name: "disposition_amount")', function() {
+      // uncomment below and update the code to test the property disposition_amount
+      //var instance = new CoboWaas2.WebhookEventData();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));
