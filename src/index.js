@@ -722,7 +722,7 @@ import WalletsSmartContractWalletsApi from './api/WalletsSmartContractWalletsApi
 * </pre>
 * </p>
 * @module index
-* @version 1.22.0
+* @version 1.23.0
 */
 export {
     Env,
