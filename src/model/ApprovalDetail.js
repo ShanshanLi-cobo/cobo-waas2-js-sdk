@@ -19,7 +19,7 @@ import RoleDetail from './RoleDetail';
 class ApprovalDetail {
     /**
      * Constructs a new <code>ApprovalDetail</code>.
-     * The approval detail data for transaction.
+     * Details of the transaction approval.
      * @alias module:model/ApprovalDetail
      */
     constructor() { 
@@ -114,19 +114,19 @@ class ApprovalDetail {
 
 
 /**
- * The transaction ID.
+ * Transaction ID.
  * @member {String} transaction_id
  */
 ApprovalDetail.prototype['transaction_id'] = undefined;
 
 /**
- * The Cobo ID, which can be used to track a transaction.
+ * Cobo ID used to track a transaction.
  * @member {String} cobo_id
  */
 ApprovalDetail.prototype['cobo_id'] = undefined;
 
 /**
- * The request ID that is used to track a transaction request. The request ID is provided by you and must be unique within your organization.
+ * Request ID used to track a transaction request.
  * @member {String} request_id
  */
 ApprovalDetail.prototype['request_id'] = undefined;

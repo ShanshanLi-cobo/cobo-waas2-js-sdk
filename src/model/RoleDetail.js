@@ -20,7 +20,7 @@ import ApprovalUserDetail from './ApprovalUserDetail';
 class RoleDetail {
     /**
      * Constructs a new <code>RoleDetail</code>.
-     * Transaction approval details response schema.
+     * Details of the role in a transaction approval.
      * @alias module:model/RoleDetail
      */
     constructor() { 
@@ -50,8 +50,17 @@ class RoleDetail {
             if (data.hasOwnProperty('result')) {
                 obj['result'] = ApprovalTransactionResult.constructFromObject(data['result']);
             }
-            if (data.hasOwnProperty('threshold')) {
-                obj['threshold'] = ApiClient.convertToType(data['threshold'], 'Number');
+            if (data.hasOwnProperty('review_threshold')) {
+                obj['review_threshold'] = ApiClient.convertToType(data['review_threshold'], 'Number');
+            }
+            if (data.hasOwnProperty('initiator')) {
+                obj['initiator'] = ApiClient.convertToType(data['initiator'], 'String');
+            }
+            if (data.hasOwnProperty('is_upgraded')) {
+                obj['is_upgraded'] = ApiClient.convertToType(data['is_upgraded'], 'Boolean');
+            }
+            if (data.hasOwnProperty('complete_time')) {
+                obj['complete_time'] = ApiClient.convertToType(data['complete_time'], 'String');
             }
             if (data.hasOwnProperty('user_details')) {
                 obj['user_details'] = ApiClient.convertToType(data['user_details'], [ApprovalUserDetail]);
@@ -66,6 +75,14 @@ class RoleDetail {
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>RoleDetail</code>.
      */
     static validateJSON(data) {
+        // ensure the json data is a string
+        if (data['initiator'] && !(typeof data['initiator'] === 'string' || data['initiator'] instanceof String)) {
+            throw new Error("Expected the field `initiator` to be a primitive type in the JSON string but got " + data['initiator']);
+        }
+        // ensure the json data is a string
+        if (data['complete_time'] && !(typeof data['complete_time'] === 'string' || data['complete_time'] instanceof String)) {
+            throw new Error("Expected the field `complete_time` to be a primitive type in the JSON string but got " + data['complete_time']);
+        }
         if (data['user_details']) { // data not null
             // ensure the json data is an array
             if (!Array.isArray(data['user_details'])) {
@@ -91,10 +108,28 @@ class RoleDetail {
 RoleDetail.prototype['result'] = undefined;
 
 /**
- * The threshold for the transaction approval.
- * @member {Number} threshold
+ * Minimum number of approvals required for this role.
+ * @member {Number} review_threshold
  */
-RoleDetail.prototype['threshold'] = undefined;
+RoleDetail.prototype['review_threshold'] = undefined;
+
+/**
+ * The initiator of the transaction.
+ * @member {String} initiator
+ */
+RoleDetail.prototype['initiator'] = undefined;
+
+/**
+ * Indicates whether the transaction approval has been upgraded.
+ * @member {Boolean} is_upgraded
+ */
+RoleDetail.prototype['is_upgraded'] = undefined;
+
+/**
+ * Time when the role completed the approval.
+ * @member {String} complete_time
+ */
+RoleDetail.prototype['complete_time'] = undefined;
 
 /**
  * @member {Array.<module:model/ApprovalUserDetail>} user_details

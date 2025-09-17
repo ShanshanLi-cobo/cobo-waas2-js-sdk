@@ -43,7 +43,6 @@ import ApprovalEntry from './model/ApprovalEntry';
 import ApprovalRequest from './model/ApprovalRequest';
 import ApprovalRequestDetail from './model/ApprovalRequestDetail';
 import ApprovalResult from './model/ApprovalResult';
-import ApprovalShowInfo from './model/ApprovalShowInfo';
 import ApprovalStatementStatus from './model/ApprovalStatementStatus';
 import ApprovalStatus from './model/ApprovalStatus';
 import ApprovalTemplate from './model/ApprovalTemplate';
@@ -92,6 +91,7 @@ import CheckAddressesValidity200ResponseInner from './model/CheckAddressesValidi
 import CheckLoopTransfers200ResponseInner from './model/CheckLoopTransfers200ResponseInner';
 import CoboSafeDelegate from './model/CoboSafeDelegate';
 import CoboSafeDelegateType from './model/CoboSafeDelegateType';
+import ComplianceDispositionUpdateEventData from './model/ComplianceDispositionUpdateEventData';
 import ContractCallDestination from './model/ContractCallDestination';
 import ContractCallDestinationType from './model/ContractCallDestinationType';
 import ContractCallParams from './model/ContractCallParams';
@@ -103,6 +103,9 @@ import CoreStakingExtra from './model/CoreStakingExtra';
 import CosmosAdr36MessageSignDestination from './model/CosmosAdr36MessageSignDestination';
 import CosmosContractCallDestination from './model/CosmosContractCallDestination';
 import CosmosContractCallMessage from './model/CosmosContractCallMessage';
+import CreateAddressBookParam from './model/CreateAddressBookParam';
+import CreateAddressBooks201Response from './model/CreateAddressBooks201Response';
+import CreateAddressBooksParam from './model/CreateAddressBooksParam';
 import CreateAddressRequest from './model/CreateAddressRequest';
 import CreateApprovalRequest201Response from './model/CreateApprovalRequest201Response';
 import CreateAutoSweepTask from './model/CreateAutoSweepTask';
@@ -154,11 +157,17 @@ import CustodialWalletInfo from './model/CustodialWalletInfo';
 import CustodialWeb3ContractCallSource from './model/CustodialWeb3ContractCallSource';
 import CustodialWeb3MessageSignSource from './model/CustodialWeb3MessageSignSource';
 import CustodialWeb3TransferSource from './model/CustodialWeb3TransferSource';
+import DeleteAddressBookById201Response from './model/DeleteAddressBookById201Response';
 import DeleteCryptoAddress201Response from './model/DeleteCryptoAddress201Response';
 import DeleteGuardPubkey201Response from './model/DeleteGuardPubkey201Response';
 import DeleteKeyShareHolderGroupById201Response from './model/DeleteKeyShareHolderGroupById201Response';
 import DeleteWalletById201Response from './model/DeleteWalletById201Response';
 import DestinationWalletType from './model/DestinationWalletType';
+import DispositionEventData from './model/DispositionEventData';
+import DispositionQueryResponse from './model/DispositionQueryResponse';
+import DispositionResponse from './model/DispositionResponse';
+import DispositionStatus from './model/DispositionStatus';
+import DispositionType from './model/DispositionType';
 import EigenLayerLstStakeExtra from './model/EigenLayerLstStakeExtra';
 import EigenLayerNativeStakeExtra from './model/EigenLayerNativeStakeExtra';
 import EigenlayerValidator from './model/EigenlayerValidator';
@@ -233,6 +242,7 @@ import GraphQLErrorLocationsInner from './model/GraphQLErrorLocationsInner';
 import GraphQLRequest from './model/GraphQLRequest';
 import GraphQLResponse from './model/GraphQLResponse';
 import GuardPubkeyStatus from './model/GuardPubkeyStatus';
+import IsolateDisposition from './model/IsolateDisposition';
 import KeyShareHolder from './model/KeyShareHolder';
 import KeyShareHolderGroup from './model/KeyShareHolderGroup';
 import KeyShareHolderGroupStatus from './model/KeyShareHolderGroupStatus';
@@ -344,6 +354,7 @@ import RefreshPermissionTokenRequest from './model/RefreshPermissionTokenRequest
 import RefreshToken2XXResponse from './model/RefreshToken2XXResponse';
 import RefreshTokenRequest from './model/RefreshTokenRequest';
 import Refund from './model/Refund';
+import RefundDisposition from './model/RefundDisposition';
 import RefundStatus from './model/RefundStatus';
 import RefundType from './model/RefundType';
 import ReplaceType from './model/ReplaceType';
@@ -629,6 +640,8 @@ import TravelRuleWithdrawRequestTravelRuleInfo from './model/TravelRuleWithdrawR
 import TriggerTestWebhookEvent201Response from './model/TriggerTestWebhookEvent201Response';
 import TriggerTestWebhookEventRequest from './model/TriggerTestWebhookEventRequest';
 import UTXO from './model/UTXO';
+import UnfreezeDisposition from './model/UnfreezeDisposition';
+import UpdateAddressBookParam from './model/UpdateAddressBookParam';
 import UpdateCustodialWalletParams from './model/UpdateCustodialWalletParams';
 import UpdateExchangeWalletParams from './model/UpdateExchangeWalletParams';
 import UpdateGroupAction from './model/UpdateGroupAction';
@@ -661,6 +674,7 @@ import WebhookEventType from './model/WebhookEventType';
 import AddressBooksApi from './api/AddressBooksApi';
 import AppWorkflowsApi from './api/AppWorkflowsApi';
 import AutoSweepApi from './api/AutoSweepApi';
+import ComplianceApi from './api/ComplianceApi';
 import DevelopersApi from './api/DevelopersApi';
 import DevelopersWebhooksApi from './api/DevelopersWebhooksApi';
 import FeeStationApi from './api/FeeStationApi';
@@ -708,7 +722,7 @@ import WalletsSmartContractWalletsApi from './api/WalletsSmartContractWalletsApi
 * </pre>
 * </p>
 * @module index
-* @version 1.22.0
+* @version 1.23.0
 */
 export {
     Env,
@@ -899,12 +913,6 @@ export {
      * @property {module:model/ApprovalResult}
      */
     ApprovalResult,
-
-    /**
-     * The ApprovalShowInfo model constructor.
-     * @property {module:model/ApprovalShowInfo}
-     */
-    ApprovalShowInfo,
 
     /**
      * The ApprovalStatementStatus model constructor.
@@ -1195,6 +1203,12 @@ export {
     CoboSafeDelegateType,
 
     /**
+     * The ComplianceDispositionUpdateEventData model constructor.
+     * @property {module:model/ComplianceDispositionUpdateEventData}
+     */
+    ComplianceDispositionUpdateEventData,
+
+    /**
      * The ContractCallDestination model constructor.
      * @property {module:model/ContractCallDestination}
      */
@@ -1259,6 +1273,24 @@ export {
      * @property {module:model/CosmosContractCallMessage}
      */
     CosmosContractCallMessage,
+
+    /**
+     * The CreateAddressBookParam model constructor.
+     * @property {module:model/CreateAddressBookParam}
+     */
+    CreateAddressBookParam,
+
+    /**
+     * The CreateAddressBooks201Response model constructor.
+     * @property {module:model/CreateAddressBooks201Response}
+     */
+    CreateAddressBooks201Response,
+
+    /**
+     * The CreateAddressBooksParam model constructor.
+     * @property {module:model/CreateAddressBooksParam}
+     */
+    CreateAddressBooksParam,
 
     /**
      * The CreateAddressRequest model constructor.
@@ -1567,6 +1599,12 @@ export {
     CustodialWeb3TransferSource,
 
     /**
+     * The DeleteAddressBookById201Response model constructor.
+     * @property {module:model/DeleteAddressBookById201Response}
+     */
+    DeleteAddressBookById201Response,
+
+    /**
      * The DeleteCryptoAddress201Response model constructor.
      * @property {module:model/DeleteCryptoAddress201Response}
      */
@@ -1595,6 +1633,36 @@ export {
      * @property {module:model/DestinationWalletType}
      */
     DestinationWalletType,
+
+    /**
+     * The DispositionEventData model constructor.
+     * @property {module:model/DispositionEventData}
+     */
+    DispositionEventData,
+
+    /**
+     * The DispositionQueryResponse model constructor.
+     * @property {module:model/DispositionQueryResponse}
+     */
+    DispositionQueryResponse,
+
+    /**
+     * The DispositionResponse model constructor.
+     * @property {module:model/DispositionResponse}
+     */
+    DispositionResponse,
+
+    /**
+     * The DispositionStatus model constructor.
+     * @property {module:model/DispositionStatus}
+     */
+    DispositionStatus,
+
+    /**
+     * The DispositionType model constructor.
+     * @property {module:model/DispositionType}
+     */
+    DispositionType,
 
     /**
      * The EigenLayerLstStakeExtra model constructor.
@@ -2039,6 +2107,12 @@ export {
      * @property {module:model/GuardPubkeyStatus}
      */
     GuardPubkeyStatus,
+
+    /**
+     * The IsolateDisposition model constructor.
+     * @property {module:model/IsolateDisposition}
+     */
+    IsolateDisposition,
 
     /**
      * The KeyShareHolder model constructor.
@@ -2705,6 +2779,12 @@ export {
      * @property {module:model/Refund}
      */
     Refund,
+
+    /**
+     * The RefundDisposition model constructor.
+     * @property {module:model/RefundDisposition}
+     */
+    RefundDisposition,
 
     /**
      * The RefundStatus model constructor.
@@ -4417,6 +4497,18 @@ export {
     UTXO,
 
     /**
+     * The UnfreezeDisposition model constructor.
+     * @property {module:model/UnfreezeDisposition}
+     */
+    UnfreezeDisposition,
+
+    /**
+     * The UpdateAddressBookParam model constructor.
+     * @property {module:model/UpdateAddressBookParam}
+     */
+    UpdateAddressBookParam,
+
+    /**
      * The UpdateCustodialWalletParams model constructor.
      * @property {module:model/UpdateCustodialWalletParams}
      */
@@ -4607,6 +4699,12 @@ export {
     * @property {module:api/AutoSweepApi}
     */
     AutoSweepApi,
+
+    /**
+    * The ComplianceApi service constructor.
+    * @property {module:api/ComplianceApi}
+    */
+    ComplianceApi,
 
     /**
     * The DevelopersApi service constructor.

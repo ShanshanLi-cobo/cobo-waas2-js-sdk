@@ -70,6 +70,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property chain_identifier (base name: "chain_identifier")', function() {
+      // uncomment below and update the code to test the property chain_identifier
+      //var instance = new CoboWaas2.ChainInfo();
+      //expect(instance).to.be();
+    });
+
     it('should have the property explorer_tx_url (base name: "explorer_tx_url")', function() {
       // uncomment below and update the code to test the property explorer_tx_url
       //var instance = new CoboWaas2.ChainInfo();

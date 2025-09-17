@@ -26,7 +26,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new CoboWaas2.ApprovalShowInfo();
+    instance = new CoboWaas2.RefundDisposition();
   });
 
   var getProperty = function(object, getter, property) {
@@ -45,40 +45,40 @@
       object[property] = value;
   }
 
-  describe('ApprovalShowInfo', function() {
-    it('should create an instance of ApprovalShowInfo', function() {
-      // uncomment below and update the code to test ApprovalShowInfo
-      //var instance = new CoboWaas2.ApprovalShowInfo();
-      //expect(instance).to.be.a(CoboWaas2.ApprovalShowInfo);
+  describe('RefundDisposition', function() {
+    it('should create an instance of RefundDisposition', function() {
+      // uncomment below and update the code to test RefundDisposition
+      //var instance = new CoboWaas2.RefundDisposition();
+      //expect(instance).to.be.a(CoboWaas2.RefundDisposition);
     });
 
-    it('should have the property org_name (base name: "org_name")', function() {
-      // uncomment below and update the code to test the property org_name
-      //var instance = new CoboWaas2.ApprovalShowInfo();
+    it('should have the property transaction_id (base name: "transaction_id")', function() {
+      // uncomment below and update the code to test the property transaction_id
+      //var instance = new CoboWaas2.RefundDisposition();
       //expect(instance).to.be();
     });
 
-    it('should have the property wallet_name (base name: "wallet_name")', function() {
-      // uncomment below and update the code to test the property wallet_name
-      //var instance = new CoboWaas2.ApprovalShowInfo();
+    it('should have the property destination_address (base name: "destination_address")', function() {
+      // uncomment below and update the code to test the property destination_address
+      //var instance = new CoboWaas2.RefundDisposition();
       //expect(instance).to.be();
     });
 
-    it('should have the property environment (base name: "environment")', function() {
-      // uncomment below and update the code to test the property environment
-      //var instance = new CoboWaas2.ApprovalShowInfo();
+    it('should have the property disposition_amount (base name: "disposition_amount")', function() {
+      // uncomment below and update the code to test the property disposition_amount
+      //var instance = new CoboWaas2.RefundDisposition();
       //expect(instance).to.be();
     });
 
-    it('should have the property from_address_label (base name: "from_address_label")', function() {
-      // uncomment below and update the code to test the property from_address_label
-      //var instance = new CoboWaas2.ApprovalShowInfo();
+    it('should have the property category_names (base name: "category_names")', function() {
+      // uncomment below and update the code to test the property category_names
+      //var instance = new CoboWaas2.RefundDisposition();
       //expect(instance).to.be();
     });
 
-    it('should have the property to_address_label (base name: "to_address_label")', function() {
-      // uncomment below and update the code to test the property to_address_label
-      //var instance = new CoboWaas2.ApprovalShowInfo();
+    it('should have the property description (base name: "description")', function() {
+      // uncomment below and update the code to test the property description
+      //var instance = new CoboWaas2.RefundDisposition();
       //expect(instance).to.be();
     });
 

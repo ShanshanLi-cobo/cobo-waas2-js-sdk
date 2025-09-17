@@ -128,7 +128,7 @@ Merchant.prototype['name'] = undefined;
 Merchant.prototype['wallet_id'] = undefined;
 
 /**
- * The developer fee rate applied to this merchant. Expressed as a string in decimal format where \"0.1\" represents 10%. This fee is deducted from the payment amount and only applies to top-up transactions.
+ * The developer fee rate applied to this merchant. Expressed as a string in decimal format where \"0.1\" represents 10%. This fee is deducted from the payment amount and only applies to top-up transactions. If you are a merchant (directly serving the payer), you do not need to configure the developer fee rate.
  * @member {String} developer_fee_rate
  */
 Merchant.prototype['developer_fee_rate'] = undefined;

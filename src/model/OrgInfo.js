@@ -50,6 +50,9 @@ class OrgInfo {
             if (data.hasOwnProperty('org_id')) {
                 obj['org_id'] = ApiClient.convertToType(data['org_id'], 'String');
             }
+            if (data.hasOwnProperty('biz_org_id')) {
+                obj['biz_org_id'] = ApiClient.convertToType(data['biz_org_id'], 'Number');
+            }
             if (data.hasOwnProperty('name')) {
                 obj['name'] = ApiClient.convertToType(data['name'], 'String');
             }
@@ -94,6 +97,12 @@ OrgInfo.RequiredProperties = ["org_id"];
  * @member {String} org_id
  */
 OrgInfo.prototype['org_id'] = undefined;
+
+/**
+ * An internal business ID assigned by Cobo. Used mainly by Cobo's customer support to locate the organization.
+ * @member {Number} biz_org_id
+ */
+OrgInfo.prototype['biz_org_id'] = undefined;
 
 /**
  * The organization name.

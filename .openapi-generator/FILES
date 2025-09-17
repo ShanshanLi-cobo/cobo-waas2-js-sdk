@@ -36,7 +36,6 @@ docs/ApprovalEntry.md
 docs/ApprovalRequest.md
 docs/ApprovalRequestDetail.md
 docs/ApprovalResult.md
-docs/ApprovalShowInfo.md
 docs/ApprovalStatementStatus.md
 docs/ApprovalStatus.md
 docs/ApprovalTemplate.md
@@ -86,6 +85,8 @@ docs/CheckAddressesValidity200ResponseInner.md
 docs/CheckLoopTransfers200ResponseInner.md
 docs/CoboSafeDelegate.md
 docs/CoboSafeDelegateType.md
+docs/ComplianceApi.md
+docs/ComplianceDispositionUpdateEventData.md
 docs/ContractCallDestination.md
 docs/ContractCallDestinationType.md
 docs/ContractCallParams.md
@@ -97,6 +98,9 @@ docs/CoreStakingExtra.md
 docs/CosmosAdr36MessageSignDestination.md
 docs/CosmosContractCallDestination.md
 docs/CosmosContractCallMessage.md
+docs/CreateAddressBookParam.md
+docs/CreateAddressBooks201Response.md
+docs/CreateAddressBooksParam.md
 docs/CreateAddressRequest.md
 docs/CreateApprovalRequest201Response.md
 docs/CreateAutoSweepTask.md
@@ -148,6 +152,7 @@ docs/CustodialWalletInfo.md
 docs/CustodialWeb3ContractCallSource.md
 docs/CustodialWeb3MessageSignSource.md
 docs/CustodialWeb3TransferSource.md
+docs/DeleteAddressBookById201Response.md
 docs/DeleteCryptoAddress201Response.md
 docs/DeleteGuardPubkey201Response.md
 docs/DeleteKeyShareHolderGroupById201Response.md
@@ -155,6 +160,11 @@ docs/DeleteWalletById201Response.md
 docs/DestinationWalletType.md
 docs/DevelopersApi.md
 docs/DevelopersWebhooksApi.md
+docs/DispositionEventData.md
+docs/DispositionQueryResponse.md
+docs/DispositionResponse.md
+docs/DispositionStatus.md
+docs/DispositionType.md
 docs/EigenLayerLstStakeExtra.md
 docs/EigenLayerNativeStakeExtra.md
 docs/EigenlayerValidator.md
@@ -230,6 +240,7 @@ docs/GraphQLErrorLocationsInner.md
 docs/GraphQLRequest.md
 docs/GraphQLResponse.md
 docs/GuardPubkeyStatus.md
+docs/IsolateDisposition.md
 docs/KeyShareHolder.md
 docs/KeyShareHolderGroup.md
 docs/KeyShareHolderGroupStatus.md
@@ -345,6 +356,7 @@ docs/RefreshPermissionTokenRequest.md
 docs/RefreshToken2XXResponse.md
 docs/RefreshTokenRequest.md
 docs/Refund.md
+docs/RefundDisposition.md
 docs/RefundStatus.md
 docs/RefundType.md
 docs/ReplaceType.md
@@ -634,6 +646,8 @@ docs/TravelRuleWithdrawRequestTravelRuleInfo.md
 docs/TriggerTestWebhookEvent201Response.md
 docs/TriggerTestWebhookEventRequest.md
 docs/UTXO.md
+docs/UnfreezeDisposition.md
+docs/UpdateAddressBookParam.md
 docs/UpdateCustodialWalletParams.md
 docs/UpdateExchangeWalletParams.md
 docs/UpdateGroupAction.md
@@ -677,6 +691,7 @@ src/ServerDemo.js
 src/api/AddressBooksApi.js
 src/api/AppWorkflowsApi.js
 src/api/AutoSweepApi.js
+src/api/ComplianceApi.js
 src/api/DevelopersApi.js
 src/api/DevelopersWebhooksApi.js
 src/api/FeeStationApi.js
@@ -726,7 +741,6 @@ src/model/ApprovalEntry.js
 src/model/ApprovalRequest.js
 src/model/ApprovalRequestDetail.js
 src/model/ApprovalResult.js
-src/model/ApprovalShowInfo.js
 src/model/ApprovalStatementStatus.js
 src/model/ApprovalStatus.js
 src/model/ApprovalTemplate.js
@@ -775,6 +789,7 @@ src/model/CheckAddressesValidity200ResponseInner.js
 src/model/CheckLoopTransfers200ResponseInner.js
 src/model/CoboSafeDelegate.js
 src/model/CoboSafeDelegateType.js
+src/model/ComplianceDispositionUpdateEventData.js
 src/model/ContractCallDestination.js
 src/model/ContractCallDestinationType.js
 src/model/ContractCallParams.js
@@ -786,6 +801,9 @@ src/model/CoreStakingExtra.js
 src/model/CosmosAdr36MessageSignDestination.js
 src/model/CosmosContractCallDestination.js
 src/model/CosmosContractCallMessage.js
+src/model/CreateAddressBookParam.js
+src/model/CreateAddressBooks201Response.js
+src/model/CreateAddressBooksParam.js
 src/model/CreateAddressRequest.js
 src/model/CreateApprovalRequest201Response.js
 src/model/CreateAutoSweepTask.js
@@ -837,11 +855,17 @@ src/model/CustodialWalletInfo.js
 src/model/CustodialWeb3ContractCallSource.js
 src/model/CustodialWeb3MessageSignSource.js
 src/model/CustodialWeb3TransferSource.js
+src/model/DeleteAddressBookById201Response.js
 src/model/DeleteCryptoAddress201Response.js
 src/model/DeleteGuardPubkey201Response.js
 src/model/DeleteKeyShareHolderGroupById201Response.js
 src/model/DeleteWalletById201Response.js
 src/model/DestinationWalletType.js
+src/model/DispositionEventData.js
+src/model/DispositionQueryResponse.js
+src/model/DispositionResponse.js
+src/model/DispositionStatus.js
+src/model/DispositionType.js
 src/model/EigenLayerLstStakeExtra.js
 src/model/EigenLayerNativeStakeExtra.js
 src/model/EigenlayerValidator.js
@@ -916,6 +940,7 @@ src/model/GraphQLErrorLocationsInner.js
 src/model/GraphQLRequest.js
 src/model/GraphQLResponse.js
 src/model/GuardPubkeyStatus.js
+src/model/IsolateDisposition.js
 src/model/KeyShareHolder.js
 src/model/KeyShareHolderGroup.js
 src/model/KeyShareHolderGroupStatus.js
@@ -1027,6 +1052,7 @@ src/model/RefreshPermissionTokenRequest.js
 src/model/RefreshToken2XXResponse.js
 src/model/RefreshTokenRequest.js
 src/model/Refund.js
+src/model/RefundDisposition.js
 src/model/RefundStatus.js
 src/model/RefundType.js
 src/model/ReplaceType.js
@@ -1312,6 +1338,8 @@ src/model/TravelRuleWithdrawRequestTravelRuleInfo.js
 src/model/TriggerTestWebhookEvent201Response.js
 src/model/TriggerTestWebhookEventRequest.js
 src/model/UTXO.js
+src/model/UnfreezeDisposition.js
+src/model/UpdateAddressBookParam.js
 src/model/UpdateCustodialWalletParams.js
 src/model/UpdateExchangeWalletParams.js
 src/model/UpdateGroupAction.js
@@ -1344,6 +1372,7 @@ src/model/WebhookEventType.js
 test/api/AddressBooksApi.spec.js
 test/api/AppWorkflowsApi.spec.js
 test/api/AutoSweepApi.spec.js
+test/api/ComplianceApi.spec.js
 test/api/DevelopersApi.spec.js
 test/api/DevelopersWebhooksApi.spec.js
 test/api/FeeStationApi.spec.js
@@ -1389,7 +1418,6 @@ test/model/ApprovalEntry.spec.js
 test/model/ApprovalRequest.spec.js
 test/model/ApprovalRequestDetail.spec.js
 test/model/ApprovalResult.spec.js
-test/model/ApprovalShowInfo.spec.js
 test/model/ApprovalStatementStatus.spec.js
 test/model/ApprovalStatus.spec.js
 test/model/ApprovalTemplate.spec.js
@@ -1438,6 +1466,7 @@ test/model/CheckAddressesValidity200ResponseInner.spec.js
 test/model/CheckLoopTransfers200ResponseInner.spec.js
 test/model/CoboSafeDelegate.spec.js
 test/model/CoboSafeDelegateType.spec.js
+test/model/ComplianceDispositionUpdateEventData.spec.js
 test/model/ContractCallDestination.spec.js
 test/model/ContractCallDestinationType.spec.js
 test/model/ContractCallParams.spec.js
@@ -1449,6 +1478,9 @@ test/model/CoreStakingExtra.spec.js
 test/model/CosmosAdr36MessageSignDestination.spec.js
 test/model/CosmosContractCallDestination.spec.js
 test/model/CosmosContractCallMessage.spec.js
+test/model/CreateAddressBookParam.spec.js
+test/model/CreateAddressBooks201Response.spec.js
+test/model/CreateAddressBooksParam.spec.js
 test/model/CreateAddressRequest.spec.js
 test/model/CreateApprovalRequest201Response.spec.js
 test/model/CreateAutoSweepTask.spec.js
@@ -1500,11 +1532,17 @@ test/model/CustodialWalletInfo.spec.js
 test/model/CustodialWeb3ContractCallSource.spec.js
 test/model/CustodialWeb3MessageSignSource.spec.js
 test/model/CustodialWeb3TransferSource.spec.js
+test/model/DeleteAddressBookById201Response.spec.js
 test/model/DeleteCryptoAddress201Response.spec.js
 test/model/DeleteGuardPubkey201Response.spec.js
 test/model/DeleteKeyShareHolderGroupById201Response.spec.js
 test/model/DeleteWalletById201Response.spec.js
 test/model/DestinationWalletType.spec.js
+test/model/DispositionEventData.spec.js
+test/model/DispositionQueryResponse.spec.js
+test/model/DispositionResponse.spec.js
+test/model/DispositionStatus.spec.js
+test/model/DispositionType.spec.js
 test/model/EigenLayerLstStakeExtra.spec.js
 test/model/EigenLayerNativeStakeExtra.spec.js
 test/model/EigenlayerValidator.spec.js
@@ -1579,6 +1617,7 @@ test/model/GraphQLErrorLocationsInner.spec.js
 test/model/GraphQLRequest.spec.js
 test/model/GraphQLResponse.spec.js
 test/model/GuardPubkeyStatus.spec.js
+test/model/IsolateDisposition.spec.js
 test/model/KeyShareHolder.spec.js
 test/model/KeyShareHolderGroup.spec.js
 test/model/KeyShareHolderGroupStatus.spec.js
@@ -1690,6 +1729,7 @@ test/model/RefreshPermissionTokenRequest.spec.js
 test/model/RefreshToken2XXResponse.spec.js
 test/model/RefreshTokenRequest.spec.js
 test/model/Refund.spec.js
+test/model/RefundDisposition.spec.js
 test/model/RefundStatus.spec.js
 test/model/RefundType.spec.js
 test/model/ReplaceType.spec.js
@@ -1975,6 +2015,8 @@ test/model/TravelRuleWithdrawRequestTravelRuleInfo.spec.js
 test/model/TriggerTestWebhookEvent201Response.spec.js
 test/model/TriggerTestWebhookEventRequest.spec.js
 test/model/UTXO.spec.js
+test/model/UnfreezeDisposition.spec.js
+test/model/UpdateAddressBookParam.spec.js
 test/model/UpdateCustodialWalletParams.spec.js
 test/model/UpdateExchangeWalletParams.spec.js
 test/model/UpdateGroupAction.spec.js

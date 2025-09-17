@@ -13,9 +13,9 @@ Method | HTTP request | Description
 [**createSettlementRequest**](PaymentApi.md#createSettlementRequest) | **POST** /payments/settlement_requests | Create settlement request
 [**deleteCryptoAddress**](PaymentApi.md#deleteCryptoAddress) | **POST** /payments/crypto_addresses/{crypto_address_id}/delete | Delete crypto address
 [**getExchangeRate**](PaymentApi.md#getExchangeRate) | **GET** /payments/exchange_rates/{token_id}/{currency} | Get exchange rate
-[**getPayerBalanceByAddress**](PaymentApi.md#getPayerBalanceByAddress) | **GET** /payments/balance/payer/address | Get payer balance by address
+[**getPayerBalanceByAddress**](PaymentApi.md#getPayerBalanceByAddress) | **GET** /payments/balance/payer/address | Get payer balance
 [**getPaymentOrderDetailById**](PaymentApi.md#getPaymentOrderDetailById) | **GET** /payments/orders/{order_id} | Get pay-in order information
-[**getPspBalance**](PaymentApi.md#getPspBalance) | **GET** /payments/balance/psp | Get psp balance
+[**getPspBalance**](PaymentApi.md#getPspBalance) | **GET** /payments/balance/psp | Get developer balance
 [**getRefundDetailById**](PaymentApi.md#getRefundDetailById) | **GET** /payments/refunds/{refund_id} | Get refund order information
 [**getRefunds**](PaymentApi.md#getRefunds) | **GET** /payments/refunds | List all refund orders
 [**getSettlementById**](PaymentApi.md#getSettlementById) | **GET** /payments/settlement_requests/{settlement_request_id} | Get settlement request information
@@ -199,7 +199,7 @@ Name | Type | Description  | Notes
 
 Create merchant
 
-This operation creates a merchant and links it to a specified wallet. Payments to the merchant will be deposited into the linked wallet.  Upon successful creation, a merchant ID is generated and returned along with the merchant&#39;s information. 
+This operation creates a merchant and links it to a specified wallet. Payments to the merchant will be deposited into the linked wallet.  Upon successful creation, a merchant ID is generated and returned along with the merchant&#39;s information.  If you are a merchant (directly serving the payer), you only need to create one merchant and do not need to configure the developer fee rate. The developer fee rate only applies to platforms such as payment service providers (PSPs) that charge fees to their downstream merchants. 
 
 ### Example
 
@@ -507,9 +507,9 @@ Name | Type | Description  | Notes
 
 > [ReceivedAmountPerAddress] getPayerBalanceByAddress(merchant_id, payer_id, token_id)
 
-Get payer balance by address
+Get payer balance
 
-This operation retrieves aggregated balance details for a specific token and payer, with amounts grouped by address. 
+This operation retrieves the total amount received for a specific payer. The information is grouped by token and receiving address. 
 
 ### Example
 
@@ -611,9 +611,9 @@ Name | Type | Description  | Notes
 
 > PspBalance getPspBalance(token_id)
 
-Get psp balance
+Get developer balance
 
-This operation retrieves the information of psp balance. 
+This operation retrieves the balance information for you as the developer. The balance information is grouped by token. 
 
 ### Example
 
@@ -1091,7 +1091,7 @@ Name | Type | Description  | Notes
 
 List merchant balances
 
-This operation retrieves the information of merchant balances. 
+This operation retrieves the balance information for specified merchants. The balance information is grouped by token and acquiring type. If you do not specify the &#x60;merchant_ids&#x60; parameter, the balance information for all merchants will be returned. 
 
 ### Example
 
@@ -1124,7 +1124,7 @@ apiInstance.listMerchantBalances(token_id, acquiring_type, opts).then((data) => 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token_id** | **String**| The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format &#x60;{CHAIN}_{TOKEN}&#x60;. Supported values include:   - USDC: &#x60;ETH_USDC&#x60;, &#x60;ARBITRUM_USDCOIN&#x60;, &#x60;SOL_USDC&#x60;, &#x60;BASE_USDC&#x60;, &#x60;MATIC_USDC2&#x60;, &#x60;BSC_USDC&#x60;   - USDT: &#x60;TRON_USDT&#x60;, &#x60;ETH_USDT&#x60;, &#x60;ARBITRUM_USDT&#x60;, &#x60;SOL_USDT&#x60;, &#x60;BASE_USDT&#x60;, &#x60;MATIC_USDT&#x60;, &#x60;BSC_USDT&#x60;  | 
- **acquiring_type** | [**AcquiringType**](.md)| AcquiringType defines the acquisition logic used in the payment flow: - &#x60;Order&#x60;: Each order is created with a specific amount and associated payment request. Funds are settled on a per-order basis. - &#x60;TopUp&#x60;: Recharge-style flow where funds are topped up to a payer balance or account. Useful for flexible or usage-based payment models.  | 
+ **acquiring_type** | [**AcquiringType**](.md)| The payment acquisition type. - &#x60;Order&#x60;: Payers pay by fixed-amount orders. Ideal for specific purchases and one-time transactions. - &#x60;TopUp&#x60;: Account recharge flow where payers deposit funds to their dedicated top-up addresses. Ideal for flexible or usage-based payment models.  | 
  **merchant_ids** | **String**| A list of merchant IDs to query. | [optional] 
 
 ### Return type
@@ -1315,7 +1315,7 @@ This endpoint does not need any parameter.
 
 List payment wallet balances
 
-This operation retrieves the information of payment wallet balances. 
+This operation retrieves the balance information for specified payment wallets. The balance information is grouped by token. If you do not specify the &#x60;wallet_ids&#x60; parameter, the balance information for all payment wallets will be returned. 
 
 ### Example
 
