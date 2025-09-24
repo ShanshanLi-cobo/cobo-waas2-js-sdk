@@ -58,8 +58,26 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property threshold (base name: "threshold")', function() {
-      // uncomment below and update the code to test the property threshold
+    it('should have the property review_threshold (base name: "review_threshold")', function() {
+      // uncomment below and update the code to test the property review_threshold
+      //var instance = new CoboWaas2.RoleDetail();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property initiator (base name: "initiator")', function() {
+      // uncomment below and update the code to test the property initiator
+      //var instance = new CoboWaas2.RoleDetail();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property is_upgraded (base name: "is_upgraded")', function() {
+      // uncomment below and update the code to test the property is_upgraded
+      //var instance = new CoboWaas2.RoleDetail();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property complete_time (base name: "complete_time")', function() {
+      // uncomment below and update the code to test the property complete_time
       //var instance = new CoboWaas2.RoleDetail();
       //expect(instance).to.be();
     });

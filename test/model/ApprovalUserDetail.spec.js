@@ -52,8 +52,14 @@
       //expect(instance).to.be.a(CoboWaas2.ApprovalUserDetail);
     });
 
-    it('should have the property user_email (base name: "user_email")', function() {
-      // uncomment below and update the code to test the property user_email
+    it('should have the property name (base name: "name")', function() {
+      // uncomment below and update the code to test the property name
+      //var instance = new CoboWaas2.ApprovalUserDetail();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property email (base name: "email")', function() {
+      // uncomment below and update the code to test the property email
       //var instance = new CoboWaas2.ApprovalUserDetail();
       //expect(instance).to.be();
     });
@@ -78,6 +84,12 @@
 
     it('should have the property result (base name: "result")', function() {
       // uncomment below and update the code to test the property result
+      //var instance = new CoboWaas2.ApprovalUserDetail();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property approval_result_code (base name: "approval_result_code")', function() {
+      // uncomment below and update the code to test the property approval_result_code
       //var instance = new CoboWaas2.ApprovalUserDetail();
       //expect(instance).to.be();
     });
@@ -108,6 +120,30 @@
 
     it('should have the property show_info (base name: "show_info")', function() {
       // uncomment below and update the code to test the property show_info
+      //var instance = new CoboWaas2.ApprovalUserDetail();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property language (base name: "language")', function() {
+      // uncomment below and update the code to test the property language
+      //var instance = new CoboWaas2.ApprovalUserDetail();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property message_version (base name: "message_version")', function() {
+      // uncomment below and update the code to test the property message_version
+      //var instance = new CoboWaas2.ApprovalUserDetail();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property message (base name: "message")', function() {
+      // uncomment below and update the code to test the property message
+      //var instance = new CoboWaas2.ApprovalUserDetail();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property extra_message (base name: "extra_message")', function() {
+      // uncomment below and update the code to test the property extra_message
       //var instance = new CoboWaas2.ApprovalUserDetail();
       //expect(instance).to.be();
     });

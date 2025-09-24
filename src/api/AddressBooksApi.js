@@ -11,8 +11,13 @@
 
 
 import ApiClient from "../ApiClient";
+import AddressBook from '../model/AddressBook';
+import CreateAddressBooks201Response from '../model/CreateAddressBooks201Response';
+import CreateAddressBooksParam from '../model/CreateAddressBooksParam';
+import DeleteAddressBookById201Response from '../model/DeleteAddressBookById201Response';
 import ErrorResponse from '../model/ErrorResponse';
 import ListAddressBooks200Response from '../model/ListAddressBooks200Response';
+import UpdateAddressBookParam from '../model/UpdateAddressBookParam';
 
 /**
 * AddressBooks service.
@@ -34,10 +39,161 @@ export default class AddressBooksApi {
 
 
     /**
+     * Create address books
+     * This operation add addresses to your address book. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateAddressBooksParam} [CreateAddressBooksParam] The request body of the create address books operation.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/CreateAddressBooks201Response} and HTTP response
+     */
+    createAddressBooksWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['CreateAddressBooksParam'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = CreateAddressBooks201Response;
+      return this.apiClient.callApi(
+        '/address_books', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Create address books
+     * This operation add addresses to your address book. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateAddressBooksParam} opts.CreateAddressBooksParam The request body of the create address books operation.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/CreateAddressBooks201Response}
+     */
+    createAddressBooks(opts) {
+      return this.createAddressBooksWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Delete address book
+     * This operation deletes a specified address book. 
+     * @param {String} entry_id The address book ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DeleteAddressBookById201Response} and HTTP response
+     */
+    deleteAddressBookByIdWithHttpInfo(entry_id) {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'entry_id' is set
+      if (entry_id === undefined || entry_id === null) {
+        throw new Error("Missing the required parameter 'entry_id' when calling deleteAddressBookById");
+      }
+
+      let pathParams = {
+        'entry_id': entry_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = DeleteAddressBookById201Response;
+      return this.apiClient.callApi(
+        '/address_books/{entry_id}/delete', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Delete address book
+     * This operation deletes a specified address book. 
+     * @param {String} entry_id The address book ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DeleteAddressBookById201Response}
+     */
+    deleteAddressBookById(entry_id) {
+      return this.deleteAddressBookByIdWithHttpInfo(entry_id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Get address book information
+     * This operation retrieves the detailed information about a specified address book. 
+     * @param {String} entry_id The address book ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/AddressBook} and HTTP response
+     */
+    getAddressBookByIdWithHttpInfo(entry_id) {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'entry_id' is set
+      if (entry_id === undefined || entry_id === null) {
+        throw new Error("Missing the required parameter 'entry_id' when calling getAddressBookById");
+      }
+
+      let pathParams = {
+        'entry_id': entry_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = AddressBook;
+      return this.apiClient.callApi(
+        '/address_books/{entry_id}', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Get address book information
+     * This operation retrieves the detailed information about a specified address book. 
+     * @param {String} entry_id The address book ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/AddressBook}
+     */
+    getAddressBookById(entry_id) {
+      return this.getAddressBookByIdWithHttpInfo(entry_id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * List address book entries
      * This operation retrieves a list of addresses from your address book. 
-     * @param {String} chain_id The chain ID, which is the unique identifier of a blockchain. You can retrieve the IDs of all the chains you can use by calling [List enabled chains](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-chains).
      * @param {Object} opts Optional parameters
+     * @param {String} [chain_id] The chain ID, which is the unique identifier of a blockchain. You can retrieve the IDs of all the chains you can use by calling [List enabled chains](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-chains).
      * @param {String} [address] The wallet address.
      * @param {String} [label] The address label.
      * @param {Number} [limit = 10)] The maximum number of objects to return. For most operations, the value range is [1, 50].
@@ -45,21 +201,17 @@ export default class AddressBooksApi {
      * @param {String} [after] This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListAddressBooks200Response} and HTTP response
      */
-    listAddressBooksWithHttpInfo(chain_id, opts) {
+    listAddressBooksWithHttpInfo(opts) {
       opts = opts || {};
       let postBody = null;
       if (postBody && postBody.toJSON) {
           postBody = postBody.toJSON()
       }
-      // verify the required parameter 'chain_id' is set
-      if (chain_id === undefined || chain_id === null) {
-        throw new Error("Missing the required parameter 'chain_id' when calling listAddressBooks");
-      }
 
       let pathParams = {
       };
       let queryParams = {
-        'chain_id': chain_id,
+        'chain_id': opts['chain_id'],
         'address': opts['address'],
         'label': opts['label'],
         'limit': opts['limit'],
@@ -85,8 +237,8 @@ export default class AddressBooksApi {
     /**
      * List address book entries
      * This operation retrieves a list of addresses from your address book. 
-     * @param {String} chain_id The chain ID, which is the unique identifier of a blockchain. You can retrieve the IDs of all the chains you can use by calling [List enabled chains](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-chains).
      * @param {Object} opts Optional parameters
+     * @param {String} opts.chain_id The chain ID, which is the unique identifier of a blockchain. You can retrieve the IDs of all the chains you can use by calling [List enabled chains](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-chains).
      * @param {String} opts.address The wallet address.
      * @param {String} opts.label The address label.
      * @param {Number} opts.limit The maximum number of objects to return. For most operations, the value range is [1, 50]. (default to 10)
@@ -94,8 +246,64 @@ export default class AddressBooksApi {
      * @param {String} opts.after This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListAddressBooks200Response}
      */
-    listAddressBooks(chain_id, opts) {
-      return this.listAddressBooksWithHttpInfo(chain_id, opts)
+    listAddressBooks(opts) {
+      return this.listAddressBooksWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Update address book
+     * This operation updates the information of a specified address book. 
+     * @param {String} entry_id The address book ID.
+     * @param {Object} opts Optional parameters
+     * @param {module:model/UpdateAddressBookParam} [UpdateAddressBookParam] The request body of the update address book operation.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/AddressBook} and HTTP response
+     */
+    updateAddressBookByIdWithHttpInfo(entry_id, opts) {
+      opts = opts || {};
+      let postBody = opts['UpdateAddressBookParam'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'entry_id' is set
+      if (entry_id === undefined || entry_id === null) {
+        throw new Error("Missing the required parameter 'entry_id' when calling updateAddressBookById");
+      }
+
+      let pathParams = {
+        'entry_id': entry_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = AddressBook;
+      return this.apiClient.callApi(
+        '/address_books/{entry_id}', 'PUT',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Update address book
+     * This operation updates the information of a specified address book. 
+     * @param {String} entry_id The address book ID.
+     * @param {Object} opts Optional parameters
+     * @param {module:model/UpdateAddressBookParam} opts.UpdateAddressBookParam The request body of the update address book operation.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/AddressBook}
+     */
+    updateAddressBookById(entry_id, opts) {
+      return this.updateAddressBookByIdWithHttpInfo(entry_id, opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

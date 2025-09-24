@@ -18,31 +18,24 @@ import ApiClient from '../ApiClient';
 export default class ApprovalResult {
     
         /**
-         * value: 1
+         * value: "Approved"
          * @const
          */
-        "PENDING" = 1;
+        "APPROVED" = "Approved";
 
     
         /**
-         * value: 2
+         * value: "Rejected"
          * @const
          */
-        "APPROVED" = 2;
+        "REJECTED" = "Rejected";
 
     
         /**
-         * value: 3
+         * value: "unknown_default_open_api"
          * @const
          */
-        "REJECTED" = 3;
-
-    
-        /**
-         * value: 11184809
-         * @const
-         */
-        "unknown_default_open_api" = 11184809;
+        "unknown_default_open_api" = "unknown_default_open_api";
 
     
 

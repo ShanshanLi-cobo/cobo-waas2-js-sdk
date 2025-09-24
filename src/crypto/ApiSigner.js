@@ -1,15 +1,18 @@
 import * as CryptoJS from 'crypto-js';
-import {sign as ed25519} from 'tweetnacl'
+import { sign as ed25519 } from 'tweetnacl'
 
 export default class ApiSigner {
-    constructor(privateKey) {
-        this.privateKey= privateKey
+    constructor(privateKey, isDebug = false) {
+        this.privateKey = privateKey
+        this.isDebug = isDebug
     }
 
     generateHeaders(path, method, body, queryString) {
         const nonce = String(new Date().getTime());
         const strToSign = [method, path, nonce, queryString, body?JSON.stringify(body):''].join('|');
-        console.log("strToSign:", strToSign)
+        if (this.isDebug) {
+            console.log("strToSign:", strToSign)
+        }
         const hash2String = CryptoJS.SHA256(CryptoJS.SHA256(strToSign)).toString(CryptoJS.enc.Hex);
         return {
             'BIZ-API-KEY': this.getPublicKey(this.privateKey),

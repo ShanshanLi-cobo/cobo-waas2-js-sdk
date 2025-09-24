@@ -11,6 +11,7 @@
 
 import ApiClient from '../ApiClient';
 import AcquiringType from './AcquiringType';
+import BankAccount from './BankAccount';
 import PayoutChannel from './PayoutChannel';
 import SettleRequestStatus from './SettleRequestStatus';
 import SettlementDetail from './SettlementDetail';
@@ -87,6 +88,15 @@ class Settlement {
             if (data.hasOwnProperty('settlement_type')) {
                 obj['settlement_type'] = SettlementType.constructFromObject(data['settlement_type']);
             }
+            if (data.hasOwnProperty('currency')) {
+                obj['currency'] = ApiClient.convertToType(data['currency'], 'String');
+            }
+            if (data.hasOwnProperty('received_amount_fiat')) {
+                obj['received_amount_fiat'] = ApiClient.convertToType(data['received_amount_fiat'], 'String');
+            }
+            if (data.hasOwnProperty('bank_account')) {
+                obj['bank_account'] = BankAccount.constructFromObject(data['bank_account']);
+            }
         }
         return obj;
     }
@@ -124,6 +134,20 @@ class Settlement {
         // ensure the json data is a string
         if (data['initiator'] && !(typeof data['initiator'] === 'string' || data['initiator'] instanceof String)) {
             throw new Error("Expected the field `initiator` to be a primitive type in the JSON string but got " + data['initiator']);
+        }
+        // ensure the json data is a string
+        if (data['currency'] && !(typeof data['currency'] === 'string' || data['currency'] instanceof String)) {
+            throw new Error("Expected the field `currency` to be a primitive type in the JSON string but got " + data['currency']);
+        }
+        // ensure the json data is a string
+        if (data['received_amount_fiat'] && !(typeof data['received_amount_fiat'] === 'string' || data['received_amount_fiat'] instanceof String)) {
+            throw new Error("Expected the field `received_amount_fiat` to be a primitive type in the JSON string but got " + data['received_amount_fiat']);
+        }
+        // validate the optional field `bank_account`
+        if (data['bank_account']) { // data not null
+          if (!!BankAccount.validateJSON) {
+            BankAccount.validateJSON(data['bank_account']);
+          }
         }
 
         return true;
@@ -188,6 +212,23 @@ Settlement.prototype['payout_channel'] = undefined;
  * @member {module:model/SettlementType} settlement_type
  */
 Settlement.prototype['settlement_type'] = undefined;
+
+/**
+ * The fiat currency for the settlement request.
+ * @member {String} currency
+ */
+Settlement.prototype['currency'] = undefined;
+
+/**
+ * The received fiat amount of this settlement request. 
+ * @member {String} received_amount_fiat
+ */
+Settlement.prototype['received_amount_fiat'] = undefined;
+
+/**
+ * @member {module:model/BankAccount} bank_account
+ */
+Settlement.prototype['bank_account'] = undefined;
 
 
 

@@ -15,6 +15,7 @@ import Activity from '../model/Activity';
 import ActivityStatus from '../model/ActivityStatus';
 import ActivityType from '../model/ActivityType';
 import BabylonAirdropRegistration from '../model/BabylonAirdropRegistration';
+import BabylonCreateStakingExpansion from '../model/BabylonCreateStakingExpansion';
 import BabylonStakingRegistration from '../model/BabylonStakingRegistration';
 import CreateBabylonAirdropRegistration201Response from '../model/CreateBabylonAirdropRegistration201Response';
 import CreateBabylonAirdropRegistrationRequest from '../model/CreateBabylonAirdropRegistrationRequest';
@@ -101,6 +102,55 @@ export default class StakingsApi {
      */
     createBabylonAirdropRegistration(opts) {
       return this.createBabylonAirdropRegistrationWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Expand Babylon BTC staking
+     * This operation initiates a Babylon BTC staking expansion request.   Before calling this operation, please ensure the following: - The BTC staking position is active. - The finality provider public keys are valid. And each BSN chain has a unique finality provider public key at most.  The system first checks whether the provided BTC staking position is active. If active, it creates a new BTC staking position for the phase 3 expansion.  The expansion is processed asynchronously and may take some time to complete.  For more information, refer to [Babylon's official doc](https://github.com/babylonlabs-io/babylon/tree/main/docs). 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/BabylonCreateStakingExpansion} [BabylonCreateStakingExpansion] The request body to expand Babylon BTC staking to phase 3
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Stakings} and HTTP response
+     */
+    createBabylonStakingExpansionWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['BabylonCreateStakingExpansion'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = Stakings;
+      return this.apiClient.callApi(
+        '/stakings/protocols/babylon/stakings/expansions', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Expand Babylon BTC staking
+     * This operation initiates a Babylon BTC staking expansion request.   Before calling this operation, please ensure the following: - The BTC staking position is active. - The finality provider public keys are valid. And each BSN chain has a unique finality provider public key at most.  The system first checks whether the provided BTC staking position is active. If active, it creates a new BTC staking position for the phase 3 expansion.  The expansion is processed asynchronously and may take some time to complete.  For more information, refer to [Babylon's official doc](https://github.com/babylonlabs-io/babylon/tree/main/docs). 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/BabylonCreateStakingExpansion} opts.BabylonCreateStakingExpansion The request body to expand Babylon BTC staking to phase 3
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Stakings}
+     */
+    createBabylonStakingExpansion(opts) {
+      return this.createBabylonStakingExpansionWithHttpInfo(opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

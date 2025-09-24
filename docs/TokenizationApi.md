@@ -15,14 +15,16 @@ Method | HTTP request | Description
 [**listTokenizationAllowlistAddresses**](TokenizationApi.md#listTokenizationAllowlistAddresses) | **GET** /tokenization/tokens/{token_id}/allowlist/addresses | List allowlist addresses
 [**listTokenizationBlocklistAddresses**](TokenizationApi.md#listTokenizationBlocklistAddresses) | **GET** /tokenization/tokens/{token_id}/blocklist/addresses | List tokenization blocklist addresses
 [**listTokenizationHoldings**](TokenizationApi.md#listTokenizationHoldings) | **GET** /tokenization/tokens/{token_id}/holdings | Get token holdings information
-[**listTokenizationSupportedChains**](TokenizationApi.md#listTokenizationSupportedChains) | **GET** /tokenization/enabled_chains | List tokenization supported chains
+[**listTokenizationPermissions**](TokenizationApi.md#listTokenizationPermissions) | **GET** /tokenization/tokens/{token_id}/permissions | List permissions of the token
+[**listTokenizationSupportedChains**](TokenizationApi.md#listTokenizationSupportedChains) | **GET** /tokenization/enabled_chains | List supported chains for tokenization
 [**mintTokenization**](TokenizationApi.md#mintTokenization) | **POST** /tokenization/tokens/{token_id}/mint | Mint tokens
-[**pauseTokenization**](TokenizationApi.md#pauseTokenization) | **POST** /tokenization/tokens/{token_id}/pause | Pause tokenization
-[**tokenizationContractCall**](TokenizationApi.md#tokenizationContractCall) | **POST** /tokenization/tokens/{token_id}/contract_call | Contract call
-[**unpauseTokenization**](TokenizationApi.md#unpauseTokenization) | **POST** /tokenization/tokens/{token_id}/unpause | Unpause tokenization
-[**updateAllowlistAddresses**](TokenizationApi.md#updateAllowlistAddresses) | **POST** /tokenization/tokens/{token_id}/allowlist/addresses | Update allowlist addresses
-[**updateTokenizationAllowlistActivation**](TokenizationApi.md#updateTokenizationAllowlistActivation) | **POST** /tokenization/tokens/{token_id}/allowlist/activation | Update allowlist activation
+[**pauseTokenization**](TokenizationApi.md#pauseTokenization) | **POST** /tokenization/tokens/{token_id}/pause | Pause token contract
+[**tokenizationContractCall**](TokenizationApi.md#tokenizationContractCall) | **POST** /tokenization/tokens/{token_id}/contract_call | Call token contract
+[**unpauseTokenization**](TokenizationApi.md#unpauseTokenization) | **POST** /tokenization/tokens/{token_id}/unpause | Unpause token contract
+[**updateTokenizationAllowlistActivation**](TokenizationApi.md#updateTokenizationAllowlistActivation) | **POST** /tokenization/tokens/{token_id}/allowlist/activation | Activate or deactivate the allowlist
+[**updateTokenizationAllowlistAddresses**](TokenizationApi.md#updateTokenizationAllowlistAddresses) | **POST** /tokenization/tokens/{token_id}/allowlist/addresses | Update allowlist addresses
 [**updateTokenizationBlocklistAddresses**](TokenizationApi.md#updateTokenizationBlocklistAddresses) | **POST** /tokenization/tokens/{token_id}/blocklist/addresses | Update tokenization blocklist addresses
+[**updateTokenizationPermissions**](TokenizationApi.md#updateTokenizationPermissions) | **POST** /tokenization/tokens/{token_id}/permissions | Update permissions of the token
 
 
 
@@ -64,7 +66,7 @@ apiInstance.burnTokenization(token_id, opts).then((data) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token_id** | **String**| The token ID, which is the unique identifier of a token. | 
- **TokenizationBurnTokenRequest** | [**TokenizationBurnTokenRequest**](TokenizationBurnTokenRequest.md)| Request body for burning tokens | [optional] 
+ **TokenizationBurnTokenRequest** | [**TokenizationBurnTokenRequest**](TokenizationBurnTokenRequest.md)| The request body for burning tokens. | [optional] 
 
 ### Return type
 
@@ -374,8 +376,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **chain_id** | **String**| The chain ID, which is the unique identifier of a blockchain. You can retrieve the IDs of all the chains you can use by calling [List enabled chains](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-chains). | [optional] 
  **token_id** | **String**| The token ID, which is the unique identifier of a token. You can retrieve the IDs of all the tokens you can use by calling [List enabled tokens](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-tokens). | [optional] 
- **token_standard** | [**TokenizationTokenStandard**](.md)| Filter by token standard | [optional] 
- **status** | [**TokenizationStatus**](.md)| Filter by token status | [optional] 
+ **token_standard** | [**TokenizationTokenStandard**](.md)| Filter by token standard. | [optional] 
+ **status** | [**TokenizationStatus**](.md)| Filter by token status. | [optional] 
  **limit** | **Number**| The maximum number of objects to return. For most operations, the value range is [1, 50]. | [optional] [default to 10]
  **before** | **String**| This parameter specifies an object ID as a starting point for pagination, retrieving data before the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C.  If you set &#x60;before&#x60; to the ID of Object C (&#x60;RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk&#x60;), the response will include Object B and Object A.    **Notes**:   - If you set both &#x60;after&#x60; and &#x60;before&#x60;, an error will occur. - If you leave both &#x60;before&#x60; and &#x60;after&#x60; empty, the first page of data is returned. - If you set it to &#x60;infinity&#x60;, the last page of data is returned.  | [optional] 
  **after** | **String**| This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set &#x60;after&#x60; to the ID of Object A (&#x60;RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk&#x60;), the response will include Object B and Object C.    **Notes**:   - If you set both &#x60;after&#x60; and &#x60;before&#x60;, an error will occur. - If you leave both &#x60;before&#x60; and &#x60;after&#x60; empty, the first page of data is returned.  | [optional] 
@@ -636,11 +638,73 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
+## listTokenizationPermissions
+
+> TokenizationListPermissionsResponse listTokenizationPermissions(token_id, opts)
+
+List permissions of the token
+
+This operation retrieves the permissions for a tokenization contract. 
+
+### Example
+
+```javascript
+const CoboWaas2 = require('@cobo/cobo-waas2');
+// Initialize the API client
+const apiClient = CoboWaas2.ApiClient.instance
+// Select the development environment. To use the production environment, replace `Env.DEV` with `Env.PROD`
+apiClient.setEnv(CoboWaas2.Env.DEV);
+// Replace `<YOUR_PRIVATE_KEY>` with your private key
+apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
+// Call the API
+const apiInstance = new CoboWaas2.TokenizationApi();
+const token_id = "ETH_USDT";
+const opts = {
+  'address': "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+  'limit': 10,
+  'after': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk",
+  'before': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGmk1",
+  'direction': "ASC"
+};
+apiInstance.listTokenizationPermissions(token_id, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token_id** | **String**| The token ID, which is the unique identifier of a token. | 
+ **address** | **String**| The address to query permissions for. If not provided, returns all addresses with permissions. | [optional] 
+ **limit** | **Number**| The maximum number of objects to return. For most operations, the value range is [1, 50]. | [optional] [default to 10]
+ **after** | **String**| This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set &#x60;after&#x60; to the ID of Object A (&#x60;RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk&#x60;), the response will include Object B and Object C.    **Notes**:   - If you set both &#x60;after&#x60; and &#x60;before&#x60;, an error will occur. - If you leave both &#x60;before&#x60; and &#x60;after&#x60; empty, the first page of data is returned.  | [optional] 
+ **before** | **String**| This parameter specifies an object ID as a starting point for pagination, retrieving data before the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C.  If you set &#x60;before&#x60; to the ID of Object C (&#x60;RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk&#x60;), the response will include Object B and Object A.    **Notes**:   - If you set both &#x60;after&#x60; and &#x60;before&#x60;, an error will occur. - If you leave both &#x60;before&#x60; and &#x60;after&#x60; empty, the first page of data is returned. - If you set it to &#x60;infinity&#x60;, the last page of data is returned.  | [optional] 
+ **direction** | **String**| The sort direction. Possible values include:   - &#x60;ASC&#x60;: Sort the results in ascending order.   - &#x60;DESC&#x60;: Sort the results in descending order.  | [optional] [default to &#39;ASC&#39;]
+
+### Return type
+
+[**TokenizationListPermissionsResponse**](TokenizationListPermissionsResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [CoboAuth](../README.md#CoboAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## listTokenizationSupportedChains
 
 > TokenizationListEnabledChainsResponse listTokenizationSupportedChains(opts)
 
-List tokenization supported chains
+List supported chains for tokenization
 
 This operation retrieves a list of tokenization supported chains. 
 
@@ -728,7 +792,7 @@ apiInstance.mintTokenization(token_id, TokenizationMintTokenRequest).then((data)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token_id** | **String**| The token ID, which is the unique identifier of a token. | 
- **TokenizationMintTokenRequest** | [**TokenizationMintTokenRequest**](TokenizationMintTokenRequest.md)| The request body for minting tokens | 
+ **TokenizationMintTokenRequest** | [**TokenizationMintTokenRequest**](TokenizationMintTokenRequest.md)| The request body for minting tokens. | 
 
 ### Return type
 
@@ -748,9 +812,9 @@ Name | Type | Description  | Notes
 
 > TokenizationOperationResponse pauseTokenization(token_id, opts)
 
-Pause tokenization
+Pause token contract
 
-This operation pauses the token contract. Creates a pause transaction that will stop the token contract. 
+This operation pauses the token contract, temporarily halting token operations and transfers. 
 
 ### Example
 
@@ -782,7 +846,7 @@ apiInstance.pauseTokenization(token_id, opts).then((data) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token_id** | **String**| The token ID, which is the unique identifier of a token. | 
- **TokenizationPauseTokenRequest** | [**TokenizationPauseTokenRequest**](TokenizationPauseTokenRequest.md)| Request body for pausing tokens | [optional] 
+ **TokenizationPauseTokenRequest** | [**TokenizationPauseTokenRequest**](TokenizationPauseTokenRequest.md)| The request body for pausing tokens. | [optional] 
 
 ### Return type
 
@@ -802,9 +866,9 @@ Name | Type | Description  | Notes
 
 > TokenizationOperationResponse tokenizationContractCall(token_id, opts)
 
-Contract call
+Call token contract
 
-This operation calls a smart contract. 
+This operation performs a contract call on the token contract. 
 
 ### Example
 
@@ -836,7 +900,7 @@ apiInstance.tokenizationContractCall(token_id, opts).then((data) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token_id** | **String**| The token ID, which is the unique identifier of a token. | 
- **TokenizationContractCallRequest** | [**TokenizationContractCallRequest**](TokenizationContractCallRequest.md)| Request body for contract call | [optional] 
+ **TokenizationContractCallRequest** | [**TokenizationContractCallRequest**](TokenizationContractCallRequest.md)| The request body for contract call. | [optional] 
 
 ### Return type
 
@@ -856,9 +920,9 @@ Name | Type | Description  | Notes
 
 > TokenizationOperationResponse unpauseTokenization(token_id, opts)
 
-Unpause tokenization
+Unpause token contract
 
-This operation unpauses the token contract. Creates an unpause transaction that will resume the token contract. 
+This operation unpauses the token contract, resuming token operations and transfers. 
 
 ### Example
 
@@ -890,61 +954,7 @@ apiInstance.unpauseTokenization(token_id, opts).then((data) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token_id** | **String**| The token ID, which is the unique identifier of a token. | 
- **TokenizationUnpauseTokenRequest** | [**TokenizationUnpauseTokenRequest**](TokenizationUnpauseTokenRequest.md)| Request body for unpausing tokens | [optional] 
-
-### Return type
-
-[**TokenizationOperationResponse**](TokenizationOperationResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [CoboAuth](../README.md#CoboAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-
-## updateAllowlistAddresses
-
-> TokenizationOperationResponse updateAllowlistAddresses(token_id, opts)
-
-Update allowlist addresses
-
-This operation updates the allowlist addresses of the token contract. 
-
-### Example
-
-```javascript
-const CoboWaas2 = require('@cobo/cobo-waas2');
-// Initialize the API client
-const apiClient = CoboWaas2.ApiClient.instance
-// Select the development environment. To use the production environment, replace `Env.DEV` with `Env.PROD`
-apiClient.setEnv(CoboWaas2.Env.DEV);
-// Replace `<YOUR_PRIVATE_KEY>` with your private key
-apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
-// Call the API
-const apiInstance = new CoboWaas2.TokenizationApi();
-const token_id = "ETH_USDT";
-const opts = {
-  'TokenizationUpdateAllowlistAddressesRequest': new CoboWaas2.TokenizationUpdateAllowlistAddressesRequest()
-};
-apiInstance.updateAllowlistAddresses(token_id, opts).then((data) => {
-  console.log('API called successfully. Returned data: ' + data);
-}, (error) => {
-  console.error(error);
-});
-
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token_id** | **String**| The token ID, which is the unique identifier of a token. | 
- **TokenizationUpdateAllowlistAddressesRequest** | [**TokenizationUpdateAllowlistAddressesRequest**](TokenizationUpdateAllowlistAddressesRequest.md)| Request body for managing multiple allowlist addresses (adding or removing). | [optional] 
+ **TokenizationUnpauseTokenRequest** | [**TokenizationUnpauseTokenRequest**](TokenizationUnpauseTokenRequest.md)| The request body for unpausing tokens. | [optional] 
 
 ### Return type
 
@@ -964,9 +974,9 @@ Name | Type | Description  | Notes
 
 > TokenizationOperationResponse updateTokenizationAllowlistActivation(token_id, opts)
 
-Update allowlist activation
+Activate or deactivate the allowlist
 
-This operation updates the allowlist activation setting of the token contract. 
+This operation activates or deactivates the allowlist. 
 
 ### Example
 
@@ -998,7 +1008,61 @@ apiInstance.updateTokenizationAllowlistActivation(token_id, opts).then((data) =>
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token_id** | **String**| The token ID, which is the unique identifier of a token. | 
- **TokenizationAllowlistActivationRequest** | [**TokenizationAllowlistActivationRequest**](TokenizationAllowlistActivationRequest.md)| Request body for updating the allowlist activation setting. | [optional] 
+ **TokenizationAllowlistActivationRequest** | [**TokenizationAllowlistActivationRequest**](TokenizationAllowlistActivationRequest.md)| The request body for activating or deactivating the allowlist. | [optional] 
+
+### Return type
+
+[**TokenizationOperationResponse**](TokenizationOperationResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [CoboAuth](../README.md#CoboAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## updateTokenizationAllowlistAddresses
+
+> TokenizationOperationResponse updateTokenizationAllowlistAddresses(token_id, opts)
+
+Update allowlist addresses
+
+This operation updates the allowlist addresses of the token contract. 
+
+### Example
+
+```javascript
+const CoboWaas2 = require('@cobo/cobo-waas2');
+// Initialize the API client
+const apiClient = CoboWaas2.ApiClient.instance
+// Select the development environment. To use the production environment, replace `Env.DEV` with `Env.PROD`
+apiClient.setEnv(CoboWaas2.Env.DEV);
+// Replace `<YOUR_PRIVATE_KEY>` with your private key
+apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
+// Call the API
+const apiInstance = new CoboWaas2.TokenizationApi();
+const token_id = "ETH_USDT";
+const opts = {
+  'TokenizationUpdateAllowlistAddressesRequest': new CoboWaas2.TokenizationUpdateAllowlistAddressesRequest()
+};
+apiInstance.updateTokenizationAllowlistAddresses(token_id, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token_id** | **String**| The token ID, which is the unique identifier of a token. | 
+ **TokenizationUpdateAllowlistAddressesRequest** | [**TokenizationUpdateAllowlistAddressesRequest**](TokenizationUpdateAllowlistAddressesRequest.md)| The request body for managing multiple allowlist addresses (adding or removing). | [optional] 
 
 ### Return type
 
@@ -1052,7 +1116,59 @@ apiInstance.updateTokenizationBlocklistAddresses(token_id, opts).then((data) => 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token_id** | **String**| The token ID, which is the unique identifier of a token. | 
- **TokenizationUpdateBlocklistAddressesRequest** | [**TokenizationUpdateBlocklistAddressesRequest**](TokenizationUpdateBlocklistAddressesRequest.md)| Request body for managing multiple blocklist addresses (adding or removing). | [optional] 
+ **TokenizationUpdateBlocklistAddressesRequest** | [**TokenizationUpdateBlocklistAddressesRequest**](TokenizationUpdateBlocklistAddressesRequest.md)| The request body for managing multiple blocklist addresses (adding or removing). | [optional] 
+
+### Return type
+
+[**TokenizationOperationResponse**](TokenizationOperationResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [CoboAuth](../README.md#CoboAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## updateTokenizationPermissions
+
+> TokenizationOperationResponse updateTokenizationPermissions(token_id, TokenizationUpdatePermissionsRequest)
+
+Update permissions of the token
+
+This operation updates permissions for tokenization contracts.  **For Ethereum-based tokens:** Use &#x60;add&#x60; to grant permissions or &#x60;remove&#x60; to revoke permissions. Multiple permissions can be assigned to the same address.  **For Solana tokens:** Use &#x60;set&#x60; to define the complete list of permissions for an address. This replaces any existing permissions. 
+
+### Example
+
+```javascript
+const CoboWaas2 = require('@cobo/cobo-waas2');
+// Initialize the API client
+const apiClient = CoboWaas2.ApiClient.instance
+// Select the development environment. To use the production environment, replace `Env.DEV` with `Env.PROD`
+apiClient.setEnv(CoboWaas2.Env.DEV);
+// Replace `<YOUR_PRIVATE_KEY>` with your private key
+apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
+// Call the API
+const apiInstance = new CoboWaas2.TokenizationApi();
+const token_id = "ETH_USDT";
+const TokenizationUpdatePermissionsRequest = new CoboWaas2.TokenizationUpdatePermissionsRequest();
+apiInstance.updateTokenizationPermissions(token_id, TokenizationUpdatePermissionsRequest).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token_id** | **String**| The token ID, which is the unique identifier of a token. | 
+ **TokenizationUpdatePermissionsRequest** | [**TokenizationUpdatePermissionsRequest**](TokenizationUpdatePermissionsRequest.md)| The request body for managing permissions. | 
 
 ### Return type
 

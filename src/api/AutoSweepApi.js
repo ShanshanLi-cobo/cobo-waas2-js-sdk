@@ -11,8 +11,11 @@
 
 
 import ApiClient from "../ApiClient";
+import AutoSweepTask from '../model/AutoSweepTask';
+import CreateAutoSweepTask from '../model/CreateAutoSweepTask';
 import CreateSweepToAddress from '../model/CreateSweepToAddress';
 import ErrorResponse from '../model/ErrorResponse';
+import ListAutoSweepTask200Response from '../model/ListAutoSweepTask200Response';
 import ListWalletSweepToAddresses200Response from '../model/ListWalletSweepToAddresses200Response';
 import SweepToAddress from '../model/SweepToAddress';
 
@@ -33,6 +36,55 @@ export default class AutoSweepApi {
         this.apiClient = apiClient || ApiClient.instance;
     }
 
+
+
+    /**
+     * create auto sweep task
+     * This operation create a new auto sweep task. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateAutoSweepTask} [CreateAutoSweepTask] The request body to generates a new sweep to addresses within a specified wallet.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/AutoSweepTask} and HTTP response
+     */
+    createAutoSweepTaskWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['CreateAutoSweepTask'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = AutoSweepTask;
+      return this.apiClient.callApi(
+        '/auto_sweep/tasks', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * create auto sweep task
+     * This operation create a new auto sweep task. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateAutoSweepTask} opts.CreateAutoSweepTask The request body to generates a new sweep to addresses within a specified wallet.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/AutoSweepTask}
+     */
+    createAutoSweepTask(opts) {
+      return this.createAutoSweepTaskWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
 
 
     /**
@@ -78,6 +130,135 @@ export default class AutoSweepApi {
      */
     createWalletSweepToAddresses(opts) {
       return this.createWalletSweepToAddressesWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Get auto sweep task information
+     * This operation retrieves detailed information about a specified auto sweep task. 
+     * @param {String} task_id The auto sweep task ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/AutoSweepTask} and HTTP response
+     */
+    getAutoSweepTaskByIdWithHttpInfo(task_id) {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'task_id' is set
+      if (task_id === undefined || task_id === null) {
+        throw new Error("Missing the required parameter 'task_id' when calling getAutoSweepTaskById");
+      }
+
+      let pathParams = {
+        'task_id': task_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = AutoSweepTask;
+      return this.apiClient.callApi(
+        '/auto_sweep/tasks/{task_id}', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Get auto sweep task information
+     * This operation retrieves detailed information about a specified auto sweep task. 
+     * @param {String} task_id The auto sweep task ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/AutoSweepTask}
+     */
+    getAutoSweepTaskById(task_id) {
+      return this.getAutoSweepTaskByIdWithHttpInfo(task_id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * List wallet auto sweep task
+     * This operation retrieves a list of auto sweep task. 
+     * @param {String} wallet_id The wallet ID.
+     * @param {Object} opts Optional parameters
+     * @param {String} [token_id] The token ID, which is the unique identifier of a token. You can retrieve the IDs of all the tokens you can use by calling [List enabled tokens](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-tokens).
+     * @param {String} [task_ids] A list of auto sweep task IDs, separated by comma.
+     * @param {Number} [min_created_timestamp] The time when the transaction was created, in Unix timestamp format, measured in milliseconds. You can use this parameter to filter transactions created on or after the specified time.
+     * @param {Number} [max_created_timestamp] The time when the transaction was created, in Unix timestamp format, measured in milliseconds. You can use this parameter to filter transactions created on or before the specified time.
+     * @param {Number} [limit = 10)] The maximum number of objects to return. For most operations, the value range is [1, 50].
+     * @param {String} [before] This parameter specifies an object ID as a starting point for pagination, retrieving data before the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C.  If you set `before` to the ID of Object C (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object A.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. - If you set it to `infinity`, the last page of data is returned. 
+     * @param {String} [after] This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
+     * @param {module:model/String} [direction = 'ASC')] The sort direction. Possible values include:   - `ASC`: Sort the results in ascending order.   - `DESC`: Sort the results in descending order. 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListAutoSweepTask200Response} and HTTP response
+     */
+    listAutoSweepTaskWithHttpInfo(wallet_id, opts) {
+      opts = opts || {};
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'wallet_id' is set
+      if (wallet_id === undefined || wallet_id === null) {
+        throw new Error("Missing the required parameter 'wallet_id' when calling listAutoSweepTask");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'wallet_id': wallet_id,
+        'token_id': opts['token_id'],
+        'task_ids': opts['task_ids'],
+        'min_created_timestamp': opts['min_created_timestamp'],
+        'max_created_timestamp': opts['max_created_timestamp'],
+        'limit': opts['limit'],
+        'before': opts['before'],
+        'after': opts['after'],
+        'direction': opts['direction']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ListAutoSweepTask200Response;
+      return this.apiClient.callApi(
+        '/auto_sweep/tasks', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * List wallet auto sweep task
+     * This operation retrieves a list of auto sweep task. 
+     * @param {String} wallet_id The wallet ID.
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.token_id The token ID, which is the unique identifier of a token. You can retrieve the IDs of all the tokens you can use by calling [List enabled tokens](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-tokens).
+     * @param {String} opts.task_ids A list of auto sweep task IDs, separated by comma.
+     * @param {Number} opts.min_created_timestamp The time when the transaction was created, in Unix timestamp format, measured in milliseconds. You can use this parameter to filter transactions created on or after the specified time.
+     * @param {Number} opts.max_created_timestamp The time when the transaction was created, in Unix timestamp format, measured in milliseconds. You can use this parameter to filter transactions created on or before the specified time.
+     * @param {Number} opts.limit The maximum number of objects to return. For most operations, the value range is [1, 50]. (default to 10)
+     * @param {String} opts.before This parameter specifies an object ID as a starting point for pagination, retrieving data before the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C.  If you set `before` to the ID of Object C (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object A.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. - If you set it to `infinity`, the last page of data is returned. 
+     * @param {String} opts.after This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
+     * @param {module:model/String} opts.direction The sort direction. Possible values include:   - `ASC`: Sort the results in ascending order.   - `DESC`: Sort the results in descending order.  (default to 'ASC')
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListAutoSweepTask200Response}
+     */
+    listAutoSweepTask(wallet_id, opts) {
+      return this.listAutoSweepTaskWithHttpInfo(wallet_id, opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

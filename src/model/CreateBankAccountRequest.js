@@ -19,11 +19,12 @@ class CreateBankAccountRequest {
     /**
      * Constructs a new <code>CreateBankAccountRequest</code>.
      * @alias module:model/CreateBankAccountRequest
+     * @param otc_bank_account_id {String} 
      * @param info {Object.<String, Object>} JSON-formatted bank account details. The object should include the following fields: - beneficiary_name: Name of the account holder - beneficiary_address: Address of the account holder - account_number: Bank account number - bank_name: Name of the bank - bank_address: Address of the bank - iban: (Optional) International Bank Account Number - swift_or_bic: SWIFT or BIC code of the bank 
      */
-    constructor(info) { 
+    constructor(otc_bank_account_id, info) { 
         
-        CreateBankAccountRequest.initialize(this, info);
+        CreateBankAccountRequest.initialize(this, otc_bank_account_id, info);
     }
 
     /**
@@ -31,7 +32,8 @@ class CreateBankAccountRequest {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, info) { 
+    static initialize(obj, otc_bank_account_id, info) { 
+        obj['otc_bank_account_id'] = otc_bank_account_id;
         obj['info'] = info;
     }
 
@@ -46,6 +48,9 @@ class CreateBankAccountRequest {
         if (data) {
             obj = obj || new CreateBankAccountRequest();
 
+            if (data.hasOwnProperty('otc_bank_account_id')) {
+                obj['otc_bank_account_id'] = ApiClient.convertToType(data['otc_bank_account_id'], 'String');
+            }
             if (data.hasOwnProperty('info')) {
                 obj['info'] = ApiClient.convertToType(data['info'], {'String': Object});
             }
@@ -65,6 +70,10 @@ class CreateBankAccountRequest {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
         }
+        // ensure the json data is a string
+        if (data['otc_bank_account_id'] && !(typeof data['otc_bank_account_id'] === 'string' || data['otc_bank_account_id'] instanceof String)) {
+            throw new Error("Expected the field `otc_bank_account_id` to be a primitive type in the JSON string but got " + data['otc_bank_account_id']);
+        }
 
         return true;
     }
@@ -72,7 +81,12 @@ class CreateBankAccountRequest {
 
 }
 
-CreateBankAccountRequest.RequiredProperties = ["info"];
+CreateBankAccountRequest.RequiredProperties = ["otc_bank_account_id", "info"];
+
+/**
+ * @member {String} otc_bank_account_id
+ */
+CreateBankAccountRequest.prototype['otc_bank_account_id'] = undefined;
 
 /**
  * JSON-formatted bank account details. The object should include the following fields: - beneficiary_name: Name of the account holder - beneficiary_address: Address of the account holder - account_number: Bank account number - bank_name: Name of the bank - bank_address: Address of the bank - iban: (Optional) International Bank Account Number - swift_or_bic: SWIFT or BIC code of the bank 
