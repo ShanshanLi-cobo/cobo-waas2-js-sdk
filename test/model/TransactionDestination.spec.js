@@ -220,6 +220,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property contract_param (base name: "contract_param")', function() {
+      // uncomment below and update the code to test the property contract_param
+      //var instance = new CoboWaas2.TransactionDestination();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

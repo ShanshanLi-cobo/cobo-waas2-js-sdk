@@ -69,6 +69,10 @@
 
 * `payment.address.updated` (value: `"payment.address.updated"`)
 
+* `compliance.disposition.status.updated` (value: `"compliance.disposition.status.updated"`)
+
+* `compliance.kyt.screenings.status.updated` (value: `"compliance.kyt.screenings.status.updated"`)
+
 * `unknown_default_open_api` (value: `"unknown_default_open_api"`)
 
 

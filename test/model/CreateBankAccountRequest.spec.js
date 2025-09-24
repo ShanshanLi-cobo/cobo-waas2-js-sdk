@@ -52,6 +52,12 @@
       //expect(instance).to.be.a(CoboWaas2.CreateBankAccountRequest);
     });
 
+    it('should have the property otc_bank_account_id (base name: "otc_bank_account_id")', function() {
+      // uncomment below and update the code to test the property otc_bank_account_id
+      //var instance = new CoboWaas2.CreateBankAccountRequest();
+      //expect(instance).to.be();
+    });
+
     it('should have the property info (base name: "info")', function() {
       // uncomment below and update the code to test the property info
       //var instance = new CoboWaas2.CreateBankAccountRequest();

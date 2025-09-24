@@ -34,19 +34,34 @@ import ListPaymentOrders200Response from '../model/ListPaymentOrders200Response'
 import ListPaymentWalletBalances200Response from '../model/ListPaymentWalletBalances200Response';
 import ListSettlementDetails200Response from '../model/ListSettlementDetails200Response';
 import ListSettlementRequests200Response from '../model/ListSettlementRequests200Response';
+import ListSubscriptionActions200Response from '../model/ListSubscriptionActions200Response';
+import ListSubscriptionPlans200Response from '../model/ListSubscriptionPlans200Response';
+import ListSubscriptions200Response from '../model/ListSubscriptions200Response';
 import ListTopUpPayerAccounts200Response from '../model/ListTopUpPayerAccounts200Response';
 import ListTopUpPayers200Response from '../model/ListTopUpPayers200Response';
 import Merchant from '../model/Merchant';
 import Order from '../model/Order';
+import PaymentCreateSubscriptionAction from '../model/PaymentCreateSubscriptionAction';
+import PaymentCreateSubscriptionPlan from '../model/PaymentCreateSubscriptionPlan';
+import PaymentEstimateFee201Response from '../model/PaymentEstimateFee201Response';
+import PaymentEstimateFeeRequest from '../model/PaymentEstimateFeeRequest';
+import PaymentSubscriptionAction from '../model/PaymentSubscriptionAction';
+import PaymentSubscriptionActionType from '../model/PaymentSubscriptionActionType';
+import PaymentSubscriptionDetail from '../model/PaymentSubscriptionDetail';
+import PaymentSubscriptionPlan from '../model/PaymentSubscriptionPlan';
+import PaymentSubscriptionPlanDetail from '../model/PaymentSubscriptionPlanDetail';
 import PspBalance from '../model/PspBalance';
+import ReceivedAmountPerAddress from '../model/ReceivedAmountPerAddress';
 import Refund from '../model/Refund';
 import Settlement from '../model/Settlement';
 import SupportedToken from '../model/SupportedToken';
 import TopUpAddress from '../model/TopUpAddress';
+import UpdateBankAccountByIdRequest from '../model/UpdateBankAccountByIdRequest';
 import UpdateMerchantByIdRequest from '../model/UpdateMerchantByIdRequest';
 import UpdatePaymentOrderRequest from '../model/UpdatePaymentOrderRequest';
 import UpdateRefundByIdRequest from '../model/UpdateRefundByIdRequest';
 import UpdateTopUpAddress from '../model/UpdateTopUpAddress';
+import WalletSetup from '../model/WalletSetup';
 
 /**
 * Payment service.
@@ -462,6 +477,104 @@ export default class PaymentApi {
 
 
     /**
+     * Create a subscription action
+     * This operation creates a subscription action. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/PaymentCreateSubscriptionAction} [PaymentCreateSubscriptionAction] The request body to create subscription action.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/PaymentSubscriptionAction} and HTTP response
+     */
+    createSubscriptionActionWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['PaymentCreateSubscriptionAction'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = PaymentSubscriptionAction;
+      return this.apiClient.callApi(
+        '/payments/subscription_actions', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Create a subscription action
+     * This operation creates a subscription action. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/PaymentCreateSubscriptionAction} opts.PaymentCreateSubscriptionAction The request body to create subscription action.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/PaymentSubscriptionAction}
+     */
+    createSubscriptionAction(opts) {
+      return this.createSubscriptionActionWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Create subscription plan
+     * This operation creates a subscription plan. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/PaymentCreateSubscriptionPlan} [PaymentCreateSubscriptionPlan] The request body to create subscription plan.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/PaymentSubscriptionPlan} and HTTP response
+     */
+    createSubscriptionPlanWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['PaymentCreateSubscriptionPlan'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = PaymentSubscriptionPlan;
+      return this.apiClient.callApi(
+        '/payments/subscription_plans', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Create subscription plan
+     * This operation creates a subscription plan. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/PaymentCreateSubscriptionPlan} opts.PaymentCreateSubscriptionPlan The request body to create subscription plan.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/PaymentSubscriptionPlan}
+     */
+    createSubscriptionPlan(opts) {
+      return this.createSubscriptionPlanWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * Delete crypto address
      * This operation deletes a crypto address. 
      * @param {String} crypto_address_id The crypto address ID.
@@ -564,6 +677,70 @@ export default class PaymentApi {
      */
     getExchangeRate(token_id, currency) {
       return this.getExchangeRateWithHttpInfo(token_id, currency)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Get payer balance by address
+     * This operation retrieves aggregated balance details for a specific token and payer, with amounts grouped by address. 
+     * @param {String} payer_id Unique payer identifier on the Cobo side, auto-generated by the system.
+     * @param {String} token_id The token ID, which identifies the cryptocurrency. Supported values:    - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @param {Object} opts Optional parameters
+     * @param {String} [merchant_id] The merchant ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ReceivedAmountPerAddress>} and HTTP response
+     */
+    getPayerBalanceByAddressWithHttpInfo(payer_id, token_id, opts) {
+      opts = opts || {};
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'payer_id' is set
+      if (payer_id === undefined || payer_id === null) {
+        throw new Error("Missing the required parameter 'payer_id' when calling getPayerBalanceByAddress");
+      }
+      // verify the required parameter 'token_id' is set
+      if (token_id === undefined || token_id === null) {
+        throw new Error("Missing the required parameter 'token_id' when calling getPayerBalanceByAddress");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'merchant_id': opts['merchant_id'],
+        'payer_id': payer_id,
+        'token_id': token_id
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = [ReceivedAmountPerAddress];
+      return this.apiClient.callApi(
+        '/payments/balance/payer/address', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Get payer balance by address
+     * This operation retrieves aggregated balance details for a specific token and payer, with amounts grouped by address. 
+     * @param {String} payer_id Unique payer identifier on the Cobo side, auto-generated by the system.
+     * @param {String} token_id The token ID, which identifies the cryptocurrency. Supported values:    - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.merchant_id The merchant ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ReceivedAmountPerAddress>}
+     */
+    getPayerBalanceByAddress(payer_id, token_id, opts) {
+      return this.getPayerBalanceByAddressWithHttpInfo(payer_id, token_id, opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -896,21 +1073,128 @@ export default class PaymentApi {
 
 
     /**
-     * Get top-up address
-     * Get a top-up address for certain payer under merchant. 
-     * @param {String} merchant_id The merchant ID.
-     * @param {String} token_id The token ID, which identifies the cryptocurrency. Supported values:    - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
-     * @param {String} custom_payer_id Unique customer identifier on the merchant side, used to allocate a dedicated top-up address 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TopUpAddress} and HTTP response
+     * Get subscription by id
+     * This operation retrieves the information of subscription detail. You can filter the result by subscription_id. 
+     * @param {String} subscription_id A unique identifier subscription.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/PaymentSubscriptionDetail} and HTTP response
      */
-    getTopUpAddressWithHttpInfo(merchant_id, token_id, custom_payer_id) {
+    getSubscriptionByIdWithHttpInfo(subscription_id) {
       let postBody = null;
       if (postBody && postBody.toJSON) {
           postBody = postBody.toJSON()
       }
-      // verify the required parameter 'merchant_id' is set
-      if (merchant_id === undefined || merchant_id === null) {
-        throw new Error("Missing the required parameter 'merchant_id' when calling getTopUpAddress");
+      // verify the required parameter 'subscription_id' is set
+      if (subscription_id === undefined || subscription_id === null) {
+        throw new Error("Missing the required parameter 'subscription_id' when calling getSubscriptionById");
+      }
+
+      let pathParams = {
+        'subscription_id': subscription_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = PaymentSubscriptionDetail;
+      return this.apiClient.callApi(
+        '/payments/subscriptions/{subscription_id}', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Get subscription by id
+     * This operation retrieves the information of subscription detail. You can filter the result by subscription_id. 
+     * @param {String} subscription_id A unique identifier subscription.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/PaymentSubscriptionDetail}
+     */
+    getSubscriptionById(subscription_id) {
+      return this.getSubscriptionByIdWithHttpInfo(subscription_id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Get subscription plan by id
+     * This operation retrieves the information of subscription plan detail. You can filter the result by subscription_id. 
+     * @param {String} subscription_id A unique identifier subscription.
+     * @param {String} token_id The token ID, which identifies the cryptocurrency. Supported values:    - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/PaymentSubscriptionPlanDetail} and HTTP response
+     */
+    getSubscriptionPlanByIdWithHttpInfo(subscription_id, token_id) {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'subscription_id' is set
+      if (subscription_id === undefined || subscription_id === null) {
+        throw new Error("Missing the required parameter 'subscription_id' when calling getSubscriptionPlanById");
+      }
+      // verify the required parameter 'token_id' is set
+      if (token_id === undefined || token_id === null) {
+        throw new Error("Missing the required parameter 'token_id' when calling getSubscriptionPlanById");
+      }
+
+      let pathParams = {
+        'subscription_id': subscription_id
+      };
+      let queryParams = {
+        'token_id': token_id
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = PaymentSubscriptionPlanDetail;
+      return this.apiClient.callApi(
+        '/payments/subscription_plans/{subscription_plan_id}', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Get subscription plan by id
+     * This operation retrieves the information of subscription plan detail. You can filter the result by subscription_id. 
+     * @param {String} subscription_id A unique identifier subscription.
+     * @param {String} token_id The token ID, which identifies the cryptocurrency. Supported values:    - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/PaymentSubscriptionPlanDetail}
+     */
+    getSubscriptionPlanById(subscription_id, token_id) {
+      return this.getSubscriptionPlanByIdWithHttpInfo(subscription_id, token_id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Get top-up address
+     * Get a top-up address for certain payer under merchant. 
+     * @param {String} token_id The token ID, which identifies the cryptocurrency. Supported values:    - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @param {String} custom_payer_id Unique customer identifier on the merchant side, used to allocate a dedicated top-up address 
+     * @param {Object} opts Optional parameters
+     * @param {String} [merchant_id] The merchant ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TopUpAddress} and HTTP response
+     */
+    getTopUpAddressWithHttpInfo(token_id, custom_payer_id, opts) {
+      opts = opts || {};
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
       }
       // verify the required parameter 'token_id' is set
       if (token_id === undefined || token_id === null) {
@@ -924,7 +1208,7 @@ export default class PaymentApi {
       let pathParams = {
       };
       let queryParams = {
-        'merchant_id': merchant_id,
+        'merchant_id': opts['merchant_id'],
         'token_id': token_id,
         'custom_payer_id': custom_payer_id
       };
@@ -947,13 +1231,14 @@ export default class PaymentApi {
     /**
      * Get top-up address
      * Get a top-up address for certain payer under merchant. 
-     * @param {String} merchant_id The merchant ID.
      * @param {String} token_id The token ID, which identifies the cryptocurrency. Supported values:    - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
      * @param {String} custom_payer_id Unique customer identifier on the merchant side, used to allocate a dedicated top-up address 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.merchant_id The merchant ID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TopUpAddress}
      */
-    getTopUpAddress(merchant_id, token_id, custom_payer_id) {
-      return this.getTopUpAddressWithHttpInfo(merchant_id, token_id, custom_payer_id)
+    getTopUpAddress(token_id, custom_payer_id, opts) {
+      return this.getTopUpAddressWithHttpInfo(token_id, custom_payer_id, opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -1185,7 +1470,7 @@ export default class PaymentApi {
      * @param {String} [before] This parameter specifies an object ID as a starting point for pagination, retrieving data before the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C.  If you set `before` to the ID of Object C (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object A.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. - If you set it to `infinity`, the last page of data is returned. 
      * @param {String} [after] This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
      * @param {String} [keyword] A search term used for fuzzy matching of merchant names.
-     * @param {String} [wallet_id] The wallet ID.
+     * @param {module:model/WalletSetup} [wallet_setup] WalletSetup defines the type of funds used in the merchant account, either \"Shared\" or \"Separate\" is allowed when creating a merchant: - `Default`: Wallet of psp owned default merchant. - `Shared`: Shared wallet of non-psp owned merchants. - `Separate`: Separate wallet of non-psp owned merchants. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListMerchants200Response} and HTTP response
      */
     listMerchantsWithHttpInfo(opts) {
@@ -1202,7 +1487,7 @@ export default class PaymentApi {
         'before': opts['before'],
         'after': opts['after'],
         'keyword': opts['keyword'],
-        'wallet_id': opts['wallet_id']
+        'wallet_setup': opts['wallet_setup']
       };
       let headerParams = {
       };
@@ -1228,7 +1513,7 @@ export default class PaymentApi {
      * @param {String} opts.before This parameter specifies an object ID as a starting point for pagination, retrieving data before the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C.  If you set `before` to the ID of Object C (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object A.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. - If you set it to `infinity`, the last page of data is returned. 
      * @param {String} opts.after This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
      * @param {String} opts.keyword A search term used for fuzzy matching of merchant names.
-     * @param {String} opts.wallet_id The wallet ID.
+     * @param {module:model/WalletSetup} opts.wallet_setup WalletSetup defines the type of funds used in the merchant account, either \"Shared\" or \"Separate\" is allowed when creating a merchant: - `Default`: Wallet of psp owned default merchant. - `Shared`: Shared wallet of non-psp owned merchants. - `Separate`: Separate wallet of non-psp owned merchants. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListMerchants200Response}
      */
     listMerchants(opts) {
@@ -1527,6 +1812,201 @@ export default class PaymentApi {
 
 
     /**
+     * List subscription actions
+     * This operation retrieves the information of subscription actions. You can filter the result by plan id. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} [limit = 10)] The maximum number of objects to return. For most operations, the value range is [1, 50].
+     * @param {String} [before] This parameter specifies an object ID as a starting point for pagination, retrieving data before the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C.  If you set `before` to the ID of Object C (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object A.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. - If you set it to `infinity`, the last page of data is returned. 
+     * @param {String} [after] This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
+     * @param {String} [plan_id] A unique identifier plan.
+     * @param {String} [merchant_id] The merchant ID.
+     * @param {String} [subscription_id] A unique identifier subscription.
+     * @param {String} [request_id] The request ID.
+     * @param {module:model/PaymentSubscriptionActionType} [action_type] 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListSubscriptionActions200Response} and HTTP response
+     */
+    listSubscriptionActionsWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'limit': opts['limit'],
+        'before': opts['before'],
+        'after': opts['after'],
+        'plan_id': opts['plan_id'],
+        'merchant_id': opts['merchant_id'],
+        'subscription_id': opts['subscription_id'],
+        'request_id': opts['request_id'],
+        'action_type': opts['action_type']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ListSubscriptionActions200Response;
+      return this.apiClient.callApi(
+        '/payments/subscription_actions', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * List subscription actions
+     * This operation retrieves the information of subscription actions. You can filter the result by plan id. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.limit The maximum number of objects to return. For most operations, the value range is [1, 50]. (default to 10)
+     * @param {String} opts.before This parameter specifies an object ID as a starting point for pagination, retrieving data before the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C.  If you set `before` to the ID of Object C (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object A.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. - If you set it to `infinity`, the last page of data is returned. 
+     * @param {String} opts.after This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
+     * @param {String} opts.plan_id A unique identifier plan.
+     * @param {String} opts.merchant_id The merchant ID.
+     * @param {String} opts.subscription_id A unique identifier subscription.
+     * @param {String} opts.request_id The request ID.
+     * @param {module:model/PaymentSubscriptionActionType} opts.action_type 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListSubscriptionActions200Response}
+     */
+    listSubscriptionActions(opts) {
+      return this.listSubscriptionActionsWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * List subscription plans
+     * This operation retrieves the information of subscription plans. You can filter the result by developer plan id. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} [limit = 10)] The maximum number of objects to return. For most operations, the value range is [1, 50].
+     * @param {String} [before] This parameter specifies an object ID as a starting point for pagination, retrieving data before the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C.  If you set `before` to the ID of Object C (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object A.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. - If you set it to `infinity`, the last page of data is returned. 
+     * @param {String} [after] This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
+     * @param {String} [developer_plan_id] A unique identifier assigned by the developer to track and identify individual subscription plan in their system.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListSubscriptionPlans200Response} and HTTP response
+     */
+    listSubscriptionPlansWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'limit': opts['limit'],
+        'before': opts['before'],
+        'after': opts['after'],
+        'developer_plan_id': opts['developer_plan_id']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ListSubscriptionPlans200Response;
+      return this.apiClient.callApi(
+        '/payments/subscription_plans', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * List subscription plans
+     * This operation retrieves the information of subscription plans. You can filter the result by developer plan id. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.limit The maximum number of objects to return. For most operations, the value range is [1, 50]. (default to 10)
+     * @param {String} opts.before This parameter specifies an object ID as a starting point for pagination, retrieving data before the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C.  If you set `before` to the ID of Object C (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object A.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. - If you set it to `infinity`, the last page of data is returned. 
+     * @param {String} opts.after This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
+     * @param {String} opts.developer_plan_id A unique identifier assigned by the developer to track and identify individual subscription plan in their system.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListSubscriptionPlans200Response}
+     */
+    listSubscriptionPlans(opts) {
+      return this.listSubscriptionPlansWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * List subscriptions
+     * This operation retrieves the information of subscriptions. You can filter the result by plan id. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} [limit = 10)] The maximum number of objects to return. For most operations, the value range is [1, 50].
+     * @param {String} [before] This parameter specifies an object ID as a starting point for pagination, retrieving data before the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C.  If you set `before` to the ID of Object C (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object A.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. - If you set it to `infinity`, the last page of data is returned. 
+     * @param {String} [after] This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
+     * @param {String} [plan_id] A unique identifier plan.
+     * @param {String} [merchant_id] The merchant ID.
+     * @param {String} [subscription_action_id] A unique identifier subscription action.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListSubscriptions200Response} and HTTP response
+     */
+    listSubscriptionsWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'limit': opts['limit'],
+        'before': opts['before'],
+        'after': opts['after'],
+        'plan_id': opts['plan_id'],
+        'merchant_id': opts['merchant_id'],
+        'subscription_action_id': opts['subscription_action_id']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ListSubscriptions200Response;
+      return this.apiClient.callApi(
+        '/payments/subscriptions', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * List subscriptions
+     * This operation retrieves the information of subscriptions. You can filter the result by plan id. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.limit The maximum number of objects to return. For most operations, the value range is [1, 50]. (default to 10)
+     * @param {String} opts.before This parameter specifies an object ID as a starting point for pagination, retrieving data before the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C.  If you set `before` to the ID of Object C (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object A.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. - If you set it to `infinity`, the last page of data is returned. 
+     * @param {String} opts.after This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
+     * @param {String} opts.plan_id A unique identifier plan.
+     * @param {String} opts.merchant_id The merchant ID.
+     * @param {String} opts.subscription_action_id A unique identifier subscription action.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListSubscriptions200Response}
+     */
+    listSubscriptions(opts) {
+      return this.listSubscriptionsWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * List top-up payer accounts
      * This operation retrieves the accounts of all payers. You can filter the result by merchant ID and payer_id. 
      * @param {Object} opts Optional parameters
@@ -1591,23 +2071,19 @@ export default class PaymentApi {
     /**
      * List top-up payers
      * This operation retrieves the information of all payers. You can filter the result by merchant ID and payer_id. 
-     * @param {String} merchant_id The merchant ID.
      * @param {Object} opts Optional parameters
      * @param {Number} [limit = 10)] The maximum number of objects to return. For most operations, the value range is [1, 50].
      * @param {String} [before] This parameter specifies an object ID as a starting point for pagination, retrieving data before the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C.  If you set `before` to the ID of Object C (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object A.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. - If you set it to `infinity`, the last page of data is returned. 
      * @param {String} [after] This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
+     * @param {String} [merchant_id] The merchant ID.
      * @param {String} [payer_id] Unique payer identifier on the Cobo side, auto-generated by the system.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListTopUpPayers200Response} and HTTP response
      */
-    listTopUpPayersWithHttpInfo(merchant_id, opts) {
+    listTopUpPayersWithHttpInfo(opts) {
       opts = opts || {};
       let postBody = null;
       if (postBody && postBody.toJSON) {
           postBody = postBody.toJSON()
-      }
-      // verify the required parameter 'merchant_id' is set
-      if (merchant_id === undefined || merchant_id === null) {
-        throw new Error("Missing the required parameter 'merchant_id' when calling listTopUpPayers");
       }
 
       let pathParams = {
@@ -1616,7 +2092,7 @@ export default class PaymentApi {
         'limit': opts['limit'],
         'before': opts['before'],
         'after': opts['after'],
-        'merchant_id': merchant_id,
+        'merchant_id': opts['merchant_id'],
         'payer_id': opts['payer_id']
       };
       let headerParams = {
@@ -1638,16 +2114,65 @@ export default class PaymentApi {
     /**
      * List top-up payers
      * This operation retrieves the information of all payers. You can filter the result by merchant ID and payer_id. 
-     * @param {String} merchant_id The merchant ID.
      * @param {Object} opts Optional parameters
      * @param {Number} opts.limit The maximum number of objects to return. For most operations, the value range is [1, 50]. (default to 10)
      * @param {String} opts.before This parameter specifies an object ID as a starting point for pagination, retrieving data before the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C.  If you set `before` to the ID of Object C (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object A.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. - If you set it to `infinity`, the last page of data is returned. 
      * @param {String} opts.after This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
+     * @param {String} opts.merchant_id The merchant ID.
      * @param {String} opts.payer_id Unique payer identifier on the Cobo side, auto-generated by the system.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListTopUpPayers200Response}
      */
-    listTopUpPayers(merchant_id, opts) {
-      return this.listTopUpPayersWithHttpInfo(merchant_id, opts)
+    listTopUpPayers(opts) {
+      return this.listTopUpPayersWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Payment estimate fee
+     * This operation to payment estimate fee. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/PaymentEstimateFeeRequest} [PaymentEstimateFeeRequest] The request body to create a estimated fee request.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/PaymentEstimateFee201Response} and HTTP response
+     */
+    paymentEstimateFeeWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['PaymentEstimateFeeRequest'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = PaymentEstimateFee201Response;
+      return this.apiClient.callApi(
+        '/payments/estimate_fee', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Payment estimate fee
+     * This operation to payment estimate fee. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/PaymentEstimateFeeRequest} opts.PaymentEstimateFeeRequest The request body to create a estimated fee request.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/PaymentEstimateFee201Response}
+     */
+    paymentEstimateFee(opts) {
+      return this.paymentEstimateFeeWithHttpInfo(opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -1659,12 +2184,12 @@ export default class PaymentApi {
      * This operation updates the information of an existing bank account. 
      * @param {String} bank_account_id The bank account ID.
      * @param {Object} opts Optional parameters
-     * @param {module:model/CreateBankAccountRequest} [CreateBankAccountRequest] The request body for updating an existing bank account.
+     * @param {module:model/UpdateBankAccountByIdRequest} [UpdateBankAccountByIdRequest] The request body for updating an existing bank account.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/BankAccount} and HTTP response
      */
     updateBankAccountByIdWithHttpInfo(bank_account_id, opts) {
       opts = opts || {};
-      let postBody = opts['CreateBankAccountRequest'];
+      let postBody = opts['UpdateBankAccountByIdRequest'];
       if (postBody && postBody.toJSON) {
           postBody = postBody.toJSON()
       }
@@ -1699,7 +2224,7 @@ export default class PaymentApi {
      * This operation updates the information of an existing bank account. 
      * @param {String} bank_account_id The bank account ID.
      * @param {Object} opts Optional parameters
-     * @param {module:model/CreateBankAccountRequest} opts.CreateBankAccountRequest The request body for updating an existing bank account.
+     * @param {module:model/UpdateBankAccountByIdRequest} opts.UpdateBankAccountByIdRequest The request body for updating an existing bank account.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/BankAccount}
      */
     updateBankAccountById(bank_account_id, opts) {

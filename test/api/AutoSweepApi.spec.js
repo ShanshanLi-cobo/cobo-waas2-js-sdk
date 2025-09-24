@@ -36,10 +36,40 @@ import {ApiClient, Env} from "../../src/index.js";
   });
 
   describe('AutoSweepApi', function() {
+    describe('createAutoSweepTask', function() {
+      it('should call createAutoSweepTask successfully', function() {
+        //uncomment below and update the code to test createAutoSweepTask
+        //instance.createAutoSweepTask().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('createWalletSweepToAddresses', function() {
       it('should call createWalletSweepToAddresses successfully', function() {
         //uncomment below and update the code to test createWalletSweepToAddresses
         //instance.createWalletSweepToAddresses().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('getAutoSweepTaskById', function() {
+      it('should call getAutoSweepTaskById successfully', function() {
+        //uncomment below and update the code to test getAutoSweepTaskById
+        //instance.getAutoSweepTaskById().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('listAutoSweepTask', function() {
+      it('should call listAutoSweepTask successfully', function() {
+        //uncomment below and update the code to test listAutoSweepTask
+        //instance.listAutoSweepTask().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);

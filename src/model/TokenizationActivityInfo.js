@@ -30,11 +30,13 @@ class TokenizationActivityInfo {
      * @param source {module:model/TokenizationTokenOperationSource} 
      * @param initiator {String} The initiator of the activity.
      * @param initiator_type {module:model/TransactionInitiatorType} 
+     * @param transaction_ids {Array.<String>} The IDs of the corresponding transactions of the activity.
+     * @param created_timestamp {Number} The creation timestamp of the activity in milliseconds since the Unix epoch.
      * @param updated_timestamp {Number} The last update timestamp of the activity in milliseconds since the Unix epoch.
      */
-    constructor(activity_id, token_id, type, status, source, initiator, initiator_type, updated_timestamp) { 
+    constructor(activity_id, token_id, type, status, source, initiator, initiator_type, transaction_ids, created_timestamp, updated_timestamp) { 
         
-        TokenizationActivityInfo.initialize(this, activity_id, token_id, type, status, source, initiator, initiator_type, updated_timestamp);
+        TokenizationActivityInfo.initialize(this, activity_id, token_id, type, status, source, initiator, initiator_type, transaction_ids, created_timestamp, updated_timestamp);
     }
 
     /**
@@ -42,7 +44,7 @@ class TokenizationActivityInfo {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, activity_id, token_id, type, status, source, initiator, initiator_type, updated_timestamp) { 
+    static initialize(obj, activity_id, token_id, type, status, source, initiator, initiator_type, transaction_ids, created_timestamp, updated_timestamp) { 
         obj['activity_id'] = activity_id;
         obj['token_id'] = token_id;
         obj['type'] = type;
@@ -50,6 +52,8 @@ class TokenizationActivityInfo {
         obj['source'] = source;
         obj['initiator'] = initiator;
         obj['initiator_type'] = initiator_type;
+        obj['transaction_ids'] = transaction_ids;
+        obj['created_timestamp'] = created_timestamp;
         obj['updated_timestamp'] = updated_timestamp;
     }
 
@@ -139,7 +143,7 @@ class TokenizationActivityInfo {
 
 }
 
-TokenizationActivityInfo.RequiredProperties = ["activity_id", "token_id", "type", "status", "source", "initiator", "initiator_type", "updated_timestamp"];
+TokenizationActivityInfo.RequiredProperties = ["activity_id", "token_id", "type", "status", "source", "initiator", "initiator_type", "transaction_ids", "created_timestamp", "updated_timestamp"];
 
 /**
  * The ID of the activity.

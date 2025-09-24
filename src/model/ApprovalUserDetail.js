@@ -11,7 +11,6 @@
 
 import ApiClient from '../ApiClient';
 import ApprovalResult from './ApprovalResult';
-import ApprovalShowInfo from './ApprovalShowInfo';
 
 /**
  * The ApprovalUserDetail model module.
@@ -47,8 +46,11 @@ class ApprovalUserDetail {
         if (data) {
             obj = obj || new ApprovalUserDetail();
 
-            if (data.hasOwnProperty('user_email')) {
-                obj['user_email'] = ApiClient.convertToType(data['user_email'], 'String');
+            if (data.hasOwnProperty('name')) {
+                obj['name'] = ApiClient.convertToType(data['name'], 'String');
+            }
+            if (data.hasOwnProperty('email')) {
+                obj['email'] = ApiClient.convertToType(data['email'], 'String');
             }
             if (data.hasOwnProperty('pubkey')) {
                 obj['pubkey'] = ApiClient.convertToType(data['pubkey'], 'String');
@@ -61,6 +63,9 @@ class ApprovalUserDetail {
             }
             if (data.hasOwnProperty('result')) {
                 obj['result'] = ApprovalResult.constructFromObject(data['result']);
+            }
+            if (data.hasOwnProperty('approval_result_code')) {
+                obj['approval_result_code'] = ApiClient.convertToType(data['approval_result_code'], 'Number');
             }
             if (data.hasOwnProperty('created_time')) {
                 obj['created_time'] = ApiClient.convertToType(data['created_time'], 'Number');
@@ -75,7 +80,19 @@ class ApprovalUserDetail {
                 obj['is_for_sign'] = ApiClient.convertToType(data['is_for_sign'], 'Boolean');
             }
             if (data.hasOwnProperty('show_info')) {
-                obj['show_info'] = ApprovalShowInfo.constructFromObject(data['show_info']);
+                obj['show_info'] = ApiClient.convertToType(data['show_info'], 'String');
+            }
+            if (data.hasOwnProperty('language')) {
+                obj['language'] = ApiClient.convertToType(data['language'], 'String');
+            }
+            if (data.hasOwnProperty('message_version')) {
+                obj['message_version'] = ApiClient.convertToType(data['message_version'], 'String');
+            }
+            if (data.hasOwnProperty('message')) {
+                obj['message'] = ApiClient.convertToType(data['message'], 'String');
+            }
+            if (data.hasOwnProperty('extra_message')) {
+                obj['extra_message'] = ApiClient.convertToType(data['extra_message'], 'String');
             }
         }
         return obj;
@@ -88,8 +105,12 @@ class ApprovalUserDetail {
      */
     static validateJSON(data) {
         // ensure the json data is a string
-        if (data['user_email'] && !(typeof data['user_email'] === 'string' || data['user_email'] instanceof String)) {
-            throw new Error("Expected the field `user_email` to be a primitive type in the JSON string but got " + data['user_email']);
+        if (data['name'] && !(typeof data['name'] === 'string' || data['name'] instanceof String)) {
+            throw new Error("Expected the field `name` to be a primitive type in the JSON string but got " + data['name']);
+        }
+        // ensure the json data is a string
+        if (data['email'] && !(typeof data['email'] === 'string' || data['email'] instanceof String)) {
+            throw new Error("Expected the field `email` to be a primitive type in the JSON string but got " + data['email']);
         }
         // ensure the json data is a string
         if (data['pubkey'] && !(typeof data['pubkey'] === 'string' || data['pubkey'] instanceof String)) {
@@ -111,11 +132,25 @@ class ApprovalUserDetail {
         if (data['header_title'] && !(typeof data['header_title'] === 'string' || data['header_title'] instanceof String)) {
             throw new Error("Expected the field `header_title` to be a primitive type in the JSON string but got " + data['header_title']);
         }
-        // validate the optional field `show_info`
-        if (data['show_info']) { // data not null
-          if (!!ApprovalShowInfo.validateJSON) {
-            ApprovalShowInfo.validateJSON(data['show_info']);
-          }
+        // ensure the json data is a string
+        if (data['show_info'] && !(typeof data['show_info'] === 'string' || data['show_info'] instanceof String)) {
+            throw new Error("Expected the field `show_info` to be a primitive type in the JSON string but got " + data['show_info']);
+        }
+        // ensure the json data is a string
+        if (data['language'] && !(typeof data['language'] === 'string' || data['language'] instanceof String)) {
+            throw new Error("Expected the field `language` to be a primitive type in the JSON string but got " + data['language']);
+        }
+        // ensure the json data is a string
+        if (data['message_version'] && !(typeof data['message_version'] === 'string' || data['message_version'] instanceof String)) {
+            throw new Error("Expected the field `message_version` to be a primitive type in the JSON string but got " + data['message_version']);
+        }
+        // ensure the json data is a string
+        if (data['message'] && !(typeof data['message'] === 'string' || data['message'] instanceof String)) {
+            throw new Error("Expected the field `message` to be a primitive type in the JSON string but got " + data['message']);
+        }
+        // ensure the json data is a string
+        if (data['extra_message'] && !(typeof data['extra_message'] === 'string' || data['extra_message'] instanceof String)) {
+            throw new Error("Expected the field `extra_message` to be a primitive type in the JSON string but got " + data['extra_message']);
         }
 
         return true;
@@ -127,10 +162,16 @@ class ApprovalUserDetail {
 
 
 /**
- * The email address of the user who approved the transaction.
- * @member {String} user_email
+ * The name of the user who approved the transaction.
+ * @member {String} name
  */
-ApprovalUserDetail.prototype['user_email'] = undefined;
+ApprovalUserDetail.prototype['name'] = undefined;
+
+/**
+ * The email address of the user who approved the transaction.
+ * @member {String} email
+ */
+ApprovalUserDetail.prototype['email'] = undefined;
 
 /**
  * The public key of the user who approved the transaction.
@@ -154,6 +195,12 @@ ApprovalUserDetail.prototype['statement_uuid'] = undefined;
  * @member {module:model/ApprovalResult} result
  */
 ApprovalUserDetail.prototype['result'] = undefined;
+
+/**
+ * The integer value representing the result of the approval.
+ * @member {Number} approval_result_code
+ */
+ApprovalUserDetail.prototype['approval_result_code'] = undefined;
 
 /**
  * The timestamp when the approval was created.
@@ -180,9 +227,34 @@ ApprovalUserDetail.prototype['header_title'] = undefined;
 ApprovalUserDetail.prototype['is_for_sign'] = undefined;
 
 /**
- * @member {module:model/ApprovalShowInfo} show_info
+ * Additional information to show for the transaction approval.
+ * @member {String} show_info
  */
 ApprovalUserDetail.prototype['show_info'] = undefined;
+
+/**
+ * The language used for the transaction approval.
+ * @member {String} language
+ */
+ApprovalUserDetail.prototype['language'] = undefined;
+
+/**
+ * The version of the message format used for the transaction approval.
+ * @member {String} message_version
+ */
+ApprovalUserDetail.prototype['message_version'] = undefined;
+
+/**
+ * The message associated with the transaction approval.
+ * @member {String} message
+ */
+ApprovalUserDetail.prototype['message'] = undefined;
+
+/**
+ * Any additional message or information related to the transaction approval.
+ * @member {String} extra_message
+ */
+ApprovalUserDetail.prototype['extra_message'] = undefined;
 
 
 

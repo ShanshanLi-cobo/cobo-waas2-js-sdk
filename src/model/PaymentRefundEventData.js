@@ -10,6 +10,7 @@
  */
 
 import ApiClient from '../ApiClient';
+import CommissionFee from './CommissionFee';
 import PaymentTransaction from './PaymentTransaction';
 import Refund from './Refund';
 import RefundStatus from './RefundStatus';
@@ -26,7 +27,7 @@ class PaymentRefundEventData {
      * @alias module:model/PaymentRefundEventData
      * @implements module:model/WebhookEventDataType
      * @implements module:model/Refund
-     * @param data_type {module:model/PaymentRefundEventData.DataTypeEnum}  The data type of the event. - `Transaction`: The transaction event data. - `TSSRequest`: The TSS request event data. - `Addresses`: The addresses event data. - `WalletInfo`: The wallet information event data. - `MPCVault`: The MPC vault event data. - `Chains`: The enabled chain event data. - `Tokens`: The enabled token event data. - `TokenListing`: The token listing event data.        - `PaymentOrder`: The payment order event data. - `PaymentRefund`: The payment refund event data. - `PaymentSettlement`: The payment settlement event data. - `PaymentTransaction`: The payment transaction event data. - `PaymentAddressUpdate`: The payment address update event data. - `BalanceUpdateInfo`: The balance update event data. - `SuspendedToken`: The suspended token event data.
+     * @param data_type {module:model/PaymentRefundEventData.DataTypeEnum}  The data type of the event. - `Transaction`: The transaction event data. - `TSSRequest`: The TSS request event data. - `Addresses`: The addresses event data. - `WalletInfo`: The wallet information event data. - `MPCVault`: The MPC vault event data. - `Chains`: The enabled chain event data. - `Tokens`: The enabled token event data. - `TokenListing`: The token listing event data.        - `PaymentOrder`: The payment order event data. - `PaymentRefund`: The payment refund event data. - `PaymentSettlement`: The payment settlement event data. - `PaymentTransaction`: The payment transaction event data. - `PaymentAddressUpdate`: The payment address update event data. - `BalanceUpdateInfo`: The balance update event data. - `SuspendedToken`: The suspended token event data. - `ComplianceDisposition`: The compliance disposition event data. - `ComplianceKytScreenings`: The compliance KYT screenings event data.
      * @param refund_id {String} The refund order ID.
      * @param token_id {String} The ID of the cryptocurrency used for refund.
      * @param chain_id {String} The ID of the blockchain network on which the refund transaction occurs.
@@ -121,6 +122,9 @@ class PaymentRefundEventData {
             if (data.hasOwnProperty('merchant_fee_token_id')) {
                 obj['merchant_fee_token_id'] = ApiClient.convertToType(data['merchant_fee_token_id'], 'String');
             }
+            if (data.hasOwnProperty('commission_fee')) {
+                obj['commission_fee'] = CommissionFee.constructFromObject(data['commission_fee']);
+            }
         }
         return obj;
     }
@@ -195,6 +199,12 @@ class PaymentRefundEventData {
         if (data['merchant_fee_token_id'] && !(typeof data['merchant_fee_token_id'] === 'string' || data['merchant_fee_token_id'] instanceof String)) {
             throw new Error("Expected the field `merchant_fee_token_id` to be a primitive type in the JSON string but got " + data['merchant_fee_token_id']);
         }
+        // validate the optional field `commission_fee`
+        if (data['commission_fee']) { // data not null
+          if (!!CommissionFee.validateJSON) {
+            CommissionFee.validateJSON(data['commission_fee']);
+          }
+        }
 
         return true;
     }
@@ -205,7 +215,7 @@ class PaymentRefundEventData {
 PaymentRefundEventData.RequiredProperties = ["data_type", "refund_id", "token_id", "chain_id", "amount", "to_address", "status"];
 
 /**
- *  The data type of the event. - `Transaction`: The transaction event data. - `TSSRequest`: The TSS request event data. - `Addresses`: The addresses event data. - `WalletInfo`: The wallet information event data. - `MPCVault`: The MPC vault event data. - `Chains`: The enabled chain event data. - `Tokens`: The enabled token event data. - `TokenListing`: The token listing event data.        - `PaymentOrder`: The payment order event data. - `PaymentRefund`: The payment refund event data. - `PaymentSettlement`: The payment settlement event data. - `PaymentTransaction`: The payment transaction event data. - `PaymentAddressUpdate`: The payment address update event data. - `BalanceUpdateInfo`: The balance update event data. - `SuspendedToken`: The suspended token event data.
+ *  The data type of the event. - `Transaction`: The transaction event data. - `TSSRequest`: The TSS request event data. - `Addresses`: The addresses event data. - `WalletInfo`: The wallet information event data. - `MPCVault`: The MPC vault event data. - `Chains`: The enabled chain event data. - `Tokens`: The enabled token event data. - `TokenListing`: The token listing event data.        - `PaymentOrder`: The payment order event data. - `PaymentRefund`: The payment refund event data. - `PaymentSettlement`: The payment settlement event data. - `PaymentTransaction`: The payment transaction event data. - `PaymentAddressUpdate`: The payment address update event data. - `BalanceUpdateInfo`: The balance update event data. - `SuspendedToken`: The suspended token event data. - `ComplianceDisposition`: The compliance disposition event data. - `ComplianceKytScreenings`: The compliance KYT screenings event data.
  * @member {module:model/PaymentRefundEventData.DataTypeEnum} data_type
  */
 PaymentRefundEventData.prototype['data_type'] = undefined;
@@ -310,10 +320,15 @@ PaymentRefundEventData.prototype['merchant_fee_amount'] = undefined;
  */
 PaymentRefundEventData.prototype['merchant_fee_token_id'] = undefined;
 
+/**
+ * @member {module:model/CommissionFee} commission_fee
+ */
+PaymentRefundEventData.prototype['commission_fee'] = undefined;
+
 
 // Implement WebhookEventDataType interface:
 /**
- *  The data type of the event. - `Transaction`: The transaction event data. - `TSSRequest`: The TSS request event data. - `Addresses`: The addresses event data. - `WalletInfo`: The wallet information event data. - `MPCVault`: The MPC vault event data. - `Chains`: The enabled chain event data. - `Tokens`: The enabled token event data. - `TokenListing`: The token listing event data.        - `PaymentOrder`: The payment order event data. - `PaymentRefund`: The payment refund event data. - `PaymentSettlement`: The payment settlement event data. - `PaymentTransaction`: The payment transaction event data. - `PaymentAddressUpdate`: The payment address update event data. - `BalanceUpdateInfo`: The balance update event data. - `SuspendedToken`: The suspended token event data.
+ *  The data type of the event. - `Transaction`: The transaction event data. - `TSSRequest`: The TSS request event data. - `Addresses`: The addresses event data. - `WalletInfo`: The wallet information event data. - `MPCVault`: The MPC vault event data. - `Chains`: The enabled chain event data. - `Tokens`: The enabled token event data. - `TokenListing`: The token listing event data.        - `PaymentOrder`: The payment order event data. - `PaymentRefund`: The payment refund event data. - `PaymentSettlement`: The payment settlement event data. - `PaymentTransaction`: The payment transaction event data. - `PaymentAddressUpdate`: The payment address update event data. - `BalanceUpdateInfo`: The balance update event data. - `SuspendedToken`: The suspended token event data. - `ComplianceDisposition`: The compliance disposition event data. - `ComplianceKytScreenings`: The compliance KYT screenings event data.
  * @member {module:model/WebhookEventDataType.DataTypeEnum} data_type
  */
 WebhookEventDataType.prototype['data_type'] = undefined;
@@ -401,6 +416,10 @@ Refund.prototype['merchant_fee_amount'] = undefined;
  * @member {String} merchant_fee_token_id
  */
 Refund.prototype['merchant_fee_token_id'] = undefined;
+/**
+ * @member {module:model/CommissionFee} commission_fee
+ */
+Refund.prototype['commission_fee'] = undefined;
 
 
 
@@ -500,6 +519,18 @@ PaymentRefundEventData['DataTypeEnum'] = {
      * @const
      */
     "SuspendedToken": "SuspendedToken",
+
+    /**
+     * value: "ComplianceDisposition"
+     * @const
+     */
+    "ComplianceDisposition": "ComplianceDisposition",
+
+    /**
+     * value: "ComplianceKytScreenings"
+     * @const
+     */
+    "ComplianceKytScreenings": "ComplianceKytScreenings",
 
     /**
      * value: "unknown_default_open_api"

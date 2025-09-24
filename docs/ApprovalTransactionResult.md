@@ -3,12 +3,12 @@
 ## Enum
 
 
-* `REJECTED` (value: `-1`)
+* `REJECTED` (value: `"Rejected"`)
 
-* `PENDING` (value: `0`)
+* `PENDING` (value: `"Pending"`)
 
-* `APPROVED` (value: `1`)
+* `APPROVED` (value: `"Approved"`)
 
-* `unknown_default_open_api` (value: `11184809`)
+* `unknown_default_open_api` (value: `"unknown_default_open_api"`)
 
 

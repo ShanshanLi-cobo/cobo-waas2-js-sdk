@@ -58,6 +58,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property biz_org_id (base name: "biz_org_id")', function() {
+      // uncomment below and update the code to test the property biz_org_id
+      //var instance = new CoboWaas2.OrgInfo();
+      //expect(instance).to.be();
+    });
+
     it('should have the property name (base name: "name")', function() {
       // uncomment below and update the code to test the property name
       //var instance = new CoboWaas2.OrgInfo();

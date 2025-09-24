@@ -36,10 +36,50 @@ import {ApiClient, Env} from "../../src/index.js";
   });
 
   describe('AddressBooksApi', function() {
+    describe('createAddressBooks', function() {
+      it('should call createAddressBooks successfully', function() {
+        //uncomment below and update the code to test createAddressBooks
+        //instance.createAddressBooks().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('deleteAddressBookById', function() {
+      it('should call deleteAddressBookById successfully', function() {
+        //uncomment below and update the code to test deleteAddressBookById
+        //instance.deleteAddressBookById().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('getAddressBookById', function() {
+      it('should call getAddressBookById successfully', function() {
+        //uncomment below and update the code to test getAddressBookById
+        //instance.getAddressBookById().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('listAddressBooks', function() {
       it('should call listAddressBooks successfully', function() {
         //uncomment below and update the code to test listAddressBooks
         //instance.listAddressBooks().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('updateAddressBookById', function() {
+      it('should call updateAddressBookById successfully', function() {
+        //uncomment below and update the code to test updateAddressBookById
+        //instance.updateAddressBookById().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);
