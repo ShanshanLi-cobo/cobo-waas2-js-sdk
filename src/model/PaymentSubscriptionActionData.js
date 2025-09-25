@@ -15,7 +15,7 @@ import PaymentBaseSubscriptionActionData from './PaymentBaseSubscriptionActionDa
 import PaymentCreateSubscriptionActionData from './PaymentCreateSubscriptionActionData';
 import PaymentDeveloperSubscriptionActionData from './PaymentDeveloperSubscriptionActionData';
 import PaymentExtendPeriodSubscriptionActionData from './PaymentExtendPeriodSubscriptionActionData';
-import PaymentSubscriptionAction from './PaymentSubscriptionAction';
+import PaymentSubscriptionActionType from './PaymentSubscriptionActionType';
 import PaymentUpdateAmountSubscriptionActionData from './PaymentUpdateAmountSubscriptionActionData';
 
 /**
@@ -295,7 +295,7 @@ class PaymentSubscriptionActionData {
 }
 
 /**
- * @member {module:model/PaymentSubscriptionAction} action_type
+ * @member {module:model/PaymentSubscriptionActionType} action_type
  */
 PaymentSubscriptionActionData.prototype['action_type'] = undefined;
 

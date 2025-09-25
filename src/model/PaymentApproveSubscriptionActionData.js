@@ -10,7 +10,7 @@
  */
 
 import ApiClient from '../ApiClient';
-import PaymentSubscriptionAction from './PaymentSubscriptionAction';
+import PaymentSubscriptionActionType from './PaymentSubscriptionActionType';
 
 /**
  * The PaymentApproveSubscriptionActionData model module.
@@ -20,7 +20,7 @@ class PaymentApproveSubscriptionActionData {
     /**
      * Constructs a new <code>PaymentApproveSubscriptionActionData</code>.
      * @alias module:model/PaymentApproveSubscriptionActionData
-     * @param action_type {module:model/PaymentSubscriptionAction} 
+     * @param action_type {module:model/PaymentSubscriptionActionType} 
      * @param subscription_id {String} The subscription id in cobo.
      */
     constructor(action_type, subscription_id) { 
@@ -50,7 +50,7 @@ class PaymentApproveSubscriptionActionData {
             obj = obj || new PaymentApproveSubscriptionActionData();
 
             if (data.hasOwnProperty('action_type')) {
-                obj['action_type'] = PaymentSubscriptionAction.constructFromObject(data['action_type']);
+                obj['action_type'] = PaymentSubscriptionActionType.constructFromObject(data['action_type']);
             }
             if (data.hasOwnProperty('subscription_id')) {
                 obj['subscription_id'] = ApiClient.convertToType(data['subscription_id'], 'String');
@@ -74,12 +74,6 @@ class PaymentApproveSubscriptionActionData {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
         }
-        // validate the optional field `action_type`
-        if (data['action_type']) { // data not null
-          if (!!PaymentSubscriptionAction.validateJSON) {
-            PaymentSubscriptionAction.validateJSON(data['action_type']);
-          }
-        }
         // ensure the json data is a string
         if (data['subscription_id'] && !(typeof data['subscription_id'] === 'string' || data['subscription_id'] instanceof String)) {
             throw new Error("Expected the field `subscription_id` to be a primitive type in the JSON string but got " + data['subscription_id']);
@@ -98,7 +92,7 @@ class PaymentApproveSubscriptionActionData {
 PaymentApproveSubscriptionActionData.RequiredProperties = ["action_type", "subscription_id"];
 
 /**
- * @member {module:model/PaymentSubscriptionAction} action_type
+ * @member {module:model/PaymentSubscriptionActionType} action_type
  */
 PaymentApproveSubscriptionActionData.prototype['action_type'] = undefined;
 
