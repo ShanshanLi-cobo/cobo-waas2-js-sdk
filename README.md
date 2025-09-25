@@ -133,7 +133,7 @@ Class | Method | HTTP request | Description
 *CoboWaas2.PaymentApi* | [**getSettlementById**](docs/PaymentApi.md#getSettlementById) | **GET** /payments/settlement_requests/{settlement_request_id} | Get settlement request information
 *CoboWaas2.PaymentApi* | [**getSettlementInfoByIds**](docs/PaymentApi.md#getSettlementInfoByIds) | **GET** /payments/settlement_info | Get withdrawable balances
 *CoboWaas2.PaymentApi* | [**getSubscriptionById**](docs/PaymentApi.md#getSubscriptionById) | **GET** /payments/subscriptions/{subscription_id} | Get subscription by id
-*CoboWaas2.PaymentApi* | [**getSubscriptionPlanById**](docs/PaymentApi.md#getSubscriptionPlanById) | **GET** /payments/subscription_plans/{subscription_plan_id} | Get subscription plan by id
+*CoboWaas2.PaymentApi* | [**getSubscriptionPlanById**](docs/PaymentApi.md#getSubscriptionPlanById) | **GET** /payments/subscription_plans/{plan_id} | Get subscription plan by id
 *CoboWaas2.PaymentApi* | [**getTopUpAddress**](docs/PaymentApi.md#getTopUpAddress) | **GET** /payments/topup/address | Get top-up address
 *CoboWaas2.PaymentApi* | [**listBankAccounts**](docs/PaymentApi.md#listBankAccounts) | **GET** /payments/bank_accounts | List all bank accounts
 *CoboWaas2.PaymentApi* | [**listCryptoAddresses**](docs/PaymentApi.md#listCryptoAddresses) | **GET** /payments/crypto_addresses | List crypto addresses
@@ -709,6 +709,7 @@ Class | Method | HTTP request | Description
  - [CoboWaas2.SmartContractWalletOperationType](docs/SmartContractWalletOperationType.md)
  - [CoboWaas2.SmartContractWalletType](docs/SmartContractWalletType.md)
  - [CoboWaas2.SolContractCallAccount](docs/SolContractCallAccount.md)
+ - [CoboWaas2.SolContractCallAddressLookupTableAccount](docs/SolContractCallAddressLookupTableAccount.md)
  - [CoboWaas2.SolContractCallDestination](docs/SolContractCallDestination.md)
  - [CoboWaas2.SolContractCallInstruction](docs/SolContractCallInstruction.md)
  - [CoboWaas2.SourceGroup](docs/SourceGroup.md)
@@ -936,6 +937,7 @@ Class | Method | HTTP request | Description
  - [CoboWaas2.TransactionSigner](docs/TransactionSigner.md)
  - [CoboWaas2.TransactionSmartContractSafeWalletSource](docs/TransactionSmartContractSafeWalletSource.md)
  - [CoboWaas2.TransactionSolContractAccount](docs/TransactionSolContractAccount.md)
+ - [CoboWaas2.TransactionSolContractAddressLookupTableAccount](docs/TransactionSolContractAddressLookupTableAccount.md)
  - [CoboWaas2.TransactionSolContractDestination](docs/TransactionSolContractDestination.md)
  - [CoboWaas2.TransactionSolContractInstruction](docs/TransactionSolContractInstruction.md)
  - [CoboWaas2.TransactionSource](docs/TransactionSource.md)

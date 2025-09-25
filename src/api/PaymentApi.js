@@ -1126,18 +1126,18 @@ export default class PaymentApi {
     /**
      * Get subscription plan by id
      * This operation retrieves the information of subscription plan detail. You can filter the result by subscription_id. 
-     * @param {String} subscription_id A unique identifier subscription.
+     * @param {String} plan_id A unique identifier subscription.
      * @param {String} token_id The token ID, which identifies the cryptocurrency. Supported values:    - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/PaymentSubscriptionPlanDetail} and HTTP response
      */
-    getSubscriptionPlanByIdWithHttpInfo(subscription_id, token_id) {
+    getSubscriptionPlanByIdWithHttpInfo(plan_id, token_id) {
       let postBody = null;
       if (postBody && postBody.toJSON) {
           postBody = postBody.toJSON()
       }
-      // verify the required parameter 'subscription_id' is set
-      if (subscription_id === undefined || subscription_id === null) {
-        throw new Error("Missing the required parameter 'subscription_id' when calling getSubscriptionPlanById");
+      // verify the required parameter 'plan_id' is set
+      if (plan_id === undefined || plan_id === null) {
+        throw new Error("Missing the required parameter 'plan_id' when calling getSubscriptionPlanById");
       }
       // verify the required parameter 'token_id' is set
       if (token_id === undefined || token_id === null) {
@@ -1145,7 +1145,7 @@ export default class PaymentApi {
       }
 
       let pathParams = {
-        'subscription_id': subscription_id
+        'plan_id': plan_id
       };
       let queryParams = {
         'token_id': token_id
@@ -1160,7 +1160,7 @@ export default class PaymentApi {
       let accepts = ['application/json'];
       let returnType = PaymentSubscriptionPlanDetail;
       return this.apiClient.callApi(
-        '/payments/subscription_plans/{subscription_plan_id}', 'GET',
+        '/payments/subscription_plans/{plan_id}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null
       );
@@ -1169,12 +1169,12 @@ export default class PaymentApi {
     /**
      * Get subscription plan by id
      * This operation retrieves the information of subscription plan detail. You can filter the result by subscription_id. 
-     * @param {String} subscription_id A unique identifier subscription.
+     * @param {String} plan_id A unique identifier subscription.
      * @param {String} token_id The token ID, which identifies the cryptocurrency. Supported values:    - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/PaymentSubscriptionPlanDetail}
      */
-    getSubscriptionPlanById(subscription_id, token_id) {
-      return this.getSubscriptionPlanByIdWithHttpInfo(subscription_id, token_id)
+    getSubscriptionPlanById(plan_id, token_id) {
+      return this.getSubscriptionPlanByIdWithHttpInfo(plan_id, token_id)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -1950,7 +1950,7 @@ export default class PaymentApi {
      * @param {String} [after] This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
      * @param {String} [plan_id] A unique identifier plan.
      * @param {String} [merchant_id] The merchant ID.
-     * @param {String} [subscription_action_id] A unique identifier subscription action.
+     * @param {String} [action_id] A unique identifier subscription action.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListSubscriptions200Response} and HTTP response
      */
     listSubscriptionsWithHttpInfo(opts) {
@@ -1968,7 +1968,7 @@ export default class PaymentApi {
         'after': opts['after'],
         'plan_id': opts['plan_id'],
         'merchant_id': opts['merchant_id'],
-        'subscription_action_id': opts['subscription_action_id']
+        'action_id': opts['action_id']
       };
       let headerParams = {
       };
@@ -1995,7 +1995,7 @@ export default class PaymentApi {
      * @param {String} opts.after This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
      * @param {String} opts.plan_id A unique identifier plan.
      * @param {String} opts.merchant_id The merchant ID.
-     * @param {String} opts.subscription_action_id A unique identifier subscription action.
+     * @param {String} opts.action_id A unique identifier subscription action.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListSubscriptions200Response}
      */
     listSubscriptions(opts) {

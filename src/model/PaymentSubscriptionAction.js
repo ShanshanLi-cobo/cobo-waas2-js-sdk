@@ -22,7 +22,7 @@ class PaymentSubscriptionAction {
      * Constructs a new <code>PaymentSubscriptionAction</code>.
      * @alias module:model/PaymentSubscriptionAction
      * @param request_id {String} The action request id.
-     * @param subscription_action_id {String} The action id.
+     * @param action_id {String} The action id.
      * @param plan_id {String} The plan id in cobo.
      * @param subscription_id {String} The subscription id in cobo.
      * @param merchant_id {String} The merchant id in cobo.
@@ -30,9 +30,9 @@ class PaymentSubscriptionAction {
      * @param data {module:model/PaymentSubscriptionActionData} 
      * @param status {module:model/PaymentSubscriptionActionStatus} 
      */
-    constructor(request_id, subscription_action_id, plan_id, subscription_id, merchant_id, merchant_address, data, status) { 
+    constructor(request_id, action_id, plan_id, subscription_id, merchant_id, merchant_address, data, status) { 
         
-        PaymentSubscriptionAction.initialize(this, request_id, subscription_action_id, plan_id, subscription_id, merchant_id, merchant_address, data, status);
+        PaymentSubscriptionAction.initialize(this, request_id, action_id, plan_id, subscription_id, merchant_id, merchant_address, data, status);
     }
 
     /**
@@ -40,9 +40,9 @@ class PaymentSubscriptionAction {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, request_id, subscription_action_id, plan_id, subscription_id, merchant_id, merchant_address, data, status) { 
+    static initialize(obj, request_id, action_id, plan_id, subscription_id, merchant_id, merchant_address, data, status) { 
         obj['request_id'] = request_id;
-        obj['subscription_action_id'] = subscription_action_id;
+        obj['action_id'] = action_id;
         obj['plan_id'] = plan_id;
         obj['subscription_id'] = subscription_id;
         obj['merchant_id'] = merchant_id;
@@ -65,8 +65,8 @@ class PaymentSubscriptionAction {
             if (data.hasOwnProperty('request_id')) {
                 obj['request_id'] = ApiClient.convertToType(data['request_id'], 'String');
             }
-            if (data.hasOwnProperty('subscription_action_id')) {
-                obj['subscription_action_id'] = ApiClient.convertToType(data['subscription_action_id'], 'String');
+            if (data.hasOwnProperty('action_id')) {
+                obj['action_id'] = ApiClient.convertToType(data['action_id'], 'String');
             }
             if (data.hasOwnProperty('plan_id')) {
                 obj['plan_id'] = ApiClient.convertToType(data['plan_id'], 'String');
@@ -113,8 +113,8 @@ class PaymentSubscriptionAction {
             throw new Error("Expected the field `request_id` to be a primitive type in the JSON string but got " + data['request_id']);
         }
         // ensure the json data is a string
-        if (data['subscription_action_id'] && !(typeof data['subscription_action_id'] === 'string' || data['subscription_action_id'] instanceof String)) {
-            throw new Error("Expected the field `subscription_action_id` to be a primitive type in the JSON string but got " + data['subscription_action_id']);
+        if (data['action_id'] && !(typeof data['action_id'] === 'string' || data['action_id'] instanceof String)) {
+            throw new Error("Expected the field `action_id` to be a primitive type in the JSON string but got " + data['action_id']);
         }
         // ensure the json data is a string
         if (data['plan_id'] && !(typeof data['plan_id'] === 'string' || data['plan_id'] instanceof String)) {
@@ -145,7 +145,7 @@ class PaymentSubscriptionAction {
 
 }
 
-PaymentSubscriptionAction.RequiredProperties = ["request_id", "subscription_action_id", "plan_id", "subscription_id", "merchant_id", "merchant_address", "data", "status"];
+PaymentSubscriptionAction.RequiredProperties = ["request_id", "action_id", "plan_id", "subscription_id", "merchant_id", "merchant_address", "data", "status"];
 
 /**
  * The action request id.
@@ -155,9 +155,9 @@ PaymentSubscriptionAction.prototype['request_id'] = undefined;
 
 /**
  * The action id.
- * @member {String} subscription_action_id
+ * @member {String} action_id
  */
-PaymentSubscriptionAction.prototype['subscription_action_id'] = undefined;
+PaymentSubscriptionAction.prototype['action_id'] = undefined;
 
 /**
  * The plan id in cobo.

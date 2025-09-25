@@ -11,7 +11,7 @@
 
 import ApiClient from '../ApiClient';
 import PaymentBaseSubscriptionActionData from './PaymentBaseSubscriptionActionData';
-import PaymentSubscriptionAction from './PaymentSubscriptionAction';
+import PaymentSubscriptionActionType from './PaymentSubscriptionActionType';
 
 /**
  * The PaymentUpdateAmountSubscriptionActionData model module.
@@ -22,7 +22,7 @@ class PaymentUpdateAmountSubscriptionActionData {
      * Constructs a new <code>PaymentUpdateAmountSubscriptionActionData</code>.
      * @alias module:model/PaymentUpdateAmountSubscriptionActionData
      * @implements module:model/PaymentBaseSubscriptionActionData
-     * @param action_type {module:model/PaymentSubscriptionAction} 
+     * @param action_type {module:model/PaymentSubscriptionActionType} 
      * @param subscription_id {String} The subscription id in cobo.
      * @param signature {String} The signature for transaction.
      */
@@ -37,6 +37,7 @@ class PaymentUpdateAmountSubscriptionActionData {
      * Only for internal use.
      */
     static initialize(obj, action_type, subscription_id, signature) { 
+        obj['new_plan_id'] = new_plan_id;
         obj['action_type'] = action_type;
         obj['subscription_id'] = subscription_id;
         obj['signature'] = signature;
@@ -58,7 +59,7 @@ class PaymentUpdateAmountSubscriptionActionData {
                 obj['new_plan_id'] = ApiClient.convertToType(data['new_plan_id'], 'String');
             }
             if (data.hasOwnProperty('action_type')) {
-                obj['action_type'] = PaymentSubscriptionAction.constructFromObject(data['action_type']);
+                obj['action_type'] = PaymentSubscriptionActionType.constructFromObject(data['action_type']);
             }
             if (data.hasOwnProperty('subscription_id')) {
                 obj['subscription_id'] = ApiClient.convertToType(data['subscription_id'], 'String');
@@ -86,12 +87,6 @@ class PaymentUpdateAmountSubscriptionActionData {
         if (data['new_plan_id'] && !(typeof data['new_plan_id'] === 'string' || data['new_plan_id'] instanceof String)) {
             throw new Error("Expected the field `new_plan_id` to be a primitive type in the JSON string but got " + data['new_plan_id']);
         }
-        // validate the optional field `action_type`
-        if (data['action_type']) { // data not null
-          if (!!PaymentSubscriptionAction.validateJSON) {
-            PaymentSubscriptionAction.validateJSON(data['action_type']);
-          }
-        }
         // ensure the json data is a string
         if (data['subscription_id'] && !(typeof data['subscription_id'] === 'string' || data['subscription_id'] instanceof String)) {
             throw new Error("Expected the field `subscription_id` to be a primitive type in the JSON string but got " + data['subscription_id']);
@@ -107,7 +102,7 @@ class PaymentUpdateAmountSubscriptionActionData {
 
 }
 
-PaymentUpdateAmountSubscriptionActionData.RequiredProperties = ["action_type", "subscription_id", "signature"];
+PaymentUpdateAmountSubscriptionActionData.RequiredProperties = ["new_plan_id", "action_type", "subscription_id", "signature"];
 
 /**
  * The new plan id in cobo.
@@ -116,7 +111,7 @@ PaymentUpdateAmountSubscriptionActionData.RequiredProperties = ["action_type", "
 PaymentUpdateAmountSubscriptionActionData.prototype['new_plan_id'] = undefined;
 
 /**
- * @member {module:model/PaymentSubscriptionAction} action_type
+ * @member {module:model/PaymentSubscriptionActionType} action_type
  */
 PaymentUpdateAmountSubscriptionActionData.prototype['action_type'] = undefined;
 
@@ -135,7 +130,7 @@ PaymentUpdateAmountSubscriptionActionData.prototype['signature'] = undefined;
 
 // Implement PaymentBaseSubscriptionActionData interface:
 /**
- * @member {module:model/PaymentSubscriptionAction} action_type
+ * @member {module:model/PaymentSubscriptionActionType} action_type
  */
 PaymentBaseSubscriptionActionData.prototype['action_type'] = undefined;
 /**

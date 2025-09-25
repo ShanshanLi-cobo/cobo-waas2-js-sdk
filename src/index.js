@@ -433,6 +433,7 @@ import SmartContractWalletInfo from './model/SmartContractWalletInfo';
 import SmartContractWalletOperationType from './model/SmartContractWalletOperationType';
 import SmartContractWalletType from './model/SmartContractWalletType';
 import SolContractCallAccount from './model/SolContractCallAccount';
+import SolContractCallAddressLookupTableAccount from './model/SolContractCallAddressLookupTableAccount';
 import SolContractCallDestination from './model/SolContractCallDestination';
 import SolContractCallInstruction from './model/SolContractCallInstruction';
 import SourceGroup from './model/SourceGroup';
@@ -660,6 +661,7 @@ import TransactionSignatureResult from './model/TransactionSignatureResult';
 import TransactionSigner from './model/TransactionSigner';
 import TransactionSmartContractSafeWalletSource from './model/TransactionSmartContractSafeWalletSource';
 import TransactionSolContractAccount from './model/TransactionSolContractAccount';
+import TransactionSolContractAddressLookupTableAccount from './model/TransactionSolContractAddressLookupTableAccount';
 import TransactionSolContractDestination from './model/TransactionSolContractDestination';
 import TransactionSolContractInstruction from './model/TransactionSolContractInstruction';
 import TransactionSource from './model/TransactionSource';
@@ -3322,6 +3324,12 @@ export {
     SolContractCallAccount,
 
     /**
+     * The SolContractCallAddressLookupTableAccount model constructor.
+     * @property {module:model/SolContractCallAddressLookupTableAccount}
+     */
+    SolContractCallAddressLookupTableAccount,
+
+    /**
      * The SolContractCallDestination model constructor.
      * @property {module:model/SolContractCallDestination}
      */
@@ -4682,6 +4690,12 @@ export {
      * @property {module:model/TransactionSolContractAccount}
      */
     TransactionSolContractAccount,
+
+    /**
+     * The TransactionSolContractAddressLookupTableAccount model constructor.
+     * @property {module:model/TransactionSolContractAddressLookupTableAccount}
+     */
+    TransactionSolContractAddressLookupTableAccount,
 
     /**
      * The TransactionSolContractDestination model constructor.

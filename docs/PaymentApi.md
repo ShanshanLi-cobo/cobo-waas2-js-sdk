@@ -24,7 +24,7 @@ Method | HTTP request | Description
 [**getSettlementById**](PaymentApi.md#getSettlementById) | **GET** /payments/settlement_requests/{settlement_request_id} | Get settlement request information
 [**getSettlementInfoByIds**](PaymentApi.md#getSettlementInfoByIds) | **GET** /payments/settlement_info | Get withdrawable balances
 [**getSubscriptionById**](PaymentApi.md#getSubscriptionById) | **GET** /payments/subscriptions/{subscription_id} | Get subscription by id
-[**getSubscriptionPlanById**](PaymentApi.md#getSubscriptionPlanById) | **GET** /payments/subscription_plans/{subscription_plan_id} | Get subscription plan by id
+[**getSubscriptionPlanById**](PaymentApi.md#getSubscriptionPlanById) | **GET** /payments/subscription_plans/{plan_id} | Get subscription plan by id
 [**getTopUpAddress**](PaymentApi.md#getTopUpAddress) | **GET** /payments/topup/address | Get top-up address
 [**listBankAccounts**](PaymentApi.md#listBankAccounts) | **GET** /payments/bank_accounts | List all bank accounts
 [**listCryptoAddresses**](PaymentApi.md#listCryptoAddresses) | **GET** /payments/crypto_addresses | List crypto addresses
@@ -1096,7 +1096,7 @@ Name | Type | Description  | Notes
 
 ## getSubscriptionPlanById
 
-> PaymentSubscriptionPlanDetail getSubscriptionPlanById(subscription_id, token_id)
+> PaymentSubscriptionPlanDetail getSubscriptionPlanById(plan_id, token_id)
 
 Get subscription plan by id
 
@@ -1114,9 +1114,9 @@ apiClient.setEnv(CoboWaas2.Env.DEV);
 apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
 // Call the API
 const apiInstance = new CoboWaas2.PaymentApi();
-const subscription_id = "123e457-e89b-12d3-a456-426614174004";
+const plan_id = "123e457-e89b-12d3-a456-426614174004";
 const token_id = "ETH_USDT";
-apiInstance.getSubscriptionPlanById(subscription_id, token_id).then((data) => {
+apiInstance.getSubscriptionPlanById(plan_id, token_id).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -1129,7 +1129,7 @@ apiInstance.getSubscriptionPlanById(subscription_id, token_id).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subscription_id** | **String**| A unique identifier subscription. | 
+ **plan_id** | **String**| A unique identifier subscription. | 
  **token_id** | **String**| The token ID, which identifies the cryptocurrency. Supported values:    - USDC: &#x60;ETH_USDC&#x60;, &#x60;ARBITRUM_USDC&#x60;, &#x60;SOL_USDC&#x60;, &#x60;BASE_USDC&#x60;, &#x60;MATIC_USDC&#x60;, &#x60;BSC_USDC&#x60;   - USDT: &#x60;TRON_USDT&#x60;, &#x60;ETH_USDT&#x60;, &#x60;ARBITRUM_USDT&#x60;, &#x60;SOL_USDT&#x60;, &#x60;BASE_USDT&#x60;, &#x60;MATIC_USDT&#x60;, &#x60;BSC_USDT&#x60;  | 
 
 ### Return type
@@ -1904,7 +1904,7 @@ const opts = {
   'after': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk",
   'plan_id': "123e457-e89b-12d3-a456-426614174004",
   'merchant_id': "M1001",
-  'subscription_action_id': "123e457-e89b-12d3-a456-426614174004"
+  'action_id': "123e457-e89b-12d3-a456-426614174004"
 };
 apiInstance.listSubscriptions(opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -1924,7 +1924,7 @@ Name | Type | Description  | Notes
  **after** | **String**| This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set &#x60;after&#x60; to the ID of Object A (&#x60;RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk&#x60;), the response will include Object B and Object C.    **Notes**:   - If you set both &#x60;after&#x60; and &#x60;before&#x60;, an error will occur. - If you leave both &#x60;before&#x60; and &#x60;after&#x60; empty, the first page of data is returned.  | [optional] 
  **plan_id** | **String**| A unique identifier plan. | [optional] 
  **merchant_id** | **String**| The merchant ID. | [optional] 
- **subscription_action_id** | **String**| A unique identifier subscription action. | [optional] 
+ **action_id** | **String**| A unique identifier subscription action. | [optional] 
 
 ### Return type
 

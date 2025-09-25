@@ -11,7 +11,7 @@
 
 import ApiClient from '../ApiClient';
 import PaymentBaseSubscriptionActionData from './PaymentBaseSubscriptionActionData';
-import PaymentSubscriptionAction from './PaymentSubscriptionAction';
+import PaymentSubscriptionActionType from './PaymentSubscriptionActionType';
 
 /**
  * The PaymentExtendPeriodSubscriptionActionData model module.
@@ -22,7 +22,7 @@ class PaymentExtendPeriodSubscriptionActionData {
      * Constructs a new <code>PaymentExtendPeriodSubscriptionActionData</code>.
      * @alias module:model/PaymentExtendPeriodSubscriptionActionData
      * @implements module:model/PaymentBaseSubscriptionActionData
-     * @param action_type {module:model/PaymentSubscriptionAction} 
+     * @param action_type {module:model/PaymentSubscriptionActionType} 
      * @param subscription_id {String} The subscription id in cobo.
      * @param signature {String} The signature for transaction.
      */
@@ -58,7 +58,7 @@ class PaymentExtendPeriodSubscriptionActionData {
                 obj['periods'] = ApiClient.convertToType(data['periods'], 'Number');
             }
             if (data.hasOwnProperty('action_type')) {
-                obj['action_type'] = PaymentSubscriptionAction.constructFromObject(data['action_type']);
+                obj['action_type'] = PaymentSubscriptionActionType.constructFromObject(data['action_type']);
             }
             if (data.hasOwnProperty('subscription_id')) {
                 obj['subscription_id'] = ApiClient.convertToType(data['subscription_id'], 'String');
@@ -81,12 +81,6 @@ class PaymentExtendPeriodSubscriptionActionData {
             if (!data.hasOwnProperty(property)) {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
-        }
-        // validate the optional field `action_type`
-        if (data['action_type']) { // data not null
-          if (!!PaymentSubscriptionAction.validateJSON) {
-            PaymentSubscriptionAction.validateJSON(data['action_type']);
-          }
         }
         // ensure the json data is a string
         if (data['subscription_id'] && !(typeof data['subscription_id'] === 'string' || data['subscription_id'] instanceof String)) {
@@ -112,7 +106,7 @@ PaymentExtendPeriodSubscriptionActionData.RequiredProperties = ["action_type", "
 PaymentExtendPeriodSubscriptionActionData.prototype['periods'] = undefined;
 
 /**
- * @member {module:model/PaymentSubscriptionAction} action_type
+ * @member {module:model/PaymentSubscriptionActionType} action_type
  */
 PaymentExtendPeriodSubscriptionActionData.prototype['action_type'] = undefined;
 
@@ -131,7 +125,7 @@ PaymentExtendPeriodSubscriptionActionData.prototype['signature'] = undefined;
 
 // Implement PaymentBaseSubscriptionActionData interface:
 /**
- * @member {module:model/PaymentSubscriptionAction} action_type
+ * @member {module:model/PaymentSubscriptionActionType} action_type
  */
 PaymentBaseSubscriptionActionData.prototype['action_type'] = undefined;
 /**

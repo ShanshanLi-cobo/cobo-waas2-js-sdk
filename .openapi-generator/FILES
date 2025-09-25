@@ -436,6 +436,7 @@ docs/SmartContractWalletInfo.md
 docs/SmartContractWalletOperationType.md
 docs/SmartContractWalletType.md
 docs/SolContractCallAccount.md
+docs/SolContractCallAddressLookupTableAccount.md
 docs/SolContractCallDestination.md
 docs/SolContractCallInstruction.md
 docs/SourceGroup.md
@@ -666,6 +667,7 @@ docs/TransactionSignatureResult.md
 docs/TransactionSigner.md
 docs/TransactionSmartContractSafeWalletSource.md
 docs/TransactionSolContractAccount.md
+docs/TransactionSolContractAddressLookupTableAccount.md
 docs/TransactionSolContractDestination.md
 docs/TransactionSolContractInstruction.md
 docs/TransactionSource.md
@@ -1200,6 +1202,7 @@ src/model/SmartContractWalletInfo.js
 src/model/SmartContractWalletOperationType.js
 src/model/SmartContractWalletType.js
 src/model/SolContractCallAccount.js
+src/model/SolContractCallAddressLookupTableAccount.js
 src/model/SolContractCallDestination.js
 src/model/SolContractCallInstruction.js
 src/model/SourceGroup.js
@@ -1427,6 +1430,7 @@ src/model/TransactionSignatureResult.js
 src/model/TransactionSigner.js
 src/model/TransactionSmartContractSafeWalletSource.js
 src/model/TransactionSolContractAccount.js
+src/model/TransactionSolContractAddressLookupTableAccount.js
 src/model/TransactionSolContractDestination.js
 src/model/TransactionSolContractInstruction.js
 src/model/TransactionSource.js
@@ -1944,6 +1948,7 @@ test/model/SmartContractWalletInfo.spec.js
 test/model/SmartContractWalletOperationType.spec.js
 test/model/SmartContractWalletType.spec.js
 test/model/SolContractCallAccount.spec.js
+test/model/SolContractCallAddressLookupTableAccount.spec.js
 test/model/SolContractCallDestination.spec.js
 test/model/SolContractCallInstruction.spec.js
 test/model/SourceGroup.spec.js
@@ -2171,6 +2176,7 @@ test/model/TransactionSignatureResult.spec.js
 test/model/TransactionSigner.spec.js
 test/model/TransactionSmartContractSafeWalletSource.spec.js
 test/model/TransactionSolContractAccount.spec.js
+test/model/TransactionSolContractAddressLookupTableAccount.spec.js
 test/model/TransactionSolContractDestination.spec.js
 test/model/TransactionSolContractInstruction.spec.js
 test/model/TransactionSource.spec.js

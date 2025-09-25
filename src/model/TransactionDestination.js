@@ -26,6 +26,7 @@ import TransactionEvmContractDestination from './TransactionEvmContractDestinati
 import TransactionMessageSignEIP191Destination from './TransactionMessageSignEIP191Destination';
 import TransactionMessageSignEIP712Destination from './TransactionMessageSignEIP712Destination';
 import TransactionRawMessageSignDestination from './TransactionRawMessageSignDestination';
+import TransactionSolContractAddressLookupTableAccount from './TransactionSolContractAddressLookupTableAccount';
 import TransactionSolContractDestination from './TransactionSolContractDestination';
 import TransactionSolContractInstruction from './TransactionSolContractInstruction';
 import TransactionStellarContractParam from './TransactionStellarContractParam';
@@ -616,6 +617,11 @@ TransactionDestination.prototype['calldata_info'] = undefined;
  * @member {Array.<module:model/TransactionSolContractInstruction>} instructions
  */
 TransactionDestination.prototype['instructions'] = undefined;
+
+/**
+ * @member {Array.<module:model/TransactionSolContractAddressLookupTableAccount>} address_lookup_table_accounts
+ */
+TransactionDestination.prototype['address_lookup_table_accounts'] = undefined;
 
 /**
  * @member {Array.<module:model/TransactionCosmosMessage>} cosmos_messages

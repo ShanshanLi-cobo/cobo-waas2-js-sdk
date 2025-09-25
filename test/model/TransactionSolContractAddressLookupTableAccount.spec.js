@@ -26,7 +26,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new CoboWaas2.SolContractCallDestination();
+    instance = new CoboWaas2.TransactionSolContractAddressLookupTableAccount();
   });
 
   var getProperty = function(object, getter, property) {
@@ -45,28 +45,22 @@
       object[property] = value;
   }
 
-  describe('SolContractCallDestination', function() {
-    it('should create an instance of SolContractCallDestination', function() {
-      // uncomment below and update the code to test SolContractCallDestination
-      //var instance = new CoboWaas2.SolContractCallDestination();
-      //expect(instance).to.be.a(CoboWaas2.SolContractCallDestination);
+  describe('TransactionSolContractAddressLookupTableAccount', function() {
+    it('should create an instance of TransactionSolContractAddressLookupTableAccount', function() {
+      // uncomment below and update the code to test TransactionSolContractAddressLookupTableAccount
+      //var instance = new CoboWaas2.TransactionSolContractAddressLookupTableAccount();
+      //expect(instance).to.be.a(CoboWaas2.TransactionSolContractAddressLookupTableAccount);
     });
 
-    it('should have the property destination_type (base name: "destination_type")', function() {
-      // uncomment below and update the code to test the property destination_type
-      //var instance = new CoboWaas2.SolContractCallDestination();
+    it('should have the property alt_account_key (base name: "alt_account_key")', function() {
+      // uncomment below and update the code to test the property alt_account_key
+      //var instance = new CoboWaas2.TransactionSolContractAddressLookupTableAccount();
       //expect(instance).to.be();
     });
 
-    it('should have the property instructions (base name: "instructions")', function() {
-      // uncomment below and update the code to test the property instructions
-      //var instance = new CoboWaas2.SolContractCallDestination();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property address_lookup_table_accounts (base name: "address_lookup_table_accounts")', function() {
-      // uncomment below and update the code to test the property address_lookup_table_accounts
-      //var instance = new CoboWaas2.SolContractCallDestination();
+    it('should have the property addresses (base name: "addresses")', function() {
+      // uncomment below and update the code to test the property addresses
+      //var instance = new CoboWaas2.TransactionSolContractAddressLookupTableAccount();
       //expect(instance).to.be();
     });
 

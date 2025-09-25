@@ -12,6 +12,7 @@
 import ApiClient from '../ApiClient';
 import ContractCallDestinationType from './ContractCallDestinationType';
 import EvmContractCallDestination from './EvmContractCallDestination';
+import SolContractCallAddressLookupTableAccount from './SolContractCallAddressLookupTableAccount';
 import SolContractCallDestination from './SolContractCallDestination';
 import SolContractCallInstruction from './SolContractCallInstruction';
 import StellarContractCallContractParam from './StellarContractCallContractParam';
@@ -217,6 +218,11 @@ ContractCallDestination.prototype['calldata'] = undefined;
  * @member {Array.<module:model/SolContractCallInstruction>} instructions
  */
 ContractCallDestination.prototype['instructions'] = undefined;
+
+/**
+ * @member {Array.<module:model/SolContractCallAddressLookupTableAccount>} address_lookup_table_accounts
+ */
+ContractCallDestination.prototype['address_lookup_table_accounts'] = undefined;
 
 /**
  * @member {module:model/StellarContractCallContractParam} contract_param
