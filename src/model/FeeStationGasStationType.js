@@ -11,38 +11,24 @@
 
 import ApiClient from '../ApiClient';
 /**
-* Enum class TokenizationTokenStandard.
+* Enum class FeeStationGasStationType.
 * @enum {}
 * @readonly
 */
-export default class TokenizationTokenStandard {
+export default class FeeStationGasStationType {
     
         /**
-         * value: "ERC20"
+         * value: "FeeStation"
          * @const
          */
-        "ERC20" = "ERC20";
+        "FeeStation" = "FeeStation";
 
     
         /**
-         * value: "SPLToken2022"
+         * value: "CoboOperationStation"
          * @const
          */
-        "SPLToken2022" = "SPLToken2022";
-
-    
-        /**
-         * value: "ERC20Wrapper"
-         * @const
-         */
-        "ERC20Wrapper" = "ERC20Wrapper";
-
-    
-        /**
-         * value: "SOLWrapper"
-         * @const
-         */
-        "SOLWrapper" = "SOLWrapper";
+        "CoboOperationStation" = "CoboOperationStation";
 
     
         /**
@@ -54,9 +40,9 @@ export default class TokenizationTokenStandard {
     
 
     /**
-    * Returns a <code>TokenizationTokenStandard</code> enum value from a Javascript object name.
+    * Returns a <code>FeeStationGasStationType</code> enum value from a Javascript object name.
     * @param {Object} data The plain JavaScript object containing the name of the enum value.
-    * @return {module:model/TokenizationTokenStandard} The enum <code>TokenizationTokenStandard</code> value.
+    * @return {module:model/FeeStationGasStationType} The enum <code>FeeStationGasStationType</code> value.
     */
     static constructFromObject(object) {
         return object;

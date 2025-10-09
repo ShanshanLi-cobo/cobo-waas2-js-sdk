@@ -26,7 +26,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new CoboWaas2.TransactionFuelingInfo();
+    instance = new CoboWaas2.TokenizationSolWrappedTokenPermissionParams();
   });
 
   var getProperty = function(object, getter, property) {
@@ -45,28 +45,22 @@
       object[property] = value;
   }
 
-  describe('TransactionFuelingInfo', function() {
-    it('should create an instance of TransactionFuelingInfo', function() {
-      // uncomment below and update the code to test TransactionFuelingInfo
-      //var instance = new CoboWaas2.TransactionFuelingInfo();
-      //expect(instance).to.be.a(CoboWaas2.TransactionFuelingInfo);
+  describe('TokenizationSolWrappedTokenPermissionParams', function() {
+    it('should create an instance of TokenizationSolWrappedTokenPermissionParams', function() {
+      // uncomment below and update the code to test TokenizationSolWrappedTokenPermissionParams
+      //var instance = new CoboWaas2.TokenizationSolWrappedTokenPermissionParams();
+      //expect(instance).to.be.a(CoboWaas2.TokenizationSolWrappedTokenPermissionParams);
     });
 
-    it('should have the property request_id (base name: "request_id")', function() {
-      // uncomment below and update the code to test the property request_id
-      //var instance = new CoboWaas2.TransactionFuelingInfo();
+    it('should have the property wrapper (base name: "wrapper")', function() {
+      // uncomment below and update the code to test the property wrapper
+      //var instance = new CoboWaas2.TokenizationSolWrappedTokenPermissionParams();
       //expect(instance).to.be();
     });
 
-    it('should have the property transaction_id (base name: "transaction_id")', function() {
-      // uncomment below and update the code to test the property transaction_id
-      //var instance = new CoboWaas2.TransactionFuelingInfo();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property main_transaction_id (base name: "main_transaction_id")', function() {
-      // uncomment below and update the code to test the property main_transaction_id
-      //var instance = new CoboWaas2.TransactionFuelingInfo();
+    it('should have the property pauser (base name: "pauser")', function() {
+      // uncomment below and update the code to test the property pauser
+      //var instance = new CoboWaas2.TokenizationSolWrappedTokenPermissionParams();
       //expect(instance).to.be();
     });
 

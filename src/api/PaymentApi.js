@@ -16,6 +16,7 @@ import BankAccount from '../model/BankAccount';
 import CreateBankAccountRequest from '../model/CreateBankAccountRequest';
 import CreateCryptoAddressRequest from '../model/CreateCryptoAddressRequest';
 import CreateMerchantRequest from '../model/CreateMerchantRequest';
+import CreateOrderLinkRequest from '../model/CreateOrderLinkRequest';
 import CreatePaymentOrderRequest from '../model/CreatePaymentOrderRequest';
 import CreateRefundRequest from '../model/CreateRefundRequest';
 import CreateSettlementRequestRequest from '../model/CreateSettlementRequestRequest';
@@ -27,6 +28,7 @@ import ForcedSweepRequest from '../model/ForcedSweepRequest';
 import GetExchangeRate200Response from '../model/GetExchangeRate200Response';
 import GetRefunds200Response from '../model/GetRefunds200Response';
 import GetSettlementInfoByIds200Response from '../model/GetSettlementInfoByIds200Response';
+import Link from '../model/Link';
 import ListForcedSweepRequests200Response from '../model/ListForcedSweepRequests200Response';
 import ListMerchantBalances200Response from '../model/ListMerchantBalances200Response';
 import ListMerchants200Response from '../model/ListMerchants200Response';
@@ -323,6 +325,55 @@ export default class PaymentApi {
      */
     createMerchant(opts) {
       return this.createMerchantWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Create order link
+     * This operation creates a payment link of a pay-in order. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateOrderLinkRequest} [CreateOrderLinkRequest] The request body to create a payment link of a pay-in order.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Link} and HTTP response
+     */
+    createOrderLinkWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['CreateOrderLinkRequest'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = Link;
+      return this.apiClient.callApi(
+        '/payments/links/orders', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Create order link
+     * This operation creates a payment link of a pay-in order. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateOrderLinkRequest} opts.CreateOrderLinkRequest The request body to create a payment link of a pay-in order.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Link}
+     */
+    createOrderLink(opts) {
+      return this.createOrderLinkWithHttpInfo(opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -1470,6 +1521,7 @@ export default class PaymentApi {
      * @param {String} [before] This parameter specifies an object ID as a starting point for pagination, retrieving data before the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C.  If you set `before` to the ID of Object C (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object A.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. - If you set it to `infinity`, the last page of data is returned. 
      * @param {String} [after] This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
      * @param {String} [keyword] A search term used for fuzzy matching of merchant names.
+     * @param {String} [wallet_id] The wallet ID.
      * @param {module:model/WalletSetup} [wallet_setup] WalletSetup defines the type of funds used in the merchant account, either \"Shared\" or \"Separate\" is allowed when creating a merchant: - `Default`: Wallet of psp owned default merchant. - `Shared`: Shared wallet of non-psp owned merchants. - `Separate`: Separate wallet of non-psp owned merchants. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListMerchants200Response} and HTTP response
      */
@@ -1487,6 +1539,7 @@ export default class PaymentApi {
         'before': opts['before'],
         'after': opts['after'],
         'keyword': opts['keyword'],
+        'wallet_id': opts['wallet_id'],
         'wallet_setup': opts['wallet_setup']
       };
       let headerParams = {
@@ -1513,6 +1566,7 @@ export default class PaymentApi {
      * @param {String} opts.before This parameter specifies an object ID as a starting point for pagination, retrieving data before the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C.  If you set `before` to the ID of Object C (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object A.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. - If you set it to `infinity`, the last page of data is returned. 
      * @param {String} opts.after This parameter specifies an object ID as a starting point for pagination, retrieving data after the specified object relative to the current dataset.    Suppose the current data is ordered as Object A, Object B, and Object C. If you set `after` to the ID of Object A (`RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk`), the response will include Object B and Object C.    **Notes**:   - If you set both `after` and `before`, an error will occur. - If you leave both `before` and `after` empty, the first page of data is returned. 
      * @param {String} opts.keyword A search term used for fuzzy matching of merchant names.
+     * @param {String} opts.wallet_id The wallet ID.
      * @param {module:model/WalletSetup} opts.wallet_setup WalletSetup defines the type of funds used in the merchant account, either \"Shared\" or \"Separate\" is allowed when creating a merchant: - `Default`: Wallet of psp owned default merchant. - `Shared`: Shared wallet of non-psp owned merchants. - `Separate`: Separate wallet of non-psp owned merchants. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListMerchants200Response}
      */

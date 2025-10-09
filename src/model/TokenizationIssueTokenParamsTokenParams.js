@@ -13,7 +13,8 @@ import ApiClient from '../ApiClient';
 import TokenizationERC20TokenParams from './TokenizationERC20TokenParams';
 import TokenizationERC20WrappedTokenParams from './TokenizationERC20WrappedTokenParams';
 import TokenizationSOLTokenParams from './TokenizationSOLTokenParams';
-import TokenizationSolTokenPermissionParams from './TokenizationSolTokenPermissionParams';
+import TokenizationSOLWrappedTokenParams from './TokenizationSOLWrappedTokenParams';
+import TokenizationSolWrappedTokenPermissionParams from './TokenizationSolWrappedTokenPermissionParams';
 import TokenizationTokenStandard from './TokenizationTokenStandard';
 
 /**
@@ -24,7 +25,7 @@ class TokenizationIssueTokenParamsTokenParams {
     /**
      * Constructs a new <code>TokenizationIssueTokenParamsTokenParams</code>.
      * @alias module:model/TokenizationIssueTokenParamsTokenParams
-     * @param {(module:model/TokenizationERC20TokenParams|module:model/TokenizationERC20WrappedTokenParams|module:model/TokenizationSOLTokenParams)} instance The actual instance to initialize TokenizationIssueTokenParamsTokenParams.
+     * @param {(module:model/TokenizationERC20TokenParams|module:model/TokenizationERC20WrappedTokenParams|module:model/TokenizationSOLTokenParams|module:model/TokenizationSOLWrappedTokenParams)} instance The actual instance to initialize TokenizationIssueTokenParamsTokenParams.
      */
     constructor(instance = null) {
         if (instance === null) {
@@ -43,6 +44,10 @@ class TokenizationIssueTokenParamsTokenParams {
                     break;
                 case "ERC20Wrapper":
                     this.actualInstance = TokenizationERC20WrappedTokenParams.constructFromObject(instance);
+                    match++;
+                    break;
+                case "SOLWrapper":
+                    this.actualInstance = TokenizationSOLWrappedTokenParams.constructFromObject(instance);
                     match++;
                     break;
                 case "SPLToken2022":
@@ -131,12 +136,37 @@ class TokenizationIssueTokenParamsTokenParams {
             errorMessages.push("Failed to construct TokenizationSOLTokenParams: " + err)
         }
 
+        try {
+            if (instance instanceof TokenizationSOLWrappedTokenParams) {
+                this.actualInstance = instance;
+            } else if(!!TokenizationSOLWrappedTokenParams.validateJSON && TokenizationSOLWrappedTokenParams.validateJSON(instance)){
+                // plain JS object
+                // create TokenizationSOLWrappedTokenParams from JS object
+                this.actualInstance = TokenizationSOLWrappedTokenParams.constructFromObject(instance);
+            } else {
+                if(TokenizationSOLWrappedTokenParams.constructFromObject(instance)) {
+                    if (!!TokenizationSOLWrappedTokenParams.constructFromObject(instance).toJSON) {
+                        if (TokenizationSOLWrappedTokenParams.constructFromObject(instance).toJSON()) {
+                            this.actualInstance = TokenizationSOLWrappedTokenParams.constructFromObject(instance);
+                        }
+                    } else {
+                        this.actualInstance = TokenizationSOLWrappedTokenParams.constructFromObject(instance);
+                    }
+                }
+
+            }
+            match++;
+        } catch(err) {
+            // json data failed to deserialize into TokenizationSOLWrappedTokenParams
+            errorMessages.push("Failed to construct TokenizationSOLWrappedTokenParams: " + err)
+        }
+
         // if (match > 1) {
-        //    throw new Error("Multiple matches found constructing `TokenizationIssueTokenParamsTokenParams` with oneOf schemas TokenizationERC20TokenParams, TokenizationERC20WrappedTokenParams, TokenizationSOLTokenParams. Input: " + JSON.stringify(instance));
+        //    throw new Error("Multiple matches found constructing `TokenizationIssueTokenParamsTokenParams` with oneOf schemas TokenizationERC20TokenParams, TokenizationERC20WrappedTokenParams, TokenizationSOLTokenParams, TokenizationSOLWrappedTokenParams. Input: " + JSON.stringify(instance));
         // } else
         if (match === 0) {
         //    this.actualInstance = null; // clear the actual instance in case there are multiple matches
-        //    throw new Error("No match found constructing `TokenizationIssueTokenParamsTokenParams` with oneOf schemas TokenizationERC20TokenParams, TokenizationERC20WrappedTokenParams, TokenizationSOLTokenParams. Details: " +
+        //    throw new Error("No match found constructing `TokenizationIssueTokenParamsTokenParams` with oneOf schemas TokenizationERC20TokenParams, TokenizationERC20WrappedTokenParams, TokenizationSOLTokenParams, TokenizationSOLWrappedTokenParams. Details: " +
         //                    errorMessages.join(", "));
         return;
         } else { // only 1 match
@@ -156,16 +186,16 @@ class TokenizationIssueTokenParamsTokenParams {
     }
 
     /**
-     * Gets the actual instance, which can be <code>TokenizationERC20TokenParams</code>, <code>TokenizationERC20WrappedTokenParams</code>, <code>TokenizationSOLTokenParams</code>.
-     * @return {(module:model/TokenizationERC20TokenParams|module:model/TokenizationERC20WrappedTokenParams|module:model/TokenizationSOLTokenParams)} The actual instance.
+     * Gets the actual instance, which can be <code>TokenizationERC20TokenParams</code>, <code>TokenizationERC20WrappedTokenParams</code>, <code>TokenizationSOLTokenParams</code>, <code>TokenizationSOLWrappedTokenParams</code>.
+     * @return {(module:model/TokenizationERC20TokenParams|module:model/TokenizationERC20WrappedTokenParams|module:model/TokenizationSOLTokenParams|module:model/TokenizationSOLWrappedTokenParams)} The actual instance.
      */
     getActualInstance() {
         return this.actualInstance;
     }
 
     /**
-     * Sets the actual instance, which can be <code>TokenizationERC20TokenParams</code>, <code>TokenizationERC20WrappedTokenParams</code>, <code>TokenizationSOLTokenParams</code>.
-     * @param {(module:model/TokenizationERC20TokenParams|module:model/TokenizationERC20WrappedTokenParams|module:model/TokenizationSOLTokenParams)} obj The actual instance.
+     * Sets the actual instance, which can be <code>TokenizationERC20TokenParams</code>, <code>TokenizationERC20WrappedTokenParams</code>, <code>TokenizationSOLTokenParams</code>, <code>TokenizationSOLWrappedTokenParams</code>.
+     * @param {(module:model/TokenizationERC20TokenParams|module:model/TokenizationERC20WrappedTokenParams|module:model/TokenizationSOLTokenParams|module:model/TokenizationSOLWrappedTokenParams)} obj The actual instance.
      */
     setActualInstance(obj) {
        this.actualInstance = TokenizationIssueTokenParamsTokenParams.constructFromObject(obj).getActualInstance();
@@ -220,7 +250,7 @@ TokenizationIssueTokenParamsTokenParams.prototype['decimals'] = undefined;
 TokenizationIssueTokenParamsTokenParams.prototype['token_access_activated'] = false;
 
 /**
- * @member {module:model/TokenizationSolTokenPermissionParams} permissions
+ * @member {module:model/TokenizationSolWrappedTokenPermissionParams} permissions
  */
 TokenizationIssueTokenParamsTokenParams.prototype['permissions'] = undefined;
 
@@ -231,7 +261,7 @@ TokenizationIssueTokenParamsTokenParams.prototype['permissions'] = undefined;
 TokenizationIssueTokenParamsTokenParams.prototype['underlying_token'] = undefined;
 
 
-TokenizationIssueTokenParamsTokenParams.OneOf = ["TokenizationERC20TokenParams", "TokenizationERC20WrappedTokenParams", "TokenizationSOLTokenParams"];
+TokenizationIssueTokenParamsTokenParams.OneOf = ["TokenizationERC20TokenParams", "TokenizationERC20WrappedTokenParams", "TokenizationSOLTokenParams", "TokenizationSOLWrappedTokenParams"];
 
 export default TokenizationIssueTokenParamsTokenParams;
 

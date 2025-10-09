@@ -123,6 +123,7 @@ docs/CreateMerchantRequest.md
 docs/CreateMpcProjectRequest.md
 docs/CreateMpcVaultRequest.md
 docs/CreateMpcWalletParams.md
+docs/CreateOrderLinkRequest.md
 docs/CreatePaymentOrderRequest.md
 docs/CreatePrimeBrokerAddress201Response.md
 docs/CreatePrimeBrokerAddressRequest.md
@@ -221,7 +222,10 @@ docs/FeeGasLimit.md
 docs/FeeRate.md
 docs/FeeReserved.md
 docs/FeeStationApi.md
+docs/FeeStationCheckFeeStationUsage.md
+docs/FeeStationCheckFeeStationUsageResponse.md
 docs/FeeStationDestination.md
+docs/FeeStationGasStationType.md
 docs/FeeStationTransactionType.md
 docs/FeeStationTransfer.md
 docs/FeeType.md
@@ -259,6 +263,8 @@ docs/KytScreeningsEventData.md
 docs/KytScreeningsReviewType.md
 docs/KytScreeningsTransaction.md
 docs/KytScreeningsTransactionType.md
+docs/Link.md
+docs/LinkDisplayInfo.md
 docs/ListAddressBalancesByToken200Response.md
 docs/ListAddressBooks200Response.md
 docs/ListAddresses200Response.md
@@ -338,6 +344,8 @@ docs/MpcStakeSource.md
 docs/MpcTransferSource.md
 docs/OAuthApi.md
 docs/Order.md
+docs/OrderLinkBusinessInfo.md
+docs/OrderLinkBusinessInfoCustomExchangeRatesInner.md
 docs/OrderStatus.md
 docs/OrgInfo.md
 docs/OrganizationsApi.md
@@ -573,8 +581,10 @@ docs/TokenizationPauseTokenParams.md
 docs/TokenizationPauseTokenRequest.md
 docs/TokenizationPermissionAction.md
 docs/TokenizationSOLTokenParams.md
+docs/TokenizationSOLWrappedTokenParams.md
 docs/TokenizationSolContractCallParams.md
 docs/TokenizationSolTokenPermissionParams.md
+docs/TokenizationSolWrappedTokenPermissionParams.md
 docs/TokenizationStatus.md
 docs/TokenizationToggleAllowlistEstimateFeeParams.md
 docs/TokenizationTokenDetailInfo.md
@@ -897,6 +907,7 @@ src/model/CreateMerchantRequest.js
 src/model/CreateMpcProjectRequest.js
 src/model/CreateMpcVaultRequest.js
 src/model/CreateMpcWalletParams.js
+src/model/CreateOrderLinkRequest.js
 src/model/CreatePaymentOrderRequest.js
 src/model/CreatePrimeBrokerAddress201Response.js
 src/model/CreatePrimeBrokerAddressRequest.js
@@ -992,7 +1003,10 @@ src/model/FeeAmount.js
 src/model/FeeGasLimit.js
 src/model/FeeRate.js
 src/model/FeeReserved.js
+src/model/FeeStationCheckFeeStationUsage.js
+src/model/FeeStationCheckFeeStationUsageResponse.js
 src/model/FeeStationDestination.js
+src/model/FeeStationGasStationType.js
 src/model/FeeStationTransactionType.js
 src/model/FeeStationTransfer.js
 src/model/FeeType.js
@@ -1029,6 +1043,8 @@ src/model/KytScreeningsEventData.js
 src/model/KytScreeningsReviewType.js
 src/model/KytScreeningsTransaction.js
 src/model/KytScreeningsTransactionType.js
+src/model/Link.js
+src/model/LinkDisplayInfo.js
 src/model/ListAddressBalancesByToken200Response.js
 src/model/ListAddressBooks200Response.js
 src/model/ListAddresses200Response.js
@@ -1107,6 +1123,8 @@ src/model/MpcSigningGroup.js
 src/model/MpcStakeSource.js
 src/model/MpcTransferSource.js
 src/model/Order.js
+src/model/OrderLinkBusinessInfo.js
+src/model/OrderLinkBusinessInfoCustomExchangeRatesInner.js
 src/model/OrderStatus.js
 src/model/OrgInfo.js
 src/model/OtcFee.js
@@ -1336,8 +1354,10 @@ src/model/TokenizationPauseTokenParams.js
 src/model/TokenizationPauseTokenRequest.js
 src/model/TokenizationPermissionAction.js
 src/model/TokenizationSOLTokenParams.js
+src/model/TokenizationSOLWrappedTokenParams.js
 src/model/TokenizationSolContractCallParams.js
 src/model/TokenizationSolTokenPermissionParams.js
+src/model/TokenizationSolWrappedTokenPermissionParams.js
 src/model/TokenizationStatus.js
 src/model/TokenizationToggleAllowlistEstimateFeeParams.js
 src/model/TokenizationTokenDetailInfo.js
@@ -1643,6 +1663,7 @@ test/model/CreateMerchantRequest.spec.js
 test/model/CreateMpcProjectRequest.spec.js
 test/model/CreateMpcVaultRequest.spec.js
 test/model/CreateMpcWalletParams.spec.js
+test/model/CreateOrderLinkRequest.spec.js
 test/model/CreatePaymentOrderRequest.spec.js
 test/model/CreatePrimeBrokerAddress201Response.spec.js
 test/model/CreatePrimeBrokerAddressRequest.spec.js
@@ -1738,7 +1759,10 @@ test/model/FeeAmount.spec.js
 test/model/FeeGasLimit.spec.js
 test/model/FeeRate.spec.js
 test/model/FeeReserved.spec.js
+test/model/FeeStationCheckFeeStationUsage.spec.js
+test/model/FeeStationCheckFeeStationUsageResponse.spec.js
 test/model/FeeStationDestination.spec.js
+test/model/FeeStationGasStationType.spec.js
 test/model/FeeStationTransactionType.spec.js
 test/model/FeeStationTransfer.spec.js
 test/model/FeeType.spec.js
@@ -1775,6 +1799,8 @@ test/model/KytScreeningsEventData.spec.js
 test/model/KytScreeningsReviewType.spec.js
 test/model/KytScreeningsTransaction.spec.js
 test/model/KytScreeningsTransactionType.spec.js
+test/model/Link.spec.js
+test/model/LinkDisplayInfo.spec.js
 test/model/ListAddressBalancesByToken200Response.spec.js
 test/model/ListAddressBooks200Response.spec.js
 test/model/ListAddresses200Response.spec.js
@@ -1853,6 +1879,8 @@ test/model/MpcSigningGroup.spec.js
 test/model/MpcStakeSource.spec.js
 test/model/MpcTransferSource.spec.js
 test/model/Order.spec.js
+test/model/OrderLinkBusinessInfo.spec.js
+test/model/OrderLinkBusinessInfoCustomExchangeRatesInner.spec.js
 test/model/OrderStatus.spec.js
 test/model/OrgInfo.spec.js
 test/model/OtcFee.spec.js
@@ -2082,8 +2110,10 @@ test/model/TokenizationPauseTokenParams.spec.js
 test/model/TokenizationPauseTokenRequest.spec.js
 test/model/TokenizationPermissionAction.spec.js
 test/model/TokenizationSOLTokenParams.spec.js
+test/model/TokenizationSOLWrappedTokenParams.spec.js
 test/model/TokenizationSolContractCallParams.spec.js
 test/model/TokenizationSolTokenPermissionParams.spec.js
+test/model/TokenizationSolWrappedTokenPermissionParams.spec.js
 test/model/TokenizationStatus.spec.js
 test/model/TokenizationToggleAllowlistEstimateFeeParams.spec.js
 test/model/TokenizationTokenDetailInfo.spec.js

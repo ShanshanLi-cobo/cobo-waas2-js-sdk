@@ -4,12 +4,65 @@ All URIs are relative to *https://api.dev.cobo.com/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**checkFeeStationUsage**](FeeStationApi.md#checkFeeStationUsage) | **POST** /fee_station/check_fee_station_usage | fee station pre check
 [**estimateFeeStationFee**](FeeStationApi.md#estimateFeeStationFee) | **POST** /fee_station/transactions/estimate_fee | Estimate transaction fee
 [**getFeeStationTransactionById**](FeeStationApi.md#getFeeStationTransactionById) | **GET** /fee_station/transactions/{transaction_id} | Get Fee Station transaction information
 [**listFeeStationAddresses**](FeeStationApi.md#listFeeStationAddresses) | **GET** /fee_station/addresses | List Fee Station addresses
 [**listFeeStationTransactions**](FeeStationApi.md#listFeeStationTransactions) | **GET** /fee_station/transactions | List all Fee Station transactions
 [**listTokenBalancesForFeeStation**](FeeStationApi.md#listTokenBalancesForFeeStation) | **GET** /fee_station/tokens | List Fee Station token balances
 
+
+
+## checkFeeStationUsage
+
+> FeeStationCheckFeeStationUsageResponse checkFeeStationUsage(opts)
+
+fee station pre check
+
+This operation evaluates the fee station usage for the current transaction.   It determines whether the fee station needs to be applied, checks if the available fee station balance is sufficient,   and returns a detailed breakdown of the amounts involved, including any portion that must be covered by the user or sponsored in USDT (U).. 
+
+### Example
+
+```javascript
+const CoboWaas2 = require('@cobo/cobo-waas2');
+// Initialize the API client
+const apiClient = CoboWaas2.ApiClient.instance
+// Select the development environment. To use the production environment, replace `Env.DEV` with `Env.PROD`
+apiClient.setEnv(CoboWaas2.Env.DEV);
+// Replace `<YOUR_PRIVATE_KEY>` with your private key
+apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
+// Call the API
+const apiInstance = new CoboWaas2.FeeStationApi();
+const opts = {
+  'FeeStationCheckFeeStationUsage': new CoboWaas2.FeeStationCheckFeeStationUsage()
+};
+apiInstance.checkFeeStationUsage(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **FeeStationCheckFeeStationUsage** | [**FeeStationCheckFeeStationUsage**](FeeStationCheckFeeStationUsage.md)| The information about a fee station pre transfer. | [optional] 
+
+### Return type
+
+[**FeeStationCheckFeeStationUsageResponse**](FeeStationCheckFeeStationUsageResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [CoboAuth](../README.md#CoboAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
 ## estimateFeeStationFee

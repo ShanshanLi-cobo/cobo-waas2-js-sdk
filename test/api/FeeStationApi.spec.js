@@ -36,6 +36,16 @@ import {ApiClient, Env} from "../../src/index.js";
   });
 
   describe('FeeStationApi', function() {
+    describe('checkFeeStationUsage', function() {
+      it('should call checkFeeStationUsage successfully', function() {
+        //uncomment below and update the code to test checkFeeStationUsage
+        //instance.checkFeeStationUsage().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('estimateFeeStationFee', function() {
       it('should call estimateFeeStationFee successfully', function() {
         //uncomment below and update the code to test estimateFeeStationFee

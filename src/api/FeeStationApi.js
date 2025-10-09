@@ -13,6 +13,8 @@
 import ApiClient from "../ApiClient";
 import ErrorResponse from '../model/ErrorResponse';
 import EstimatedFixedFee from '../model/EstimatedFixedFee';
+import FeeStationCheckFeeStationUsage from '../model/FeeStationCheckFeeStationUsage';
+import FeeStationCheckFeeStationUsageResponse from '../model/FeeStationCheckFeeStationUsageResponse';
 import FeeStationTransfer from '../model/FeeStationTransfer';
 import ListAddresses200Response from '../model/ListAddresses200Response';
 import ListTokenBalancesForFeeStation200Response from '../model/ListTokenBalancesForFeeStation200Response';
@@ -36,6 +38,55 @@ export default class FeeStationApi {
         this.apiClient = apiClient || ApiClient.instance;
     }
 
+
+
+    /**
+     * fee station pre check
+     * This operation evaluates the fee station usage for the current transaction.   It determines whether the fee station needs to be applied, checks if the available fee station balance is sufficient,   and returns a detailed breakdown of the amounts involved, including any portion that must be covered by the user or sponsored in USDT (U).. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/FeeStationCheckFeeStationUsage} [FeeStationCheckFeeStationUsage] The information about a fee station pre transfer.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/FeeStationCheckFeeStationUsageResponse} and HTTP response
+     */
+    checkFeeStationUsageWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['FeeStationCheckFeeStationUsage'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = FeeStationCheckFeeStationUsageResponse;
+      return this.apiClient.callApi(
+        '/fee_station/check_fee_station_usage', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * fee station pre check
+     * This operation evaluates the fee station usage for the current transaction.   It determines whether the fee station needs to be applied, checks if the available fee station balance is sufficient,   and returns a detailed breakdown of the amounts involved, including any portion that must be covered by the user or sponsored in USDT (U).. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/FeeStationCheckFeeStationUsage} opts.FeeStationCheckFeeStationUsage The information about a fee station pre transfer.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/FeeStationCheckFeeStationUsageResponse}
+     */
+    checkFeeStationUsage(opts) {
+      return this.checkFeeStationUsageWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
 
 
     /**

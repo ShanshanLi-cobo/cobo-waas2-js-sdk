@@ -128,6 +128,7 @@ import CreateMerchantRequest from './model/CreateMerchantRequest';
 import CreateMpcProjectRequest from './model/CreateMpcProjectRequest';
 import CreateMpcVaultRequest from './model/CreateMpcVaultRequest';
 import CreateMpcWalletParams from './model/CreateMpcWalletParams';
+import CreateOrderLinkRequest from './model/CreateOrderLinkRequest';
 import CreatePaymentOrderRequest from './model/CreatePaymentOrderRequest';
 import CreatePrimeBrokerAddress201Response from './model/CreatePrimeBrokerAddress201Response';
 import CreatePrimeBrokerAddressRequest from './model/CreatePrimeBrokerAddressRequest';
@@ -223,7 +224,10 @@ import FeeAmount from './model/FeeAmount';
 import FeeGasLimit from './model/FeeGasLimit';
 import FeeRate from './model/FeeRate';
 import FeeReserved from './model/FeeReserved';
+import FeeStationCheckFeeStationUsage from './model/FeeStationCheckFeeStationUsage';
+import FeeStationCheckFeeStationUsageResponse from './model/FeeStationCheckFeeStationUsageResponse';
 import FeeStationDestination from './model/FeeStationDestination';
+import FeeStationGasStationType from './model/FeeStationGasStationType';
 import FeeStationTransactionType from './model/FeeStationTransactionType';
 import FeeStationTransfer from './model/FeeStationTransfer';
 import FeeType from './model/FeeType';
@@ -260,6 +264,8 @@ import KytScreeningsEventData from './model/KytScreeningsEventData';
 import KytScreeningsReviewType from './model/KytScreeningsReviewType';
 import KytScreeningsTransaction from './model/KytScreeningsTransaction';
 import KytScreeningsTransactionType from './model/KytScreeningsTransactionType';
+import Link from './model/Link';
+import LinkDisplayInfo from './model/LinkDisplayInfo';
 import ListAddressBalancesByToken200Response from './model/ListAddressBalancesByToken200Response';
 import ListAddressBooks200Response from './model/ListAddressBooks200Response';
 import ListAddresses200Response from './model/ListAddresses200Response';
@@ -338,6 +344,8 @@ import MpcSigningGroup from './model/MpcSigningGroup';
 import MpcStakeSource from './model/MpcStakeSource';
 import MpcTransferSource from './model/MpcTransferSource';
 import Order from './model/Order';
+import OrderLinkBusinessInfo from './model/OrderLinkBusinessInfo';
+import OrderLinkBusinessInfoCustomExchangeRatesInner from './model/OrderLinkBusinessInfoCustomExchangeRatesInner';
 import OrderStatus from './model/OrderStatus';
 import OrgInfo from './model/OrgInfo';
 import OtcFee from './model/OtcFee';
@@ -567,8 +575,10 @@ import TokenizationPauseTokenParams from './model/TokenizationPauseTokenParams';
 import TokenizationPauseTokenRequest from './model/TokenizationPauseTokenRequest';
 import TokenizationPermissionAction from './model/TokenizationPermissionAction';
 import TokenizationSOLTokenParams from './model/TokenizationSOLTokenParams';
+import TokenizationSOLWrappedTokenParams from './model/TokenizationSOLWrappedTokenParams';
 import TokenizationSolContractCallParams from './model/TokenizationSolContractCallParams';
 import TokenizationSolTokenPermissionParams from './model/TokenizationSolTokenPermissionParams';
+import TokenizationSolWrappedTokenPermissionParams from './model/TokenizationSolWrappedTokenPermissionParams';
 import TokenizationStatus from './model/TokenizationStatus';
 import TokenizationToggleAllowlistEstimateFeeParams from './model/TokenizationToggleAllowlistEstimateFeeParams';
 import TokenizationTokenDetailInfo from './model/TokenizationTokenDetailInfo';
@@ -1494,6 +1504,12 @@ export {
     CreateMpcWalletParams,
 
     /**
+     * The CreateOrderLinkRequest model constructor.
+     * @property {module:model/CreateOrderLinkRequest}
+     */
+    CreateOrderLinkRequest,
+
+    /**
      * The CreatePaymentOrderRequest model constructor.
      * @property {module:model/CreatePaymentOrderRequest}
      */
@@ -2064,10 +2080,28 @@ export {
     FeeReserved,
 
     /**
+     * The FeeStationCheckFeeStationUsage model constructor.
+     * @property {module:model/FeeStationCheckFeeStationUsage}
+     */
+    FeeStationCheckFeeStationUsage,
+
+    /**
+     * The FeeStationCheckFeeStationUsageResponse model constructor.
+     * @property {module:model/FeeStationCheckFeeStationUsageResponse}
+     */
+    FeeStationCheckFeeStationUsageResponse,
+
+    /**
      * The FeeStationDestination model constructor.
      * @property {module:model/FeeStationDestination}
      */
     FeeStationDestination,
+
+    /**
+     * The FeeStationGasStationType model constructor.
+     * @property {module:model/FeeStationGasStationType}
+     */
+    FeeStationGasStationType,
 
     /**
      * The FeeStationTransactionType model constructor.
@@ -2284,6 +2318,18 @@ export {
      * @property {module:model/KytScreeningsTransactionType}
      */
     KytScreeningsTransactionType,
+
+    /**
+     * The Link model constructor.
+     * @property {module:model/Link}
+     */
+    Link,
+
+    /**
+     * The LinkDisplayInfo model constructor.
+     * @property {module:model/LinkDisplayInfo}
+     */
+    LinkDisplayInfo,
 
     /**
      * The ListAddressBalancesByToken200Response model constructor.
@@ -2752,6 +2798,18 @@ export {
      * @property {module:model/Order}
      */
     Order,
+
+    /**
+     * The OrderLinkBusinessInfo model constructor.
+     * @property {module:model/OrderLinkBusinessInfo}
+     */
+    OrderLinkBusinessInfo,
+
+    /**
+     * The OrderLinkBusinessInfoCustomExchangeRatesInner model constructor.
+     * @property {module:model/OrderLinkBusinessInfoCustomExchangeRatesInner}
+     */
+    OrderLinkBusinessInfoCustomExchangeRatesInner,
 
     /**
      * The OrderStatus model constructor.
@@ -4128,6 +4186,12 @@ export {
     TokenizationSOLTokenParams,
 
     /**
+     * The TokenizationSOLWrappedTokenParams model constructor.
+     * @property {module:model/TokenizationSOLWrappedTokenParams}
+     */
+    TokenizationSOLWrappedTokenParams,
+
+    /**
      * The TokenizationSolContractCallParams model constructor.
      * @property {module:model/TokenizationSolContractCallParams}
      */
@@ -4138,6 +4202,12 @@ export {
      * @property {module:model/TokenizationSolTokenPermissionParams}
      */
     TokenizationSolTokenPermissionParams,
+
+    /**
+     * The TokenizationSolWrappedTokenPermissionParams model constructor.
+     * @property {module:model/TokenizationSolWrappedTokenPermissionParams}
+     */
+    TokenizationSolWrappedTokenPermissionParams,
 
     /**
      * The TokenizationStatus model constructor.

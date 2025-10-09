@@ -61,7 +61,7 @@ export default class TokenizationApi {
 
     /**
      * Burn tokens
-     * This operation burns tokens from a specified address. Creates a burn transaction that will decrease the token supply. 
+     * This operation burns tokens from a specified address. Creates a burn transaction that will decrease the token supply.  **Note**: This operation is not supported for CoboERC20Wrapper tokens. 
      * @param {String} token_id The token ID, which is the unique identifier of a token.
      * @param {Object} opts Optional parameters
      * @param {module:model/TokenizationBurnTokenRequest} [TokenizationBurnTokenRequest] The request body for burning tokens.
@@ -101,7 +101,7 @@ export default class TokenizationApi {
 
     /**
      * Burn tokens
-     * This operation burns tokens from a specified address. Creates a burn transaction that will decrease the token supply. 
+     * This operation burns tokens from a specified address. Creates a burn transaction that will decrease the token supply.  **Note**: This operation is not supported for CoboERC20Wrapper tokens. 
      * @param {String} token_id The token ID, which is the unique identifier of a token.
      * @param {Object} opts Optional parameters
      * @param {module:model/TokenizationBurnTokenRequest} opts.TokenizationBurnTokenRequest The request body for burning tokens.
@@ -826,7 +826,7 @@ export default class TokenizationApi {
 
     /**
      * Mint tokens
-     * This operation mints new tokens to a specified address. Creates a mint transaction that will increase the token supply. 
+     * This operation mints new tokens to a specified address. Creates a mint transaction that will increase the token supply.  **Note**: This operation is not supported for CoboERC20Wrapper tokens. 
      * @param {String} token_id The token ID, which is the unique identifier of a token.
      * @param {module:model/TokenizationMintTokenRequest} TokenizationMintTokenRequest The request body for minting tokens.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TokenizationOperationResponse} and HTTP response
@@ -868,7 +868,7 @@ export default class TokenizationApi {
 
     /**
      * Mint tokens
-     * This operation mints new tokens to a specified address. Creates a mint transaction that will increase the token supply. 
+     * This operation mints new tokens to a specified address. Creates a mint transaction that will increase the token supply.  **Note**: This operation is not supported for CoboERC20Wrapper tokens. 
      * @param {String} token_id The token ID, which is the unique identifier of a token.
      * @param {module:model/TokenizationMintTokenRequest} TokenizationMintTokenRequest The request body for minting tokens.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TokenizationOperationResponse}
