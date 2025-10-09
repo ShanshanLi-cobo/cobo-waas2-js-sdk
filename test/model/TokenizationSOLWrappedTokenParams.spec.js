@@ -26,7 +26,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new CoboWaas2.TokenizationERC20WrappedTokenParams();
+    instance = new CoboWaas2.TokenizationSOLWrappedTokenParams();
   });
 
   var getProperty = function(object, getter, property) {
@@ -45,46 +45,40 @@
       object[property] = value;
   }
 
-  describe('TokenizationERC20WrappedTokenParams', function() {
-    it('should create an instance of TokenizationERC20WrappedTokenParams', function() {
-      // uncomment below and update the code to test TokenizationERC20WrappedTokenParams
-      //var instance = new CoboWaas2.TokenizationERC20WrappedTokenParams();
-      //expect(instance).to.be.a(CoboWaas2.TokenizationERC20WrappedTokenParams);
+  describe('TokenizationSOLWrappedTokenParams', function() {
+    it('should create an instance of TokenizationSOLWrappedTokenParams', function() {
+      // uncomment below and update the code to test TokenizationSOLWrappedTokenParams
+      //var instance = new CoboWaas2.TokenizationSOLWrappedTokenParams();
+      //expect(instance).to.be.a(CoboWaas2.TokenizationSOLWrappedTokenParams);
     });
 
     it('should have the property standard (base name: "standard")', function() {
       // uncomment below and update the code to test the property standard
-      //var instance = new CoboWaas2.TokenizationERC20WrappedTokenParams();
+      //var instance = new CoboWaas2.TokenizationSOLWrappedTokenParams();
       //expect(instance).to.be();
     });
 
     it('should have the property name (base name: "name")', function() {
       // uncomment below and update the code to test the property name
-      //var instance = new CoboWaas2.TokenizationERC20WrappedTokenParams();
+      //var instance = new CoboWaas2.TokenizationSOLWrappedTokenParams();
       //expect(instance).to.be();
     });
 
     it('should have the property symbol (base name: "symbol")', function() {
       // uncomment below and update the code to test the property symbol
-      //var instance = new CoboWaas2.TokenizationERC20WrappedTokenParams();
+      //var instance = new CoboWaas2.TokenizationSOLWrappedTokenParams();
       //expect(instance).to.be();
     });
 
     it('should have the property permissions (base name: "permissions")', function() {
       // uncomment below and update the code to test the property permissions
-      //var instance = new CoboWaas2.TokenizationERC20WrappedTokenParams();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property token_access_activated (base name: "token_access_activated")', function() {
-      // uncomment below and update the code to test the property token_access_activated
-      //var instance = new CoboWaas2.TokenizationERC20WrappedTokenParams();
+      //var instance = new CoboWaas2.TokenizationSOLWrappedTokenParams();
       //expect(instance).to.be();
     });
 
     it('should have the property underlying_token (base name: "underlying_token")', function() {
       // uncomment below and update the code to test the property underlying_token
-      //var instance = new CoboWaas2.TokenizationERC20WrappedTokenParams();
+      //var instance = new CoboWaas2.TokenizationSOLWrappedTokenParams();
       //expect(instance).to.be();
     });
 

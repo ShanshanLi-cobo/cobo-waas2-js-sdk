@@ -94,6 +94,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property remark (base name: "remark")', function() {
+      // uncomment below and update the code to test the property remark
+      //var instance = new CoboWaas2.CreateSettlementRequestRequest();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

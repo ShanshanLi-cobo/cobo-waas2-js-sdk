@@ -9,6 +9,8 @@
 
 * `ERC20Wrapper` (value: `"ERC20Wrapper"`)
 
+* `SOLWrapper` (value: `"SOLWrapper"`)
+
 * `unknown_default_open_api` (value: `"unknown_default_open_api"`)
 
 

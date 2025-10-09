@@ -10,17 +10,17 @@
  */
 
 import ApiClient from '../ApiClient';
-import TokenizationERC20WrappedTokenPermissionParams from './TokenizationERC20WrappedTokenPermissionParams';
+import TokenizationSolWrappedTokenPermissionParams from './TokenizationSolWrappedTokenPermissionParams';
 import TokenizationTokenStandard from './TokenizationTokenStandard';
 
 /**
- * The TokenizationERC20WrappedTokenParams model module.
- * @module model/TokenizationERC20WrappedTokenParams
+ * The TokenizationSOLWrappedTokenParams model module.
+ * @module model/TokenizationSOLWrappedTokenParams
  */
-class TokenizationERC20WrappedTokenParams {
+class TokenizationSOLWrappedTokenParams {
     /**
-     * Constructs a new <code>TokenizationERC20WrappedTokenParams</code>.
-     * @alias module:model/TokenizationERC20WrappedTokenParams
+     * Constructs a new <code>TokenizationSOLWrappedTokenParams</code>.
+     * @alias module:model/TokenizationSOLWrappedTokenParams
      * @param standard {module:model/TokenizationTokenStandard} 
      * @param name {String} The name of the token.
      * @param symbol {String} The symbol of the token.
@@ -28,7 +28,7 @@ class TokenizationERC20WrappedTokenParams {
      */
     constructor(standard, name, symbol, underlying_token) { 
         
-        TokenizationERC20WrappedTokenParams.initialize(this, standard, name, symbol, underlying_token);
+        TokenizationSOLWrappedTokenParams.initialize(this, standard, name, symbol, underlying_token);
     }
 
     /**
@@ -44,15 +44,15 @@ class TokenizationERC20WrappedTokenParams {
     }
 
     /**
-     * Constructs a <code>TokenizationERC20WrappedTokenParams</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>TokenizationSOLWrappedTokenParams</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/TokenizationERC20WrappedTokenParams} obj Optional instance to populate.
-     * @return {module:model/TokenizationERC20WrappedTokenParams} The populated <code>TokenizationERC20WrappedTokenParams</code> instance.
+     * @param {module:model/TokenizationSOLWrappedTokenParams} obj Optional instance to populate.
+     * @return {module:model/TokenizationSOLWrappedTokenParams} The populated <code>TokenizationSOLWrappedTokenParams</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new TokenizationERC20WrappedTokenParams();
+            obj = obj || new TokenizationSOLWrappedTokenParams();
 
             if (data.hasOwnProperty('standard')) {
                 obj['standard'] = TokenizationTokenStandard.constructFromObject(data['standard']);
@@ -64,10 +64,7 @@ class TokenizationERC20WrappedTokenParams {
                 obj['symbol'] = ApiClient.convertToType(data['symbol'], 'String');
             }
             if (data.hasOwnProperty('permissions')) {
-                obj['permissions'] = TokenizationERC20WrappedTokenPermissionParams.constructFromObject(data['permissions']);
-            }
-            if (data.hasOwnProperty('token_access_activated')) {
-                obj['token_access_activated'] = ApiClient.convertToType(data['token_access_activated'], 'Boolean');
+                obj['permissions'] = TokenizationSolWrappedTokenPermissionParams.constructFromObject(data['permissions']);
             }
             if (data.hasOwnProperty('underlying_token')) {
                 obj['underlying_token'] = ApiClient.convertToType(data['underlying_token'], 'String');
@@ -77,13 +74,13 @@ class TokenizationERC20WrappedTokenParams {
     }
 
     /**
-     * Validates the JSON data with respect to <code>TokenizationERC20WrappedTokenParams</code>.
+     * Validates the JSON data with respect to <code>TokenizationSOLWrappedTokenParams</code>.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>TokenizationERC20WrappedTokenParams</code>.
+     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>TokenizationSOLWrappedTokenParams</code>.
      */
     static validateJSON(data) {
         // check to make sure all required properties are present in the JSON string
-        for (const property of TokenizationERC20WrappedTokenParams.RequiredProperties) {
+        for (const property of TokenizationSOLWrappedTokenParams.RequiredProperties) {
             if (!data.hasOwnProperty(property)) {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
@@ -98,8 +95,8 @@ class TokenizationERC20WrappedTokenParams {
         }
         // validate the optional field `permissions`
         if (data['permissions']) { // data not null
-          if (!!TokenizationERC20WrappedTokenPermissionParams.validateJSON) {
-            TokenizationERC20WrappedTokenPermissionParams.validateJSON(data['permissions']);
+          if (!!TokenizationSolWrappedTokenPermissionParams.validateJSON) {
+            TokenizationSolWrappedTokenPermissionParams.validateJSON(data['permissions']);
           }
         }
         // ensure the json data is a string
@@ -113,47 +110,40 @@ class TokenizationERC20WrappedTokenParams {
 
 }
 
-TokenizationERC20WrappedTokenParams.RequiredProperties = ["standard", "name", "symbol", "underlying_token"];
+TokenizationSOLWrappedTokenParams.RequiredProperties = ["standard", "name", "symbol", "underlying_token"];
 
 /**
  * @member {module:model/TokenizationTokenStandard} standard
  */
-TokenizationERC20WrappedTokenParams.prototype['standard'] = undefined;
+TokenizationSOLWrappedTokenParams.prototype['standard'] = undefined;
 
 /**
  * The name of the token.
  * @member {String} name
  */
-TokenizationERC20WrappedTokenParams.prototype['name'] = undefined;
+TokenizationSOLWrappedTokenParams.prototype['name'] = undefined;
 
 /**
  * The symbol of the token.
  * @member {String} symbol
  */
-TokenizationERC20WrappedTokenParams.prototype['symbol'] = undefined;
+TokenizationSOLWrappedTokenParams.prototype['symbol'] = undefined;
 
 /**
- * @member {module:model/TokenizationERC20WrappedTokenPermissionParams} permissions
+ * @member {module:model/TokenizationSolWrappedTokenPermissionParams} permissions
  */
-TokenizationERC20WrappedTokenParams.prototype['permissions'] = undefined;
-
-/**
- * Whether the allowlist feature is activated for the token. When activated, only addresses in the allowlist can perform token operations.
- * @member {Boolean} token_access_activated
- * @default false
- */
-TokenizationERC20WrappedTokenParams.prototype['token_access_activated'] = false;
+TokenizationSOLWrappedTokenParams.prototype['permissions'] = undefined;
 
 /**
  * The address of the underlying token that this tokenized asset represents.
  * @member {String} underlying_token
  */
-TokenizationERC20WrappedTokenParams.prototype['underlying_token'] = undefined;
+TokenizationSOLWrappedTokenParams.prototype['underlying_token'] = undefined;
 
 
 
 
 
 
-export default TokenizationERC20WrappedTokenParams;
+export default TokenizationSOLWrappedTokenParams;
 

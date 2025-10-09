@@ -81,6 +81,9 @@ class CreatePaymentOrderRequest {
             if (data.hasOwnProperty('use_dedicated_address')) {
                 obj['use_dedicated_address'] = ApiClient.convertToType(data['use_dedicated_address'], 'Boolean');
             }
+            if (data.hasOwnProperty('custom_exchange_rate')) {
+                obj['custom_exchange_rate'] = ApiClient.convertToType(data['custom_exchange_rate'], 'String');
+            }
         }
         return obj;
     }
@@ -124,6 +127,10 @@ class CreatePaymentOrderRequest {
         // ensure the json data is a string
         if (data['psp_order_code'] && !(typeof data['psp_order_code'] === 'string' || data['psp_order_code'] instanceof String)) {
             throw new Error("Expected the field `psp_order_code` to be a primitive type in the JSON string but got " + data['psp_order_code']);
+        }
+        // ensure the json data is a string
+        if (data['custom_exchange_rate'] && !(typeof data['custom_exchange_rate'] === 'string' || data['custom_exchange_rate'] instanceof String)) {
+            throw new Error("Expected the field `custom_exchange_rate` to be a primitive type in the JSON string but got " + data['custom_exchange_rate']);
         }
 
         return true;
@@ -188,6 +195,12 @@ CreatePaymentOrderRequest.prototype['expired_in'] = undefined;
  * @member {Boolean} use_dedicated_address
  */
 CreatePaymentOrderRequest.prototype['use_dedicated_address'] = undefined;
+
+/**
+ * A custom exchange rate specified by the merchant.   - Only effective when `currency` is `\"USD\"`.   - Expressed as the amount of USD per 1 unit of the specified cryptocurrency.   - If not provided, the system will use the default internal rate.   Example: If the cryptocurrency is USDT and `custom_exchange_rate` = `\"0.99\"`, it means 1 USDT = 0.99 USD. 
+ * @member {String} custom_exchange_rate
+ */
+CreatePaymentOrderRequest.prototype['custom_exchange_rate'] = undefined;
 
 
 

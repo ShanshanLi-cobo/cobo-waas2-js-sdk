@@ -73,6 +73,9 @@ class CreateSettlementRequestRequest {
             if (data.hasOwnProperty('currency')) {
                 obj['currency'] = ApiClient.convertToType(data['currency'], 'String');
             }
+            if (data.hasOwnProperty('remark')) {
+                obj['remark'] = ApiClient.convertToType(data['remark'], 'String');
+            }
         }
         return obj;
     }
@@ -110,6 +113,10 @@ class CreateSettlementRequestRequest {
         // ensure the json data is a string
         if (data['currency'] && !(typeof data['currency'] === 'string' || data['currency'] instanceof String)) {
             throw new Error("Expected the field `currency` to be a primitive type in the JSON string but got " + data['currency']);
+        }
+        // ensure the json data is a string
+        if (data['remark'] && !(typeof data['remark'] === 'string' || data['remark'] instanceof String)) {
+            throw new Error("Expected the field `remark` to be a primitive type in the JSON string but got " + data['remark']);
         }
 
         return true;
@@ -157,6 +164,12 @@ CreateSettlementRequestRequest.prototype['bank_account_id'] = undefined;
  * @member {String} currency
  */
 CreateSettlementRequestRequest.prototype['currency'] = undefined;
+
+/**
+ * The remark for the settlement request.
+ * @member {String} remark
+ */
+CreateSettlementRequestRequest.prototype['remark'] = undefined;
 
 
 

@@ -26,7 +26,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new CoboWaas2.TransactionFuelingInfo();
+    instance = new CoboWaas2.OrderLinkBusinessInfoCustomExchangeRatesInner();
   });
 
   var getProperty = function(object, getter, property) {
@@ -45,28 +45,22 @@
       object[property] = value;
   }
 
-  describe('TransactionFuelingInfo', function() {
-    it('should create an instance of TransactionFuelingInfo', function() {
-      // uncomment below and update the code to test TransactionFuelingInfo
-      //var instance = new CoboWaas2.TransactionFuelingInfo();
-      //expect(instance).to.be.a(CoboWaas2.TransactionFuelingInfo);
+  describe('OrderLinkBusinessInfoCustomExchangeRatesInner', function() {
+    it('should create an instance of OrderLinkBusinessInfoCustomExchangeRatesInner', function() {
+      // uncomment below and update the code to test OrderLinkBusinessInfoCustomExchangeRatesInner
+      //var instance = new CoboWaas2.OrderLinkBusinessInfoCustomExchangeRatesInner();
+      //expect(instance).to.be.a(CoboWaas2.OrderLinkBusinessInfoCustomExchangeRatesInner);
     });
 
-    it('should have the property request_id (base name: "request_id")', function() {
-      // uncomment below and update the code to test the property request_id
-      //var instance = new CoboWaas2.TransactionFuelingInfo();
+    it('should have the property token_id (base name: "token_id")', function() {
+      // uncomment below and update the code to test the property token_id
+      //var instance = new CoboWaas2.OrderLinkBusinessInfoCustomExchangeRatesInner();
       //expect(instance).to.be();
     });
 
-    it('should have the property transaction_id (base name: "transaction_id")', function() {
-      // uncomment below and update the code to test the property transaction_id
-      //var instance = new CoboWaas2.TransactionFuelingInfo();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property main_transaction_id (base name: "main_transaction_id")', function() {
-      // uncomment below and update the code to test the property main_transaction_id
-      //var instance = new CoboWaas2.TransactionFuelingInfo();
+    it('should have the property exchange_rate (base name: "exchange_rate")', function() {
+      // uncomment below and update the code to test the property exchange_rate
+      //var instance = new CoboWaas2.OrderLinkBusinessInfoCustomExchangeRatesInner();
       //expect(instance).to.be();
     });
 

@@ -26,7 +26,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new CoboWaas2.TransactionFuelingInfo();
+    instance = new CoboWaas2.LinkDisplayInfo();
   });
 
   var getProperty = function(object, getter, property) {
@@ -45,28 +45,22 @@
       object[property] = value;
   }
 
-  describe('TransactionFuelingInfo', function() {
-    it('should create an instance of TransactionFuelingInfo', function() {
-      // uncomment below and update the code to test TransactionFuelingInfo
-      //var instance = new CoboWaas2.TransactionFuelingInfo();
-      //expect(instance).to.be.a(CoboWaas2.TransactionFuelingInfo);
+  describe('LinkDisplayInfo', function() {
+    it('should create an instance of LinkDisplayInfo', function() {
+      // uncomment below and update the code to test LinkDisplayInfo
+      //var instance = new CoboWaas2.LinkDisplayInfo();
+      //expect(instance).to.be.a(CoboWaas2.LinkDisplayInfo);
     });
 
-    it('should have the property request_id (base name: "request_id")', function() {
-      // uncomment below and update the code to test the property request_id
-      //var instance = new CoboWaas2.TransactionFuelingInfo();
+    it('should have the property developer_name (base name: "developer_name")', function() {
+      // uncomment below and update the code to test the property developer_name
+      //var instance = new CoboWaas2.LinkDisplayInfo();
       //expect(instance).to.be();
     });
 
-    it('should have the property transaction_id (base name: "transaction_id")', function() {
-      // uncomment below and update the code to test the property transaction_id
-      //var instance = new CoboWaas2.TransactionFuelingInfo();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property main_transaction_id (base name: "main_transaction_id")', function() {
-      // uncomment below and update the code to test the property main_transaction_id
-      //var instance = new CoboWaas2.TransactionFuelingInfo();
+    it('should have the property logo (base name: "logo")', function() {
+      // uncomment below and update the code to test the property logo
+      //var instance = new CoboWaas2.LinkDisplayInfo();
       //expect(instance).to.be();
     });
 

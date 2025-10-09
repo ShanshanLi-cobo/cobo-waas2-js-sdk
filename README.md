@@ -102,6 +102,7 @@ Class | Method | HTTP request | Description
 *CoboWaas2.DevelopersWebhooksApi* | [**retryWebhookEventById**](docs/DevelopersWebhooksApi.md#retryWebhookEventById) | **POST** /webhooks/endpoints/{endpoint_id}/events/{event_id}/retry | Retry event
 *CoboWaas2.DevelopersWebhooksApi* | [**triggerTestWebhookEvent**](docs/DevelopersWebhooksApi.md#triggerTestWebhookEvent) | **POST** /webhooks/events/trigger | Trigger test event
 *CoboWaas2.DevelopersWebhooksApi* | [**updateWebhookEndpointById**](docs/DevelopersWebhooksApi.md#updateWebhookEndpointById) | **PUT** /webhooks/endpoints/{endpoint_id} | Update webhook endpoint
+*CoboWaas2.FeeStationApi* | [**checkFeeStationUsage**](docs/FeeStationApi.md#checkFeeStationUsage) | **POST** /fee_station/check_fee_station_usage | fee station pre check
 *CoboWaas2.FeeStationApi* | [**estimateFeeStationFee**](docs/FeeStationApi.md#estimateFeeStationFee) | **POST** /fee_station/transactions/estimate_fee | Estimate transaction fee
 *CoboWaas2.FeeStationApi* | [**getFeeStationTransactionById**](docs/FeeStationApi.md#getFeeStationTransactionById) | **GET** /fee_station/transactions/{transaction_id} | Get Fee Station transaction information
 *CoboWaas2.FeeStationApi* | [**listFeeStationAddresses**](docs/FeeStationApi.md#listFeeStationAddresses) | **GET** /fee_station/addresses | List Fee Station addresses
@@ -118,6 +119,7 @@ Class | Method | HTTP request | Description
 *CoboWaas2.PaymentApi* | [**createCryptoAddress**](docs/PaymentApi.md#createCryptoAddress) | **POST** /payments/crypto_addresses | Create crypto address
 *CoboWaas2.PaymentApi* | [**createForcedSweepRequest**](docs/PaymentApi.md#createForcedSweepRequest) | **POST** /payments/force_sweep_requests | Create force sweep request
 *CoboWaas2.PaymentApi* | [**createMerchant**](docs/PaymentApi.md#createMerchant) | **POST** /payments/merchants | Create merchant
+*CoboWaas2.PaymentApi* | [**createOrderLink**](docs/PaymentApi.md#createOrderLink) | **POST** /payments/links/orders | Create order link
 *CoboWaas2.PaymentApi* | [**createPaymentOrder**](docs/PaymentApi.md#createPaymentOrder) | **POST** /payments/orders | Create pay-in order
 *CoboWaas2.PaymentApi* | [**createRefund**](docs/PaymentApi.md#createRefund) | **POST** /payments/refunds | Create refund order
 *CoboWaas2.PaymentApi* | [**createSettlementRequest**](docs/PaymentApi.md#createSettlementRequest) | **POST** /payments/settlement_requests | Create settlement request
@@ -404,6 +406,7 @@ Class | Method | HTTP request | Description
  - [CoboWaas2.CreateMpcProjectRequest](docs/CreateMpcProjectRequest.md)
  - [CoboWaas2.CreateMpcVaultRequest](docs/CreateMpcVaultRequest.md)
  - [CoboWaas2.CreateMpcWalletParams](docs/CreateMpcWalletParams.md)
+ - [CoboWaas2.CreateOrderLinkRequest](docs/CreateOrderLinkRequest.md)
  - [CoboWaas2.CreatePaymentOrderRequest](docs/CreatePaymentOrderRequest.md)
  - [CoboWaas2.CreatePrimeBrokerAddress201Response](docs/CreatePrimeBrokerAddress201Response.md)
  - [CoboWaas2.CreatePrimeBrokerAddressRequest](docs/CreatePrimeBrokerAddressRequest.md)
@@ -499,7 +502,10 @@ Class | Method | HTTP request | Description
  - [CoboWaas2.FeeGasLimit](docs/FeeGasLimit.md)
  - [CoboWaas2.FeeRate](docs/FeeRate.md)
  - [CoboWaas2.FeeReserved](docs/FeeReserved.md)
+ - [CoboWaas2.FeeStationCheckFeeStationUsage](docs/FeeStationCheckFeeStationUsage.md)
+ - [CoboWaas2.FeeStationCheckFeeStationUsageResponse](docs/FeeStationCheckFeeStationUsageResponse.md)
  - [CoboWaas2.FeeStationDestination](docs/FeeStationDestination.md)
+ - [CoboWaas2.FeeStationGasStationType](docs/FeeStationGasStationType.md)
  - [CoboWaas2.FeeStationTransactionType](docs/FeeStationTransactionType.md)
  - [CoboWaas2.FeeStationTransfer](docs/FeeStationTransfer.md)
  - [CoboWaas2.FeeType](docs/FeeType.md)
@@ -536,6 +542,8 @@ Class | Method | HTTP request | Description
  - [CoboWaas2.KytScreeningsReviewType](docs/KytScreeningsReviewType.md)
  - [CoboWaas2.KytScreeningsTransaction](docs/KytScreeningsTransaction.md)
  - [CoboWaas2.KytScreeningsTransactionType](docs/KytScreeningsTransactionType.md)
+ - [CoboWaas2.Link](docs/Link.md)
+ - [CoboWaas2.LinkDisplayInfo](docs/LinkDisplayInfo.md)
  - [CoboWaas2.ListAddressBalancesByToken200Response](docs/ListAddressBalancesByToken200Response.md)
  - [CoboWaas2.ListAddressBooks200Response](docs/ListAddressBooks200Response.md)
  - [CoboWaas2.ListAddresses200Response](docs/ListAddresses200Response.md)
@@ -614,6 +622,8 @@ Class | Method | HTTP request | Description
  - [CoboWaas2.MpcStakeSource](docs/MpcStakeSource.md)
  - [CoboWaas2.MpcTransferSource](docs/MpcTransferSource.md)
  - [CoboWaas2.Order](docs/Order.md)
+ - [CoboWaas2.OrderLinkBusinessInfo](docs/OrderLinkBusinessInfo.md)
+ - [CoboWaas2.OrderLinkBusinessInfoCustomExchangeRatesInner](docs/OrderLinkBusinessInfoCustomExchangeRatesInner.md)
  - [CoboWaas2.OrderStatus](docs/OrderStatus.md)
  - [CoboWaas2.OrgInfo](docs/OrgInfo.md)
  - [CoboWaas2.OtcFee](docs/OtcFee.md)
@@ -843,8 +853,10 @@ Class | Method | HTTP request | Description
  - [CoboWaas2.TokenizationPauseTokenRequest](docs/TokenizationPauseTokenRequest.md)
  - [CoboWaas2.TokenizationPermissionAction](docs/TokenizationPermissionAction.md)
  - [CoboWaas2.TokenizationSOLTokenParams](docs/TokenizationSOLTokenParams.md)
+ - [CoboWaas2.TokenizationSOLWrappedTokenParams](docs/TokenizationSOLWrappedTokenParams.md)
  - [CoboWaas2.TokenizationSolContractCallParams](docs/TokenizationSolContractCallParams.md)
  - [CoboWaas2.TokenizationSolTokenPermissionParams](docs/TokenizationSolTokenPermissionParams.md)
+ - [CoboWaas2.TokenizationSolWrappedTokenPermissionParams](docs/TokenizationSolWrappedTokenPermissionParams.md)
  - [CoboWaas2.TokenizationStatus](docs/TokenizationStatus.md)
  - [CoboWaas2.TokenizationToggleAllowlistEstimateFeeParams](docs/TokenizationToggleAllowlistEstimateFeeParams.md)
  - [CoboWaas2.TokenizationTokenDetailInfo](docs/TokenizationTokenDetailInfo.md)

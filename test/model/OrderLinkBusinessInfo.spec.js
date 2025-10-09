@@ -26,7 +26,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new CoboWaas2.CreatePaymentOrderRequest();
+    instance = new CoboWaas2.OrderLinkBusinessInfo();
   });
 
   var getProperty = function(object, getter, property) {
@@ -45,70 +45,70 @@
       object[property] = value;
   }
 
-  describe('CreatePaymentOrderRequest', function() {
-    it('should create an instance of CreatePaymentOrderRequest', function() {
-      // uncomment below and update the code to test CreatePaymentOrderRequest
-      //var instance = new CoboWaas2.CreatePaymentOrderRequest();
-      //expect(instance).to.be.a(CoboWaas2.CreatePaymentOrderRequest);
+  describe('OrderLinkBusinessInfo', function() {
+    it('should create an instance of OrderLinkBusinessInfo', function() {
+      // uncomment below and update the code to test OrderLinkBusinessInfo
+      //var instance = new CoboWaas2.OrderLinkBusinessInfo();
+      //expect(instance).to.be.a(CoboWaas2.OrderLinkBusinessInfo);
     });
 
-    it('should have the property merchant_id (base name: "merchant_id")', function() {
-      // uncomment below and update the code to test the property merchant_id
-      //var instance = new CoboWaas2.CreatePaymentOrderRequest();
+    it('should have the property token_ids (base name: "token_ids")', function() {
+      // uncomment below and update the code to test the property token_ids
+      //var instance = new CoboWaas2.OrderLinkBusinessInfo();
       //expect(instance).to.be();
     });
 
-    it('should have the property token_id (base name: "token_id")', function() {
-      // uncomment below and update the code to test the property token_id
-      //var instance = new CoboWaas2.CreatePaymentOrderRequest();
+    it('should have the property custom_exchange_rates (base name: "custom_exchange_rates")', function() {
+      // uncomment below and update the code to test the property custom_exchange_rates
+      //var instance = new CoboWaas2.OrderLinkBusinessInfo();
       //expect(instance).to.be();
     });
 
     it('should have the property currency (base name: "currency")', function() {
       // uncomment below and update the code to test the property currency
-      //var instance = new CoboWaas2.CreatePaymentOrderRequest();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property order_amount (base name: "order_amount")', function() {
-      // uncomment below and update the code to test the property order_amount
-      //var instance = new CoboWaas2.CreatePaymentOrderRequest();
+      //var instance = new CoboWaas2.OrderLinkBusinessInfo();
       //expect(instance).to.be();
     });
 
     it('should have the property fee_amount (base name: "fee_amount")', function() {
       // uncomment below and update the code to test the property fee_amount
-      //var instance = new CoboWaas2.CreatePaymentOrderRequest();
+      //var instance = new CoboWaas2.OrderLinkBusinessInfo();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property merchant_id (base name: "merchant_id")', function() {
+      // uncomment below and update the code to test the property merchant_id
+      //var instance = new CoboWaas2.OrderLinkBusinessInfo();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property order_amount (base name: "order_amount")', function() {
+      // uncomment below and update the code to test the property order_amount
+      //var instance = new CoboWaas2.OrderLinkBusinessInfo();
       //expect(instance).to.be();
     });
 
     it('should have the property merchant_order_code (base name: "merchant_order_code")', function() {
       // uncomment below and update the code to test the property merchant_order_code
-      //var instance = new CoboWaas2.CreatePaymentOrderRequest();
+      //var instance = new CoboWaas2.OrderLinkBusinessInfo();
       //expect(instance).to.be();
     });
 
     it('should have the property psp_order_code (base name: "psp_order_code")', function() {
       // uncomment below and update the code to test the property psp_order_code
-      //var instance = new CoboWaas2.CreatePaymentOrderRequest();
+      //var instance = new CoboWaas2.OrderLinkBusinessInfo();
       //expect(instance).to.be();
     });
 
     it('should have the property expired_in (base name: "expired_in")', function() {
       // uncomment below and update the code to test the property expired_in
-      //var instance = new CoboWaas2.CreatePaymentOrderRequest();
+      //var instance = new CoboWaas2.OrderLinkBusinessInfo();
       //expect(instance).to.be();
     });
 
     it('should have the property use_dedicated_address (base name: "use_dedicated_address")', function() {
       // uncomment below and update the code to test the property use_dedicated_address
-      //var instance = new CoboWaas2.CreatePaymentOrderRequest();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property custom_exchange_rate (base name: "custom_exchange_rate")', function() {
-      // uncomment below and update the code to test the property custom_exchange_rate
-      //var instance = new CoboWaas2.CreatePaymentOrderRequest();
+      //var instance = new CoboWaas2.OrderLinkBusinessInfo();
       //expect(instance).to.be();
     });
 
