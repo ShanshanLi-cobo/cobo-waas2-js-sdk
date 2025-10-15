@@ -20,7 +20,7 @@ import FeeType from './FeeType';
 class EstimatedSOLFee {
     /**
      * Constructs a new <code>EstimatedSOLFee</code>.
-     * The estimated transaction fee based on the sol fee model.
+     * The estimated transaction fee based on the SOL fee model.  For more details about the SOL fee model, see [Fee models](https://www.cobo.com/developers/v2/guides/transactions/estimate-fees#fee-models). 
      * @alias module:model/EstimatedSOLFee
      * @param fee_type {module:model/FeeType} 
      * @param token_id {String} The token used to pay the transaction fee.

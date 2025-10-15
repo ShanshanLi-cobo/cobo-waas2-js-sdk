@@ -19,9 +19,9 @@ class SwapToken {
     /**
      * Constructs a new <code>SwapToken</code>.
      * @alias module:model/SwapToken
-     * @param token_id {String} The token id.
-     * @param chain_id {String} The chain id.
-     * @param asset_id {String} The asset id.
+     * @param token_id {String} The token ID.
+     * @param chain_id {String} The chain ID, which is the unique identifier of a blockchain.
+     * @param asset_id {String} The asset ID.
      */
     constructor(token_id, chain_id, asset_id) { 
         
@@ -118,37 +118,37 @@ class SwapToken {
 SwapToken.RequiredProperties = ["token_id", "chain_id", "asset_id"];
 
 /**
- * The token id.
+ * The token ID.
  * @member {String} token_id
  */
 SwapToken.prototype['token_id'] = undefined;
 
 /**
- * The chain id.
+ * The chain ID, which is the unique identifier of a blockchain.
  * @member {String} chain_id
  */
 SwapToken.prototype['chain_id'] = undefined;
 
 /**
- * The asset id.
+ * The asset ID.
  * @member {String} asset_id
  */
 SwapToken.prototype['asset_id'] = undefined;
 
 /**
- * The token address.
+ * The on-chain contract address of the token.
  * @member {String} token_address
  */
 SwapToken.prototype['token_address'] = undefined;
 
 /**
- * The minimum amount.
+ * The minimum amount allowed for a swap.
  * @member {String} min_amount
  */
 SwapToken.prototype['min_amount'] = undefined;
 
 /**
- * The maximum amount.
+ * The maximum amount allowed for a swap.
  * @member {String} max_amount
  */
 SwapToken.prototype['max_amount'] = undefined;

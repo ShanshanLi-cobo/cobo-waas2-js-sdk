@@ -126,7 +126,7 @@ PspBalance.prototype['token_id'] = undefined;
 PspBalance.prototype['developer_fee_amount'] = undefined;
 
 /**
- * The total amount of the token that has been settled from the developer's balance.
+ * The total amount of the token that has been paid out from the developer's balance.
  * @member {String} settled_amount
  */
 PspBalance.prototype['settled_amount'] = undefined;
@@ -138,13 +138,13 @@ PspBalance.prototype['settled_amount'] = undefined;
 PspBalance.prototype['refunded_amount'] = undefined;
 
 /**
- * The total balance of the token for the developer.
+ *  The total balance of the token available for payout or refund for the developer.  `total_balance` = `developer_fee_amount` - `settled_amount` - `refunded_amount`  For more information, please refer to [Amounts and Balances](/v2_cn/payments/amounts-and-balances) 
  * @member {String} total_balance
  */
 PspBalance.prototype['total_balance'] = undefined;
 
 /**
- * The balance available for settlement or refund, in the specified cryptocurrency.
+ * This field has been deprecated.
  * @member {String} available_balance
  */
 PspBalance.prototype['available_balance'] = undefined;

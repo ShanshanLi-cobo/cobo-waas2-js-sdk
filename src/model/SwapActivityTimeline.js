@@ -20,8 +20,8 @@ class SwapActivityTimeline {
      * Constructs a new <code>SwapActivityTimeline</code>.
      * The timeline of the swap activity.
      * @alias module:model/SwapActivityTimeline
-     * @param action {String} The action of the swap activity. Possible values include:   - `Submitted`: The swap request is submitted.   - `Pending Authorization`: The swap request is pending authorization.   - `Bridge {Token}`: The token is being bridged to the target chain.   - `Swap {Token}`: The token is being swapped on the target chain.   - `Cobo Confirmation`: The swap result is waiting for Cobo confirmation. 
-     * @param status {String} The status of the action. Possible values include:   - `Success`: The action is successfully completed.   - `Processing`: The action is being processed.   - `Failed`: The action has failed. 
+     * @param action {String} The action in the swap activity. Possible values include:   - `Submitted`: The swap request has been submitted.   - `Pending Authorization`: The swap request is pending authorization.   - `Bridge {Token}`: The token is being bridged to the destination chain.   - `Swap {Token}`: The token is being exchanged to the destination token.   - `Cobo Confirmation`: The swap result is pending Cobo's final confirmation. 
+     * @param status {String} The status of the action. Possible values include:   - `Success`: The action completed successfully.   - `Processing`: The action is being processed.   - `Failed`: The action failed. 
      */
     constructor(action, status) { 
         
@@ -92,19 +92,19 @@ class SwapActivityTimeline {
 SwapActivityTimeline.RequiredProperties = ["action", "status"];
 
 /**
- * The action of the swap activity. Possible values include:   - `Submitted`: The swap request is submitted.   - `Pending Authorization`: The swap request is pending authorization.   - `Bridge {Token}`: The token is being bridged to the target chain.   - `Swap {Token}`: The token is being swapped on the target chain.   - `Cobo Confirmation`: The swap result is waiting for Cobo confirmation. 
+ * The action in the swap activity. Possible values include:   - `Submitted`: The swap request has been submitted.   - `Pending Authorization`: The swap request is pending authorization.   - `Bridge {Token}`: The token is being bridged to the destination chain.   - `Swap {Token}`: The token is being exchanged to the destination token.   - `Cobo Confirmation`: The swap result is pending Cobo's final confirmation. 
  * @member {String} action
  */
 SwapActivityTimeline.prototype['action'] = undefined;
 
 /**
- * The status of the action. Possible values include:   - `Success`: The action is successfully completed.   - `Processing`: The action is being processed.   - `Failed`: The action has failed. 
+ * The status of the action. Possible values include:   - `Success`: The action completed successfully.   - `Processing`: The action is being processed.   - `Failed`: The action failed. 
  * @member {String} status
  */
 SwapActivityTimeline.prototype['status'] = undefined;
 
 /**
- * The time when the action took place, in Unix timestamp format, measured in milliseconds.  
+ * The time when the action occurred, in Unix timestamp format, measured in milliseconds.  
  * @member {Number} timestamp
  */
 SwapActivityTimeline.prototype['timestamp'] = undefined;

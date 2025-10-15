@@ -152,7 +152,7 @@ MerchantBalance.prototype['acquiring_type'] = undefined;
 MerchantBalance.prototype['total_received_amount'] = undefined;
 
 /**
- * The total amount of the token that has been settled from the merchant's balance.
+ * The total amount of the token that has been paid out from the merchant's balance.
  * @member {String} settled_amount
  */
 MerchantBalance.prototype['settled_amount'] = undefined;
@@ -164,13 +164,13 @@ MerchantBalance.prototype['settled_amount'] = undefined;
 MerchantBalance.prototype['refunded_amount'] = undefined;
 
 /**
- * The total balance of the token for the merchant.
+ *  The total balance of the token available for payout or refund for the merchant.  `total_balance` = `total_received_amount` - `settled_amount` - `refunded_amount`  For more information, please refer to [Amounts and Balances](/v2_cn/payments/amounts-and-balances) 
  * @member {String} total_balance
  */
 MerchantBalance.prototype['total_balance'] = undefined;
 
 /**
- * The balance available for settlement or refund, in the specified cryptocurrency.
+ * This field has been deprecated.
  * @member {String} available_balance
  */
 MerchantBalance.prototype['available_balance'] = undefined;

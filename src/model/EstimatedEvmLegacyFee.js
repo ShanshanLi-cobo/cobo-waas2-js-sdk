@@ -20,7 +20,7 @@ import FeeType from './FeeType';
 class EstimatedEvmLegacyFee {
     /**
      * Constructs a new <code>EstimatedEvmLegacyFee</code>.
-     * The estimated transaction fee based on the legacy fee model.
+     * The estimated transaction fee based on the Legacy fee model.  For more details about the Legacy fee model, see [Fee models](https://www.cobo.com/developers/v2/guides/transactions/estimate-fees#fee-models). 
      * @alias module:model/EstimatedEvmLegacyFee
      * @param fee_type {module:model/FeeType} 
      * @param token_id {String} The token used to pay the transaction fee.

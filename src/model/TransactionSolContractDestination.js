@@ -11,6 +11,7 @@
 
 import ApiClient from '../ApiClient';
 import TransactionDestinationType from './TransactionDestinationType';
+import TransactionSolContractAddressLookupTableAccount from './TransactionSolContractAddressLookupTableAccount';
 import TransactionSolContractInstruction from './TransactionSolContractInstruction';
 
 /**
@@ -55,6 +56,9 @@ class TransactionSolContractDestination {
             if (data.hasOwnProperty('instructions')) {
                 obj['instructions'] = ApiClient.convertToType(data['instructions'], [TransactionSolContractInstruction]);
             }
+            if (data.hasOwnProperty('address_lookup_table_accounts')) {
+                obj['address_lookup_table_accounts'] = ApiClient.convertToType(data['address_lookup_table_accounts'], [TransactionSolContractAddressLookupTableAccount]);
+            }
         }
         return obj;
     }
@@ -81,6 +85,16 @@ class TransactionSolContractDestination {
                 TransactionSolContractInstruction.validateJSON(item);
             };
         }
+        if (data['address_lookup_table_accounts']) { // data not null
+            // ensure the json data is an array
+            if (!Array.isArray(data['address_lookup_table_accounts'])) {
+                throw new Error("Expected the field `address_lookup_table_accounts` to be an array in the JSON data but got " + data['address_lookup_table_accounts']);
+            }
+            // validate the optional field `address_lookup_table_accounts` (array)
+            for (const item of data['address_lookup_table_accounts']) {
+                TransactionSolContractAddressLookupTableAccount.validateJSON(item);
+            };
+        }
 
         return true;
     }
@@ -99,6 +113,11 @@ TransactionSolContractDestination.prototype['destination_type'] = undefined;
  * @member {Array.<module:model/TransactionSolContractInstruction>} instructions
  */
 TransactionSolContractDestination.prototype['instructions'] = undefined;
+
+/**
+ * @member {Array.<module:model/TransactionSolContractAddressLookupTableAccount>} address_lookup_table_accounts
+ */
+TransactionSolContractDestination.prototype['address_lookup_table_accounts'] = undefined;
 
 
 

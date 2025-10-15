@@ -26,7 +26,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new CoboWaas2.BTCEIP191MessageSignDestination();
+    instance = new CoboWaas2.OtcFee();
   });
 
   var getProperty = function(object, getter, property) {
@@ -45,22 +45,22 @@
       object[property] = value;
   }
 
-  describe('BTCEIP191MessageSignDestination', function() {
-    it('should create an instance of BTCEIP191MessageSignDestination', function() {
-      // uncomment below and update the code to test BTCEIP191MessageSignDestination
-      //var instance = new CoboWaas2.BTCEIP191MessageSignDestination();
-      //expect(instance).to.be.a(CoboWaas2.BTCEIP191MessageSignDestination);
+  describe('OtcFee', function() {
+    it('should create an instance of OtcFee', function() {
+      // uncomment below and update the code to test OtcFee
+      //var instance = new CoboWaas2.OtcFee();
+      //expect(instance).to.be.a(CoboWaas2.OtcFee);
     });
 
-    it('should have the property destination_type (base name: "destination_type")', function() {
-      // uncomment below and update the code to test the property destination_type
-      //var instance = new CoboWaas2.BTCEIP191MessageSignDestination();
+    it('should have the property fee_rate (base name: "fee_rate")', function() {
+      // uncomment below and update the code to test the property fee_rate
+      //var instance = new CoboWaas2.OtcFee();
       //expect(instance).to.be();
     });
 
-    it('should have the property message (base name: "message")', function() {
-      // uncomment below and update the code to test the property message
-      //var instance = new CoboWaas2.BTCEIP191MessageSignDestination();
+    it('should have the property token_id (base name: "token_id")', function() {
+      // uncomment below and update the code to test the property token_id
+      //var instance = new CoboWaas2.OtcFee();
       //expect(instance).to.be();
     });
 

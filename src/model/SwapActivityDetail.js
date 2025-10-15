@@ -15,6 +15,7 @@ import SwapActivityApprovers from './SwapActivityApprovers';
 import SwapActivitySigners from './SwapActivitySigners';
 import SwapActivityStatus from './SwapActivityStatus';
 import SwapActivityTimeline from './SwapActivityTimeline';
+import SwapReceivingTransaction from './SwapReceivingTransaction';
 import SwapType from './SwapType';
 import TransactionInitiatorType from './TransactionInitiatorType';
 import TransactionRequestFee from './TransactionRequestFee';
@@ -117,6 +118,9 @@ class SwapActivityDetail {
             if (data.hasOwnProperty('signers')) {
                 obj['signers'] = ApiClient.convertToType(data['signers'], [SwapActivitySigners]);
             }
+            if (data.hasOwnProperty('receiving_transaction')) {
+                obj['receiving_transaction'] = SwapReceivingTransaction.constructFromObject(data['receiving_transaction']);
+            }
         }
         return obj;
     }
@@ -211,6 +215,12 @@ class SwapActivityDetail {
                 SwapActivitySigners.validateJSON(item);
             };
         }
+        // validate the optional field `receiving_transaction`
+        if (data['receiving_transaction']) { // data not null
+          if (!!SwapReceivingTransaction.validateJSON) {
+            SwapReceivingTransaction.validateJSON(data['receiving_transaction']);
+          }
+        }
 
         return true;
     }
@@ -237,49 +247,49 @@ SwapActivityDetail.prototype['swap_type'] = undefined;
 SwapActivityDetail.prototype['status'] = undefined;
 
 /**
- * The request id of the swap activity.
+ * The request ID of the swap transaction.
  * @member {String} request_id
  */
 SwapActivityDetail.prototype['request_id'] = undefined;
 
 /**
- * The unique identifier of the wallet.
+ * The ID of the wallet used to pay.
  * @member {String} wallet_id
  */
 SwapActivityDetail.prototype['wallet_id'] = undefined;
 
 /**
- * The token ID to pay.
+ * The ID of the token to pay.
  * @member {String} pay_token_id
  */
 SwapActivityDetail.prototype['pay_token_id'] = undefined;
 
 /**
- * The token ID to receive.
+ * The ID of the token to receive.
  * @member {String} receive_token_id
  */
 SwapActivityDetail.prototype['receive_token_id'] = undefined;
 
 /**
- * The amount of tokens to bridge.
+ * The amount of the token to pay.
  * @member {String} pay_amount
  */
 SwapActivityDetail.prototype['pay_amount'] = undefined;
 
 /**
- * The amount of tokens to receive.
+ * The amount of the token to receive.
  * @member {String} receive_amount
  */
 SwapActivityDetail.prototype['receive_amount'] = undefined;
 
 /**
- * The fee token ID.
+ * The ID of the token used for paying the service fee.
  * @member {String} fee_token_id
  */
 SwapActivityDetail.prototype['fee_token_id'] = undefined;
 
 /**
- * The amount of fee.
+ * The amount of the service fee.
  * @member {String} fee_amount
  */
 SwapActivityDetail.prototype['fee_amount'] = undefined;
@@ -319,7 +329,7 @@ SwapActivityDetail.prototype['updated_timestamp'] = undefined;
 SwapActivityDetail.prototype['network_fee'] = undefined;
 
 /**
- * the destination address of web3/mpc wallets.
+ * The address of an MPC Wallet or Web3 Wallet that receives the swapped or bridged assets.
  * @member {String} destination_address
  */
 SwapActivityDetail.prototype['destination_address'] = undefined;
@@ -339,6 +349,11 @@ SwapActivityDetail.prototype['approvers'] = undefined;
  */
 SwapActivityDetail.prototype['signers'] = undefined;
 
+/**
+ * @member {module:model/SwapReceivingTransaction} receiving_transaction
+ */
+SwapActivityDetail.prototype['receiving_transaction'] = undefined;
+
 
 // Implement SwapActivity interface:
 /**
@@ -355,42 +370,42 @@ SwapActivity.prototype['swap_type'] = undefined;
  */
 SwapActivity.prototype['status'] = undefined;
 /**
- * The request id of the swap activity.
+ * The request ID of the swap transaction.
  * @member {String} request_id
  */
 SwapActivity.prototype['request_id'] = undefined;
 /**
- * The unique identifier of the wallet.
+ * The ID of the wallet used to pay.
  * @member {String} wallet_id
  */
 SwapActivity.prototype['wallet_id'] = undefined;
 /**
- * The token ID to pay.
+ * The ID of the token to pay.
  * @member {String} pay_token_id
  */
 SwapActivity.prototype['pay_token_id'] = undefined;
 /**
- * The token ID to receive.
+ * The ID of the token to receive.
  * @member {String} receive_token_id
  */
 SwapActivity.prototype['receive_token_id'] = undefined;
 /**
- * The amount of tokens to bridge.
+ * The amount of the token to pay.
  * @member {String} pay_amount
  */
 SwapActivity.prototype['pay_amount'] = undefined;
 /**
- * The amount of tokens to receive.
+ * The amount of the token to receive.
  * @member {String} receive_amount
  */
 SwapActivity.prototype['receive_amount'] = undefined;
 /**
- * The fee token ID.
+ * The ID of the token used for paying the service fee.
  * @member {String} fee_token_id
  */
 SwapActivity.prototype['fee_token_id'] = undefined;
 /**
- * The amount of fee.
+ * The amount of the service fee.
  * @member {String} fee_amount
  */
 SwapActivity.prototype['fee_amount'] = undefined;
@@ -423,7 +438,7 @@ SwapActivity.prototype['updated_timestamp'] = undefined;
  */
 SwapActivity.prototype['network_fee'] = undefined;
 /**
- * the destination address of web3/mpc wallets.
+ * The address of an MPC Wallet or Web3 Wallet that receives the swapped or bridged assets.
  * @member {String} destination_address
  */
 SwapActivity.prototype['destination_address'] = undefined;

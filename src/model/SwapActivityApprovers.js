@@ -19,7 +19,7 @@ import SwapApproversStatus from './SwapApproversStatus';
 class SwapActivityApprovers {
     /**
      * Constructs a new <code>SwapActivityApprovers</code>.
-     * The approvers data for swap activity.
+     * The approver information of the swap activity.
      * @alias module:model/SwapActivityApprovers
      * @param name {String} The approver name of the swap activity. 
      * @param status {module:model/SwapApproversStatus} 

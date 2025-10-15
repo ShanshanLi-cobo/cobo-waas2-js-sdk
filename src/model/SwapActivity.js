@@ -192,49 +192,49 @@ SwapActivity.prototype['swap_type'] = undefined;
 SwapActivity.prototype['status'] = undefined;
 
 /**
- * The request id of the swap activity.
+ * The request ID of the swap transaction.
  * @member {String} request_id
  */
 SwapActivity.prototype['request_id'] = undefined;
 
 /**
- * The unique identifier of the wallet.
+ * The ID of the wallet used to pay.
  * @member {String} wallet_id
  */
 SwapActivity.prototype['wallet_id'] = undefined;
 
 /**
- * The token ID to pay.
+ * The ID of the token to pay.
  * @member {String} pay_token_id
  */
 SwapActivity.prototype['pay_token_id'] = undefined;
 
 /**
- * The token ID to receive.
+ * The ID of the token to receive.
  * @member {String} receive_token_id
  */
 SwapActivity.prototype['receive_token_id'] = undefined;
 
 /**
- * The amount of tokens to bridge.
+ * The amount of the token to pay.
  * @member {String} pay_amount
  */
 SwapActivity.prototype['pay_amount'] = undefined;
 
 /**
- * The amount of tokens to receive.
+ * The amount of the token to receive.
  * @member {String} receive_amount
  */
 SwapActivity.prototype['receive_amount'] = undefined;
 
 /**
- * The fee token ID.
+ * The ID of the token used for paying the service fee.
  * @member {String} fee_token_id
  */
 SwapActivity.prototype['fee_token_id'] = undefined;
 
 /**
- * The amount of fee.
+ * The amount of the service fee.
  * @member {String} fee_amount
  */
 SwapActivity.prototype['fee_amount'] = undefined;
@@ -274,7 +274,7 @@ SwapActivity.prototype['updated_timestamp'] = undefined;
 SwapActivity.prototype['network_fee'] = undefined;
 
 /**
- * the destination address of web3/mpc wallets.
+ * The address of an MPC Wallet or Web3 Wallet that receives the swapped or bridged assets.
  * @member {String} destination_address
  */
 SwapActivity.prototype['destination_address'] = undefined;

@@ -10,6 +10,7 @@
  */
 
 import ApiClient from '../ApiClient';
+import CommissionFee from './CommissionFee';
 import PaymentTransaction from './PaymentTransaction';
 import Refund from './Refund';
 import RefundStatus from './RefundStatus';
@@ -121,6 +122,9 @@ class PaymentRefundEventData {
             if (data.hasOwnProperty('merchant_fee_token_id')) {
                 obj['merchant_fee_token_id'] = ApiClient.convertToType(data['merchant_fee_token_id'], 'String');
             }
+            if (data.hasOwnProperty('commission_fee')) {
+                obj['commission_fee'] = CommissionFee.constructFromObject(data['commission_fee']);
+            }
         }
         return obj;
     }
@@ -194,6 +198,12 @@ class PaymentRefundEventData {
         // ensure the json data is a string
         if (data['merchant_fee_token_id'] && !(typeof data['merchant_fee_token_id'] === 'string' || data['merchant_fee_token_id'] instanceof String)) {
             throw new Error("Expected the field `merchant_fee_token_id` to be a primitive type in the JSON string but got " + data['merchant_fee_token_id']);
+        }
+        // validate the optional field `commission_fee`
+        if (data['commission_fee']) { // data not null
+          if (!!CommissionFee.validateJSON) {
+            CommissionFee.validateJSON(data['commission_fee']);
+          }
         }
 
         return true;
@@ -281,7 +291,7 @@ PaymentRefundEventData.prototype['created_timestamp'] = undefined;
 PaymentRefundEventData.prototype['updated_timestamp'] = undefined;
 
 /**
- *  The initiator of this settlement request. Can return either an API key or the Payment Management App's ID.  - Format `api_key_<API_KEY>`: Indicates the settlement request was initiated via the Payment API using the API key. - Format `app_<APP_ID>`: Indicates the settlement request was initiated through the Payment Management App using the App ID. 
+ *  The initiator of this settlement request. Can return either an API key or the Payments App's ID.  - Format `api_key_<API_KEY>`: Indicates the settlement request was initiated via the Payments API using the API key. - Format `app_<APP_ID>`: Indicates the settlement request was initiated through the Payments App using the App ID. 
  * @member {String} initiator
  */
 PaymentRefundEventData.prototype['initiator'] = undefined;
@@ -309,6 +319,11 @@ PaymentRefundEventData.prototype['merchant_fee_amount'] = undefined;
  * @member {String} merchant_fee_token_id
  */
 PaymentRefundEventData.prototype['merchant_fee_token_id'] = undefined;
+
+/**
+ * @member {module:model/CommissionFee} commission_fee
+ */
+PaymentRefundEventData.prototype['commission_fee'] = undefined;
 
 
 // Implement WebhookEventDataType interface:
@@ -377,7 +392,7 @@ Refund.prototype['created_timestamp'] = undefined;
  */
 Refund.prototype['updated_timestamp'] = undefined;
 /**
- *  The initiator of this settlement request. Can return either an API key or the Payment Management App's ID.  - Format `api_key_<API_KEY>`: Indicates the settlement request was initiated via the Payment API using the API key. - Format `app_<APP_ID>`: Indicates the settlement request was initiated through the Payment Management App using the App ID. 
+ *  The initiator of this settlement request. Can return either an API key or the Payments App's ID.  - Format `api_key_<API_KEY>`: Indicates the settlement request was initiated via the Payments API using the API key. - Format `app_<APP_ID>`: Indicates the settlement request was initiated through the Payments App using the App ID. 
  * @member {String} initiator
  */
 Refund.prototype['initiator'] = undefined;
@@ -401,6 +416,10 @@ Refund.prototype['merchant_fee_amount'] = undefined;
  * @member {String} merchant_fee_token_id
  */
 Refund.prototype['merchant_fee_token_id'] = undefined;
+/**
+ * @member {module:model/CommissionFee} commission_fee
+ */
+Refund.prototype['commission_fee'] = undefined;
 
 
 

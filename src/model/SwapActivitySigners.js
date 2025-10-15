@@ -19,7 +19,7 @@ import SwapSingingStatus from './SwapSingingStatus';
 class SwapActivitySigners {
     /**
      * Constructs a new <code>SwapActivitySigners</code>.
-     * The signer data for swap activity.
+     * The signer information of the swap activity.
      * @alias module:model/SwapActivitySigners
      */
     constructor() { 
@@ -94,7 +94,7 @@ SwapActivitySigners.prototype['signer'] = undefined;
 SwapActivitySigners.prototype['status'] = undefined;
 
 /**
- * Failed reason of signing process.
+ * The reason for the signing failure.
  * @member {String} failed_reason
  */
 SwapActivitySigners.prototype['failed_reason'] = undefined;

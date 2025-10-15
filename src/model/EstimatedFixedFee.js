@@ -20,7 +20,7 @@ import FeeType from './FeeType';
 class EstimatedFixedFee {
     /**
      * Constructs a new <code>EstimatedFixedFee</code>.
-     * The estimated transaction fee based on the fixed fee model.
+     * The estimated transaction fee based on the fixed fee model.  For more details about the fixed fee model, see [Fee models](https://www.cobo.com/developers/v2/guides/transactions/estimate-fees#fee-models). 
      * @alias module:model/EstimatedFixedFee
      * @implements module:model/FeeAmount
      * @param fee_amount {String} The transaction fee that you need to pay for the transaction.
