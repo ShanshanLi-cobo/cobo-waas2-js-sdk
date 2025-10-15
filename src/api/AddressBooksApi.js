@@ -40,7 +40,7 @@ export default class AddressBooksApi {
 
     /**
      * Create Address Book entries
-     * This operation adds new entries (records) to your Address Book. 
+     * This operation adds new entries (records) to your Address Book. <Note>This operation is available upon request. Please contact our [customer support](mailto:help@cobo.com) to enable it.</Note> 
      * @param {Object} opts Optional parameters
      * @param {module:model/CreateAddressBooksParam} [CreateAddressBooksParam] The request body of the create Address Books operation.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/CreateAddressBooks201Response} and HTTP response
@@ -74,7 +74,7 @@ export default class AddressBooksApi {
 
     /**
      * Create Address Book entries
-     * This operation adds new entries (records) to your Address Book. 
+     * This operation adds new entries (records) to your Address Book. <Note>This operation is available upon request. Please contact our [customer support](mailto:help@cobo.com) to enable it.</Note> 
      * @param {Object} opts Optional parameters
      * @param {module:model/CreateAddressBooksParam} opts.CreateAddressBooksParam The request body of the create Address Books operation.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/CreateAddressBooks201Response}
@@ -89,7 +89,7 @@ export default class AddressBooksApi {
 
     /**
      * Delete Address Book entry
-     * This operation deletes a specified Address Book entry (record). 
+     * This operation deletes a specified Address Book entry (record). <Note>This operation is available upon request. Please contact our [customer support](mailto:help@cobo.com) to enable it.</Note> 
      * @param {String} entry_id The Address Book entry ID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DeleteAddressBookById201Response} and HTTP response
      */
@@ -126,7 +126,7 @@ export default class AddressBooksApi {
 
     /**
      * Delete Address Book entry
-     * This operation deletes a specified Address Book entry (record). 
+     * This operation deletes a specified Address Book entry (record). <Note>This operation is available upon request. Please contact our [customer support](mailto:help@cobo.com) to enable it.</Note> 
      * @param {String} entry_id The Address Book entry ID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DeleteAddressBookById201Response}
      */
@@ -256,7 +256,7 @@ export default class AddressBooksApi {
 
     /**
      * Update Address Book entry
-     * This operation updates the information of a specified Address Book entry (record). 
+     * This operation updates the information of a specified Address Book entry (record). <Note>This operation is available upon request. Please contact our [customer support](mailto:help@cobo.com) to enable it.</Note> 
      * @param {String} entry_id The Address Book entry ID.
      * @param {Object} opts Optional parameters
      * @param {module:model/UpdateAddressBookParam} [UpdateAddressBookParam] The request body of the update Address Book operation.
@@ -296,7 +296,7 @@ export default class AddressBooksApi {
 
     /**
      * Update Address Book entry
-     * This operation updates the information of a specified Address Book entry (record). 
+     * This operation updates the information of a specified Address Book entry (record). <Note>This operation is available upon request. Please contact our [customer support](mailto:help@cobo.com) to enable it.</Note> 
      * @param {String} entry_id The Address Book entry ID.
      * @param {Object} opts Optional parameters
      * @param {module:model/UpdateAddressBookParam} opts.UpdateAddressBookParam The request body of the update Address Book operation.

@@ -26,7 +26,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new CoboWaas2.RawMessageSignDestination();
+    instance = new CoboWaas2.ListTopUpPayerAccounts200Response();
   });
 
   var getProperty = function(object, getter, property) {
@@ -45,22 +45,22 @@
       object[property] = value;
   }
 
-  describe('RawMessageSignDestination', function() {
-    it('should create an instance of RawMessageSignDestination', function() {
-      // uncomment below and update the code to test RawMessageSignDestination
-      //var instance = new CoboWaas2.RawMessageSignDestination();
-      //expect(instance).to.be.a(CoboWaas2.RawMessageSignDestination);
+  describe('ListTopUpPayerAccounts200Response', function() {
+    it('should create an instance of ListTopUpPayerAccounts200Response', function() {
+      // uncomment below and update the code to test ListTopUpPayerAccounts200Response
+      //var instance = new CoboWaas2.ListTopUpPayerAccounts200Response();
+      //expect(instance).to.be.a(CoboWaas2.ListTopUpPayerAccounts200Response);
     });
 
-    it('should have the property destination_type (base name: "destination_type")', function() {
-      // uncomment below and update the code to test the property destination_type
-      //var instance = new CoboWaas2.RawMessageSignDestination();
+    it('should have the property data (base name: "data")', function() {
+      // uncomment below and update the code to test the property data
+      //var instance = new CoboWaas2.ListTopUpPayerAccounts200Response();
       //expect(instance).to.be();
     });
 
-    it('should have the property msg_hash (base name: "msg_hash")', function() {
-      // uncomment below and update the code to test the property msg_hash
-      //var instance = new CoboWaas2.RawMessageSignDestination();
+    it('should have the property pagination (base name: "pagination")', function() {
+      // uncomment below and update the code to test the property pagination
+      //var instance = new CoboWaas2.ListTopUpPayerAccounts200Response();
       //expect(instance).to.be();
     });
 

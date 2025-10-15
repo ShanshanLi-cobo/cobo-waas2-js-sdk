@@ -306,10 +306,40 @@ import {ApiClient, Env} from "../../src/index.js";
         //});
       });
     });
+    describe('listTopUpPayerAccounts', function() {
+      it('should call listTopUpPayerAccounts successfully', function() {
+        //uncomment below and update the code to test listTopUpPayerAccounts
+        //instance.listTopUpPayerAccounts().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('listTopUpPayers', function() {
       it('should call listTopUpPayers successfully', function() {
         //uncomment below and update the code to test listTopUpPayers
         //instance.listTopUpPayers().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('paymentEstimateFee', function() {
+      it('should call paymentEstimateFee successfully', function() {
+        //uncomment below and update the code to test paymentEstimateFee
+        //instance.paymentEstimateFee().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('updateBankAccountById', function() {
+      it('should call updateBankAccountById successfully', function() {
+        //uncomment below and update the code to test updateBankAccountById
+        //instance.updateBankAccountById().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);

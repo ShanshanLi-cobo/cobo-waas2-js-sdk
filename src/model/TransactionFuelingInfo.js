@@ -51,6 +51,9 @@ class TransactionFuelingInfo {
             if (data.hasOwnProperty('transaction_id')) {
                 obj['transaction_id'] = ApiClient.convertToType(data['transaction_id'], 'String');
             }
+            if (data.hasOwnProperty('main_transaction_id')) {
+                obj['main_transaction_id'] = ApiClient.convertToType(data['main_transaction_id'], 'String');
+            }
         }
         return obj;
     }
@@ -68,6 +71,10 @@ class TransactionFuelingInfo {
         // ensure the json data is a string
         if (data['transaction_id'] && !(typeof data['transaction_id'] === 'string' || data['transaction_id'] instanceof String)) {
             throw new Error("Expected the field `transaction_id` to be a primitive type in the JSON string but got " + data['transaction_id']);
+        }
+        // ensure the json data is a string
+        if (data['main_transaction_id'] && !(typeof data['main_transaction_id'] === 'string' || data['main_transaction_id'] instanceof String)) {
+            throw new Error("Expected the field `main_transaction_id` to be a primitive type in the JSON string but got " + data['main_transaction_id']);
         }
 
         return true;
@@ -89,6 +96,12 @@ TransactionFuelingInfo.prototype['request_id'] = undefined;
  * @member {String} transaction_id
  */
 TransactionFuelingInfo.prototype['transaction_id'] = undefined;
+
+/**
+ * The UUID of the parent (main) transaction that this record is associated with. Set only when the current record is a gas/fee transaction initiated by Fee Station; omit for main transactions.
+ * @member {String} main_transaction_id
+ */
+TransactionFuelingInfo.prototype['main_transaction_id'] = undefined;
 
 
 

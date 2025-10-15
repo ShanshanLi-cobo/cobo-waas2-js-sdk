@@ -19,14 +19,14 @@ class SwapQuote {
     /**
      * Constructs a new <code>SwapQuote</code>.
      * @alias module:model/SwapQuote
-     * @param quote_id {String} The unique id of quote.
-     * @param pay_token_id {String} The token ID to pay.
-     * @param pay_amount {String} The amount of tokens to pay.
-     * @param receive_token_id {String} The token ID to receive.
-     * @param receive_amount {String} The amount of tokens to receive.
-     * @param fee_token_id {String} The token ID for the service fee.
-     * @param fee_amount {String} The amount of tokens for the service fee.
-     * @param quote_expired_timestamp {Number} The time when the quote will expire, in Unix timestamp format, measured in milliseconds.
+     * @param quote_id {String} The unique identifier of the swap quote.
+     * @param pay_token_id {String} The ID of the token to pay.
+     * @param pay_amount {String} The amount of the token to pay.
+     * @param receive_token_id {String} The ID of the token to receive.
+     * @param receive_amount {String} The amount of the token to receive.
+     * @param fee_token_id {String} The ID of the token for the service fee.
+     * @param fee_amount {String} The amount of the token for the service fee.
+     * @param quote_expired_timestamp {Number} The time when the swap quote expires, in Unix timestamp format, measured in milliseconds.
      */
     constructor(quote_id, pay_token_id, pay_amount, receive_token_id, receive_amount, fee_token_id, fee_amount, quote_expired_timestamp) { 
         
@@ -80,9 +80,6 @@ class SwapQuote {
             }
             if (data.hasOwnProperty('fee_amount')) {
                 obj['fee_amount'] = ApiClient.convertToType(data['fee_amount'], 'String');
-            }
-            if (data.hasOwnProperty('estimated_network_fee_amount')) {
-                obj['estimated_network_fee_amount'] = ApiClient.convertToType(data['estimated_network_fee_amount'], 'String');
             }
             if (data.hasOwnProperty('min_receive_amount')) {
                 obj['min_receive_amount'] = ApiClient.convertToType(data['min_receive_amount'], 'String');
@@ -138,10 +135,6 @@ class SwapQuote {
             throw new Error("Expected the field `fee_amount` to be a primitive type in the JSON string but got " + data['fee_amount']);
         }
         // ensure the json data is a string
-        if (data['estimated_network_fee_amount'] && !(typeof data['estimated_network_fee_amount'] === 'string' || data['estimated_network_fee_amount'] instanceof String)) {
-            throw new Error("Expected the field `estimated_network_fee_amount` to be a primitive type in the JSON string but got " + data['estimated_network_fee_amount']);
-        }
-        // ensure the json data is a string
         if (data['min_receive_amount'] && !(typeof data['min_receive_amount'] === 'string' || data['min_receive_amount'] instanceof String)) {
             throw new Error("Expected the field `min_receive_amount` to be a primitive type in the JSON string but got " + data['min_receive_amount']);
         }
@@ -159,67 +152,61 @@ class SwapQuote {
 SwapQuote.RequiredProperties = ["quote_id", "pay_token_id", "pay_amount", "receive_token_id", "receive_amount", "fee_token_id", "fee_amount", "quote_expired_timestamp"];
 
 /**
- * The unique id of quote.
+ * The unique identifier of the swap quote.
  * @member {String} quote_id
  */
 SwapQuote.prototype['quote_id'] = undefined;
 
 /**
- * The token ID to pay.
+ * The ID of the token to pay.
  * @member {String} pay_token_id
  */
 SwapQuote.prototype['pay_token_id'] = undefined;
 
 /**
- * The amount of tokens to pay.
+ * The amount of the token to pay.
  * @member {String} pay_amount
  */
 SwapQuote.prototype['pay_amount'] = undefined;
 
 /**
- * The token ID to receive.
+ * The ID of the token to receive.
  * @member {String} receive_token_id
  */
 SwapQuote.prototype['receive_token_id'] = undefined;
 
 /**
- * The amount of tokens to receive.
+ * The amount of the token to receive.
  * @member {String} receive_amount
  */
 SwapQuote.prototype['receive_amount'] = undefined;
 
 /**
- * The token ID for the service fee.
+ * The ID of the token for the service fee.
  * @member {String} fee_token_id
  */
 SwapQuote.prototype['fee_token_id'] = undefined;
 
 /**
- * The amount of tokens for the service fee.
+ * The amount of the token for the service fee.
  * @member {String} fee_amount
  */
 SwapQuote.prototype['fee_amount'] = undefined;
 
 /**
- * The estimated amount of tokens for the network fee.
- * @member {String} estimated_network_fee_amount
- */
-SwapQuote.prototype['estimated_network_fee_amount'] = undefined;
-
-/**
- * The minimum amount of tokens to receive if the pay amount is specified.
+ * The minimum amount of the token to receive if `pay_amount` is specified.
  * @member {String} min_receive_amount
  */
 SwapQuote.prototype['min_receive_amount'] = undefined;
 
 /**
- * The maximum amount of tokens to pay if the receive amount is specified.
+ * The maximum amount of the token to pay if `receive_amount` is specified.
  * @member {String} max_pay_amount
  */
 SwapQuote.prototype['max_pay_amount'] = undefined;
 
 /**
- * The time when the quote will expire, in Unix timestamp format, measured in milliseconds.
+ * The time when the swap quote expires, in Unix timestamp format, measured in milliseconds.
  * @member {Number} quote_expired_timestamp
  */
 SwapQuote.prototype['quote_expired_timestamp'] = undefined;

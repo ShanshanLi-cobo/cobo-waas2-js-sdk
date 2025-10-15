@@ -12,6 +12,8 @@
 import ApiClient from '../ApiClient';
 import AcquiringType from './AcquiringType';
 import BankAccount from './BankAccount';
+import BridgingFee from './BridgingFee';
+import CommissionFee from './CommissionFee';
 import PaymentTransaction from './PaymentTransaction';
 import PayoutChannel from './PayoutChannel';
 import SettleStatus from './SettleStatus';
@@ -97,6 +99,12 @@ class SettlementDetail {
             if (data.hasOwnProperty('order_ids')) {
                 obj['order_ids'] = ApiClient.convertToType(data['order_ids'], ['String']);
             }
+            if (data.hasOwnProperty('commission_fee')) {
+                obj['commission_fee'] = CommissionFee.constructFromObject(data['commission_fee']);
+            }
+            if (data.hasOwnProperty('bridging_fee')) {
+                obj['bridging_fee'] = BridgingFee.constructFromObject(data['bridging_fee']);
+            }
         }
         return obj;
     }
@@ -158,6 +166,18 @@ class SettlementDetail {
         // ensure the json data is an array
         if (!Array.isArray(data['order_ids'])) {
             throw new Error("Expected the field `order_ids` to be an array in the JSON data but got " + data['order_ids']);
+        }
+        // validate the optional field `commission_fee`
+        if (data['commission_fee']) { // data not null
+          if (!!CommissionFee.validateJSON) {
+            CommissionFee.validateJSON(data['commission_fee']);
+          }
+        }
+        // validate the optional field `bridging_fee`
+        if (data['bridging_fee']) { // data not null
+          if (!!BridgingFee.validateJSON) {
+            BridgingFee.validateJSON(data['bridging_fee']);
+          }
         }
 
         return true;
@@ -233,7 +253,7 @@ SettlementDetail.prototype['created_timestamp'] = undefined;
 SettlementDetail.prototype['updated_timestamp'] = undefined;
 
 /**
- * The ID of the crypto address used for crypto withdrawal.
+ * The ID of the crypto address used for crypto payouts.
  * @member {String} crypto_address_id
  */
 SettlementDetail.prototype['crypto_address_id'] = undefined;
@@ -259,6 +279,16 @@ SettlementDetail.prototype['settlement_request_id'] = undefined;
  * @member {Array.<String>} order_ids
  */
 SettlementDetail.prototype['order_ids'] = undefined;
+
+/**
+ * @member {module:model/CommissionFee} commission_fee
+ */
+SettlementDetail.prototype['commission_fee'] = undefined;
+
+/**
+ * @member {module:model/BridgingFee} bridging_fee
+ */
+SettlementDetail.prototype['bridging_fee'] = undefined;
 
 
 

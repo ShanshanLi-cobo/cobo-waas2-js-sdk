@@ -64,6 +64,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property main_transaction_id (base name: "main_transaction_id")', function() {
+      // uncomment below and update the code to test the property main_transaction_id
+      //var instance = new CoboWaas2.TransactionFuelingInfo();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

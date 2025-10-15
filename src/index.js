@@ -56,7 +56,6 @@ import AutoSweepTask from './model/AutoSweepTask';
 import AutoSweepTaskStatus from './model/AutoSweepTaskStatus';
 import BTCBIP137MessageSignDestination from './model/BTCBIP137MessageSignDestination';
 import BTCBIP322MessageSignDestination from './model/BTCBIP322MessageSignDestination';
-import BTCEIP191MessageSignDestination from './model/BTCEIP191MessageSignDestination';
 import BabylonAirdropPop from './model/BabylonAirdropPop';
 import BabylonAirdropRegistration from './model/BabylonAirdropRegistration';
 import BabylonEligibleAirdrop from './model/BabylonEligibleAirdrop';
@@ -79,6 +78,7 @@ import BaseStakeSource from './model/BaseStakeSource';
 import BatchCheckUtxo201Response from './model/BatchCheckUtxo201Response';
 import BatchCheckUtxoRequest from './model/BatchCheckUtxoRequest';
 import BatchUTXOParam from './model/BatchUTXOParam';
+import BridgingFee from './model/BridgingFee';
 import BroadcastSignedTransactions201ResponseInner from './model/BroadcastSignedTransactions201ResponseInner';
 import BroadcastSignedTransactionsRequest from './model/BroadcastSignedTransactionsRequest';
 import CallbackMessage from './model/CallbackMessage';
@@ -91,6 +91,7 @@ import CheckAddressesValidity200ResponseInner from './model/CheckAddressesValidi
 import CheckLoopTransfers200ResponseInner from './model/CheckLoopTransfers200ResponseInner';
 import CoboSafeDelegate from './model/CoboSafeDelegate';
 import CoboSafeDelegateType from './model/CoboSafeDelegateType';
+import CommissionFee from './model/CommissionFee';
 import ComplianceDispositionUpdateEventData from './model/ComplianceDispositionUpdateEventData';
 import ContractCallDestination from './model/ContractCallDestination';
 import ContractCallDestinationType from './model/ContractCallDestinationType';
@@ -136,6 +137,7 @@ import CreateStakeActivity from './model/CreateStakeActivity';
 import CreateStakeActivity201Response from './model/CreateStakeActivity201Response';
 import CreateStakeActivityExtra from './model/CreateStakeActivityExtra';
 import CreateStakeActivityRequest from './model/CreateStakeActivityRequest';
+import CreateSwapActivityRequest from './model/CreateSwapActivityRequest';
 import CreateSweepToAddress from './model/CreateSweepToAddress';
 import CreateTokenListingRequest201Response from './model/CreateTokenListingRequest201Response';
 import CreateTokenListingRequestRequest from './model/CreateTokenListingRequestRequest';
@@ -218,7 +220,10 @@ import FeeAmount from './model/FeeAmount';
 import FeeGasLimit from './model/FeeGasLimit';
 import FeeRate from './model/FeeRate';
 import FeeReserved from './model/FeeReserved';
+import FeeStationCheckFeeStationUsage from './model/FeeStationCheckFeeStationUsage';
+import FeeStationCheckFeeStationUsageResponse from './model/FeeStationCheckFeeStationUsageResponse';
 import FeeStationDestination from './model/FeeStationDestination';
+import FeeStationGasStationType from './model/FeeStationGasStationType';
 import FeeStationTransactionType from './model/FeeStationTransactionType';
 import FeeStationTransfer from './model/FeeStationTransfer';
 import FeeType from './model/FeeType';
@@ -280,11 +285,14 @@ import ListSupportedAssetsForExchange200Response from './model/ListSupportedAsse
 import ListSupportedChains200Response from './model/ListSupportedChains200Response';
 import ListSupportedCountries200ResponseInner from './model/ListSupportedCountries200ResponseInner';
 import ListSupportedTokens200Response from './model/ListSupportedTokens200Response';
+import ListSwapActivities200Response from './model/ListSwapActivities200Response';
+import ListSwapEnabledTokens200Response from './model/ListSwapEnabledTokens200Response';
 import ListTokenBalancesForAddress200Response from './model/ListTokenBalancesForAddress200Response';
 import ListTokenBalancesForFeeStation200Response from './model/ListTokenBalancesForFeeStation200Response';
 import ListTokenBalancesForFeeStation200ResponseDataInner from './model/ListTokenBalancesForFeeStation200ResponseDataInner';
 import ListTokenListingRequests200Response from './model/ListTokenListingRequests200Response';
 import ListTokenizationBlocklistAddresses200Response from './model/ListTokenizationBlocklistAddresses200Response';
+import ListTopUpPayerAccounts200Response from './model/ListTopUpPayerAccounts200Response';
 import ListTopUpPayers200Response from './model/ListTopUpPayers200Response';
 import ListTopUpPayers200ResponseDataInner from './model/ListTopUpPayers200ResponseDataInner';
 import ListTransactionApprovalDetails200Response from './model/ListTransactionApprovalDetails200Response';
@@ -323,9 +331,15 @@ import MpcTransferSource from './model/MpcTransferSource';
 import Order from './model/Order';
 import OrderStatus from './model/OrderStatus';
 import OrgInfo from './model/OrgInfo';
+import OtcFee from './model/OtcFee';
 import Pagination from './model/Pagination';
 import PayerAccount from './model/PayerAccount';
 import PaymentAddressUpdateEventData from './model/PaymentAddressUpdateEventData';
+import PaymentEstimateFee from './model/PaymentEstimateFee';
+import PaymentEstimateFee201Response from './model/PaymentEstimateFee201Response';
+import PaymentEstimateFeeRequest from './model/PaymentEstimateFeeRequest';
+import PaymentEstimatedFee from './model/PaymentEstimatedFee';
+import PaymentFeeType from './model/PaymentFeeType';
 import PaymentOrderEventData from './model/PaymentOrderEventData';
 import PaymentRefundEventData from './model/PaymentRefundEventData';
 import PaymentSettlementEvent from './model/PaymentSettlementEvent';
@@ -346,7 +360,6 @@ import PspBalance from './model/PspBalance';
 import QueryApprovalStatement200Response from './model/QueryApprovalStatement200Response';
 import QueryGuardPubkey200Response from './model/QueryGuardPubkey200Response';
 import QueryGuardPubkey200ResponseAddressesInner from './model/QueryGuardPubkey200ResponseAddressesInner';
-import RawMessageSignDestination from './model/RawMessageSignDestination';
 import ReceivedAmountPerAddress from './model/ReceivedAmountPerAddress';
 import RefreshAddressBalancesByToken200Response from './model/RefreshAddressBalancesByToken200Response';
 import RefreshAddressBalancesByTokenRequest from './model/RefreshAddressBalancesByTokenRequest';
@@ -392,6 +405,7 @@ import SmartContractWalletInfo from './model/SmartContractWalletInfo';
 import SmartContractWalletOperationType from './model/SmartContractWalletOperationType';
 import SmartContractWalletType from './model/SmartContractWalletType';
 import SolContractCallAccount from './model/SolContractCallAccount';
+import SolContractCallAddressLookupTableAccount from './model/SolContractCallAddressLookupTableAccount';
 import SolContractCallDestination from './model/SolContractCallDestination';
 import SolContractCallInstruction from './model/SolContractCallInstruction';
 import SourceGroup from './model/SourceGroup';
@@ -401,6 +415,11 @@ import StakingPoolType from './model/StakingPoolType';
 import StakingSource from './model/StakingSource';
 import Stakings from './model/Stakings';
 import StakingsExtra from './model/StakingsExtra';
+import StellarContractCallContractParam from './model/StellarContractCallContractParam';
+import StellarContractCallContractType from './model/StellarContractCallContractType';
+import StellarContractCallDestination from './model/StellarContractCallDestination';
+import StellarContractCallTrustLineOperationType from './model/StellarContractCallTrustLineOperationType';
+import StellarContractCallTrustLineParam from './model/StellarContractCallTrustLineParam';
 import SubWalletAssetBalance from './model/SubWalletAssetBalance';
 import SubmitDepositTravelRuleInfo201Response from './model/SubmitDepositTravelRuleInfo201Response';
 import SupportedToken from './model/SupportedToken';
@@ -413,7 +432,9 @@ import SwapActivitySigners from './model/SwapActivitySigners';
 import SwapActivityStatus from './model/SwapActivityStatus';
 import SwapActivityTimeline from './model/SwapActivityTimeline';
 import SwapApproversStatus from './model/SwapApproversStatus';
+import SwapEstimateFee from './model/SwapEstimateFee';
 import SwapQuote from './model/SwapQuote';
+import SwapReceivingTransaction from './model/SwapReceivingTransaction';
 import SwapSingingStatus from './model/SwapSingingStatus';
 import SwapToken from './model/SwapToken';
 import SwapType from './model/SwapType';
@@ -602,11 +623,17 @@ import TransactionSignatureResult from './model/TransactionSignatureResult';
 import TransactionSigner from './model/TransactionSigner';
 import TransactionSmartContractSafeWalletSource from './model/TransactionSmartContractSafeWalletSource';
 import TransactionSolContractAccount from './model/TransactionSolContractAccount';
+import TransactionSolContractAddressLookupTableAccount from './model/TransactionSolContractAddressLookupTableAccount';
 import TransactionSolContractDestination from './model/TransactionSolContractDestination';
 import TransactionSolContractInstruction from './model/TransactionSolContractInstruction';
 import TransactionSource from './model/TransactionSource';
 import TransactionSourceType from './model/TransactionSourceType';
 import TransactionStatus from './model/TransactionStatus';
+import TransactionStellarContractParam from './model/TransactionStellarContractParam';
+import TransactionStellarContractType from './model/TransactionStellarContractType';
+import TransactionStellarDestination from './model/TransactionStellarDestination';
+import TransactionStellarTrustLineOperationType from './model/TransactionStellarTrustLineOperationType';
+import TransactionStellarTrustLineParam from './model/TransactionStellarTrustLineParam';
 import TransactionSubStatus from './model/TransactionSubStatus';
 import TransactionTimeline from './model/TransactionTimeline';
 import TransactionTokeApproval from './model/TransactionTokeApproval';
@@ -642,6 +669,7 @@ import TriggerTestWebhookEventRequest from './model/TriggerTestWebhookEventReque
 import UTXO from './model/UTXO';
 import UnfreezeDisposition from './model/UnfreezeDisposition';
 import UpdateAddressBookParam from './model/UpdateAddressBookParam';
+import UpdateBankAccountByIdRequest from './model/UpdateBankAccountByIdRequest';
 import UpdateCustodialWalletParams from './model/UpdateCustodialWalletParams';
 import UpdateExchangeWalletParams from './model/UpdateExchangeWalletParams';
 import UpdateGroupAction from './model/UpdateGroupAction';
@@ -661,6 +689,7 @@ import UtxoFeeRate from './model/UtxoFeeRate';
 import Vasp from './model/Vasp';
 import WalletInfo from './model/WalletInfo';
 import WalletInfoEventData from './model/WalletInfoEventData';
+import WalletSetup from './model/WalletSetup';
 import WalletSubtype from './model/WalletSubtype';
 import WalletType from './model/WalletType';
 import WebhookEndpoint from './model/WebhookEndpoint';
@@ -683,6 +712,7 @@ import OrganizationsApi from './api/OrganizationsApi';
 import PaymentApi from './api/PaymentApi';
 import PrimeBrokerApi from './api/PrimeBrokerApi';
 import StakingsApi from './api/StakingsApi';
+import SwapsApi from './api/SwapsApi';
 import TokenizationApi from './api/TokenizationApi';
 import TransactionsApi from './api/TransactionsApi';
 import TravelRuleApi from './api/TravelRuleApi';
@@ -722,7 +752,7 @@ import WalletsSmartContractWalletsApi from './api/WalletsSmartContractWalletsApi
 * </pre>
 * </p>
 * @module index
-* @version 1.23.0
+* @version 1.24.0
 */
 export {
     Env,
@@ -993,12 +1023,6 @@ export {
     BTCBIP322MessageSignDestination,
 
     /**
-     * The BTCEIP191MessageSignDestination model constructor.
-     * @property {module:model/BTCEIP191MessageSignDestination}
-     */
-    BTCEIP191MessageSignDestination,
-
-    /**
      * The BabylonAirdropPop model constructor.
      * @property {module:model/BabylonAirdropPop}
      */
@@ -1131,6 +1155,12 @@ export {
     BatchUTXOParam,
 
     /**
+     * The BridgingFee model constructor.
+     * @property {module:model/BridgingFee}
+     */
+    BridgingFee,
+
+    /**
      * The BroadcastSignedTransactions201ResponseInner model constructor.
      * @property {module:model/BroadcastSignedTransactions201ResponseInner}
      */
@@ -1201,6 +1231,12 @@ export {
      * @property {module:model/CoboSafeDelegateType}
      */
     CoboSafeDelegateType,
+
+    /**
+     * The CommissionFee model constructor.
+     * @property {module:model/CommissionFee}
+     */
+    CommissionFee,
 
     /**
      * The ComplianceDispositionUpdateEventData model constructor.
@@ -1471,6 +1507,12 @@ export {
      * @property {module:model/CreateStakeActivityRequest}
      */
     CreateStakeActivityRequest,
+
+    /**
+     * The CreateSwapActivityRequest model constructor.
+     * @property {module:model/CreateSwapActivityRequest}
+     */
+    CreateSwapActivityRequest,
 
     /**
      * The CreateSweepToAddress model constructor.
@@ -1965,10 +2007,28 @@ export {
     FeeReserved,
 
     /**
+     * The FeeStationCheckFeeStationUsage model constructor.
+     * @property {module:model/FeeStationCheckFeeStationUsage}
+     */
+    FeeStationCheckFeeStationUsage,
+
+    /**
+     * The FeeStationCheckFeeStationUsageResponse model constructor.
+     * @property {module:model/FeeStationCheckFeeStationUsageResponse}
+     */
+    FeeStationCheckFeeStationUsageResponse,
+
+    /**
      * The FeeStationDestination model constructor.
      * @property {module:model/FeeStationDestination}
      */
     FeeStationDestination,
+
+    /**
+     * The FeeStationGasStationType model constructor.
+     * @property {module:model/FeeStationGasStationType}
+     */
+    FeeStationGasStationType,
 
     /**
      * The FeeStationTransactionType model constructor.
@@ -2337,6 +2397,18 @@ export {
     ListSupportedTokens200Response,
 
     /**
+     * The ListSwapActivities200Response model constructor.
+     * @property {module:model/ListSwapActivities200Response}
+     */
+    ListSwapActivities200Response,
+
+    /**
+     * The ListSwapEnabledTokens200Response model constructor.
+     * @property {module:model/ListSwapEnabledTokens200Response}
+     */
+    ListSwapEnabledTokens200Response,
+
+    /**
      * The ListTokenBalancesForAddress200Response model constructor.
      * @property {module:model/ListTokenBalancesForAddress200Response}
      */
@@ -2365,6 +2437,12 @@ export {
      * @property {module:model/ListTokenizationBlocklistAddresses200Response}
      */
     ListTokenizationBlocklistAddresses200Response,
+
+    /**
+     * The ListTopUpPayerAccounts200Response model constructor.
+     * @property {module:model/ListTopUpPayerAccounts200Response}
+     */
+    ListTopUpPayerAccounts200Response,
 
     /**
      * The ListTopUpPayers200Response model constructor.
@@ -2595,6 +2673,12 @@ export {
     OrgInfo,
 
     /**
+     * The OtcFee model constructor.
+     * @property {module:model/OtcFee}
+     */
+    OtcFee,
+
+    /**
      * The Pagination model constructor.
      * @property {module:model/Pagination}
      */
@@ -2611,6 +2695,36 @@ export {
      * @property {module:model/PaymentAddressUpdateEventData}
      */
     PaymentAddressUpdateEventData,
+
+    /**
+     * The PaymentEstimateFee model constructor.
+     * @property {module:model/PaymentEstimateFee}
+     */
+    PaymentEstimateFee,
+
+    /**
+     * The PaymentEstimateFee201Response model constructor.
+     * @property {module:model/PaymentEstimateFee201Response}
+     */
+    PaymentEstimateFee201Response,
+
+    /**
+     * The PaymentEstimateFeeRequest model constructor.
+     * @property {module:model/PaymentEstimateFeeRequest}
+     */
+    PaymentEstimateFeeRequest,
+
+    /**
+     * The PaymentEstimatedFee model constructor.
+     * @property {module:model/PaymentEstimatedFee}
+     */
+    PaymentEstimatedFee,
+
+    /**
+     * The PaymentFeeType model constructor.
+     * @property {module:model/PaymentFeeType}
+     */
+    PaymentFeeType,
 
     /**
      * The PaymentOrderEventData model constructor.
@@ -2731,12 +2845,6 @@ export {
      * @property {module:model/QueryGuardPubkey200ResponseAddressesInner}
      */
     QueryGuardPubkey200ResponseAddressesInner,
-
-    /**
-     * The RawMessageSignDestination model constructor.
-     * @property {module:model/RawMessageSignDestination}
-     */
-    RawMessageSignDestination,
 
     /**
      * The ReceivedAmountPerAddress model constructor.
@@ -3009,6 +3117,12 @@ export {
     SolContractCallAccount,
 
     /**
+     * The SolContractCallAddressLookupTableAccount model constructor.
+     * @property {module:model/SolContractCallAddressLookupTableAccount}
+     */
+    SolContractCallAddressLookupTableAccount,
+
+    /**
      * The SolContractCallDestination model constructor.
      * @property {module:model/SolContractCallDestination}
      */
@@ -3061,6 +3175,36 @@ export {
      * @property {module:model/StakingsExtra}
      */
     StakingsExtra,
+
+    /**
+     * The StellarContractCallContractParam model constructor.
+     * @property {module:model/StellarContractCallContractParam}
+     */
+    StellarContractCallContractParam,
+
+    /**
+     * The StellarContractCallContractType model constructor.
+     * @property {module:model/StellarContractCallContractType}
+     */
+    StellarContractCallContractType,
+
+    /**
+     * The StellarContractCallDestination model constructor.
+     * @property {module:model/StellarContractCallDestination}
+     */
+    StellarContractCallDestination,
+
+    /**
+     * The StellarContractCallTrustLineOperationType model constructor.
+     * @property {module:model/StellarContractCallTrustLineOperationType}
+     */
+    StellarContractCallTrustLineOperationType,
+
+    /**
+     * The StellarContractCallTrustLineParam model constructor.
+     * @property {module:model/StellarContractCallTrustLineParam}
+     */
+    StellarContractCallTrustLineParam,
 
     /**
      * The SubWalletAssetBalance model constructor.
@@ -3135,10 +3279,22 @@ export {
     SwapApproversStatus,
 
     /**
+     * The SwapEstimateFee model constructor.
+     * @property {module:model/SwapEstimateFee}
+     */
+    SwapEstimateFee,
+
+    /**
      * The SwapQuote model constructor.
      * @property {module:model/SwapQuote}
      */
     SwapQuote,
+
+    /**
+     * The SwapReceivingTransaction model constructor.
+     * @property {module:model/SwapReceivingTransaction}
+     */
+    SwapReceivingTransaction,
 
     /**
      * The SwapSingingStatus model constructor.
@@ -4269,6 +4425,12 @@ export {
     TransactionSolContractAccount,
 
     /**
+     * The TransactionSolContractAddressLookupTableAccount model constructor.
+     * @property {module:model/TransactionSolContractAddressLookupTableAccount}
+     */
+    TransactionSolContractAddressLookupTableAccount,
+
+    /**
      * The TransactionSolContractDestination model constructor.
      * @property {module:model/TransactionSolContractDestination}
      */
@@ -4297,6 +4459,36 @@ export {
      * @property {module:model/TransactionStatus}
      */
     TransactionStatus,
+
+    /**
+     * The TransactionStellarContractParam model constructor.
+     * @property {module:model/TransactionStellarContractParam}
+     */
+    TransactionStellarContractParam,
+
+    /**
+     * The TransactionStellarContractType model constructor.
+     * @property {module:model/TransactionStellarContractType}
+     */
+    TransactionStellarContractType,
+
+    /**
+     * The TransactionStellarDestination model constructor.
+     * @property {module:model/TransactionStellarDestination}
+     */
+    TransactionStellarDestination,
+
+    /**
+     * The TransactionStellarTrustLineOperationType model constructor.
+     * @property {module:model/TransactionStellarTrustLineOperationType}
+     */
+    TransactionStellarTrustLineOperationType,
+
+    /**
+     * The TransactionStellarTrustLineParam model constructor.
+     * @property {module:model/TransactionStellarTrustLineParam}
+     */
+    TransactionStellarTrustLineParam,
 
     /**
      * The TransactionSubStatus model constructor.
@@ -4509,6 +4701,12 @@ export {
     UpdateAddressBookParam,
 
     /**
+     * The UpdateBankAccountByIdRequest model constructor.
+     * @property {module:model/UpdateBankAccountByIdRequest}
+     */
+    UpdateBankAccountByIdRequest,
+
+    /**
      * The UpdateCustodialWalletParams model constructor.
      * @property {module:model/UpdateCustodialWalletParams}
      */
@@ -4621,6 +4819,12 @@ export {
      * @property {module:model/WalletInfoEventData}
      */
     WalletInfoEventData,
+
+    /**
+     * The WalletSetup model constructor.
+     * @property {module:model/WalletSetup}
+     */
+    WalletSetup,
 
     /**
      * The WalletSubtype model constructor.
@@ -4753,6 +4957,12 @@ export {
     * @property {module:api/StakingsApi}
     */
     StakingsApi,
+
+    /**
+    * The SwapsApi service constructor.
+    * @property {module:api/SwapsApi}
+    */
+    SwapsApi,
 
     /**
     * The TokenizationApi service constructor.

@@ -20,7 +20,7 @@ import MaxFeeAmount from './MaxFeeAmount';
 class TransactionFixedFee {
     /**
      * Constructs a new <code>TransactionFixedFee</code>.
-     * The transaction fee actually charged by the chain that uses the fixed fee model.   Switch between the tabs to display the properties for different transaction fee models. 
+     * The transaction fee actually charged by the chain that uses the fixed fee model.   For more information about the fixed fee model, see [Fee models](https://www.cobo.com/developers/v2/guides/transactions/estimate-fees#fee-models).  Switch between the tabs to display the properties for different transaction fee models. 
      * @alias module:model/TransactionFixedFee
      * @implements module:model/MaxFeeAmount
      * @param fee_type {module:model/FeeType} 

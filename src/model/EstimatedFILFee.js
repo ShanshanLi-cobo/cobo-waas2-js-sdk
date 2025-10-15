@@ -20,7 +20,7 @@ import FeeType from './FeeType';
 class EstimatedFILFee {
     /**
      * Constructs a new <code>EstimatedFILFee</code>.
-     * The estimated transaction fee based on the fil fee model.
+     * The estimated transaction fee based on the FIL fee model.  For more details about the FIL fee model, see [Fee models](https://www.cobo.com/developers/v2/guides/transactions/estimate-fees#fee-models). 
      * @alias module:model/EstimatedFILFee
      * @param fee_type {module:model/FeeType} 
      * @param token_id {String} The token used to pay the transaction fee.

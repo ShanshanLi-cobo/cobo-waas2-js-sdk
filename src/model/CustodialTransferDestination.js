@@ -19,7 +19,7 @@ import TransferDestinationType from './TransferDestinationType';
 class CustodialTransferDestination {
     /**
      * Constructs a new <code>CustodialTransferDestination</code>.
-     * The information about the transaction destination type &#x60;CustodialWallet&#x60;. Refer to [Transaction sources and destinations](https://www.cobo.com/developers/v2/guides/transactions/sources-and-destinations) for a detailed introduction about the supported sources and destinations for each transaction type.  A Custodial Wallet (Asset Wallet) can only receive transfers from another Custodial Wallet (Asset Wallet) by using [Cobo Loop](https://manuals.cobo.com/en/portal/custodial-wallets/cobo-loop).  Switch between the tabs to display the properties for different transaction destinations. 
+     * The information about the transaction destination type &#x60;CustodialWallet&#x60;. Refer to [Transaction sources and destinations](https://www.cobo.com/developers/v2/guides/transactions/sources-and-destinations) for a detailed introduction about the supported sources and destinations for each transaction type.  A Custodial Wallet (Asset Wallet) can only receive transfers from another Custodial Wallet (Asset Wallet) by using [Cobo Loop](https://manuals.cobo.com/en/portal/custodial-wallets/cobo-loop).  &lt;Note&gt;This destination type is available upon request. Please contact our [customer support](mailto:help@cobo.com) to enable it.&lt;/Note&gt;  Switch between the tabs to display the properties for different transaction destinations. 
      * @alias module:model/CustodialTransferDestination
      * @param destination_type {module:model/TransferDestinationType} 
      * @param wallet_id {String} The wallet ID.

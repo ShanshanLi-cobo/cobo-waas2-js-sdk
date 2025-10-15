@@ -106,6 +106,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property custom_exchange_rate (base name: "custom_exchange_rate")', function() {
+      // uncomment below and update the code to test the property custom_exchange_rate
+      //var instance = new CoboWaas2.CreatePaymentOrderRequest();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

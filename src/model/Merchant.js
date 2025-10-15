@@ -10,6 +10,7 @@
  */
 
 import ApiClient from '../ApiClient';
+import WalletSetup from './WalletSetup';
 
 /**
  * The Merchant model module.
@@ -61,6 +62,9 @@ class Merchant {
             }
             if (data.hasOwnProperty('developer_fee_rate')) {
                 obj['developer_fee_rate'] = ApiClient.convertToType(data['developer_fee_rate'], 'String');
+            }
+            if (data.hasOwnProperty('wallet_setup')) {
+                obj['wallet_setup'] = WalletSetup.constructFromObject(data['wallet_setup']);
             }
             if (data.hasOwnProperty('created_timestamp')) {
                 obj['created_timestamp'] = ApiClient.convertToType(data['created_timestamp'], 'Number');
@@ -132,6 +136,11 @@ Merchant.prototype['wallet_id'] = undefined;
  * @member {String} developer_fee_rate
  */
 Merchant.prototype['developer_fee_rate'] = undefined;
+
+/**
+ * @member {module:model/WalletSetup} wallet_setup
+ */
+Merchant.prototype['wallet_setup'] = undefined;
 
 /**
  * The creation time of the merchant, represented as a UNIX timestamp in seconds.

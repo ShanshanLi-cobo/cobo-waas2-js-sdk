@@ -145,13 +145,13 @@ CreateSettlement.prototype['currency'] = undefined;
 CreateSettlement.prototype['amount'] = undefined;
 
 /**
- * The ID of the bank account where the settled funds will be deposited. This field is only applicable when `payout_channel` is set to `OffRamp`. Call [List all bank accounts](/v2/api-references/payment/list-all-bank-accounts) to retrieve the IDs of registered bank accounts. 
+ * The ID of the bank account where the settled funds will be deposited. This field is only applicable when `payout_channel` is set to `OffRamp`. Call [List all bank accounts](https://www.cobo.com/developers/v2/api-references/payment/list-all-bank-accounts) to retrieve the IDs of registered bank accounts. 
  * @member {String} bank_account_id
  */
 CreateSettlement.prototype['bank_account_id'] = undefined;
 
 /**
- * The ID of the crypto address used for crypto withdrawal. Specify this field when `payout_channel` is set to `Crypto`.  Call [List all crypto addresses](/v2/api-references/payments/list-all-crypto-addresses) to retrieve registered crypto addresses. 
+ * The ID of the crypto address used for crypto payouts. Specify this field when `payout_channel` is set to `Crypto`.  Call [List crypto addresses](https://www.cobo.com/developers/v2/api-references/payment/list-crypto-addresses) to retrieve registered crypto addresses. 
  * @member {String} crypto_address_id
  */
 CreateSettlement.prototype['crypto_address_id'] = undefined;

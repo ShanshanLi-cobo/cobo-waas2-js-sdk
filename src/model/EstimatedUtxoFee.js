@@ -20,7 +20,7 @@ import FeeType from './FeeType';
 class EstimatedUtxoFee {
     /**
      * Constructs a new <code>EstimatedUtxoFee</code>.
-     * The estimated transaction fee for UTXO-based chains.
+     * The estimated transaction fee for UTXO-based chains.  For more details about the UTXO fee model, see [Fee models](https://www.cobo.com/developers/v2/guides/transactions/estimate-fees#fee-models). 
      * @alias module:model/EstimatedUtxoFee
      * @param fee_type {module:model/FeeType} 
      * @param token_id {String} The token used to pay the transaction fee.
