@@ -15,6 +15,7 @@ import AcquiringType from '../model/AcquiringType';
 import BankAccount from '../model/BankAccount';
 import CreateCryptoAddressRequest from '../model/CreateCryptoAddressRequest';
 import CreateMerchantRequest from '../model/CreateMerchantRequest';
+import CreateOrderLinkRequest from '../model/CreateOrderLinkRequest';
 import CreatePaymentOrderRequest from '../model/CreatePaymentOrderRequest';
 import CreateRefundRequest from '../model/CreateRefundRequest';
 import CreateSettlementRequestRequest from '../model/CreateSettlementRequestRequest';
@@ -26,6 +27,7 @@ import ForcedSweepRequest from '../model/ForcedSweepRequest';
 import GetExchangeRate200Response from '../model/GetExchangeRate200Response';
 import GetRefunds200Response from '../model/GetRefunds200Response';
 import GetSettlementInfoByIds200Response from '../model/GetSettlementInfoByIds200Response';
+import Link from '../model/Link';
 import ListForcedSweepRequests200Response from '../model/ListForcedSweepRequests200Response';
 import ListMerchantBalances200Response from '../model/ListMerchantBalances200Response';
 import ListMerchants200Response from '../model/ListMerchants200Response';
@@ -222,7 +224,7 @@ export default class PaymentApi {
 
     /**
      * Create merchant
-     * This operation creates a merchant and links it to a specified wallet. Payments to the merchant will be deposited into the linked wallet.  Upon successful creation, a merchant ID is generated and returned along with the merchant's information.  If you are a merchant (directly serving the payer), you only need to create one merchant and do not need to configure the developer fee rate. The developer fee rate only applies to platforms such as payment service providers (PSPs) that charge fees to their downstream merchants. 
+     * This operation creates a merchant. Upon successful creation, a merchant ID is generated and returned along with the merchant's information. For more information on merchant creation, please refer to [Preparation](https://www.cobo.com/developers/v2/payments/preparation#create-merchant). 
      * @param {Object} opts Optional parameters
      * @param {module:model/CreateMerchantRequest} [CreateMerchantRequest] The request body to create a merchant.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Merchant} and HTTP response
@@ -256,13 +258,62 @@ export default class PaymentApi {
 
     /**
      * Create merchant
-     * This operation creates a merchant and links it to a specified wallet. Payments to the merchant will be deposited into the linked wallet.  Upon successful creation, a merchant ID is generated and returned along with the merchant's information.  If you are a merchant (directly serving the payer), you only need to create one merchant and do not need to configure the developer fee rate. The developer fee rate only applies to platforms such as payment service providers (PSPs) that charge fees to their downstream merchants. 
+     * This operation creates a merchant. Upon successful creation, a merchant ID is generated and returned along with the merchant's information. For more information on merchant creation, please refer to [Preparation](https://www.cobo.com/developers/v2/payments/preparation#create-merchant). 
      * @param {Object} opts Optional parameters
      * @param {module:model/CreateMerchantRequest} opts.CreateMerchantRequest The request body to create a merchant.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Merchant}
      */
     createMerchant(opts) {
       return this.createMerchantWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Create order link
+     * This operation creates a payment link of a pay-in order. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateOrderLinkRequest} [CreateOrderLinkRequest] The request body to create a payment link of a pay-in order.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Link} and HTTP response
+     */
+    createOrderLinkWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['CreateOrderLinkRequest'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = Link;
+      return this.apiClient.callApi(
+        '/payments/links/orders', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Create order link
+     * This operation creates a payment link of a pay-in order. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateOrderLinkRequest} opts.CreateOrderLinkRequest The request body to create a payment link of a pay-in order.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Link}
+     */
+    createOrderLink(opts) {
+      return this.createOrderLinkWithHttpInfo(opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -418,7 +469,7 @@ export default class PaymentApi {
 
     /**
      * Delete crypto address
-     * This operation unregisters a crypto address from being used for crypto withdrawals. 
+     * This operation unregisters a crypto address from being used for crypto payouts. 
      * @param {String} crypto_address_id The crypto address ID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DeleteCryptoAddress201Response} and HTTP response
      */
@@ -455,7 +506,7 @@ export default class PaymentApi {
 
     /**
      * Delete crypto address
-     * This operation unregisters a crypto address from being used for crypto withdrawals. 
+     * This operation unregisters a crypto address from being used for crypto payouts. 
      * @param {String} crypto_address_id The crypto address ID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DeleteCryptoAddress201Response}
      */
@@ -469,7 +520,7 @@ export default class PaymentApi {
 
     /**
      * Get exchange rate
-     * This operation retrieves the current exchange rate between a specified currency pair. 
+     * This operation retrieves the current exchange rate between a specified currency pair. The exchange rate is updated approximately every 10 minutes.  <Note>This operation returns the exchange rate for reference only. The actual exchange rate may vary due to market fluctuations and other factors.</Note> 
      * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
      * @param {String} currency The fiat currency. Currently, only `USD` is supported.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetExchangeRate200Response} and HTTP response
@@ -512,7 +563,7 @@ export default class PaymentApi {
 
     /**
      * Get exchange rate
-     * This operation retrieves the current exchange rate between a specified currency pair. 
+     * This operation retrieves the current exchange rate between a specified currency pair. The exchange rate is updated approximately every 10 minutes.  <Note>This operation returns the exchange rate for reference only. The actual exchange rate may vary due to market fluctuations and other factors.</Note> 
      * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
      * @param {String} currency The fiat currency. Currently, only `USD` is supported.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetExchangeRate200Response}
@@ -642,7 +693,7 @@ export default class PaymentApi {
 
     /**
      * Get developer balance
-     * This operation retrieves the balance information for you as the developer. The balance information is grouped by token.  For more information, please refer to [Amounts and Balances](/v2/payments/amounts-and-balances) 
+     * This operation retrieves the balance information for you as the developer. The balance information is grouped by token.  For more information, please refer to [Funds allocation and balances](https://www.cobo.com/developers/v2/payments/amounts-and-balances). 
      * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/PspBalance} and HTTP response
      */
@@ -679,7 +730,7 @@ export default class PaymentApi {
 
     /**
      * Get developer balance
-     * This operation retrieves the balance information for you as the developer. The balance information is grouped by token.  For more information, please refer to [Amounts and Balances](/v2/payments/amounts-and-balances) 
+     * This operation retrieves the balance information for you as the developer. The balance information is grouped by token.  For more information, please refer to [Funds allocation and balances](https://www.cobo.com/developers/v2/payments/amounts-and-balances). 
      * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/PspBalance}
      */
@@ -941,9 +992,9 @@ export default class PaymentApi {
       let pathParams = {
       };
       let queryParams = {
-        'merchant_id': opts['merchant_id'],
         'token_id': token_id,
-        'custom_payer_id': custom_payer_id
+        'custom_payer_id': custom_payer_id,
+        'merchant_id': opts['merchant_id']
       };
       let headerParams = {
       };
@@ -1133,7 +1184,7 @@ export default class PaymentApi {
 
     /**
      * List merchant balances
-     *  This operation retrieves the balance information for specified merchants. The balance information is grouped by token and acquiring type. If you do not specify the `merchant_ids` parameter, the balance information for all merchants will be returned.  For more information, please refer to [Amounts and Balances](/v2/payments/amounts-and-balances) 
+     *  This operation retrieves the balance information for specified merchants. The balance information is grouped by token and acquiring type. If you do not specify the `merchant_ids` parameter, the balance information for all merchants will be returned.  For more information, please refer to [Funds allocation and balances](https://www.cobo.com/developers/v2/payments/amounts-and-balances). 
      * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
      * @param {module:model/AcquiringType} acquiring_type The payment acquisition type. - `Order`: Payers pay by fixed-amount orders. Ideal for specific purchases and one-time transactions. - `TopUp`: Account recharge flow where payers deposit funds to their dedicated top-up addresses. Ideal for flexible or usage-based payment models. 
      * @param {Object} opts Optional parameters
@@ -1180,7 +1231,7 @@ export default class PaymentApi {
 
     /**
      * List merchant balances
-     *  This operation retrieves the balance information for specified merchants. The balance information is grouped by token and acquiring type. If you do not specify the `merchant_ids` parameter, the balance information for all merchants will be returned.  For more information, please refer to [Amounts and Balances](/v2/payments/amounts-and-balances) 
+     *  This operation retrieves the balance information for specified merchants. The balance information is grouped by token and acquiring type. If you do not specify the `merchant_ids` parameter, the balance information for all merchants will be returned.  For more information, please refer to [Funds allocation and balances](https://www.cobo.com/developers/v2/payments/amounts-and-balances). 
      * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
      * @param {module:model/AcquiringType} acquiring_type The payment acquisition type. - `Order`: Payers pay by fixed-amount orders. Ideal for specific purchases and one-time transactions. - `TopUp`: Account recharge flow where payers deposit funds to their dedicated top-up addresses. Ideal for flexible or usage-based payment models. 
      * @param {Object} opts Optional parameters
@@ -1203,8 +1254,8 @@ export default class PaymentApi {
      * @param {String} [before] A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
      * @param {String} [after] A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
      * @param {String} [keyword] A search term used for fuzzy matching of merchant names.
-     * @param {String} [wallet_id] The wallet ID.
-     * @param {module:model/WalletSetup} [wallet_setup] WalletSetup defines the type of funds used in the merchant account, either \"Shared\" or \"Separate\" is allowed when creating a merchant: - `Default`: Wallet of psp owned default merchant. - `Shared`: Shared wallet of non-psp owned merchants. - `Separate`: Separate wallet of non-psp owned merchants. 
+     * @param {String} [wallet_id] This parameter has been deprecated.
+     * @param {module:model/WalletSetup} [wallet_setup] The type of wallet setup for the merchant. Each wallet contains multiple cryptocurrency addresses that serve as the merchant’s receiving addresses.  - `Shared`: Multiple merchants share the same wallet. The wallet’s addresses may be used to receive payments for multiple merchants simultaneously. - `Separate`: Create a dedicated wallet for the merchant to achieve complete fund isolation. All addresses in this wallet are only used to receive payments for this merchant. - `Default`: The default wallet automatically created by the system for the default merchant (the merchant that shares the same name as your organization). 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListMerchants200Response} and HTTP response
      */
     listMerchantsWithHttpInfo(opts) {
@@ -1248,8 +1299,8 @@ export default class PaymentApi {
      * @param {String} opts.before A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
      * @param {String} opts.after A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
      * @param {String} opts.keyword A search term used for fuzzy matching of merchant names.
-     * @param {String} opts.wallet_id The wallet ID.
-     * @param {module:model/WalletSetup} opts.wallet_setup WalletSetup defines the type of funds used in the merchant account, either \"Shared\" or \"Separate\" is allowed when creating a merchant: - `Default`: Wallet of psp owned default merchant. - `Shared`: Shared wallet of non-psp owned merchants. - `Separate`: Separate wallet of non-psp owned merchants. 
+     * @param {String} opts.wallet_id This parameter has been deprecated.
+     * @param {module:model/WalletSetup} opts.wallet_setup The type of wallet setup for the merchant. Each wallet contains multiple cryptocurrency addresses that serve as the merchant’s receiving addresses.  - `Shared`: Multiple merchants share the same wallet. The wallet’s addresses may be used to receive payments for multiple merchants simultaneously. - `Separate`: Create a dedicated wallet for the merchant to achieve complete fund isolation. All addresses in this wallet are only used to receive payments for this merchant. - `Default`: The default wallet automatically created by the system for the default merchant (the merchant that shares the same name as your organization). 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListMerchants200Response}
      */
     listMerchants(opts) {
@@ -1672,10 +1723,10 @@ export default class PaymentApi {
 
 
     /**
-     * Payment estimate fee
-     * This operation to payment estimate fee. 
+     * Estimate fees
+     * This operation calculates fees for payment-related operations, including: - **Pay-in**: Fees for accepting payments - **Refunds**: Fees for refunding the payment - **Crypto payouts**: Fees for payouts in crypto - **Fiat off-ramp**: Fees for fiat currency transfers via off-ramp.    The returned fees represent the charges that would apply if the operation were executed immediately. Note that actual fees may vary over time based on your usage volume and applicable fee rates. 
      * @param {Object} opts Optional parameters
-     * @param {module:model/PaymentEstimateFeeRequest} [PaymentEstimateFeeRequest] The request body to create a estimated fee request.
+     * @param {module:model/PaymentEstimateFeeRequest} [PaymentEstimateFeeRequest] The request body for fee estimation.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/PaymentEstimateFee201Response} and HTTP response
      */
     paymentEstimateFeeWithHttpInfo(opts) {
@@ -1706,10 +1757,10 @@ export default class PaymentApi {
     }
 
     /**
-     * Payment estimate fee
-     * This operation to payment estimate fee. 
+     * Estimate fees
+     * This operation calculates fees for payment-related operations, including: - **Pay-in**: Fees for accepting payments - **Refunds**: Fees for refunding the payment - **Crypto payouts**: Fees for payouts in crypto - **Fiat off-ramp**: Fees for fiat currency transfers via off-ramp.    The returned fees represent the charges that would apply if the operation were executed immediately. Note that actual fees may vary over time based on your usage volume and applicable fee rates. 
      * @param {Object} opts Optional parameters
-     * @param {module:model/PaymentEstimateFeeRequest} opts.PaymentEstimateFeeRequest The request body to create a estimated fee request.
+     * @param {module:model/PaymentEstimateFeeRequest} opts.PaymentEstimateFeeRequest The request body for fee estimation.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/PaymentEstimateFee201Response}
      */
     paymentEstimateFee(opts) {

@@ -19,7 +19,7 @@ class BridgingFee {
     /**
      * Constructs a new <code>BridgingFee</code>.
      * @alias module:model/BridgingFee
-     * @param fee_amount {String} The bridging fee amount.
+     * @param fee_amount {String} The fee charged for bridging tokens to another blockchain during an off-ramp operation. Bridging fees apply when tokens are on a blockchain not directly supported by the off-ramp service. 
      */
     constructor(fee_amount) { 
         
@@ -93,19 +93,19 @@ class BridgingFee {
 BridgingFee.RequiredProperties = ["fee_amount"];
 
 /**
- * The bridging fee amount.
+ * The fee charged for bridging tokens to another blockchain during an off-ramp operation. Bridging fees apply when tokens are on a blockchain not directly supported by the off-ramp service. 
  * @member {String} fee_amount
  */
 BridgingFee.prototype['fee_amount'] = undefined;
 
 /**
- * The received token id after bridge.
+ * The ID of the destination token received after bridging.
  * @member {String} received_token_id
  */
 BridgingFee.prototype['received_token_id'] = undefined;
 
 /**
- * The received amount after bridge.
+ * The final amount of destination tokens received after bridging.
  * @member {String} received_amount
  */
 BridgingFee.prototype['received_amount'] = undefined;

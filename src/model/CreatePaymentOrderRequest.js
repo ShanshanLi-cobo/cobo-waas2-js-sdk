@@ -84,6 +84,9 @@ class CreatePaymentOrderRequest {
             if (data.hasOwnProperty('custom_exchange_rate')) {
                 obj['custom_exchange_rate'] = ApiClient.convertToType(data['custom_exchange_rate'], 'String');
             }
+            if (data.hasOwnProperty('amount_tolerance')) {
+                obj['amount_tolerance'] = ApiClient.convertToType(data['amount_tolerance'], 'String');
+            }
         }
         return obj;
     }
@@ -131,6 +134,10 @@ class CreatePaymentOrderRequest {
         // ensure the json data is a string
         if (data['custom_exchange_rate'] && !(typeof data['custom_exchange_rate'] === 'string' || data['custom_exchange_rate'] instanceof String)) {
             throw new Error("Expected the field `custom_exchange_rate` to be a primitive type in the JSON string but got " + data['custom_exchange_rate']);
+        }
+        // ensure the json data is a string
+        if (data['amount_tolerance'] && !(typeof data['amount_tolerance'] === 'string' || data['amount_tolerance'] instanceof String)) {
+            throw new Error("Expected the field `amount_tolerance` to be a primitive type in the JSON string but got " + data['amount_tolerance']);
         }
 
         return true;
@@ -198,10 +205,16 @@ CreatePaymentOrderRequest.prototype['expired_in'] = 1800;
 CreatePaymentOrderRequest.prototype['use_dedicated_address'] = undefined;
 
 /**
- * A custom exchange rate specified by the merchant.   - Only effective when `currency` is `\"USD\"`.   - Expressed as the amount of USD per 1 unit of the specified cryptocurrency.   - If not provided, the system will use the default internal rate.   Example: If the cryptocurrency is USDT and `custom_exchange_rate` = `\"0.99\"`, it means 1 USDT = 0.99 USD. 
+ *  A custom exchange rate that defines how much fiat currency equals 1 unit of cryptocurrency. If not provided, the system's default exchange rate will be used.  For example, if the fiat currency is USD and the cryptocurrency is USDT, setting `custom_exchange_rate` to `\"0.99\"` means that 1 USDT will be valued at 0.99 USD. 
  * @member {String} custom_exchange_rate
  */
 CreatePaymentOrderRequest.prototype['custom_exchange_rate'] = undefined;
+
+/**
+ * Allowed amount deviation, precision to 1 decimal place.
+ * @member {String} amount_tolerance
+ */
+CreatePaymentOrderRequest.prototype['amount_tolerance'] = undefined;
 
 
 

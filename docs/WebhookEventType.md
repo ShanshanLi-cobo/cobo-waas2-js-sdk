@@ -61,6 +61,8 @@
 
 * `payment.transaction.held` (value: `"payment.transaction.held"`)
 
+* `payment.transaction.failed` (value: `"payment.transaction.failed"`)
+
 * `payment.status.updated` (value: `"payment.status.updated"`)
 
 * `payment.refund.status.updated` (value: `"payment.refund.status.updated"`)
@@ -70,6 +72,8 @@
 * `payment.address.updated` (value: `"payment.address.updated"`)
 
 * `compliance.disposition.status.updated` (value: `"compliance.disposition.status.updated"`)
+
+* `compliance.kyt.screenings.status.updated` (value: `"compliance.kyt.screenings.status.updated"`)
 
 * `unknown_default_open_api` (value: `"unknown_default_open_api"`)
 

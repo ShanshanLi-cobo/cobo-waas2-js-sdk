@@ -21,7 +21,7 @@ class PaymentEstimateFeeRequest {
     /**
      * Constructs a new <code>PaymentEstimateFeeRequest</code>.
      * @alias module:model/PaymentEstimateFeeRequest
-     * @param estimate_fees {Array.<module:model/PaymentEstimateFee>} 
+     * @param estimate_fees {Array.<module:model/PaymentEstimateFee>} A list of token IDs and amounts for which fees will be calculated.
      */
     constructor(estimate_fees) { 
         
@@ -95,6 +95,7 @@ PaymentEstimateFeeRequest.RequiredProperties = ["estimate_fees"];
 PaymentEstimateFeeRequest.prototype['fee_type'] = undefined;
 
 /**
+ * A list of token IDs and amounts for which fees will be calculated.
  * @member {Array.<module:model/PaymentEstimateFee>} estimate_fees
  */
 PaymentEstimateFeeRequest.prototype['estimate_fees'] = undefined;

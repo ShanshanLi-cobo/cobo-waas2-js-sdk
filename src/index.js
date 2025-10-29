@@ -93,6 +93,7 @@ import CoboSafeDelegate from './model/CoboSafeDelegate';
 import CoboSafeDelegateType from './model/CoboSafeDelegateType';
 import CommissionFee from './model/CommissionFee';
 import ComplianceDispositionUpdateEventData from './model/ComplianceDispositionUpdateEventData';
+import ComplianceKytScreeningsUpdateEventData from './model/ComplianceKytScreeningsUpdateEventData';
 import ContractCallDestination from './model/ContractCallDestination';
 import ContractCallDestinationType from './model/ContractCallDestinationType';
 import ContractCallParams from './model/ContractCallParams';
@@ -125,6 +126,7 @@ import CreateMerchantRequest from './model/CreateMerchantRequest';
 import CreateMpcProjectRequest from './model/CreateMpcProjectRequest';
 import CreateMpcVaultRequest from './model/CreateMpcVaultRequest';
 import CreateMpcWalletParams from './model/CreateMpcWalletParams';
+import CreateOrderLinkRequest from './model/CreateOrderLinkRequest';
 import CreatePaymentOrderRequest from './model/CreatePaymentOrderRequest';
 import CreatePrimeBrokerAddress201Response from './model/CreatePrimeBrokerAddress201Response';
 import CreatePrimeBrokerAddressRequest from './model/CreatePrimeBrokerAddressRequest';
@@ -231,6 +233,7 @@ import FixedFeeRate from './model/FixedFeeRate';
 import ForcedSweep from './model/ForcedSweep';
 import ForcedSweepRequest from './model/ForcedSweepRequest';
 import ForcedSweepStatus from './model/ForcedSweepStatus';
+import FundsStatusType from './model/FundsStatusType';
 import GetApiKeyInfo200Response from './model/GetApiKeyInfo200Response';
 import GetExchangeRate200Response from './model/GetExchangeRate200Response';
 import GetMaxTransferableValueWithFeeModelRequest from './model/GetMaxTransferableValueWithFeeModelRequest';
@@ -254,6 +257,13 @@ import KeyShareHolderGroupStatus from './model/KeyShareHolderGroupStatus';
 import KeyShareHolderGroupType from './model/KeyShareHolderGroupType';
 import KeyShareHolderStatus from './model/KeyShareHolderStatus';
 import KeyShareHolderType from './model/KeyShareHolderType';
+import KytScreeningsDecisionsType from './model/KytScreeningsDecisionsType';
+import KytScreeningsEventData from './model/KytScreeningsEventData';
+import KytScreeningsReviewType from './model/KytScreeningsReviewType';
+import KytScreeningsTransaction from './model/KytScreeningsTransaction';
+import KytScreeningsTransactionType from './model/KytScreeningsTransactionType';
+import Link from './model/Link';
+import LinkDisplayInfo from './model/LinkDisplayInfo';
 import ListAddressBalancesByToken200Response from './model/ListAddressBalancesByToken200Response';
 import ListAddressBooks200Response from './model/ListAddressBooks200Response';
 import ListAddresses200Response from './model/ListAddresses200Response';
@@ -329,6 +339,8 @@ import MpcSigningGroup from './model/MpcSigningGroup';
 import MpcStakeSource from './model/MpcStakeSource';
 import MpcTransferSource from './model/MpcTransferSource';
 import Order from './model/Order';
+import OrderLinkBusinessInfo from './model/OrderLinkBusinessInfo';
+import OrderLinkBusinessInfoCustomExchangeRatesInner from './model/OrderLinkBusinessInfoCustomExchangeRatesInner';
 import OrderStatus from './model/OrderStatus';
 import OrgInfo from './model/OrgInfo';
 import OtcFee from './model/OtcFee';
@@ -374,6 +386,7 @@ import ReplaceType from './model/ReplaceType';
 import RequestApproval from './model/RequestApproval';
 import RetryCallbackMessage201Response from './model/RetryCallbackMessage201Response';
 import RetryWebhookEventById201Response from './model/RetryWebhookEventById201Response';
+import ReviewStatusType from './model/ReviewStatusType';
 import RevokeApprovalRequest201Response from './model/RevokeApprovalRequest201Response';
 import RevokeApprovalRequestRequest from './model/RevokeApprovalRequestRequest';
 import RoleDetail from './model/RoleDetail';
@@ -422,6 +435,9 @@ import StellarContractCallTrustLineOperationType from './model/StellarContractCa
 import StellarContractCallTrustLineParam from './model/StellarContractCallTrustLineParam';
 import SubWalletAssetBalance from './model/SubWalletAssetBalance';
 import SubmitDepositTravelRuleInfo201Response from './model/SubmitDepositTravelRuleInfo201Response';
+import SubmitKytResponse from './model/SubmitKytResponse';
+import SubmitKytScreeningsDecisionsBody from './model/SubmitKytScreeningsDecisionsBody';
+import SubmitKytScreeningsReviewBody from './model/SubmitKytScreeningsReviewBody';
 import SupportedToken from './model/SupportedToken';
 import SuspendedTokenEventData from './model/SuspendedTokenEventData';
 import SuspendedTokenOperationType from './model/SuspendedTokenOperationType';
@@ -752,7 +768,7 @@ import WalletsSmartContractWalletsApi from './api/WalletsSmartContractWalletsApi
 * </pre>
 * </p>
 * @module index
-* @version 1.24.0
+* @version 1.25.0
 */
 export {
     Env,
@@ -1245,6 +1261,12 @@ export {
     ComplianceDispositionUpdateEventData,
 
     /**
+     * The ComplianceKytScreeningsUpdateEventData model constructor.
+     * @property {module:model/ComplianceKytScreeningsUpdateEventData}
+     */
+    ComplianceKytScreeningsUpdateEventData,
+
+    /**
      * The ContractCallDestination model constructor.
      * @property {module:model/ContractCallDestination}
      */
@@ -1435,6 +1457,12 @@ export {
      * @property {module:model/CreateMpcWalletParams}
      */
     CreateMpcWalletParams,
+
+    /**
+     * The CreateOrderLinkRequest model constructor.
+     * @property {module:model/CreateOrderLinkRequest}
+     */
+    CreateOrderLinkRequest,
 
     /**
      * The CreatePaymentOrderRequest model constructor.
@@ -2073,6 +2101,12 @@ export {
     ForcedSweepStatus,
 
     /**
+     * The FundsStatusType model constructor.
+     * @property {module:model/FundsStatusType}
+     */
+    FundsStatusType,
+
+    /**
      * The GetApiKeyInfo200Response model constructor.
      * @property {module:model/GetApiKeyInfo200Response}
      */
@@ -2209,6 +2243,48 @@ export {
      * @property {module:model/KeyShareHolderType}
      */
     KeyShareHolderType,
+
+    /**
+     * The KytScreeningsDecisionsType model constructor.
+     * @property {module:model/KytScreeningsDecisionsType}
+     */
+    KytScreeningsDecisionsType,
+
+    /**
+     * The KytScreeningsEventData model constructor.
+     * @property {module:model/KytScreeningsEventData}
+     */
+    KytScreeningsEventData,
+
+    /**
+     * The KytScreeningsReviewType model constructor.
+     * @property {module:model/KytScreeningsReviewType}
+     */
+    KytScreeningsReviewType,
+
+    /**
+     * The KytScreeningsTransaction model constructor.
+     * @property {module:model/KytScreeningsTransaction}
+     */
+    KytScreeningsTransaction,
+
+    /**
+     * The KytScreeningsTransactionType model constructor.
+     * @property {module:model/KytScreeningsTransactionType}
+     */
+    KytScreeningsTransactionType,
+
+    /**
+     * The Link model constructor.
+     * @property {module:model/Link}
+     */
+    Link,
+
+    /**
+     * The LinkDisplayInfo model constructor.
+     * @property {module:model/LinkDisplayInfo}
+     */
+    LinkDisplayInfo,
 
     /**
      * The ListAddressBalancesByToken200Response model constructor.
@@ -2661,6 +2737,18 @@ export {
     Order,
 
     /**
+     * The OrderLinkBusinessInfo model constructor.
+     * @property {module:model/OrderLinkBusinessInfo}
+     */
+    OrderLinkBusinessInfo,
+
+    /**
+     * The OrderLinkBusinessInfoCustomExchangeRatesInner model constructor.
+     * @property {module:model/OrderLinkBusinessInfoCustomExchangeRatesInner}
+     */
+    OrderLinkBusinessInfoCustomExchangeRatesInner,
+
+    /**
      * The OrderStatus model constructor.
      * @property {module:model/OrderStatus}
      */
@@ -2929,6 +3017,12 @@ export {
      * @property {module:model/RetryWebhookEventById201Response}
      */
     RetryWebhookEventById201Response,
+
+    /**
+     * The ReviewStatusType model constructor.
+     * @property {module:model/ReviewStatusType}
+     */
+    ReviewStatusType,
 
     /**
      * The RevokeApprovalRequest201Response model constructor.
@@ -3217,6 +3311,24 @@ export {
      * @property {module:model/SubmitDepositTravelRuleInfo201Response}
      */
     SubmitDepositTravelRuleInfo201Response,
+
+    /**
+     * The SubmitKytResponse model constructor.
+     * @property {module:model/SubmitKytResponse}
+     */
+    SubmitKytResponse,
+
+    /**
+     * The SubmitKytScreeningsDecisionsBody model constructor.
+     * @property {module:model/SubmitKytScreeningsDecisionsBody}
+     */
+    SubmitKytScreeningsDecisionsBody,
+
+    /**
+     * The SubmitKytScreeningsReviewBody model constructor.
+     * @property {module:model/SubmitKytScreeningsReviewBody}
+     */
+    SubmitKytScreeningsReviewBody,
 
     /**
      * The SupportedToken model constructor.

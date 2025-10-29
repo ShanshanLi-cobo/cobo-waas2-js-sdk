@@ -78,6 +78,7 @@ class PaymentEstimateFee201Response {
 
 
 /**
+ * A list of estimated fees for the requested operations.
  * @member {Array.<module:model/PaymentEstimatedFee>} data
  */
 PaymentEstimateFee201Response.prototype['data'] = undefined;

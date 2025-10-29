@@ -19,7 +19,7 @@ class CommissionFee {
     /**
      * Constructs a new <code>CommissionFee</code>.
      * @alias module:model/CommissionFee
-     * @param fee_amount {String} The commission fee amount.
+     * @param fee_amount {String} The amount of the commission fee charged by Cobo for pay-ins and payouts, in USD.
      */
     constructor(fee_amount) { 
         
@@ -79,7 +79,7 @@ class CommissionFee {
 CommissionFee.RequiredProperties = ["fee_amount"];
 
 /**
- * The commission fee amount.
+ * The amount of the commission fee charged by Cobo for pay-ins and payouts, in USD.
  * @member {String} fee_amount
  */
 CommissionFee.prototype['fee_amount'] = undefined;

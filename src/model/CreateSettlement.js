@@ -19,7 +19,7 @@ class CreateSettlement {
     /**
      * Constructs a new <code>CreateSettlement</code>.
      * @alias module:model/CreateSettlement
-     * @param token_id {String} The ID of the cryptocurrency you want to settle. Specify this field when `payout_channel` is set to `Crypto`. Supported values:  - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC` - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @param token_id {String} The ID of the cryptocurrency you want to settle. Specify this field when `payout_channel` is set to `Crypto`. Supported values: - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC` - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
      */
     constructor(token_id) { 
         
@@ -52,14 +52,8 @@ class CreateSettlement {
             if (data.hasOwnProperty('token_id')) {
                 obj['token_id'] = ApiClient.convertToType(data['token_id'], 'String');
             }
-            if (data.hasOwnProperty('currency')) {
-                obj['currency'] = ApiClient.convertToType(data['currency'], 'String');
-            }
             if (data.hasOwnProperty('amount')) {
                 obj['amount'] = ApiClient.convertToType(data['amount'], 'String');
-            }
-            if (data.hasOwnProperty('bank_account_id')) {
-                obj['bank_account_id'] = ApiClient.convertToType(data['bank_account_id'], 'String');
             }
             if (data.hasOwnProperty('crypto_address_id')) {
                 obj['crypto_address_id'] = ApiClient.convertToType(data['crypto_address_id'], 'String');
@@ -92,16 +86,8 @@ class CreateSettlement {
             throw new Error("Expected the field `token_id` to be a primitive type in the JSON string but got " + data['token_id']);
         }
         // ensure the json data is a string
-        if (data['currency'] && !(typeof data['currency'] === 'string' || data['currency'] instanceof String)) {
-            throw new Error("Expected the field `currency` to be a primitive type in the JSON string but got " + data['currency']);
-        }
-        // ensure the json data is a string
         if (data['amount'] && !(typeof data['amount'] === 'string' || data['amount'] instanceof String)) {
             throw new Error("Expected the field `amount` to be a primitive type in the JSON string but got " + data['amount']);
-        }
-        // ensure the json data is a string
-        if (data['bank_account_id'] && !(typeof data['bank_account_id'] === 'string' || data['bank_account_id'] instanceof String)) {
-            throw new Error("Expected the field `bank_account_id` to be a primitive type in the JSON string but got " + data['bank_account_id']);
         }
         // ensure the json data is a string
         if (data['crypto_address_id'] && !(typeof data['crypto_address_id'] === 'string' || data['crypto_address_id'] instanceof String)) {
@@ -127,28 +113,16 @@ CreateSettlement.RequiredProperties = ["token_id"];
 CreateSettlement.prototype['merchant_id'] = undefined;
 
 /**
- * The ID of the cryptocurrency you want to settle. Specify this field when `payout_channel` is set to `Crypto`. Supported values:  - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC` - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+ * The ID of the cryptocurrency you want to settle. Specify this field when `payout_channel` is set to `Crypto`. Supported values: - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC` - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
  * @member {String} token_id
  */
 CreateSettlement.prototype['token_id'] = undefined;
-
-/**
- * The fiat currency for settling the cryptocurrency. Currently, only `USD` is supported. Specify this field when `payout_channel` is set to `OffRamp`.
- * @member {String} currency
- */
-CreateSettlement.prototype['currency'] = undefined;
 
 /**
  * The amount of cryptocurrency to be settled. When settling merchant balance from orders (`acquiring_type` is `Order` and `settlement_type` is `Merchant`), do not specify this field as the amount will be automatically calculated based on the order amounts. 
  * @member {String} amount
  */
 CreateSettlement.prototype['amount'] = undefined;
-
-/**
- * The ID of the bank account where the settled funds will be deposited. This field is only applicable when `payout_channel` is set to `OffRamp`. Call [List all bank accounts](https://www.cobo.com/developers/v2/api-references/payment/list-all-bank-accounts) to retrieve the IDs of registered bank accounts. 
- * @member {String} bank_account_id
- */
-CreateSettlement.prototype['bank_account_id'] = undefined;
 
 /**
  * The ID of the crypto address used for crypto payouts. Specify this field when `payout_channel` is set to `Crypto`.  Call [List crypto addresses](https://www.cobo.com/developers/v2/api-references/payment/list-crypto-addresses) to retrieve registered crypto addresses. 

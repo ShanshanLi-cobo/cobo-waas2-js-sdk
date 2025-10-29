@@ -19,7 +19,7 @@ class OtcFee {
     /**
      * Constructs a new <code>OtcFee</code>.
      * @alias module:model/OtcFee
-     * @param fee_rate {String} The otc fee rate.
+     * @param fee_rate {String} The exchange rate used to convert cryptos to fiat currencies during off-ramp. The final fiat amount is calculated using the following formula:  Final Fiat Amount = (Token Amount - Bridging Fee) × Exchange Rate  Note: The actual fiat amount received may be lower due to additional bank transfer fees. 
      */
     constructor(fee_rate) { 
         
@@ -86,13 +86,13 @@ class OtcFee {
 OtcFee.RequiredProperties = ["fee_rate"];
 
 /**
- * The otc fee rate.
+ * The exchange rate used to convert cryptos to fiat currencies during off-ramp. The final fiat amount is calculated using the following formula:  Final Fiat Amount = (Token Amount - Bridging Fee) × Exchange Rate  Note: The actual fiat amount received may be lower due to additional bank transfer fees. 
  * @member {String} fee_rate
  */
 OtcFee.prototype['fee_rate'] = undefined;
 
 /**
- * The token id in otc.
+ * The ID of the token you want to off-ramp.
  * @member {String} token_id
  */
 OtcFee.prototype['token_id'] = undefined;
