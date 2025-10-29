@@ -182,13 +182,13 @@ CreateRefundRequest.prototype['refund_type'] = undefined;
 CreateRefundRequest.prototype['order_id'] = undefined;
 
 /**
- * Whether to charge developer fee to the merchant.     - `true`: The fee amount (specified in `merchant_fee_amount`) will be deducted from the merchant's balance and added to the developer's balance    - `false`: The merchant is not charged any developer fee  When enabled, ensure both `merchant_fee_amount` and `merchant_fee_token_id` are properly specified. 
+ * Whether to charge developer fee to the merchant. This field is only valid when `refund_type` is `Merchant`. For more information, please refer to [Funds allocation and balances](https://www.cobo.com/developers/v2/payments/amounts-and-balances).     - `true`: The fee amount (specified in `merchant_fee_amount`) will be deducted from the merchant's balance and added to the developer's balance    - `false`: The merchant is not charged any developer fee  When enabled, ensure both `merchant_fee_amount` and `merchant_fee_token_id` are properly specified. 
  * @member {Boolean} charge_merchant_fee
  */
 CreateRefundRequest.prototype['charge_merchant_fee'] = undefined;
 
 /**
- * The developer fee amount to charge the merchant, denominated in the cryptocurrency specified by `merchant_fee_token_id`. Required when `charge_merchant_fee` is `true`. Must be:   - A positive integer with up to two decimal places.   - Less than the refund amount 
+ * The developer fee amount to charge the merchant, denominated in the cryptocurrency specified by `merchant_fee_token_id`. This field is only valid when `refund_type` is `Merchant`. For more information, please refer to [Funds allocation and balances](https://www.cobo.com/developers/v2/payments/amounts-and-balances).  This field is required when `charge_merchant_fee` is `true`. Must be:   - A positive integer with up to two decimal places.   - Less than the refund amount 
  * @member {String} merchant_fee_amount
  */
 CreateRefundRequest.prototype['merchant_fee_amount'] = undefined;

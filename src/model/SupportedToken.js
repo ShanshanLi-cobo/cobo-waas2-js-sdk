@@ -200,7 +200,7 @@ SupportedToken.prototype['chain_icon_url'] = undefined;
 SupportedToken.prototype['token_icon_url'] = undefined;
 
 /**
- * Whether the token can by off ramp settlement
+ * Whether the token is supported by the off-ramp service.
  * @member {Boolean} can_off_ramp
  */
 SupportedToken.prototype['can_off_ramp'] = undefined;

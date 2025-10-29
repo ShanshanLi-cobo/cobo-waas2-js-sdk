@@ -221,6 +221,13 @@ export default class WebhookEventType {
 
     
         /**
+         * value: "payment.transaction.failed"
+         * @const
+         */
+        "payment.transaction.failed" = "payment.transaction.failed";
+
+    
+        /**
          * value: "payment.status.updated"
          * @const
          */
@@ -253,6 +260,13 @@ export default class WebhookEventType {
          * @const
          */
         "compliance.disposition.status.updated" = "compliance.disposition.status.updated";
+
+    
+        /**
+         * value: "compliance.kyt.screenings.status.updated"
+         * @const
+         */
+        "compliance.kyt.screenings.status.updated" = "compliance.kyt.screenings.status.updated";
 
     
         /**

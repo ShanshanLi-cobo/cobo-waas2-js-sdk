@@ -103,13 +103,13 @@ CreateMerchantRequest.RequiredProperties = ["name"];
 CreateMerchantRequest.prototype['name'] = undefined;
 
 /**
- * The ID of the wallet linked to the merchant.
+ * This field has been deprecated.
  * @member {String} wallet_id
  */
 CreateMerchantRequest.prototype['wallet_id'] = undefined;
 
 /**
- * The developer fee rate applied to this merchant. Expressed as a string in decimal format where \"0.1\" represents 10%. This fee is deducted from the payment amount and only applies to top-up transactions. If you are a merchant (directly serving the payer), you do not need to configure the developer fee rate.
+ * The developer fee rate applied to this merchant. Expressed as a string in decimal format where \"0.1\" represents 10%. For more information on developer fee rate, please refer to [Amounts and balances](https://www.cobo.com/developers/v2/payments/amounts-and-balances).
  * @member {String} developer_fee_rate
  */
 CreateMerchantRequest.prototype['developer_fee_rate'] = undefined;

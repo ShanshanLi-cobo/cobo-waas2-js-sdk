@@ -154,19 +154,19 @@ CreateSettlementRequestRequest.prototype['settlement_type'] = undefined;
 CreateSettlementRequestRequest.prototype['settlements'] = undefined;
 
 /**
- * ｜ Only used in OffRamp payout channel. The ID of the bank account where the settled funds will be deposited.
+ *  The ID of the bank account where the funds will be deposited. You can call [List all bank accounts](https://www.cobo.com/developers/v2/api-references/payment/list-all-bank-accounts) to retrieve the IDs of registered bank accounts.  This field is only applicable for off-ramp. 
  * @member {String} bank_account_id
  */
 CreateSettlementRequestRequest.prototype['bank_account_id'] = undefined;
 
 /**
- * The fiat currency for the settlement request.
+ * The fiat currency to receive after off-ramping. Currently, only `USD` is supported. Specify this field when `payout_channel` is set to `OffRamp`.
  * @member {String} currency
  */
 CreateSettlementRequestRequest.prototype['currency'] = undefined;
 
 /**
- * The remark for the settlement request.
+ * The remark for the payout request.
  * @member {String} remark
  */
 CreateSettlementRequestRequest.prototype['remark'] = undefined;

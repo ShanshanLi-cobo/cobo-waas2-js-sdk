@@ -76,6 +76,16 @@ import {ApiClient, Env} from "../../src/index.js";
         //});
       });
     });
+    describe('createOrderLink', function() {
+      it('should call createOrderLink successfully', function() {
+        //uncomment below and update the code to test createOrderLink
+        //instance.createOrderLink().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('createPaymentOrder', function() {
       it('should call createPaymentOrder successfully', function() {
         //uncomment below and update the code to test createPaymentOrder

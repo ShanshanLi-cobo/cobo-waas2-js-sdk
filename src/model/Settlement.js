@@ -214,13 +214,13 @@ Settlement.prototype['payout_channel'] = undefined;
 Settlement.prototype['settlement_type'] = undefined;
 
 /**
- * The fiat currency for the settlement request.
+ * The fiat currency for the off-ramp.
  * @member {String} currency
  */
 Settlement.prototype['currency'] = undefined;
 
 /**
- * The received fiat amount of this settlement request. 
+ * The estimated amount of the fiat currency to receive after off-ramping. This amount is subject to change due to bank transfer fees.
  * @member {String} received_amount_fiat
  */
 Settlement.prototype['received_amount_fiat'] = undefined;

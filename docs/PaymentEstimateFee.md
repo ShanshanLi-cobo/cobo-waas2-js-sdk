@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**token_id** | **String** | The ID of the cryptocurrency you want to OffRamp settle. | 
-**amount** | **String** | The OffRamp settlement amount.  | 
+**token_id** | **String** | The token ID for which fees will be calculated. | 
+**amount** | **String** | The transaction amount for which fees will be calculated. | 
 
 

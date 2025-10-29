@@ -22,7 +22,7 @@ class Merchant {
      * @alias module:model/Merchant
      * @param merchant_id {String} The merchant ID.
      * @param name {String} The merchant name.
-     * @param wallet_id {String} The ID of the linked wallet.
+     * @param wallet_id {String} This field has been deprecated.
      */
     constructor(merchant_id, name, wallet_id) { 
         
@@ -126,13 +126,13 @@ Merchant.prototype['merchant_id'] = undefined;
 Merchant.prototype['name'] = undefined;
 
 /**
- * The ID of the linked wallet.
+ * This field has been deprecated.
  * @member {String} wallet_id
  */
 Merchant.prototype['wallet_id'] = undefined;
 
 /**
- * The developer fee rate applied to this merchant. Expressed as a string in decimal format where \"0.1\" represents 10%. This fee is deducted from the payment amount and only applies to top-up transactions. If you are a merchant (directly serving the payer), you do not need to configure the developer fee rate.
+ * The developer fee rate applied to this merchant.
  * @member {String} developer_fee_rate
  */
 Merchant.prototype['developer_fee_rate'] = undefined;

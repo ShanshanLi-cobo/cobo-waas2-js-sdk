@@ -22,8 +22,8 @@ class PaymentEstimatedFee {
     /**
      * Constructs a new <code>PaymentEstimatedFee</code>.
      * @alias module:model/PaymentEstimatedFee
-     * @param token_id {String} The ID of the cryptocurrency you want to payment.
-     * @param amount {String} The payment amount. 
+     * @param token_id {String} The token ID for which fees will be calculated.
+     * @param amount {String} The transaction amount for which fees will be calculated.
      */
     constructor(token_id, amount) { 
         
@@ -118,13 +118,13 @@ class PaymentEstimatedFee {
 PaymentEstimatedFee.RequiredProperties = ["token_id", "amount"];
 
 /**
- * The ID of the cryptocurrency you want to payment.
+ * The token ID for which fees will be calculated.
  * @member {String} token_id
  */
 PaymentEstimatedFee.prototype['token_id'] = undefined;
 
 /**
- * The payment amount. 
+ * The transaction amount for which fees will be calculated.
  * @member {String} amount
  */
 PaymentEstimatedFee.prototype['amount'] = undefined;
