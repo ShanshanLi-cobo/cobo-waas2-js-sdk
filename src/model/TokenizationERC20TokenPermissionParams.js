@@ -12,18 +12,18 @@
 import ApiClient from '../ApiClient';
 
 /**
- * The TokenizationTokenPermissionParams model module.
- * @module model/TokenizationTokenPermissionParams
+ * The TokenizationERC20TokenPermissionParams model module.
+ * @module model/TokenizationERC20TokenPermissionParams
  */
-class TokenizationTokenPermissionParams {
+class TokenizationERC20TokenPermissionParams {
     /**
-     * Constructs a new <code>TokenizationTokenPermissionParams</code>.
+     * Constructs a new <code>TokenizationERC20TokenPermissionParams</code>.
      * Role-based permission settings for token contract. If not provided, all permissions will be granted to the issuing wallet by default.
-     * @alias module:model/TokenizationTokenPermissionParams
+     * @alias module:model/TokenizationERC20TokenPermissionParams
      */
     constructor() { 
         
-        TokenizationTokenPermissionParams.initialize(this);
+        TokenizationERC20TokenPermissionParams.initialize(this);
     }
 
     /**
@@ -35,15 +35,15 @@ class TokenizationTokenPermissionParams {
     }
 
     /**
-     * Constructs a <code>TokenizationTokenPermissionParams</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>TokenizationERC20TokenPermissionParams</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/TokenizationTokenPermissionParams} obj Optional instance to populate.
-     * @return {module:model/TokenizationTokenPermissionParams} The populated <code>TokenizationTokenPermissionParams</code> instance.
+     * @param {module:model/TokenizationERC20TokenPermissionParams} obj Optional instance to populate.
+     * @return {module:model/TokenizationERC20TokenPermissionParams} The populated <code>TokenizationERC20TokenPermissionParams</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new TokenizationTokenPermissionParams();
+            obj = obj || new TokenizationERC20TokenPermissionParams();
 
             if (data.hasOwnProperty('admin')) {
                 obj['admin'] = ApiClient.convertToType(data['admin'], ['String']);
@@ -71,9 +71,9 @@ class TokenizationTokenPermissionParams {
     }
 
     /**
-     * Validates the JSON data with respect to <code>TokenizationTokenPermissionParams</code>.
+     * Validates the JSON data with respect to <code>TokenizationERC20TokenPermissionParams</code>.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>TokenizationTokenPermissionParams</code>.
+     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>TokenizationERC20TokenPermissionParams</code>.
      */
     static validateJSON(data) {
         // ensure the json data is an array
@@ -117,48 +117,48 @@ class TokenizationTokenPermissionParams {
  * List of addresses for the admin role.
  * @member {Array.<String>} admin
  */
-TokenizationTokenPermissionParams.prototype['admin'] = undefined;
+TokenizationERC20TokenPermissionParams.prototype['admin'] = undefined;
 
 /**
  * List of addresses for the minter role.
  * @member {Array.<String>} minter
  */
-TokenizationTokenPermissionParams.prototype['minter'] = undefined;
+TokenizationERC20TokenPermissionParams.prototype['minter'] = undefined;
 
 /**
  * List of addresses for the burner role.
  * @member {Array.<String>} burner
  */
-TokenizationTokenPermissionParams.prototype['burner'] = undefined;
+TokenizationERC20TokenPermissionParams.prototype['burner'] = undefined;
 
 /**
  * List of addresses for the manager role.
  * @member {Array.<String>} manager
  */
-TokenizationTokenPermissionParams.prototype['manager'] = undefined;
+TokenizationERC20TokenPermissionParams.prototype['manager'] = undefined;
 
 /**
  * List of addresses for the pauser role.
  * @member {Array.<String>} pauser
  */
-TokenizationTokenPermissionParams.prototype['pauser'] = undefined;
+TokenizationERC20TokenPermissionParams.prototype['pauser'] = undefined;
 
 /**
  * List of addresses for the salvager role.
  * @member {Array.<String>} salvager
  */
-TokenizationTokenPermissionParams.prototype['salvager'] = undefined;
+TokenizationERC20TokenPermissionParams.prototype['salvager'] = undefined;
 
 /**
  * List of addresses for the upgrader role.
  * @member {Array.<String>} upgrader
  */
-TokenizationTokenPermissionParams.prototype['upgrader'] = undefined;
+TokenizationERC20TokenPermissionParams.prototype['upgrader'] = undefined;
 
 
 
 
 
 
-export default TokenizationTokenPermissionParams;
+export default TokenizationERC20TokenPermissionParams;
 

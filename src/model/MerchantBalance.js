@@ -164,7 +164,7 @@ MerchantBalance.prototype['settled_amount'] = undefined;
 MerchantBalance.prototype['refunded_amount'] = undefined;
 
 /**
- *  The total balance of the token available for payout or refund for the merchant.  `total_balance` = `total_received_amount` - `settled_amount` - `refunded_amount`  For more information, please refer to [Amounts and Balances](/v2_cn/payments/amounts-and-balances) 
+ *  The total balance of the token available for payout or refund for the merchant.  `total_balance` = `total_received_amount` - `settled_amount` - `refunded_amount`  For more information, please refer to [Funds allocation and balances](https://www.cobo.com/developers/v2/payments/amounts-and-balances) 
  * @member {String} total_balance
  */
 MerchantBalance.prototype['total_balance'] = undefined;

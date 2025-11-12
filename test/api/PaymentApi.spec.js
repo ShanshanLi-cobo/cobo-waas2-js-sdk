@@ -106,6 +106,16 @@ import {ApiClient, Env} from "../../src/index.js";
         //});
       });
     });
+    describe('createRefundLink', function() {
+      it('should call createRefundLink successfully', function() {
+        //uncomment below and update the code to test createRefundLink
+        //instance.createRefundLink().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('createSettlementRequest', function() {
       it('should call createSettlementRequest successfully', function() {
         //uncomment below and update the code to test createSettlementRequest

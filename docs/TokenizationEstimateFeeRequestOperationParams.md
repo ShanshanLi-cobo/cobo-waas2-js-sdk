@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **token_id** | **String** | The ID of the token. | 
 **burns** | [**[TokenizationBurnTokenParamsBurnsInner]**](TokenizationBurnTokenParamsBurnsInner.md) | Details for each token burn, including amount and address to burn from. | 
 **action** | [**TokenizationUpdateAddressAction**](TokenizationUpdateAddressAction.md) |  | 
-**addresses** | [**[TokenizationUpdateBlocklistAddressesParamsAddressesInner]**](TokenizationUpdateBlocklistAddressesParamsAddressesInner.md) | A list of addresses to manage. For &#39;add&#39; operations, notes can be provided. For &#39;remove&#39; operations, notes are ignored. | 
+**addresses** | [**[TokenizationUpdateAddressPermissions]**](TokenizationUpdateAddressPermissions.md) |  | 
 **activation** | **Boolean** | Whether to activate the allowlist feature for the token. | 
 **data** | [**TokenizationContractCallParamsData**](TokenizationContractCallParamsData.md) |  | [optional] 
 

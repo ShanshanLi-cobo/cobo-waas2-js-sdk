@@ -356,7 +356,7 @@ PaymentOrderEventData.prototype['transactions'] = undefined;
 PaymentOrderEventData.prototype['settlement_status'] = undefined;
 
 /**
- * Allowed amount deviation.
+ * The maximum allowed deviation from the payable amount in the case of underpayment, specified as a positive value with up to one decimal place. If you provide more than one decimal place, an error will occur.  When the actual received amount is within this deviation (inclusive) of the payable amount, the order status will be set to `Completed` rather than `Underpaid`. 
  * @member {String} amount_tolerance
  */
 PaymentOrderEventData.prototype['amount_tolerance'] = undefined;
@@ -463,7 +463,7 @@ Order.prototype['transactions'] = undefined;
  */
 Order.prototype['settlement_status'] = undefined;
 /**
- * Allowed amount deviation.
+ * The maximum allowed deviation from the payable amount in the case of underpayment, specified as a positive value with up to one decimal place. If you provide more than one decimal place, an error will occur.  When the actual received amount is within this deviation (inclusive) of the payable amount, the order status will be set to `Completed` rather than `Underpaid`. 
  * @member {String} amount_tolerance
  */
 Order.prototype['amount_tolerance'] = undefined;

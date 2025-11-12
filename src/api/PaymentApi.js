@@ -17,6 +17,7 @@ import CreateCryptoAddressRequest from '../model/CreateCryptoAddressRequest';
 import CreateMerchantRequest from '../model/CreateMerchantRequest';
 import CreateOrderLinkRequest from '../model/CreateOrderLinkRequest';
 import CreatePaymentOrderRequest from '../model/CreatePaymentOrderRequest';
+import CreateRefundLinkRequest from '../model/CreateRefundLinkRequest';
 import CreateRefundRequest from '../model/CreateRefundRequest';
 import CreateSettlementRequestRequest from '../model/CreateSettlementRequestRequest';
 import CryptoAddress from '../model/CryptoAddress';
@@ -273,9 +274,9 @@ export default class PaymentApi {
 
     /**
      * Create order link
-     * This operation creates a payment link of a pay-in order. 
+     * This operation generates a payment link for a pay-in order. The link directs users to a hosted payment page where they can complete their payment for the order. You can share the link directly with users or embed the payment page in your website or application using an iframe.  For more details, see [Payment Link](https://www.cobo.com/developers/v2/payments/payment-link). 
      * @param {Object} opts Optional parameters
-     * @param {module:model/CreateOrderLinkRequest} [CreateOrderLinkRequest] The request body to create a payment link of a pay-in order.
+     * @param {module:model/CreateOrderLinkRequest} [CreateOrderLinkRequest] The request body to create a payment link for a pay-in order.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Link} and HTTP response
      */
     createOrderLinkWithHttpInfo(opts) {
@@ -307,9 +308,9 @@ export default class PaymentApi {
 
     /**
      * Create order link
-     * This operation creates a payment link of a pay-in order. 
+     * This operation generates a payment link for a pay-in order. The link directs users to a hosted payment page where they can complete their payment for the order. You can share the link directly with users or embed the payment page in your website or application using an iframe.  For more details, see [Payment Link](https://www.cobo.com/developers/v2/payments/payment-link). 
      * @param {Object} opts Optional parameters
-     * @param {module:model/CreateOrderLinkRequest} opts.CreateOrderLinkRequest The request body to create a payment link of a pay-in order.
+     * @param {module:model/CreateOrderLinkRequest} opts.CreateOrderLinkRequest The request body to create a payment link for a pay-in order.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Link}
      */
     createOrderLink(opts) {
@@ -412,6 +413,55 @@ export default class PaymentApi {
      */
     createRefund(opts) {
       return this.createRefundWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Create refund link
+     * This operation creates a payment link for a refund. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateRefundLinkRequest} [CreateRefundLinkRequest] The request body to create a payment link for a refund.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Link} and HTTP response
+     */
+    createRefundLinkWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['CreateRefundLinkRequest'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = Link;
+      return this.apiClient.callApi(
+        '/payments/links/refunds', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Create refund link
+     * This operation creates a payment link for a refund. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateRefundLinkRequest} opts.CreateRefundLinkRequest The request body to create a payment link for a refund.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Link}
+     */
+    createRefundLink(opts) {
+      return this.createRefundLinkWithHttpInfo(opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -1997,7 +2047,7 @@ export default class PaymentApi {
 
     /**
      * Update top-up address
-     * This operation updates the dedicated top-up address assigned to a specific payer under a merchant on a specified chain. 
+     * This operation updates the dedicated top-up address assigned to a specific payer under a merchant on a specified chain.  <Note>   You can update the top-up address for a given payer a maximum of 10 times. If you exceed this limit, the API request will return an error. </Note> 
      * @param {Object} opts Optional parameters
      * @param {module:model/UpdateTopUpAddress} [UpdateTopUpAddress] The request body to update top-up address.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TopUpAddress} and HTTP response
@@ -2031,7 +2081,7 @@ export default class PaymentApi {
 
     /**
      * Update top-up address
-     * This operation updates the dedicated top-up address assigned to a specific payer under a merchant on a specified chain. 
+     * This operation updates the dedicated top-up address assigned to a specific payer under a merchant on a specified chain.  <Note>   You can update the top-up address for a given payer a maximum of 10 times. If you exceed this limit, the API request will return an error. </Note> 
      * @param {Object} opts Optional parameters
      * @param {module:model/UpdateTopUpAddress} opts.UpdateTopUpAddress The request body to update top-up address.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TopUpAddress}

@@ -26,7 +26,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new CoboWaas2.TokenizationTokenPermissionsResponse();
+    instance = new CoboWaas2.FeeStationSponsorTransactionDescription();
   });
 
   var getProperty = function(object, getter, property) {
@@ -45,22 +45,22 @@
       object[property] = value;
   }
 
-  describe('TokenizationTokenPermissionsResponse', function() {
-    it('should create an instance of TokenizationTokenPermissionsResponse', function() {
-      // uncomment below and update the code to test TokenizationTokenPermissionsResponse
-      //var instance = new CoboWaas2.TokenizationTokenPermissionsResponse();
-      //expect(instance).to.be.a(CoboWaas2.TokenizationTokenPermissionsResponse);
+  describe('FeeStationSponsorTransactionDescription', function() {
+    it('should create an instance of FeeStationSponsorTransactionDescription', function() {
+      // uncomment below and update the code to test FeeStationSponsorTransactionDescription
+      //var instance = new CoboWaas2.FeeStationSponsorTransactionDescription();
+      //expect(instance).to.be.a(CoboWaas2.FeeStationSponsorTransactionDescription);
     });
 
-    it('should have the property permissions (base name: "permissions")', function() {
-      // uncomment below and update the code to test the property permissions
-      //var instance = new CoboWaas2.TokenizationTokenPermissionsResponse();
+    it('should have the property total_fee_amount (base name: "total_fee_amount")', function() {
+      // uncomment below and update the code to test the property total_fee_amount
+      //var instance = new CoboWaas2.FeeStationSponsorTransactionDescription();
       //expect(instance).to.be();
     });
 
-    it('should have the property total_count (base name: "total_count")', function() {
-      // uncomment below and update the code to test the property total_count
-      //var instance = new CoboWaas2.TokenizationTokenPermissionsResponse();
+    it('should have the property commission_fee (base name: "commission_fee")', function() {
+      // uncomment below and update the code to test the property commission_fee
+      //var instance = new CoboWaas2.FeeStationSponsorTransactionDescription();
       //expect(instance).to.be();
     });
 
