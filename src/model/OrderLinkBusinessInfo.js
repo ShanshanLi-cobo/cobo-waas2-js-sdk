@@ -20,11 +20,11 @@ class OrderLinkBusinessInfo {
     /**
      * Constructs a new <code>OrderLinkBusinessInfo</code>.
      * @alias module:model/OrderLinkBusinessInfo
-     * @param token_ids {Array.<String>} List of supported cryptocurrency token IDs for this payment. Each token ID must be from the supported values. 
-     * @param currency {String} The currency for the base order amount and the developer fee. Currently, only `USD`/`USDT`/`USDC` are supported. 
-     * @param fee_amount {String} The developer fee for the order, in the currency specified by `currency`. If `currency` is not specified, the fee is in the cryptocurrency specified by `token_id`.  If you are a merchant directly serving payers, set this field to `0`. Developer fees are only relevant for platforms like payment service providers (PSPs) that charge fees to their downstream merchants.  The developer fee is added to the base amount (`order_amount`) to determine the final charge. For example: - Base amount (`order_amount`): \"100.00\" - Developer fee (`fee_amount`): \"2.00\"  - Total charged to customer: \"102.00\"  Values can contain up to two decimal places. 
+     * @param token_ids {Array.<String>} An array of token IDs representing the cryptocurrencies and chains available for payment. These options will be shown to users on the payment page for them to choose from. Supported token IDs include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @param currency {String} The currency in which both the order amount (`order_amount`) and the developer fee (`fee_amount`) are denominated. Only the following values are supported: `USD`, `USDT`, or `USDC`. 
+     * @param fee_amount {String} The developer fee for the order, denominated in the currency specified by `currency`.   If you are a merchant directly serving payers, set this field to `0`. Developer fees are only relevant for platforms like payment service providers (PSPs) that charge fees to their downstream merchants.  The developer fee is added to the base amount (`order_amount`) to determine the final charge. For example: - Base amount (`order_amount`): \"100.00\" - Developer fee (`fee_amount`): \"2.00\"  - Total charged to customer: \"102.00\"  Values can contain up to two decimal places. 
      * @param merchant_id {String} The merchant ID.
-     * @param order_amount {String} The base amount of the order, excluding the developer fee (specified in `fee_amount`), in the currency specified by `currency`. If `currency` is not specified, the amount is in the cryptocurrency specified by `token_id`.   Values must be greater than `0` and contain two decimal places.  
+     * @param order_amount {String} The base amount of the order, excluding the developer fee (specified in `fee_amount`), denominated in the currency specified by `currency`.  Values must be greater than `0` and contain two decimal places.  
      * @param psp_order_code {String} A unique reference code assigned by you as a developer to identify this order in your system. This code must be unique across all orders in your system. The code should have a maximum length of 128 characters. 
      */
     constructor(token_ids, currency, fee_amount, merchant_id, order_amount, psp_order_code) { 
@@ -158,25 +158,25 @@ class OrderLinkBusinessInfo {
 OrderLinkBusinessInfo.RequiredProperties = ["token_ids", "currency", "fee_amount", "merchant_id", "order_amount", "psp_order_code"];
 
 /**
- * List of supported cryptocurrency token IDs for this payment. Each token ID must be from the supported values. 
+ * An array of token IDs representing the cryptocurrencies and chains available for payment. These options will be shown to users on the payment page for them to choose from. Supported token IDs include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
  * @member {Array.<String>} token_ids
  */
 OrderLinkBusinessInfo.prototype['token_ids'] = undefined;
 
 /**
- * Optional list of final exchange rates for different tokens. If provided, these rates will be used instead of real-time market rates. 
+ * A list of custom exchange rates defining how much one unit of a specific cryptocurrency (`token_id`) is valued in the selected fiat or crypto currency (`currency`). If this field is omitted, the system’s default exchange rates will apply.  Each item specifies a `token_id` and its corresponding `exchange_rate`. For example, to treat 1 USDT (on Ethereum) as equivalent to 0.99 USD, provide:  ```json {   \"custom_exchange_rates\": [     {       \"token_id\": \"ETH_USDT\",       \"exchange_rate\": \"0.99\"     }   ],   \"currency\": \"USD\" } ``` 
  * @member {Array.<module:model/OrderLinkBusinessInfoCustomExchangeRatesInner>} custom_exchange_rates
  */
 OrderLinkBusinessInfo.prototype['custom_exchange_rates'] = undefined;
 
 /**
- * The currency for the base order amount and the developer fee. Currently, only `USD`/`USDT`/`USDC` are supported. 
+ * The currency in which both the order amount (`order_amount`) and the developer fee (`fee_amount`) are denominated. Only the following values are supported: `USD`, `USDT`, or `USDC`. 
  * @member {String} currency
  */
 OrderLinkBusinessInfo.prototype['currency'] = undefined;
 
 /**
- * The developer fee for the order, in the currency specified by `currency`. If `currency` is not specified, the fee is in the cryptocurrency specified by `token_id`.  If you are a merchant directly serving payers, set this field to `0`. Developer fees are only relevant for platforms like payment service providers (PSPs) that charge fees to their downstream merchants.  The developer fee is added to the base amount (`order_amount`) to determine the final charge. For example: - Base amount (`order_amount`): \"100.00\" - Developer fee (`fee_amount`): \"2.00\"  - Total charged to customer: \"102.00\"  Values can contain up to two decimal places. 
+ * The developer fee for the order, denominated in the currency specified by `currency`.   If you are a merchant directly serving payers, set this field to `0`. Developer fees are only relevant for platforms like payment service providers (PSPs) that charge fees to their downstream merchants.  The developer fee is added to the base amount (`order_amount`) to determine the final charge. For example: - Base amount (`order_amount`): \"100.00\" - Developer fee (`fee_amount`): \"2.00\"  - Total charged to customer: \"102.00\"  Values can contain up to two decimal places. 
  * @member {String} fee_amount
  */
 OrderLinkBusinessInfo.prototype['fee_amount'] = undefined;
@@ -188,7 +188,7 @@ OrderLinkBusinessInfo.prototype['fee_amount'] = undefined;
 OrderLinkBusinessInfo.prototype['merchant_id'] = undefined;
 
 /**
- * The base amount of the order, excluding the developer fee (specified in `fee_amount`), in the currency specified by `currency`. If `currency` is not specified, the amount is in the cryptocurrency specified by `token_id`.   Values must be greater than `0` and contain two decimal places.  
+ * The base amount of the order, excluding the developer fee (specified in `fee_amount`), denominated in the currency specified by `currency`.  Values must be greater than `0` and contain two decimal places.  
  * @member {String} order_amount
  */
 OrderLinkBusinessInfo.prototype['order_amount'] = undefined;
@@ -213,13 +213,13 @@ OrderLinkBusinessInfo.prototype['psp_order_code'] = undefined;
 OrderLinkBusinessInfo.prototype['expired_in'] = 1800;
 
 /**
- * Whether to allocate a dedicated address for this order.  - `true`: A dedicated address will be allocated for this order. - `false`: A shared address from the address pool will be used. 
+ * This field has been deprecated. 
  * @member {Boolean} use_dedicated_address
  */
 OrderLinkBusinessInfo.prototype['use_dedicated_address'] = undefined;
 
 /**
- * Allowed amount deviation, precision to 1 decimal place.
+ * The maximum allowed deviation from the payable amount in the case of underpayment, specified as a positive value with up to one decimal place. If you provide more than one decimal place, an error will occur.  When the actual received amount is within this deviation (inclusive) of the payable amount, the order status will be set to `Completed` rather than `Underpaid`. 
  * @member {String} amount_tolerance
  */
 OrderLinkBusinessInfo.prototype['amount_tolerance'] = undefined;

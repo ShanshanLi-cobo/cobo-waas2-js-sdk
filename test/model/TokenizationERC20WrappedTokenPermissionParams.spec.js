@@ -26,7 +26,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new CoboWaas2.TokenizationTokenPermissionParams();
+    instance = new CoboWaas2.TokenizationERC20WrappedTokenPermissionParams();
   });
 
   var getProperty = function(object, getter, property) {
@@ -45,52 +45,52 @@
       object[property] = value;
   }
 
-  describe('TokenizationTokenPermissionParams', function() {
-    it('should create an instance of TokenizationTokenPermissionParams', function() {
-      // uncomment below and update the code to test TokenizationTokenPermissionParams
-      //var instance = new CoboWaas2.TokenizationTokenPermissionParams();
-      //expect(instance).to.be.a(CoboWaas2.TokenizationTokenPermissionParams);
+  describe('TokenizationERC20WrappedTokenPermissionParams', function() {
+    it('should create an instance of TokenizationERC20WrappedTokenPermissionParams', function() {
+      // uncomment below and update the code to test TokenizationERC20WrappedTokenPermissionParams
+      //var instance = new CoboWaas2.TokenizationERC20WrappedTokenPermissionParams();
+      //expect(instance).to.be.a(CoboWaas2.TokenizationERC20WrappedTokenPermissionParams);
     });
 
     it('should have the property admin (base name: "admin")', function() {
       // uncomment below and update the code to test the property admin
-      //var instance = new CoboWaas2.TokenizationTokenPermissionParams();
+      //var instance = new CoboWaas2.TokenizationERC20WrappedTokenPermissionParams();
       //expect(instance).to.be();
     });
 
     it('should have the property minter (base name: "minter")', function() {
       // uncomment below and update the code to test the property minter
-      //var instance = new CoboWaas2.TokenizationTokenPermissionParams();
+      //var instance = new CoboWaas2.TokenizationERC20WrappedTokenPermissionParams();
       //expect(instance).to.be();
     });
 
-    it('should have the property burner (base name: "burner")', function() {
-      // uncomment below and update the code to test the property burner
-      //var instance = new CoboWaas2.TokenizationTokenPermissionParams();
+    it('should have the property wrapper (base name: "wrapper")', function() {
+      // uncomment below and update the code to test the property wrapper
+      //var instance = new CoboWaas2.TokenizationERC20WrappedTokenPermissionParams();
       //expect(instance).to.be();
     });
 
     it('should have the property manager (base name: "manager")', function() {
       // uncomment below and update the code to test the property manager
-      //var instance = new CoboWaas2.TokenizationTokenPermissionParams();
+      //var instance = new CoboWaas2.TokenizationERC20WrappedTokenPermissionParams();
       //expect(instance).to.be();
     });
 
     it('should have the property pauser (base name: "pauser")', function() {
       // uncomment below and update the code to test the property pauser
-      //var instance = new CoboWaas2.TokenizationTokenPermissionParams();
+      //var instance = new CoboWaas2.TokenizationERC20WrappedTokenPermissionParams();
       //expect(instance).to.be();
     });
 
     it('should have the property salvager (base name: "salvager")', function() {
       // uncomment below and update the code to test the property salvager
-      //var instance = new CoboWaas2.TokenizationTokenPermissionParams();
+      //var instance = new CoboWaas2.TokenizationERC20WrappedTokenPermissionParams();
       //expect(instance).to.be();
     });
 
     it('should have the property upgrader (base name: "upgrader")', function() {
       // uncomment below and update the code to test the property upgrader
-      //var instance = new CoboWaas2.TokenizationTokenPermissionParams();
+      //var instance = new CoboWaas2.TokenizationERC20WrappedTokenPermissionParams();
       //expect(instance).to.be();
     });
 

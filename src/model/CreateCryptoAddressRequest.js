@@ -107,7 +107,7 @@ CreateCryptoAddressRequest.prototype['token_id'] = undefined;
 CreateCryptoAddressRequest.prototype['address'] = undefined;
 
 /**
- * A label to help identify the address's purpose.
+ * A label to help identify the address's purpose. Can contain up to 128 characters.
  * @member {String} label
  */
 CreateCryptoAddressRequest.prototype['label'] = undefined;

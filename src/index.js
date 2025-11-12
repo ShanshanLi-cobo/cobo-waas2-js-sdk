@@ -130,6 +130,7 @@ import CreateOrderLinkRequest from './model/CreateOrderLinkRequest';
 import CreatePaymentOrderRequest from './model/CreatePaymentOrderRequest';
 import CreatePrimeBrokerAddress201Response from './model/CreatePrimeBrokerAddress201Response';
 import CreatePrimeBrokerAddressRequest from './model/CreatePrimeBrokerAddressRequest';
+import CreateRefundLinkRequest from './model/CreateRefundLinkRequest';
 import CreateRefundRequest from './model/CreateRefundRequest';
 import CreateSafeWalletParams from './model/CreateSafeWalletParams';
 import CreateSettlement from './model/CreateSettlement';
@@ -226,6 +227,7 @@ import FeeStationCheckFeeStationUsage from './model/FeeStationCheckFeeStationUsa
 import FeeStationCheckFeeStationUsageResponse from './model/FeeStationCheckFeeStationUsageResponse';
 import FeeStationDestination from './model/FeeStationDestination';
 import FeeStationGasStationType from './model/FeeStationGasStationType';
+import FeeStationSponsorTransactionDescription from './model/FeeStationSponsorTransactionDescription';
 import FeeStationTransactionType from './model/FeeStationTransactionType';
 import FeeStationTransfer from './model/FeeStationTransfer';
 import FeeType from './model/FeeType';
@@ -380,6 +382,7 @@ import RefreshToken2XXResponse from './model/RefreshToken2XXResponse';
 import RefreshTokenRequest from './model/RefreshTokenRequest';
 import Refund from './model/Refund';
 import RefundDisposition from './model/RefundDisposition';
+import RefundLinkBusinessInfo from './model/RefundLinkBusinessInfo';
 import RefundStatus from './model/RefundStatus';
 import RefundType from './model/RefundType';
 import ReplaceType from './model/ReplaceType';
@@ -522,6 +525,9 @@ import TokenizationContractCallParamsData from './model/TokenizationContractCall
 import TokenizationContractCallRequest from './model/TokenizationContractCallRequest';
 import TokenizationContractCallType from './model/TokenizationContractCallType';
 import TokenizationERC20TokenParams from './model/TokenizationERC20TokenParams';
+import TokenizationERC20TokenPermissionParams from './model/TokenizationERC20TokenPermissionParams';
+import TokenizationERC20WrappedTokenParams from './model/TokenizationERC20WrappedTokenParams';
+import TokenizationERC20WrappedTokenPermissionParams from './model/TokenizationERC20WrappedTokenPermissionParams';
 import TokenizationEstimateFeeRequest from './model/TokenizationEstimateFeeRequest';
 import TokenizationEstimateFeeRequestOperationParams from './model/TokenizationEstimateFeeRequestOperationParams';
 import TokenizationEvmContractCallParams from './model/TokenizationEvmContractCallParams';
@@ -533,6 +539,8 @@ import TokenizationIssuedTokenRequest from './model/TokenizationIssuedTokenReque
 import TokenizationListActivitiesResponse from './model/TokenizationListActivitiesResponse';
 import TokenizationListEnabledChainsResponse from './model/TokenizationListEnabledChainsResponse';
 import TokenizationListHoldingsResponse from './model/TokenizationListHoldingsResponse';
+import TokenizationListPermissionsResponse from './model/TokenizationListPermissionsResponse';
+import TokenizationListPermissionsResponseDataInner from './model/TokenizationListPermissionsResponseDataInner';
 import TokenizationListTokenInfoResponse from './model/TokenizationListTokenInfoResponse';
 import TokenizationMintEstimateFeeParams from './model/TokenizationMintEstimateFeeParams';
 import TokenizationMintTokenParams from './model/TokenizationMintTokenParams';
@@ -545,23 +553,25 @@ import TokenizationOperationType from './model/TokenizationOperationType';
 import TokenizationPauseEstimateFeeParams from './model/TokenizationPauseEstimateFeeParams';
 import TokenizationPauseTokenParams from './model/TokenizationPauseTokenParams';
 import TokenizationPauseTokenRequest from './model/TokenizationPauseTokenRequest';
+import TokenizationPermissionAction from './model/TokenizationPermissionAction';
 import TokenizationSOLTokenParams from './model/TokenizationSOLTokenParams';
+import TokenizationSOLWrappedTokenParams from './model/TokenizationSOLWrappedTokenParams';
 import TokenizationSolContractCallParams from './model/TokenizationSolContractCallParams';
 import TokenizationSolTokenPermissionParams from './model/TokenizationSolTokenPermissionParams';
+import TokenizationSolWrappedTokenPermissionParams from './model/TokenizationSolWrappedTokenPermissionParams';
 import TokenizationStatus from './model/TokenizationStatus';
 import TokenizationToggleAllowlistEstimateFeeParams from './model/TokenizationToggleAllowlistEstimateFeeParams';
 import TokenizationTokenDetailInfo from './model/TokenizationTokenDetailInfo';
 import TokenizationTokenInfo from './model/TokenizationTokenInfo';
 import TokenizationTokenOperationSource from './model/TokenizationTokenOperationSource';
 import TokenizationTokenPermission from './model/TokenizationTokenPermission';
-import TokenizationTokenPermissionParams from './model/TokenizationTokenPermissionParams';
 import TokenizationTokenPermissionType from './model/TokenizationTokenPermissionType';
-import TokenizationTokenPermissionsResponse from './model/TokenizationTokenPermissionsResponse';
 import TokenizationTokenStandard from './model/TokenizationTokenStandard';
 import TokenizationUnpauseEstimateFeeParams from './model/TokenizationUnpauseEstimateFeeParams';
 import TokenizationUnpauseTokenParams from './model/TokenizationUnpauseTokenParams';
 import TokenizationUnpauseTokenRequest from './model/TokenizationUnpauseTokenRequest';
 import TokenizationUpdateAddressAction from './model/TokenizationUpdateAddressAction';
+import TokenizationUpdateAddressPermissions from './model/TokenizationUpdateAddressPermissions';
 import TokenizationUpdateAllowlistAddressesEstimateFeeParams from './model/TokenizationUpdateAllowlistAddressesEstimateFeeParams';
 import TokenizationUpdateAllowlistAddressesParams from './model/TokenizationUpdateAllowlistAddressesParams';
 import TokenizationUpdateAllowlistAddressesParamsAddressesInner from './model/TokenizationUpdateAllowlistAddressesParamsAddressesInner';
@@ -570,6 +580,9 @@ import TokenizationUpdateBlocklistAddressesEstimateFeeParams from './model/Token
 import TokenizationUpdateBlocklistAddressesParams from './model/TokenizationUpdateBlocklistAddressesParams';
 import TokenizationUpdateBlocklistAddressesParamsAddressesInner from './model/TokenizationUpdateBlocklistAddressesParamsAddressesInner';
 import TokenizationUpdateBlocklistAddressesRequest from './model/TokenizationUpdateBlocklistAddressesRequest';
+import TokenizationUpdatePermissionsEstimateFeeParams from './model/TokenizationUpdatePermissionsEstimateFeeParams';
+import TokenizationUpdatePermissionsParams from './model/TokenizationUpdatePermissionsParams';
+import TokenizationUpdatePermissionsRequest from './model/TokenizationUpdatePermissionsRequest';
 import TokenizationWeb3OperationSource from './model/TokenizationWeb3OperationSource';
 import TokensEventData from './model/TokensEventData';
 import TopUpAddress from './model/TopUpAddress';
@@ -768,7 +781,7 @@ import WalletsSmartContractWalletsApi from './api/WalletsSmartContractWalletsApi
 * </pre>
 * </p>
 * @module index
-* @version 1.25.0
+* @version 1.26.0
 */
 export {
     Env,
@@ -1483,6 +1496,12 @@ export {
     CreatePrimeBrokerAddressRequest,
 
     /**
+     * The CreateRefundLinkRequest model constructor.
+     * @property {module:model/CreateRefundLinkRequest}
+     */
+    CreateRefundLinkRequest,
+
+    /**
      * The CreateRefundRequest model constructor.
      * @property {module:model/CreateRefundRequest}
      */
@@ -2057,6 +2076,12 @@ export {
      * @property {module:model/FeeStationGasStationType}
      */
     FeeStationGasStationType,
+
+    /**
+     * The FeeStationSponsorTransactionDescription model constructor.
+     * @property {module:model/FeeStationSponsorTransactionDescription}
+     */
+    FeeStationSponsorTransactionDescription,
 
     /**
      * The FeeStationTransactionType model constructor.
@@ -2983,6 +3008,12 @@ export {
     RefundDisposition,
 
     /**
+     * The RefundLinkBusinessInfo model constructor.
+     * @property {module:model/RefundLinkBusinessInfo}
+     */
+    RefundLinkBusinessInfo,
+
+    /**
      * The RefundStatus model constructor.
      * @property {module:model/RefundStatus}
      */
@@ -3835,6 +3866,24 @@ export {
     TokenizationERC20TokenParams,
 
     /**
+     * The TokenizationERC20TokenPermissionParams model constructor.
+     * @property {module:model/TokenizationERC20TokenPermissionParams}
+     */
+    TokenizationERC20TokenPermissionParams,
+
+    /**
+     * The TokenizationERC20WrappedTokenParams model constructor.
+     * @property {module:model/TokenizationERC20WrappedTokenParams}
+     */
+    TokenizationERC20WrappedTokenParams,
+
+    /**
+     * The TokenizationERC20WrappedTokenPermissionParams model constructor.
+     * @property {module:model/TokenizationERC20WrappedTokenPermissionParams}
+     */
+    TokenizationERC20WrappedTokenPermissionParams,
+
+    /**
      * The TokenizationEstimateFeeRequest model constructor.
      * @property {module:model/TokenizationEstimateFeeRequest}
      */
@@ -3899,6 +3948,18 @@ export {
      * @property {module:model/TokenizationListHoldingsResponse}
      */
     TokenizationListHoldingsResponse,
+
+    /**
+     * The TokenizationListPermissionsResponse model constructor.
+     * @property {module:model/TokenizationListPermissionsResponse}
+     */
+    TokenizationListPermissionsResponse,
+
+    /**
+     * The TokenizationListPermissionsResponseDataInner model constructor.
+     * @property {module:model/TokenizationListPermissionsResponseDataInner}
+     */
+    TokenizationListPermissionsResponseDataInner,
 
     /**
      * The TokenizationListTokenInfoResponse model constructor.
@@ -3973,10 +4034,22 @@ export {
     TokenizationPauseTokenRequest,
 
     /**
+     * The TokenizationPermissionAction model constructor.
+     * @property {module:model/TokenizationPermissionAction}
+     */
+    TokenizationPermissionAction,
+
+    /**
      * The TokenizationSOLTokenParams model constructor.
      * @property {module:model/TokenizationSOLTokenParams}
      */
     TokenizationSOLTokenParams,
+
+    /**
+     * The TokenizationSOLWrappedTokenParams model constructor.
+     * @property {module:model/TokenizationSOLWrappedTokenParams}
+     */
+    TokenizationSOLWrappedTokenParams,
 
     /**
      * The TokenizationSolContractCallParams model constructor.
@@ -3989,6 +4062,12 @@ export {
      * @property {module:model/TokenizationSolTokenPermissionParams}
      */
     TokenizationSolTokenPermissionParams,
+
+    /**
+     * The TokenizationSolWrappedTokenPermissionParams model constructor.
+     * @property {module:model/TokenizationSolWrappedTokenPermissionParams}
+     */
+    TokenizationSolWrappedTokenPermissionParams,
 
     /**
      * The TokenizationStatus model constructor.
@@ -4027,22 +4106,10 @@ export {
     TokenizationTokenPermission,
 
     /**
-     * The TokenizationTokenPermissionParams model constructor.
-     * @property {module:model/TokenizationTokenPermissionParams}
-     */
-    TokenizationTokenPermissionParams,
-
-    /**
      * The TokenizationTokenPermissionType model constructor.
      * @property {module:model/TokenizationTokenPermissionType}
      */
     TokenizationTokenPermissionType,
-
-    /**
-     * The TokenizationTokenPermissionsResponse model constructor.
-     * @property {module:model/TokenizationTokenPermissionsResponse}
-     */
-    TokenizationTokenPermissionsResponse,
 
     /**
      * The TokenizationTokenStandard model constructor.
@@ -4073,6 +4140,12 @@ export {
      * @property {module:model/TokenizationUpdateAddressAction}
      */
     TokenizationUpdateAddressAction,
+
+    /**
+     * The TokenizationUpdateAddressPermissions model constructor.
+     * @property {module:model/TokenizationUpdateAddressPermissions}
+     */
+    TokenizationUpdateAddressPermissions,
 
     /**
      * The TokenizationUpdateAllowlistAddressesEstimateFeeParams model constructor.
@@ -4121,6 +4194,24 @@ export {
      * @property {module:model/TokenizationUpdateBlocklistAddressesRequest}
      */
     TokenizationUpdateBlocklistAddressesRequest,
+
+    /**
+     * The TokenizationUpdatePermissionsEstimateFeeParams model constructor.
+     * @property {module:model/TokenizationUpdatePermissionsEstimateFeeParams}
+     */
+    TokenizationUpdatePermissionsEstimateFeeParams,
+
+    /**
+     * The TokenizationUpdatePermissionsParams model constructor.
+     * @property {module:model/TokenizationUpdatePermissionsParams}
+     */
+    TokenizationUpdatePermissionsParams,
+
+    /**
+     * The TokenizationUpdatePermissionsRequest model constructor.
+     * @property {module:model/TokenizationUpdatePermissionsRequest}
+     */
+    TokenizationUpdatePermissionsRequest,
 
     /**
      * The TokenizationWeb3OperationSource model constructor.

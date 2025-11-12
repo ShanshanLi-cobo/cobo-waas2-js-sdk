@@ -19,7 +19,7 @@ import KytScreeningsReviewType from './KytScreeningsReviewType';
 class SubmitKytScreeningsReviewBody {
     /**
      * Constructs a new <code>SubmitKytScreeningsReviewBody</code>.
-     * The information about submitting a manual KYT review result for KYT screening cases that require human analysis.
+     * Submission of a manual KYT review result.
      * @alias module:model/SubmitKytScreeningsReviewBody
      * @param transaction_id {String} The UUID of the transaction that requires a manual KYT review.
      * @param result {module:model/KytScreeningsReviewType} 

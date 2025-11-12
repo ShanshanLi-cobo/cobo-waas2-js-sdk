@@ -245,7 +245,7 @@ export default class ComplianceApi {
      * Submit KYT manual review result
      * This operation submits a manual review result for a KYT (Know Your Transaction) screening case that requires human analysis.  Use this endpoint when transactions flagged for manual review have been analyzed by compliance officers and require submission of review outcomes with detailed comments and justifications.  This endpoint is specifically designed for submitting comprehensive manual review findings rather than automated screening decisions.  <Note>Submitting a manual review result will update the KYT screening status and initiate appropriate compliance workflow actions based on the review outcome.</Note> 
      * @param {Object} opts Optional parameters
-     * @param {module:model/SubmitKytScreeningsReviewBody} [SubmitKytScreeningsReviewBody] The request body to submit a manual review result for KYT screening case that requires human analysis.
+     * @param {module:model/SubmitKytScreeningsReviewBody} [SubmitKytScreeningsReviewBody] The request body to submit a manual review result for a KYT screening case that requires human analysis.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/SubmitKytResponse} and HTTP response
      */
     submitKytManualReviewWithHttpInfo(opts) {
@@ -279,7 +279,7 @@ export default class ComplianceApi {
      * Submit KYT manual review result
      * This operation submits a manual review result for a KYT (Know Your Transaction) screening case that requires human analysis.  Use this endpoint when transactions flagged for manual review have been analyzed by compliance officers and require submission of review outcomes with detailed comments and justifications.  This endpoint is specifically designed for submitting comprehensive manual review findings rather than automated screening decisions.  <Note>Submitting a manual review result will update the KYT screening status and initiate appropriate compliance workflow actions based on the review outcome.</Note> 
      * @param {Object} opts Optional parameters
-     * @param {module:model/SubmitKytScreeningsReviewBody} opts.SubmitKytScreeningsReviewBody The request body to submit a manual review result for KYT screening case that requires human analysis.
+     * @param {module:model/SubmitKytScreeningsReviewBody} opts.SubmitKytScreeningsReviewBody The request body to submit a manual review result for a KYT screening case that requires human analysis.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/SubmitKytResponse}
      */
     submitKytManualReview(opts) {
