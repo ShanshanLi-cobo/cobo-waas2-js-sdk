@@ -26,7 +26,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new CoboWaas2.ReceivedAmountPerAddress();
+    instance = new CoboWaas2.DeleteCounterpartyWalletAddress200Response();
   });
 
   var getProperty = function(object, getter, property) {
@@ -45,22 +45,16 @@
       object[property] = value;
   }
 
-  describe('ReceivedAmountPerAddress', function() {
-    it('should create an instance of ReceivedAmountPerAddress', function() {
-      // uncomment below and update the code to test ReceivedAmountPerAddress
-      //var instance = new CoboWaas2.ReceivedAmountPerAddress();
-      //expect(instance).to.be.a(CoboWaas2.ReceivedAmountPerAddress);
+  describe('DeleteCounterpartyWalletAddress200Response', function() {
+    it('should create an instance of DeleteCounterpartyWalletAddress200Response', function() {
+      // uncomment below and update the code to test DeleteCounterpartyWalletAddress200Response
+      //var instance = new CoboWaas2.DeleteCounterpartyWalletAddress200Response();
+      //expect(instance).to.be.a(CoboWaas2.DeleteCounterpartyWalletAddress200Response);
     });
 
-    it('should have the property address (base name: "address")', function() {
-      // uncomment below and update the code to test the property address
-      //var instance = new CoboWaas2.ReceivedAmountPerAddress();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property total_received_amount (base name: "total_received_amount")', function() {
-      // uncomment below and update the code to test the property total_received_amount
-      //var instance = new CoboWaas2.ReceivedAmountPerAddress();
+    it('should have the property wallet_address_id (base name: "wallet_address_id")', function() {
+      // uncomment below and update the code to test the property wallet_address_id
+      //var instance = new CoboWaas2.DeleteCounterpartyWalletAddress200Response();
       //expect(instance).to.be();
     });
 

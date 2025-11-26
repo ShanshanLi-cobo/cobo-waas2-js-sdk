@@ -13,7 +13,16 @@
 import ApiClient from "../ApiClient";
 import AcquiringType from '../model/AcquiringType';
 import BankAccount from '../model/BankAccount';
+import BankAccountStatus from '../model/BankAccountStatus';
+import Counterparty from '../model/Counterparty';
+import CounterpartyDetail from '../model/CounterpartyDetail';
+import CounterpartyType from '../model/CounterpartyType';
+import CreateCounterpartyRequest from '../model/CreateCounterpartyRequest';
+import CreateCounterpartyWalletAddressRequest from '../model/CreateCounterpartyWalletAddressRequest';
 import CreateCryptoAddressRequest from '../model/CreateCryptoAddressRequest';
+import CreateDestinationBankAccountRequest from '../model/CreateDestinationBankAccountRequest';
+import CreateDestinationRequest from '../model/CreateDestinationRequest';
+import CreateDestinationWalletAddressRequest from '../model/CreateDestinationWalletAddressRequest';
 import CreateMerchantRequest from '../model/CreateMerchantRequest';
 import CreateOrderLinkRequest from '../model/CreateOrderLinkRequest';
 import CreatePaymentOrderRequest from '../model/CreatePaymentOrderRequest';
@@ -21,14 +30,31 @@ import CreateRefundLinkRequest from '../model/CreateRefundLinkRequest';
 import CreateRefundRequest from '../model/CreateRefundRequest';
 import CreateSettlementRequestRequest from '../model/CreateSettlementRequestRequest';
 import CryptoAddress from '../model/CryptoAddress';
+import DeleteCounterparty200Response from '../model/DeleteCounterparty200Response';
+import DeleteCounterpartyWalletAddress200Response from '../model/DeleteCounterpartyWalletAddress200Response';
 import DeleteCryptoAddress201Response from '../model/DeleteCryptoAddress201Response';
+import DeleteDestination200Response from '../model/DeleteDestination200Response';
+import DeleteDestinationBankAccount200Response from '../model/DeleteDestinationBankAccount200Response';
+import DeleteDestinationWalletAddress200Response from '../model/DeleteDestinationWalletAddress200Response';
+import Destination from '../model/Destination';
+import DestinationBankAccount from '../model/DestinationBankAccount';
+import DestinationBankAccountDetail from '../model/DestinationBankAccountDetail';
+import DestinationDetail from '../model/DestinationDetail';
+import DestinationType from '../model/DestinationType';
+import EnableDestinationWhitelistRequest from '../model/EnableDestinationWhitelistRequest';
 import ErrorResponse from '../model/ErrorResponse';
+import ExchangeRate from '../model/ExchangeRate';
 import ForcedSweep from '../model/ForcedSweep';
 import ForcedSweepRequest from '../model/ForcedSweepRequest';
 import GetExchangeRate200Response from '../model/GetExchangeRate200Response';
 import GetRefunds200Response from '../model/GetRefunds200Response';
 import GetSettlementInfoByIds200Response from '../model/GetSettlementInfoByIds200Response';
 import Link from '../model/Link';
+import ListCounterparties200Response from '../model/ListCounterparties200Response';
+import ListCounterpartyWalletAddress200Response from '../model/ListCounterpartyWalletAddress200Response';
+import ListDestinationBankAccounts200Response from '../model/ListDestinationBankAccounts200Response';
+import ListDestinationWalletAddresses200Response from '../model/ListDestinationWalletAddresses200Response';
+import ListDestinations200Response from '../model/ListDestinations200Response';
 import ListForcedSweepRequests200Response from '../model/ListForcedSweepRequests200Response';
 import ListMerchantBalances200Response from '../model/ListMerchantBalances200Response';
 import ListMerchants200Response from '../model/ListMerchants200Response';
@@ -43,16 +69,20 @@ import Order from '../model/Order';
 import PaymentEstimateFee201Response from '../model/PaymentEstimateFee201Response';
 import PaymentEstimateFeeRequest from '../model/PaymentEstimateFeeRequest';
 import PspBalance from '../model/PspBalance';
-import ReceivedAmountPerAddress from '../model/ReceivedAmountPerAddress';
+import QueryDestinationWhitelistEnabled200Response from '../model/QueryDestinationWhitelistEnabled200Response';
 import Refund from '../model/Refund';
 import Settlement from '../model/Settlement';
 import SupportedToken from '../model/SupportedToken';
 import TopUpAddress from '../model/TopUpAddress';
 import UpdateBankAccountByIdRequest from '../model/UpdateBankAccountByIdRequest';
+import UpdateCounterpartyByIdRequest from '../model/UpdateCounterpartyByIdRequest';
+import UpdateDestinationBankAccount from '../model/UpdateDestinationBankAccount';
+import UpdateDestinationByIdRequest from '../model/UpdateDestinationByIdRequest';
 import UpdateMerchantByIdRequest from '../model/UpdateMerchantByIdRequest';
 import UpdatePaymentOrderRequest from '../model/UpdatePaymentOrderRequest';
 import UpdateRefundByIdRequest from '../model/UpdateRefundByIdRequest';
 import UpdateTopUpAddress from '../model/UpdateTopUpAddress';
+import WalletAddress from '../model/WalletAddress';
 import WalletSetup from '../model/WalletSetup';
 
 /**
@@ -72,6 +102,64 @@ export default class PaymentApi {
         this.apiClient = apiClient || ApiClient.instance;
     }
 
+
+
+    /**
+     * Batch get exchange rates
+     * This operation retrieves the current exchange rates between a specified currency and a list of token IDs. 
+     * @param {String} token_ids A list of token IDs, separated by comma. The token ID is the unique identifier of a token. You can retrieve the IDs of all the tokens you can use by calling [List enabled tokens](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-tokens). 
+     * @param {String} currencies List of the fiat currencies, separated by comma. Currently, only `USD` is supported. 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ExchangeRate>} and HTTP response
+     */
+    batchGetExchangeRatesWithHttpInfo(token_ids, currencies) {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'token_ids' is set
+      if (token_ids === undefined || token_ids === null) {
+        throw new Error("Missing the required parameter 'token_ids' when calling batchGetExchangeRates");
+      }
+      // verify the required parameter 'currencies' is set
+      if (currencies === undefined || currencies === null) {
+        throw new Error("Missing the required parameter 'currencies' when calling batchGetExchangeRates");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'token_ids': token_ids,
+        'currencies': currencies
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = [ExchangeRate];
+      return this.apiClient.callApi(
+        '/payments/exchange_rates', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Batch get exchange rates
+     * This operation retrieves the current exchange rates between a specified currency and a list of token IDs. 
+     * @param {String} token_ids A list of token IDs, separated by comma. The token ID is the unique identifier of a token. You can retrieve the IDs of all the tokens you can use by calling [List enabled tokens](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-tokens). 
+     * @param {String} currencies List of the fiat currencies, separated by comma. Currently, only `USD` is supported. 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ExchangeRate>}
+     */
+    batchGetExchangeRates(token_ids, currencies) {
+      return this.batchGetExchangeRatesWithHttpInfo(token_ids, currencies)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
 
 
     /**
@@ -126,6 +214,104 @@ export default class PaymentApi {
 
 
     /**
+     * Create counterparty
+     * This operation creates a counterparty. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateCounterpartyRequest} [CreateCounterpartyRequest] The request body to create a counterparty.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/CounterpartyDetail} and HTTP response
+     */
+    createCounterpartyWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['CreateCounterpartyRequest'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = CounterpartyDetail;
+      return this.apiClient.callApi(
+        '/payments/counterparty', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Create counterparty
+     * This operation creates a counterparty. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateCounterpartyRequest} opts.CreateCounterpartyRequest The request body to create a counterparty.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/CounterpartyDetail}
+     */
+    createCounterparty(opts) {
+      return this.createCounterpartyWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Create counterparty wallet address
+     * This operation creates a counterparty wallet address. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateCounterpartyWalletAddressRequest} [CreateCounterpartyWalletAddressRequest] The request body to create a counterparty wallet address.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/WalletAddress} and HTTP response
+     */
+    createCounterpartyWalletAddressWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['CreateCounterpartyWalletAddressRequest'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = WalletAddress;
+      return this.apiClient.callApi(
+        '/payments/counterparty/wallet_address', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Create counterparty wallet address
+     * This operation creates a counterparty wallet address. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateCounterpartyWalletAddressRequest} opts.CreateCounterpartyWalletAddressRequest The request body to create a counterparty wallet address.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/WalletAddress}
+     */
+    createCounterpartyWalletAddress(opts) {
+      return this.createCounterpartyWalletAddressWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * Create crypto address
      * This operation registers a crypto address for crypto payouts.  The registered address can later be referenced by its ID when creating settlement requests. 
      * @param {Object} opts Optional parameters
@@ -168,6 +354,153 @@ export default class PaymentApi {
      */
     createCryptoAddress(opts) {
       return this.createCryptoAddressWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Create destination
+     * This operation creates a destination. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateDestinationRequest} [CreateDestinationRequest] The request body to create a destination.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DestinationDetail} and HTTP response
+     */
+    createDestinationWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['CreateDestinationRequest'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = DestinationDetail;
+      return this.apiClient.callApi(
+        '/payments/destination', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Create destination
+     * This operation creates a destination. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateDestinationRequest} opts.CreateDestinationRequest The request body to create a destination.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DestinationDetail}
+     */
+    createDestination(opts) {
+      return this.createDestinationWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Create destination bank account
+     * This operation creates a destination bank account. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateDestinationBankAccountRequest} [CreateDestinationBankAccountRequest] The request body to create a destination bank account.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DestinationBankAccount} and HTTP response
+     */
+    createDestinationBankAccountWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['CreateDestinationBankAccountRequest'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = DestinationBankAccount;
+      return this.apiClient.callApi(
+        '/payments/destination/bank_account', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Create destination bank account
+     * This operation creates a destination bank account. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateDestinationBankAccountRequest} opts.CreateDestinationBankAccountRequest The request body to create a destination bank account.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DestinationBankAccount}
+     */
+    createDestinationBankAccount(opts) {
+      return this.createDestinationBankAccountWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Create destination wallet address
+     * This operation creates a destination wallet address. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateDestinationWalletAddressRequest} [CreateDestinationWalletAddressRequest] The request body to create a destination wallet address.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/WalletAddress} and HTTP response
+     */
+    createDestinationWalletAddressWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['CreateDestinationWalletAddressRequest'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = WalletAddress;
+      return this.apiClient.callApi(
+        '/payments/destination/wallet_address', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Create destination wallet address
+     * This operation creates a destination wallet address. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateDestinationWalletAddressRequest} opts.CreateDestinationWalletAddressRequest The request body to create a destination wallet address.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/WalletAddress}
+     */
+    createDestinationWalletAddress(opts) {
+      return this.createDestinationWalletAddressWithHttpInfo(opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -421,9 +754,9 @@ export default class PaymentApi {
 
     /**
      * Create refund link
-     * This operation creates a payment link for a refund. 
+     * This operation creates a link that points to a Cobo-hosted refund page. The user can submit their desired refund address on the page.  Once the address is submitted, Cobo will automatically create a refund order and initiate the refund process according to your configuration.  For details, see [Create refund link](https://www.cobo.com/developers/v2/payments/create-refund-link). 
      * @param {Object} opts Optional parameters
-     * @param {module:model/CreateRefundLinkRequest} [CreateRefundLinkRequest] The request body to create a payment link for a refund.
+     * @param {module:model/CreateRefundLinkRequest} [CreateRefundLinkRequest] The request body to create a refund link.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Link} and HTTP response
      */
     createRefundLinkWithHttpInfo(opts) {
@@ -455,9 +788,9 @@ export default class PaymentApi {
 
     /**
      * Create refund link
-     * This operation creates a payment link for a refund. 
+     * This operation creates a link that points to a Cobo-hosted refund page. The user can submit their desired refund address on the page.  Once the address is submitted, Cobo will automatically create a refund order and initiate the refund process according to your configuration.  For details, see [Create refund link](https://www.cobo.com/developers/v2/payments/create-refund-link). 
      * @param {Object} opts Optional parameters
-     * @param {module:model/CreateRefundLinkRequest} opts.CreateRefundLinkRequest The request body to create a payment link for a refund.
+     * @param {module:model/CreateRefundLinkRequest} opts.CreateRefundLinkRequest The request body to create a refund link.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Link}
      */
     createRefundLink(opts) {
@@ -518,6 +851,108 @@ export default class PaymentApi {
 
 
     /**
+     * Delete counterparty
+     * This operation deletes a counterparty. 
+     * @param {String} counterparty_id The counterparty ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DeleteCounterparty200Response} and HTTP response
+     */
+    deleteCounterpartyWithHttpInfo(counterparty_id) {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'counterparty_id' is set
+      if (counterparty_id === undefined || counterparty_id === null) {
+        throw new Error("Missing the required parameter 'counterparty_id' when calling deleteCounterparty");
+      }
+
+      let pathParams = {
+        'counterparty_id': counterparty_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = DeleteCounterparty200Response;
+      return this.apiClient.callApi(
+        '/payments/counterparty/{counterparty_id}/delete', 'PUT',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Delete counterparty
+     * This operation deletes a counterparty. 
+     * @param {String} counterparty_id The counterparty ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DeleteCounterparty200Response}
+     */
+    deleteCounterparty(counterparty_id) {
+      return this.deleteCounterpartyWithHttpInfo(counterparty_id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Delete counterparty wallet address
+     * This operation deletes a counterparty wallet address. 
+     * @param {String} wallet_address_id The wallet address ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DeleteCounterpartyWalletAddress200Response} and HTTP response
+     */
+    deleteCounterpartyWalletAddressWithHttpInfo(wallet_address_id) {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'wallet_address_id' is set
+      if (wallet_address_id === undefined || wallet_address_id === null) {
+        throw new Error("Missing the required parameter 'wallet_address_id' when calling deleteCounterpartyWalletAddress");
+      }
+
+      let pathParams = {
+        'wallet_address_id': wallet_address_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = DeleteCounterpartyWalletAddress200Response;
+      return this.apiClient.callApi(
+        '/payments/counterparty/wallet_address/{wallet_address_id}/delete', 'PUT',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Delete counterparty wallet address
+     * This operation deletes a counterparty wallet address. 
+     * @param {String} wallet_address_id The wallet address ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DeleteCounterpartyWalletAddress200Response}
+     */
+    deleteCounterpartyWalletAddress(wallet_address_id) {
+      return this.deleteCounterpartyWalletAddressWithHttpInfo(wallet_address_id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * Delete crypto address
      * This operation unregisters a crypto address from being used for crypto payouts. 
      * @param {String} crypto_address_id The crypto address ID.
@@ -562,6 +997,361 @@ export default class PaymentApi {
      */
     deleteCryptoAddress(crypto_address_id) {
       return this.deleteCryptoAddressWithHttpInfo(crypto_address_id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Delete destination
+     * This operation deletes a destination. 
+     * @param {String} destination_id The destination ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DeleteDestination200Response} and HTTP response
+     */
+    deleteDestinationWithHttpInfo(destination_id) {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'destination_id' is set
+      if (destination_id === undefined || destination_id === null) {
+        throw new Error("Missing the required parameter 'destination_id' when calling deleteDestination");
+      }
+
+      let pathParams = {
+        'destination_id': destination_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = DeleteDestination200Response;
+      return this.apiClient.callApi(
+        '/payments/destination/{destination_id}/delete', 'PUT',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Delete destination
+     * This operation deletes a destination. 
+     * @param {String} destination_id The destination ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DeleteDestination200Response}
+     */
+    deleteDestination(destination_id) {
+      return this.deleteDestinationWithHttpInfo(destination_id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Delete destination bank account
+     * This operation deletes a destination bank account. 
+     * @param {String} bank_account_id The bank account ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DeleteDestinationBankAccount200Response} and HTTP response
+     */
+    deleteDestinationBankAccountWithHttpInfo(bank_account_id) {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'bank_account_id' is set
+      if (bank_account_id === undefined || bank_account_id === null) {
+        throw new Error("Missing the required parameter 'bank_account_id' when calling deleteDestinationBankAccount");
+      }
+
+      let pathParams = {
+        'bank_account_id': bank_account_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = DeleteDestinationBankAccount200Response;
+      return this.apiClient.callApi(
+        '/payments/destination/bank_account/{bank_account_id}/delete', 'PUT',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Delete destination bank account
+     * This operation deletes a destination bank account. 
+     * @param {String} bank_account_id The bank account ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DeleteDestinationBankAccount200Response}
+     */
+    deleteDestinationBankAccount(bank_account_id) {
+      return this.deleteDestinationBankAccountWithHttpInfo(bank_account_id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Delete destination wallet address
+     * This operation deletes a destination wallet address. 
+     * @param {String} wallet_address_id The wallet address ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DeleteDestinationWalletAddress200Response} and HTTP response
+     */
+    deleteDestinationWalletAddressWithHttpInfo(wallet_address_id) {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'wallet_address_id' is set
+      if (wallet_address_id === undefined || wallet_address_id === null) {
+        throw new Error("Missing the required parameter 'wallet_address_id' when calling deleteDestinationWalletAddress");
+      }
+
+      let pathParams = {
+        'wallet_address_id': wallet_address_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = DeleteDestinationWalletAddress200Response;
+      return this.apiClient.callApi(
+        '/payments/destination/wallet_address/{wallet_address_id}/delete', 'PUT',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Delete destination wallet address
+     * This operation deletes a destination wallet address. 
+     * @param {String} wallet_address_id The wallet address ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DeleteDestinationWalletAddress200Response}
+     */
+    deleteDestinationWalletAddress(wallet_address_id) {
+      return this.deleteDestinationWalletAddressWithHttpInfo(wallet_address_id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Enable or disable destination whitelist
+     * This operation enables or disables the whitelist for a destination. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/EnableDestinationWhitelistRequest} [EnableDestinationWhitelistRequest] The request body to enable or disable the destination whitelist.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/QueryDestinationWhitelistEnabled200Response} and HTTP response
+     */
+    enableDestinationWhitelistWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['EnableDestinationWhitelistRequest'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = QueryDestinationWhitelistEnabled200Response;
+      return this.apiClient.callApi(
+        '/payments/destination/enable_whitelist', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Enable or disable destination whitelist
+     * This operation enables or disables the whitelist for a destination. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/EnableDestinationWhitelistRequest} opts.EnableDestinationWhitelistRequest The request body to enable or disable the destination whitelist.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/QueryDestinationWhitelistEnabled200Response}
+     */
+    enableDestinationWhitelist(opts) {
+      return this.enableDestinationWhitelistWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Get counterparty information
+     * This operation retrieves the detailed information about a specified counterparty. 
+     * @param {String} counterparty_id The counterparty ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/CounterpartyDetail} and HTTP response
+     */
+    getCounterpartyDetailByIdWithHttpInfo(counterparty_id) {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'counterparty_id' is set
+      if (counterparty_id === undefined || counterparty_id === null) {
+        throw new Error("Missing the required parameter 'counterparty_id' when calling getCounterpartyDetailById");
+      }
+
+      let pathParams = {
+        'counterparty_id': counterparty_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = CounterpartyDetail;
+      return this.apiClient.callApi(
+        '/payments/counterparty/{counterparty_id}/detail', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Get counterparty information
+     * This operation retrieves the detailed information about a specified counterparty. 
+     * @param {String} counterparty_id The counterparty ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/CounterpartyDetail}
+     */
+    getCounterpartyDetailById(counterparty_id) {
+      return this.getCounterpartyDetailByIdWithHttpInfo(counterparty_id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Get destination bank account information
+     * This operation retrieves the detailed information about a specified destination bank account. 
+     * @param {String} bank_account_id The bank account ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DestinationBankAccountDetail} and HTTP response
+     */
+    getDestinationBankAccountDetailByIdWithHttpInfo(bank_account_id) {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'bank_account_id' is set
+      if (bank_account_id === undefined || bank_account_id === null) {
+        throw new Error("Missing the required parameter 'bank_account_id' when calling getDestinationBankAccountDetailById");
+      }
+
+      let pathParams = {
+        'bank_account_id': bank_account_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = DestinationBankAccountDetail;
+      return this.apiClient.callApi(
+        '/payments/destination/bank_account/{bank_account_id}/detail', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Get destination bank account information
+     * This operation retrieves the detailed information about a specified destination bank account. 
+     * @param {String} bank_account_id The bank account ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DestinationBankAccountDetail}
+     */
+    getDestinationBankAccountDetailById(bank_account_id) {
+      return this.getDestinationBankAccountDetailByIdWithHttpInfo(bank_account_id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Get destination information
+     * This operation retrieves the detailed information about a specified destination. 
+     * @param {String} destination_id The destination ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DestinationDetail} and HTTP response
+     */
+    getDestinationDetailByIdWithHttpInfo(destination_id) {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'destination_id' is set
+      if (destination_id === undefined || destination_id === null) {
+        throw new Error("Missing the required parameter 'destination_id' when calling getDestinationDetailById");
+      }
+
+      let pathParams = {
+        'destination_id': destination_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = DestinationDetail;
+      return this.apiClient.callApi(
+        '/payments/destination/{destination_id}/detail', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Get destination information
+     * This operation retrieves the detailed information about a specified destination. 
+     * @param {String} destination_id The destination ID.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DestinationDetail}
+     */
+    getDestinationDetailById(destination_id) {
+      return this.getDestinationDetailByIdWithHttpInfo(destination_id)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -620,70 +1410,6 @@ export default class PaymentApi {
      */
     getExchangeRate(token_id, currency) {
       return this.getExchangeRateWithHttpInfo(token_id, currency)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
-    }
-
-
-    /**
-     * Get payer balance
-     * This operation retrieves the total amount received for a specific payer. The information is grouped by token and receiving address. 
-     * @param {String} payer_id Unique payer identifier on the Cobo side, auto-generated by the system.
-     * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
-     * @param {Object} opts Optional parameters
-     * @param {String} [merchant_id] The merchant ID.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ReceivedAmountPerAddress>} and HTTP response
-     */
-    getPayerBalanceByAddressWithHttpInfo(payer_id, token_id, opts) {
-      opts = opts || {};
-      let postBody = null;
-      if (postBody && postBody.toJSON) {
-          postBody = postBody.toJSON()
-      }
-      // verify the required parameter 'payer_id' is set
-      if (payer_id === undefined || payer_id === null) {
-        throw new Error("Missing the required parameter 'payer_id' when calling getPayerBalanceByAddress");
-      }
-      // verify the required parameter 'token_id' is set
-      if (token_id === undefined || token_id === null) {
-        throw new Error("Missing the required parameter 'token_id' when calling getPayerBalanceByAddress");
-      }
-
-      let pathParams = {
-      };
-      let queryParams = {
-        'merchant_id': opts['merchant_id'],
-        'payer_id': payer_id,
-        'token_id': token_id
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['OAuth2', 'CoboAuth'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = [ReceivedAmountPerAddress];
-      return this.apiClient.callApi(
-        '/payments/balance/payer/address', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null
-      );
-    }
-
-    /**
-     * Get payer balance
-     * This operation retrieves the total amount received for a specific payer. The information is grouped by token and receiving address. 
-     * @param {String} payer_id Unique payer identifier on the Cobo side, auto-generated by the system.
-     * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
-     * @param {Object} opts Optional parameters
-     * @param {String} opts.merchant_id The merchant ID.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ReceivedAmountPerAddress>}
-     */
-    getPayerBalanceByAddress(payer_id, token_id, opts) {
-      return this.getPayerBalanceByAddressWithHttpInfo(payer_id, token_id, opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -1016,10 +1742,10 @@ export default class PaymentApi {
 
 
     /**
-     * Get top-up address
-     * This operation retrieves the information of the dedicated top-up address assigned to a specific payer under a merchant on a specified chain. 
+     * Create/Get top-up address
+     * This operation creates or retrieves a unique top-up address for a payer.   In the request, you need to provide the `custom_payer_id` parameter to identify the payer in your system and link them to the top-up address.  - If no address exists for the payer on the specified chain, a new address will be created and returned. - If an address already exists for the payer on the specified chain, the existing address details will be returned.  You can also provide the `merchant_id` parameter to specify the merchant to which the payer belongs. If not provided, the default merchant will be used. 
      * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
-     * @param {String} custom_payer_id A unique identifier assigned by the developer to track and identify individual payers in their system.
+     * @param {String} custom_payer_id A unique identifier to track and identify individual payers in your system.
      * @param {Object} opts Optional parameters
      * @param {String} [merchant_id] The merchant ID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TopUpAddress} and HTTP response
@@ -1063,10 +1789,10 @@ export default class PaymentApi {
     }
 
     /**
-     * Get top-up address
-     * This operation retrieves the information of the dedicated top-up address assigned to a specific payer under a merchant on a specified chain. 
+     * Create/Get top-up address
+     * This operation creates or retrieves a unique top-up address for a payer.   In the request, you need to provide the `custom_payer_id` parameter to identify the payer in your system and link them to the top-up address.  - If no address exists for the payer on the specified chain, a new address will be created and returned. - If an address already exists for the payer on the specified chain, the existing address details will be returned.  You can also provide the `merchant_id` parameter to specify the merchant to which the payer belongs. If not provided, the default merchant will be used. 
      * @param {String} token_id The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format `{CHAIN}_{TOKEN}`. Supported values include:   - USDC: `ETH_USDC`, `ARBITRUM_USDCOIN`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC2`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
-     * @param {String} custom_payer_id A unique identifier assigned by the developer to track and identify individual payers in their system.
+     * @param {String} custom_payer_id A unique identifier to track and identify individual payers in your system.
      * @param {Object} opts Optional parameters
      * @param {String} opts.merchant_id The merchant ID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TopUpAddress}
@@ -1124,6 +1850,136 @@ export default class PaymentApi {
 
 
     /**
+     * List all counterparties
+     * This operation retrieves the information of all counterparties.   You can filter the results by using a keyword for fuzzy search on counterparty names. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} [limit = 10)] The maximum number of objects to return. For most operations, the value range is [1, 50].
+     * @param {String} [before] A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
+     * @param {String} [after] A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
+     * @param {String} [keyword] A search term used for fuzzy matching of merchant names.
+     * @param {module:model/CounterpartyType} [counterparty_type] CounterpartyType defines the type of the counterparty: - `Individual`: The counterparty is an individual. - `Organization`: The counterparty is an organization. 
+     * @param {String} [country] The country of the destination, in ISO 3166-1 alpha-3 format.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListCounterparties200Response} and HTTP response
+     */
+    listCounterpartiesWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'limit': opts['limit'],
+        'before': opts['before'],
+        'after': opts['after'],
+        'keyword': opts['keyword'],
+        'counterparty_type': opts['counterparty_type'],
+        'country': opts['country']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ListCounterparties200Response;
+      return this.apiClient.callApi(
+        '/payments/counterparty', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * List all counterparties
+     * This operation retrieves the information of all counterparties.   You can filter the results by using a keyword for fuzzy search on counterparty names. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.limit The maximum number of objects to return. For most operations, the value range is [1, 50]. (default to 10)
+     * @param {String} opts.before A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
+     * @param {String} opts.after A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
+     * @param {String} opts.keyword A search term used for fuzzy matching of merchant names.
+     * @param {module:model/CounterpartyType} opts.counterparty_type CounterpartyType defines the type of the counterparty: - `Individual`: The counterparty is an individual. - `Organization`: The counterparty is an organization. 
+     * @param {String} opts.country The country of the destination, in ISO 3166-1 alpha-3 format.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListCounterparties200Response}
+     */
+    listCounterparties(opts) {
+      return this.listCounterpartiesWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * List counterparty wallet addresses
+     * This operation retrieves the information of counterparty wallet addresses. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} [limit = 10)] The maximum number of objects to return. For most operations, the value range is [1, 50].
+     * @param {String} [before] A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
+     * @param {String} [after] A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
+     * @param {String} [counterparty_id] The counterparty ID.
+     * @param {String} [chain_ids] The chain ID, which is the unique identifier of a blockchain. You can retrieve the IDs of all the chains you can use by calling [List enabled chains](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-chains).
+     * @param {String} [wallet_address] The wallet address.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListCounterpartyWalletAddress200Response} and HTTP response
+     */
+    listCounterpartyWalletAddressWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'limit': opts['limit'],
+        'before': opts['before'],
+        'after': opts['after'],
+        'counterparty_id': opts['counterparty_id'],
+        'chain_ids': opts['chain_ids'],
+        'wallet_address': opts['wallet_address']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ListCounterpartyWalletAddress200Response;
+      return this.apiClient.callApi(
+        '/payments/counterparty/wallet_address', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * List counterparty wallet addresses
+     * This operation retrieves the information of counterparty wallet addresses. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.limit The maximum number of objects to return. For most operations, the value range is [1, 50]. (default to 10)
+     * @param {String} opts.before A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
+     * @param {String} opts.after A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
+     * @param {String} opts.counterparty_id The counterparty ID.
+     * @param {String} opts.chain_ids The chain ID, which is the unique identifier of a blockchain. You can retrieve the IDs of all the chains you can use by calling [List enabled chains](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-chains).
+     * @param {String} opts.wallet_address The wallet address.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListCounterpartyWalletAddress200Response}
+     */
+    listCounterpartyWalletAddress(opts) {
+      return this.listCounterpartyWalletAddressWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * List crypto addresses
      * This operation retrieves a list of crypto addresses registered for crypto payouts.   Contact our support team at [help@cobo.com](mailto:help@cobo.com) to register a new crypto address. 
      * @param {Object} opts Optional parameters
@@ -1167,6 +2023,204 @@ export default class PaymentApi {
      */
     listCryptoAddresses(opts) {
       return this.listCryptoAddressesWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * List destination bank accounts
+     * This operation retrieves the information of destination bank accounts. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} [limit = 10)] The maximum number of objects to return. For most operations, the value range is [1, 50].
+     * @param {String} [before] A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
+     * @param {String} [after] A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
+     * @param {String} [keyword] A search term used for fuzzy matching of merchant names.
+     * @param {String} [destination_id] The destination ID.
+     * @param {module:model/BankAccountStatus} [bank_account_status] BankAccountStatus defines the status of the bank account: - `Pending`: The bank account is pending verification by Cobo. - `Approved`: The bank account has been approved by Cobo. - `Rejected`: The bank account has been rejected by Cobo. 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListDestinationBankAccounts200Response} and HTTP response
+     */
+    listDestinationBankAccountsWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'limit': opts['limit'],
+        'before': opts['before'],
+        'after': opts['after'],
+        'keyword': opts['keyword'],
+        'destination_id': opts['destination_id'],
+        'bank_account_status': opts['bank_account_status']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ListDestinationBankAccounts200Response;
+      return this.apiClient.callApi(
+        '/payments/destination/bank_account', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * List destination bank accounts
+     * This operation retrieves the information of destination bank accounts. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.limit The maximum number of objects to return. For most operations, the value range is [1, 50]. (default to 10)
+     * @param {String} opts.before A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
+     * @param {String} opts.after A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
+     * @param {String} opts.keyword A search term used for fuzzy matching of merchant names.
+     * @param {String} opts.destination_id The destination ID.
+     * @param {module:model/BankAccountStatus} opts.bank_account_status BankAccountStatus defines the status of the bank account: - `Pending`: The bank account is pending verification by Cobo. - `Approved`: The bank account has been approved by Cobo. - `Rejected`: The bank account has been rejected by Cobo. 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListDestinationBankAccounts200Response}
+     */
+    listDestinationBankAccounts(opts) {
+      return this.listDestinationBankAccountsWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * List destination wallet addresses
+     * This operation retrieves the information of destination wallet addresses. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} [limit = 10)] The maximum number of objects to return. For most operations, the value range is [1, 50].
+     * @param {String} [before] A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
+     * @param {String} [after] A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
+     * @param {String} [destination_id] The destination ID.
+     * @param {String} [chain_ids] The chain ID, which is the unique identifier of a blockchain. You can retrieve the IDs of all the chains you can use by calling [List enabled chains](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-chains).
+     * @param {String} [wallet_address] The wallet address.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListDestinationWalletAddresses200Response} and HTTP response
+     */
+    listDestinationWalletAddressesWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'limit': opts['limit'],
+        'before': opts['before'],
+        'after': opts['after'],
+        'destination_id': opts['destination_id'],
+        'chain_ids': opts['chain_ids'],
+        'wallet_address': opts['wallet_address']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ListDestinationWalletAddresses200Response;
+      return this.apiClient.callApi(
+        '/payments/destination/wallet_address', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * List destination wallet addresses
+     * This operation retrieves the information of destination wallet addresses. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.limit The maximum number of objects to return. For most operations, the value range is [1, 50]. (default to 10)
+     * @param {String} opts.before A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
+     * @param {String} opts.after A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
+     * @param {String} opts.destination_id The destination ID.
+     * @param {String} opts.chain_ids The chain ID, which is the unique identifier of a blockchain. You can retrieve the IDs of all the chains you can use by calling [List enabled chains](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-chains).
+     * @param {String} opts.wallet_address The wallet address.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListDestinationWalletAddresses200Response}
+     */
+    listDestinationWalletAddresses(opts) {
+      return this.listDestinationWalletAddressesWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * List all destinations
+     * This operation retrieves the information of all destinations.   You can filter the results by using a keyword for fuzzy search on destination names. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} [limit = 10)] The maximum number of objects to return. For most operations, the value range is [1, 50].
+     * @param {String} [before] A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
+     * @param {String} [after] A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
+     * @param {String} [keyword] A search term used for fuzzy matching of merchant names.
+     * @param {module:model/DestinationType} [destination_type] DestinationType defines the type of the destination: - `Individual`: The destination is an individual. - `Organization`: The destination is an organization. 
+     * @param {String} [country] The country of the destination, in ISO 3166-1 alpha-3 format.
+     * @param {String} [merchant_ids] A list of merchant IDs to query.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListDestinations200Response} and HTTP response
+     */
+    listDestinationsWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'limit': opts['limit'],
+        'before': opts['before'],
+        'after': opts['after'],
+        'keyword': opts['keyword'],
+        'destination_type': opts['destination_type'],
+        'country': opts['country'],
+        'merchant_ids': opts['merchant_ids']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ListDestinations200Response;
+      return this.apiClient.callApi(
+        '/payments/destination', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * List all destinations
+     * This operation retrieves the information of all destinations.   You can filter the results by using a keyword for fuzzy search on destination names. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.limit The maximum number of objects to return. For most operations, the value range is [1, 50]. (default to 10)
+     * @param {String} opts.before A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
+     * @param {String} opts.after A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response. 
+     * @param {String} opts.keyword A search term used for fuzzy matching of merchant names.
+     * @param {module:model/DestinationType} opts.destination_type DestinationType defines the type of the destination: - `Individual`: The destination is an individual. - `Organization`: The destination is an organization. 
+     * @param {String} opts.country The country of the destination, in ISO 3166-1 alpha-3 format.
+     * @param {String} opts.merchant_ids A list of merchant IDs to query.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListDestinations200Response}
+     */
+    listDestinations(opts) {
+      return this.listDestinationsWithHttpInfo(opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -1822,6 +2876,50 @@ export default class PaymentApi {
 
 
     /**
+     * Query destination whitelist enabled status
+     * This operation retrieves the information of whether the destination whitelist is enabled. 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/QueryDestinationWhitelistEnabled200Response} and HTTP response
+     */
+    queryDestinationWhitelistEnabledWithHttpInfo() {
+      let postBody = null;
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = QueryDestinationWhitelistEnabled200Response;
+      return this.apiClient.callApi(
+        '/payments/destination/enable_whitelist', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Query destination whitelist enabled status
+     * This operation retrieves the information of whether the destination whitelist is enabled. 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/QueryDestinationWhitelistEnabled200Response}
+     */
+    queryDestinationWhitelistEnabled() {
+      return this.queryDestinationWhitelistEnabledWithHttpInfo()
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * Update bank account
      * This operation updates the information of an existing bank account. 
      * @param {String} bank_account_id The bank account ID.
@@ -1871,6 +2969,174 @@ export default class PaymentApi {
      */
     updateBankAccountById(bank_account_id, opts) {
       return this.updateBankAccountByIdWithHttpInfo(bank_account_id, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Update counterparty
+     * This operation updates the information of a specified counterparty. 
+     * @param {String} counterparty_id The counterparty ID.
+     * @param {Object} opts Optional parameters
+     * @param {module:model/UpdateCounterpartyByIdRequest} [UpdateCounterpartyByIdRequest] The request body to update a counterparty.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Counterparty} and HTTP response
+     */
+    updateCounterpartyByIdWithHttpInfo(counterparty_id, opts) {
+      opts = opts || {};
+      let postBody = opts['UpdateCounterpartyByIdRequest'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'counterparty_id' is set
+      if (counterparty_id === undefined || counterparty_id === null) {
+        throw new Error("Missing the required parameter 'counterparty_id' when calling updateCounterpartyById");
+      }
+
+      let pathParams = {
+        'counterparty_id': counterparty_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = Counterparty;
+      return this.apiClient.callApi(
+        '/payments/counterparty/{counterparty_id}/update', 'PUT',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Update counterparty
+     * This operation updates the information of a specified counterparty. 
+     * @param {String} counterparty_id The counterparty ID.
+     * @param {Object} opts Optional parameters
+     * @param {module:model/UpdateCounterpartyByIdRequest} opts.UpdateCounterpartyByIdRequest The request body to update a counterparty.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Counterparty}
+     */
+    updateCounterpartyById(counterparty_id, opts) {
+      return this.updateCounterpartyByIdWithHttpInfo(counterparty_id, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Update destination bank account
+     * This operation updates the information of a specified destination bank account. 
+     * @param {String} bank_account_id The bank account ID.
+     * @param {Object} opts Optional parameters
+     * @param {module:model/UpdateDestinationBankAccount} [UpdateDestinationBankAccount] The request body to update a destination bank account.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DestinationBankAccount} and HTTP response
+     */
+    updateDestinationBankAccountByIdWithHttpInfo(bank_account_id, opts) {
+      opts = opts || {};
+      let postBody = opts['UpdateDestinationBankAccount'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'bank_account_id' is set
+      if (bank_account_id === undefined || bank_account_id === null) {
+        throw new Error("Missing the required parameter 'bank_account_id' when calling updateDestinationBankAccountById");
+      }
+
+      let pathParams = {
+        'bank_account_id': bank_account_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = DestinationBankAccount;
+      return this.apiClient.callApi(
+        '/payments/destination/bank_account/{bank_account_id}/update', 'PUT',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Update destination bank account
+     * This operation updates the information of a specified destination bank account. 
+     * @param {String} bank_account_id The bank account ID.
+     * @param {Object} opts Optional parameters
+     * @param {module:model/UpdateDestinationBankAccount} opts.UpdateDestinationBankAccount The request body to update a destination bank account.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DestinationBankAccount}
+     */
+    updateDestinationBankAccountById(bank_account_id, opts) {
+      return this.updateDestinationBankAccountByIdWithHttpInfo(bank_account_id, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Update destination
+     * This operation updates the information of a specified destination. 
+     * @param {String} destination_id The destination ID.
+     * @param {Object} opts Optional parameters
+     * @param {module:model/UpdateDestinationByIdRequest} [UpdateDestinationByIdRequest] The request body to create a destination.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Destination} and HTTP response
+     */
+    updateDestinationByIdWithHttpInfo(destination_id, opts) {
+      opts = opts || {};
+      let postBody = opts['UpdateDestinationByIdRequest'];
+      if (postBody && postBody.toJSON) {
+          postBody = postBody.toJSON()
+      }
+      // verify the required parameter 'destination_id' is set
+      if (destination_id === undefined || destination_id === null) {
+        throw new Error("Missing the required parameter 'destination_id' when calling updateDestinationById");
+      }
+
+      let pathParams = {
+        'destination_id': destination_id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2', 'CoboAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = Destination;
+      return this.apiClient.callApi(
+        '/payments/destination/{destination_id}/update', 'PUT',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Update destination
+     * This operation updates the information of a specified destination. 
+     * @param {String} destination_id The destination ID.
+     * @param {Object} opts Optional parameters
+     * @param {module:model/UpdateDestinationByIdRequest} opts.UpdateDestinationByIdRequest The request body to create a destination.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Destination}
+     */
+    updateDestinationById(destination_id, opts) {
+      return this.updateDestinationByIdWithHttpInfo(destination_id, opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

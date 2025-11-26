@@ -19,8 +19,8 @@ class Link {
     /**
      * Constructs a new <code>Link</code>.
      * @alias module:model/Link
-     * @param url {String} The base URL of the payment page. This URL should be combined with the `token` parameter to form the complete payment link. 
-     * @param token {String} The unique payment token that should be appended to the URL as a query parameter. This token authenticates and identifies the specific payment session.  The complete payment link should be constructed as: `[url]?token=[token]` 
+     * @param url {String} The base URL of the page. This URL should be combined with the `token` parameter to form the complete link. 
+     * @param token {String} The token appended to the URL as a query parameter. This token identifies and authenticates a specific payment or refund session.  The complete link should be constructed as: `[url]?token=[token]` 
      */
     constructor(url, token) { 
         
@@ -88,13 +88,13 @@ class Link {
 Link.RequiredProperties = ["url", "token"];
 
 /**
- * The base URL of the payment page. This URL should be combined with the `token` parameter to form the complete payment link. 
+ * The base URL of the page. This URL should be combined with the `token` parameter to form the complete link. 
  * @member {String} url
  */
 Link.prototype['url'] = undefined;
 
 /**
- * The unique payment token that should be appended to the URL as a query parameter. This token authenticates and identifies the specific payment session.  The complete payment link should be constructed as: `[url]?token=[token]` 
+ * The token appended to the URL as a query parameter. This token identifies and authenticates a specific payment or refund session.  The complete link should be constructed as: `[url]?token=[token]` 
  * @member {String} token
  */
 Link.prototype['token'] = undefined;
