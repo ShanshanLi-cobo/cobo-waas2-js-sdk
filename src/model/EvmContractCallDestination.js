@@ -22,7 +22,7 @@ class EvmContractCallDestination {
      * The information about the transaction destination. Refer to [Transaction sources and destinations](https://www.cobo.com/developers/v2/guides/transactions/sources-and-destinations) for a detailed introduction about the supported sources and destinations for each transaction type.
      * @alias module:model/EvmContractCallDestination
      * @param destination_type {module:model/ContractCallDestinationType} 
-     * @param address {String} The destination address.
+     * @param address {String} The destination address.  If you are deploying a new contract on an EVM chain, set this address to `0x0000000000000000000000000000000000000000`. 
      * @param calldata {String} The data used to invoke a specific function or method within the specified contract at the destination address, with a maximum length of 65,000 characters. 
      */
     constructor(destination_type, address, calldata) { 
@@ -107,7 +107,7 @@ EvmContractCallDestination.RequiredProperties = ["destination_type", "address", 
 EvmContractCallDestination.prototype['destination_type'] = undefined;
 
 /**
- * The destination address.
+ * The destination address.  If you are deploying a new contract on an EVM chain, set this address to `0x0000000000000000000000000000000000000000`. 
  * @member {String} address
  */
 EvmContractCallDestination.prototype['address'] = undefined;

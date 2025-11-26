@@ -71,6 +71,7 @@ import Balance from './model/Balance';
 import BalanceUpdateInfo from './model/BalanceUpdateInfo';
 import BalanceUpdateInfoEventData from './model/BalanceUpdateInfoEventData';
 import BankAccount from './model/BankAccount';
+import BankAccountStatus from './model/BankAccountStatus';
 import BaseContractCallSource from './model/BaseContractCallSource';
 import BaseEstimateStakingFee from './model/BaseEstimateStakingFee';
 import BaseStakeExtra from './model/BaseStakeExtra';
@@ -105,6 +106,10 @@ import CoreStakingExtra from './model/CoreStakingExtra';
 import CosmosAdr36MessageSignDestination from './model/CosmosAdr36MessageSignDestination';
 import CosmosContractCallDestination from './model/CosmosContractCallDestination';
 import CosmosContractCallMessage from './model/CosmosContractCallMessage';
+import Counterparty from './model/Counterparty';
+import CounterpartyDetail from './model/CounterpartyDetail';
+import CounterpartyType from './model/CounterpartyType';
+import CounterpartyWalletAddressDetail from './model/CounterpartyWalletAddressDetail';
 import CreateAddressBookParam from './model/CreateAddressBookParam';
 import CreateAddressBooks201Response from './model/CreateAddressBooks201Response';
 import CreateAddressBooksParam from './model/CreateAddressBooksParam';
@@ -117,8 +122,14 @@ import CreateBabylonStakingRegistration201Response from './model/CreateBabylonSt
 import CreateBabylonStakingRegistrationRequest from './model/CreateBabylonStakingRegistrationRequest';
 import CreateClaimActivity from './model/CreateClaimActivity';
 import CreateClaimActivityRequest from './model/CreateClaimActivityRequest';
+import CreateCounterpartyRequest from './model/CreateCounterpartyRequest';
+import CreateCounterpartyWalletAddressRequest from './model/CreateCounterpartyWalletAddressRequest';
 import CreateCryptoAddressRequest from './model/CreateCryptoAddressRequest';
 import CreateCustodialWalletParams from './model/CreateCustodialWalletParams';
+import CreateDestinationBankAccount from './model/CreateDestinationBankAccount';
+import CreateDestinationBankAccountRequest from './model/CreateDestinationBankAccountRequest';
+import CreateDestinationRequest from './model/CreateDestinationRequest';
+import CreateDestinationWalletAddressRequest from './model/CreateDestinationWalletAddressRequest';
 import CreateExchangeWalletParams from './model/CreateExchangeWalletParams';
 import CreateKeyShareHolder from './model/CreateKeyShareHolder';
 import CreateKeyShareHolderGroupRequest from './model/CreateKeyShareHolderGroupRequest';
@@ -149,6 +160,7 @@ import CreateTssRequestRequest from './model/CreateTssRequestRequest';
 import CreateUnstakeActivity from './model/CreateUnstakeActivity';
 import CreateUnstakeActivityExtra from './model/CreateUnstakeActivityExtra';
 import CreateUnstakeActivityRequest from './model/CreateUnstakeActivityRequest';
+import CreateWalletAddress from './model/CreateWalletAddress';
 import CreateWalletParams from './model/CreateWalletParams';
 import CreateWebhookEndpointRequest from './model/CreateWebhookEndpointRequest';
 import CreateWithdrawActivity from './model/CreateWithdrawActivity';
@@ -163,10 +175,21 @@ import CustodialWeb3ContractCallSource from './model/CustodialWeb3ContractCallSo
 import CustodialWeb3MessageSignSource from './model/CustodialWeb3MessageSignSource';
 import CustodialWeb3TransferSource from './model/CustodialWeb3TransferSource';
 import DeleteAddressBookById201Response from './model/DeleteAddressBookById201Response';
+import DeleteCounterparty200Response from './model/DeleteCounterparty200Response';
+import DeleteCounterpartyWalletAddress200Response from './model/DeleteCounterpartyWalletAddress200Response';
 import DeleteCryptoAddress201Response from './model/DeleteCryptoAddress201Response';
+import DeleteDestination200Response from './model/DeleteDestination200Response';
+import DeleteDestinationBankAccount200Response from './model/DeleteDestinationBankAccount200Response';
+import DeleteDestinationWalletAddress200Response from './model/DeleteDestinationWalletAddress200Response';
 import DeleteGuardPubkey201Response from './model/DeleteGuardPubkey201Response';
 import DeleteKeyShareHolderGroupById201Response from './model/DeleteKeyShareHolderGroupById201Response';
 import DeleteWalletById201Response from './model/DeleteWalletById201Response';
+import Destination from './model/Destination';
+import DestinationBankAccount from './model/DestinationBankAccount';
+import DestinationBankAccountDetail from './model/DestinationBankAccountDetail';
+import DestinationDetail from './model/DestinationDetail';
+import DestinationType from './model/DestinationType';
+import DestinationWalletAddressDetail from './model/DestinationWalletAddressDetail';
 import DestinationWalletType from './model/DestinationWalletType';
 import DispositionEventData from './model/DispositionEventData';
 import DispositionQueryResponse from './model/DispositionQueryResponse';
@@ -176,6 +199,7 @@ import DispositionType from './model/DispositionType';
 import EigenLayerLstStakeExtra from './model/EigenLayerLstStakeExtra';
 import EigenLayerNativeStakeExtra from './model/EigenLayerNativeStakeExtra';
 import EigenlayerValidator from './model/EigenlayerValidator';
+import EnableDestinationWhitelistRequest from './model/EnableDestinationWhitelistRequest';
 import ErrorResponse from './model/ErrorResponse';
 import EstimateClaimFee from './model/EstimateClaimFee';
 import EstimateContractCallFeeParams from './model/EstimateContractCallFeeParams';
@@ -213,6 +237,7 @@ import EvmLegacyFeeRate from './model/EvmLegacyFeeRate';
 import ExchangeId from './model/ExchangeId';
 import ExchangePermissionToken201Response from './model/ExchangePermissionToken201Response';
 import ExchangePermissionTokenRequest from './model/ExchangePermissionTokenRequest';
+import ExchangeRate from './model/ExchangeRate';
 import ExchangeTransferDestination from './model/ExchangeTransferDestination';
 import ExchangeTransferSource from './model/ExchangeTransferSource';
 import ExchangeWalletInfo from './model/ExchangeWalletInfo';
@@ -252,6 +277,7 @@ import GraphQLErrorLocationsInner from './model/GraphQLErrorLocationsInner';
 import GraphQLRequest from './model/GraphQLRequest';
 import GraphQLResponse from './model/GraphQLResponse';
 import GuardPubkeyStatus from './model/GuardPubkeyStatus';
+import IntermediaryBankInfo from './model/IntermediaryBankInfo';
 import IsolateDisposition from './model/IsolateDisposition';
 import KeyShareHolder from './model/KeyShareHolder';
 import KeyShareHolderGroup from './model/KeyShareHolderGroup';
@@ -278,6 +304,11 @@ import ListBabylonEligibleStakings200Response from './model/ListBabylonEligibleS
 import ListBabylonEligibleStakings200ResponseDataInner from './model/ListBabylonEligibleStakings200ResponseDataInner';
 import ListBabylonStakingRegistrations200Response from './model/ListBabylonStakingRegistrations200Response';
 import ListCallbackMessages200Response from './model/ListCallbackMessages200Response';
+import ListCounterparties200Response from './model/ListCounterparties200Response';
+import ListCounterpartyWalletAddress200Response from './model/ListCounterpartyWalletAddress200Response';
+import ListDestinationBankAccounts200Response from './model/ListDestinationBankAccounts200Response';
+import ListDestinationWalletAddresses200Response from './model/ListDestinationWalletAddresses200Response';
+import ListDestinations200Response from './model/ListDestinations200Response';
 import ListExchanges200ResponseInner from './model/ListExchanges200ResponseInner';
 import ListForcedSweepRequests200Response from './model/ListForcedSweepRequests200Response';
 import ListKeyShareHolderGroups200Response from './model/ListKeyShareHolderGroups200Response';
@@ -372,9 +403,9 @@ import PoolDetailsAllOfValidatorsInfo from './model/PoolDetailsAllOfValidatorsIn
 import PoolSummary from './model/PoolSummary';
 import PspBalance from './model/PspBalance';
 import QueryApprovalStatement200Response from './model/QueryApprovalStatement200Response';
+import QueryDestinationWhitelistEnabled200Response from './model/QueryDestinationWhitelistEnabled200Response';
 import QueryGuardPubkey200Response from './model/QueryGuardPubkey200Response';
 import QueryGuardPubkey200ResponseAddressesInner from './model/QueryGuardPubkey200ResponseAddressesInner';
-import ReceivedAmountPerAddress from './model/ReceivedAmountPerAddress';
 import RefreshAddressBalancesByToken200Response from './model/RefreshAddressBalancesByToken200Response';
 import RefreshAddressBalancesByTokenRequest from './model/RefreshAddressBalancesByTokenRequest';
 import RefreshPermissionTokenRequest from './model/RefreshPermissionTokenRequest';
@@ -671,6 +702,7 @@ import TransactionTransferToAddressDestination from './model/TransactionTransfer
 import TransactionTransferToAddressDestinationAccountOutput from './model/TransactionTransferToAddressDestinationAccountOutput';
 import TransactionTransferToAddressDestinationUtxoOutputsInner from './model/TransactionTransferToAddressDestinationUtxoOutputsInner';
 import TransactionTransferToWalletDestination from './model/TransactionTransferToWalletDestination';
+import TransactionTronContractDestination from './model/TransactionTronContractDestination';
 import TransactionType from './model/TransactionType';
 import TransactionUserApprovalDetail from './model/TransactionUserApprovalDetail';
 import TransactionUtxo from './model/TransactionUtxo';
@@ -695,11 +727,15 @@ import TravelRuleWithdrawRequest from './model/TravelRuleWithdrawRequest';
 import TravelRuleWithdrawRequestTravelRuleInfo from './model/TravelRuleWithdrawRequestTravelRuleInfo';
 import TriggerTestWebhookEvent201Response from './model/TriggerTestWebhookEvent201Response';
 import TriggerTestWebhookEventRequest from './model/TriggerTestWebhookEventRequest';
+import TronContractCallDestination from './model/TronContractCallDestination';
 import UTXO from './model/UTXO';
 import UnfreezeDisposition from './model/UnfreezeDisposition';
 import UpdateAddressBookParam from './model/UpdateAddressBookParam';
 import UpdateBankAccountByIdRequest from './model/UpdateBankAccountByIdRequest';
+import UpdateCounterpartyByIdRequest from './model/UpdateCounterpartyByIdRequest';
 import UpdateCustodialWalletParams from './model/UpdateCustodialWalletParams';
+import UpdateDestinationBankAccount from './model/UpdateDestinationBankAccount';
+import UpdateDestinationByIdRequest from './model/UpdateDestinationByIdRequest';
 import UpdateExchangeWalletParams from './model/UpdateExchangeWalletParams';
 import UpdateGroupAction from './model/UpdateGroupAction';
 import UpdateKeyShareHolderGroupByIdRequest from './model/UpdateKeyShareHolderGroupByIdRequest';
@@ -716,6 +752,7 @@ import UpdateWebhookEndpointByIdRequest from './model/UpdateWebhookEndpointByIdR
 import UtxoFeeBasePrice from './model/UtxoFeeBasePrice';
 import UtxoFeeRate from './model/UtxoFeeRate';
 import Vasp from './model/Vasp';
+import WalletAddress from './model/WalletAddress';
 import WalletInfo from './model/WalletInfo';
 import WalletInfoEventData from './model/WalletInfoEventData';
 import WalletSetup from './model/WalletSetup';
@@ -781,7 +818,7 @@ import WalletsSmartContractWalletsApi from './api/WalletsSmartContractWalletsApi
 * </pre>
 * </p>
 * @module index
-* @version 1.26.0
+* @version 1.27.0
 */
 export {
     Env,
@@ -1142,6 +1179,12 @@ export {
     BankAccount,
 
     /**
+     * The BankAccountStatus model constructor.
+     * @property {module:model/BankAccountStatus}
+     */
+    BankAccountStatus,
+
+    /**
      * The BaseContractCallSource model constructor.
      * @property {module:model/BaseContractCallSource}
      */
@@ -1346,6 +1389,30 @@ export {
     CosmosContractCallMessage,
 
     /**
+     * The Counterparty model constructor.
+     * @property {module:model/Counterparty}
+     */
+    Counterparty,
+
+    /**
+     * The CounterpartyDetail model constructor.
+     * @property {module:model/CounterpartyDetail}
+     */
+    CounterpartyDetail,
+
+    /**
+     * The CounterpartyType model constructor.
+     * @property {module:model/CounterpartyType}
+     */
+    CounterpartyType,
+
+    /**
+     * The CounterpartyWalletAddressDetail model constructor.
+     * @property {module:model/CounterpartyWalletAddressDetail}
+     */
+    CounterpartyWalletAddressDetail,
+
+    /**
      * The CreateAddressBookParam model constructor.
      * @property {module:model/CreateAddressBookParam}
      */
@@ -1418,6 +1485,18 @@ export {
     CreateClaimActivityRequest,
 
     /**
+     * The CreateCounterpartyRequest model constructor.
+     * @property {module:model/CreateCounterpartyRequest}
+     */
+    CreateCounterpartyRequest,
+
+    /**
+     * The CreateCounterpartyWalletAddressRequest model constructor.
+     * @property {module:model/CreateCounterpartyWalletAddressRequest}
+     */
+    CreateCounterpartyWalletAddressRequest,
+
+    /**
      * The CreateCryptoAddressRequest model constructor.
      * @property {module:model/CreateCryptoAddressRequest}
      */
@@ -1428,6 +1507,30 @@ export {
      * @property {module:model/CreateCustodialWalletParams}
      */
     CreateCustodialWalletParams,
+
+    /**
+     * The CreateDestinationBankAccount model constructor.
+     * @property {module:model/CreateDestinationBankAccount}
+     */
+    CreateDestinationBankAccount,
+
+    /**
+     * The CreateDestinationBankAccountRequest model constructor.
+     * @property {module:model/CreateDestinationBankAccountRequest}
+     */
+    CreateDestinationBankAccountRequest,
+
+    /**
+     * The CreateDestinationRequest model constructor.
+     * @property {module:model/CreateDestinationRequest}
+     */
+    CreateDestinationRequest,
+
+    /**
+     * The CreateDestinationWalletAddressRequest model constructor.
+     * @property {module:model/CreateDestinationWalletAddressRequest}
+     */
+    CreateDestinationWalletAddressRequest,
 
     /**
      * The CreateExchangeWalletParams model constructor.
@@ -1610,6 +1713,12 @@ export {
     CreateUnstakeActivityRequest,
 
     /**
+     * The CreateWalletAddress model constructor.
+     * @property {module:model/CreateWalletAddress}
+     */
+    CreateWalletAddress,
+
+    /**
      * The CreateWalletParams model constructor.
      * @property {module:model/CreateWalletParams}
      */
@@ -1694,10 +1803,40 @@ export {
     DeleteAddressBookById201Response,
 
     /**
+     * The DeleteCounterparty200Response model constructor.
+     * @property {module:model/DeleteCounterparty200Response}
+     */
+    DeleteCounterparty200Response,
+
+    /**
+     * The DeleteCounterpartyWalletAddress200Response model constructor.
+     * @property {module:model/DeleteCounterpartyWalletAddress200Response}
+     */
+    DeleteCounterpartyWalletAddress200Response,
+
+    /**
      * The DeleteCryptoAddress201Response model constructor.
      * @property {module:model/DeleteCryptoAddress201Response}
      */
     DeleteCryptoAddress201Response,
+
+    /**
+     * The DeleteDestination200Response model constructor.
+     * @property {module:model/DeleteDestination200Response}
+     */
+    DeleteDestination200Response,
+
+    /**
+     * The DeleteDestinationBankAccount200Response model constructor.
+     * @property {module:model/DeleteDestinationBankAccount200Response}
+     */
+    DeleteDestinationBankAccount200Response,
+
+    /**
+     * The DeleteDestinationWalletAddress200Response model constructor.
+     * @property {module:model/DeleteDestinationWalletAddress200Response}
+     */
+    DeleteDestinationWalletAddress200Response,
 
     /**
      * The DeleteGuardPubkey201Response model constructor.
@@ -1716,6 +1855,42 @@ export {
      * @property {module:model/DeleteWalletById201Response}
      */
     DeleteWalletById201Response,
+
+    /**
+     * The Destination model constructor.
+     * @property {module:model/Destination}
+     */
+    Destination,
+
+    /**
+     * The DestinationBankAccount model constructor.
+     * @property {module:model/DestinationBankAccount}
+     */
+    DestinationBankAccount,
+
+    /**
+     * The DestinationBankAccountDetail model constructor.
+     * @property {module:model/DestinationBankAccountDetail}
+     */
+    DestinationBankAccountDetail,
+
+    /**
+     * The DestinationDetail model constructor.
+     * @property {module:model/DestinationDetail}
+     */
+    DestinationDetail,
+
+    /**
+     * The DestinationType model constructor.
+     * @property {module:model/DestinationType}
+     */
+    DestinationType,
+
+    /**
+     * The DestinationWalletAddressDetail model constructor.
+     * @property {module:model/DestinationWalletAddressDetail}
+     */
+    DestinationWalletAddressDetail,
 
     /**
      * The DestinationWalletType model constructor.
@@ -1770,6 +1945,12 @@ export {
      * @property {module:model/EigenlayerValidator}
      */
     EigenlayerValidator,
+
+    /**
+     * The EnableDestinationWhitelistRequest model constructor.
+     * @property {module:model/EnableDestinationWhitelistRequest}
+     */
+    EnableDestinationWhitelistRequest,
 
     /**
      * The ErrorResponse model constructor.
@@ -1992,6 +2173,12 @@ export {
      * @property {module:model/ExchangePermissionTokenRequest}
      */
     ExchangePermissionTokenRequest,
+
+    /**
+     * The ExchangeRate model constructor.
+     * @property {module:model/ExchangeRate}
+     */
+    ExchangeRate,
 
     /**
      * The ExchangeTransferDestination model constructor.
@@ -2228,6 +2415,12 @@ export {
     GuardPubkeyStatus,
 
     /**
+     * The IntermediaryBankInfo model constructor.
+     * @property {module:model/IntermediaryBankInfo}
+     */
+    IntermediaryBankInfo,
+
+    /**
      * The IsolateDisposition model constructor.
      * @property {module:model/IsolateDisposition}
      */
@@ -2382,6 +2575,36 @@ export {
      * @property {module:model/ListCallbackMessages200Response}
      */
     ListCallbackMessages200Response,
+
+    /**
+     * The ListCounterparties200Response model constructor.
+     * @property {module:model/ListCounterparties200Response}
+     */
+    ListCounterparties200Response,
+
+    /**
+     * The ListCounterpartyWalletAddress200Response model constructor.
+     * @property {module:model/ListCounterpartyWalletAddress200Response}
+     */
+    ListCounterpartyWalletAddress200Response,
+
+    /**
+     * The ListDestinationBankAccounts200Response model constructor.
+     * @property {module:model/ListDestinationBankAccounts200Response}
+     */
+    ListDestinationBankAccounts200Response,
+
+    /**
+     * The ListDestinationWalletAddresses200Response model constructor.
+     * @property {module:model/ListDestinationWalletAddresses200Response}
+     */
+    ListDestinationWalletAddresses200Response,
+
+    /**
+     * The ListDestinations200Response model constructor.
+     * @property {module:model/ListDestinations200Response}
+     */
+    ListDestinations200Response,
 
     /**
      * The ListExchanges200ResponseInner model constructor.
@@ -2948,6 +3171,12 @@ export {
     QueryApprovalStatement200Response,
 
     /**
+     * The QueryDestinationWhitelistEnabled200Response model constructor.
+     * @property {module:model/QueryDestinationWhitelistEnabled200Response}
+     */
+    QueryDestinationWhitelistEnabled200Response,
+
+    /**
      * The QueryGuardPubkey200Response model constructor.
      * @property {module:model/QueryGuardPubkey200Response}
      */
@@ -2958,12 +3187,6 @@ export {
      * @property {module:model/QueryGuardPubkey200ResponseAddressesInner}
      */
     QueryGuardPubkey200ResponseAddressesInner,
-
-    /**
-     * The ReceivedAmountPerAddress model constructor.
-     * @property {module:model/ReceivedAmountPerAddress}
-     */
-    ReceivedAmountPerAddress,
 
     /**
      * The RefreshAddressBalancesByToken200Response model constructor.
@@ -4742,6 +4965,12 @@ export {
     TransactionTransferToWalletDestination,
 
     /**
+     * The TransactionTronContractDestination model constructor.
+     * @property {module:model/TransactionTronContractDestination}
+     */
+    TransactionTronContractDestination,
+
+    /**
      * The TransactionType model constructor.
      * @property {module:model/TransactionType}
      */
@@ -4886,6 +5115,12 @@ export {
     TriggerTestWebhookEventRequest,
 
     /**
+     * The TronContractCallDestination model constructor.
+     * @property {module:model/TronContractCallDestination}
+     */
+    TronContractCallDestination,
+
+    /**
      * The UTXO model constructor.
      * @property {module:model/UTXO}
      */
@@ -4910,10 +5145,28 @@ export {
     UpdateBankAccountByIdRequest,
 
     /**
+     * The UpdateCounterpartyByIdRequest model constructor.
+     * @property {module:model/UpdateCounterpartyByIdRequest}
+     */
+    UpdateCounterpartyByIdRequest,
+
+    /**
      * The UpdateCustodialWalletParams model constructor.
      * @property {module:model/UpdateCustodialWalletParams}
      */
     UpdateCustodialWalletParams,
+
+    /**
+     * The UpdateDestinationBankAccount model constructor.
+     * @property {module:model/UpdateDestinationBankAccount}
+     */
+    UpdateDestinationBankAccount,
+
+    /**
+     * The UpdateDestinationByIdRequest model constructor.
+     * @property {module:model/UpdateDestinationByIdRequest}
+     */
+    UpdateDestinationByIdRequest,
 
     /**
      * The UpdateExchangeWalletParams model constructor.
@@ -5010,6 +5263,12 @@ export {
      * @property {module:model/Vasp}
      */
     Vasp,
+
+    /**
+     * The WalletAddress model constructor.
+     * @property {module:model/WalletAddress}
+     */
+    WalletAddress,
 
     /**
      * The WalletInfo model constructor.
