@@ -154,7 +154,7 @@ CreateSettlementRequestRequest.prototype['settlement_type'] = undefined;
 CreateSettlementRequestRequest.prototype['settlements'] = undefined;
 
 /**
- *  The ID of the bank account where the funds will be deposited. You can call [List all bank accounts](https://www.cobo.com/developers/v2/api-references/payment/list-all-bank-accounts) to retrieve the IDs of registered bank accounts.  This field is only applicable for off-ramp. 
+ *  The ID of the bank account where the funds will be deposited. You can call [List all bank accounts](https://www.cobo.com/payments/en/api-references/payment/list-all-bank-accounts) to retrieve the IDs of registered bank accounts.  This field is only applicable for off-ramp. 
  * @member {String} bank_account_id
  */
 CreateSettlementRequestRequest.prototype['bank_account_id'] = undefined;

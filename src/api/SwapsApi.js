@@ -93,7 +93,7 @@ export default class SwapsApi {
 
     /**
      * Estimate swap fee
-     * This operation estimates the network fee of a swap activity. You can use this operation to estimate the network fee before initiating swap activities from MPC Wallets or Web3 Wallets.  It requires a valid `wallet_id` and `quote_id`, so you need to [get a swap quote](https://www.cobo.com/developers/v2/api-references/swaps/get-swap-quote) first. 
+     * This operation estimates the network fee of a swap activity. You can use this operation to estimate the network fee before initiating swap activities from MPC Wallets or Custodial Wallets (Web3 Wallets).  It requires a valid `wallet_id` and `quote_id`, so you need to [get a swap quote](https://www.cobo.com/developers/v2/api-references/swaps/get-swap-quote) first. 
      * @param {module:model/SwapEstimateFee} SwapEstimateFee The request body for estimating the network fee of a swap activity.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/EstimatedFee} and HTTP response
      */
@@ -129,7 +129,7 @@ export default class SwapsApi {
 
     /**
      * Estimate swap fee
-     * This operation estimates the network fee of a swap activity. You can use this operation to estimate the network fee before initiating swap activities from MPC Wallets or Web3 Wallets.  It requires a valid `wallet_id` and `quote_id`, so you need to [get a swap quote](https://www.cobo.com/developers/v2/api-references/swaps/get-swap-quote) first. 
+     * This operation estimates the network fee of a swap activity. You can use this operation to estimate the network fee before initiating swap activities from MPC Wallets or Custodial Wallets (Web3 Wallets).  It requires a valid `wallet_id` and `quote_id`, so you need to [get a swap quote](https://www.cobo.com/developers/v2/api-references/swaps/get-swap-quote) first. 
      * @param {module:model/SwapEstimateFee} SwapEstimateFee The request body for estimating the network fee of a swap activity.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/EstimatedFee}
      */

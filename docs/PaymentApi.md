@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**batchGetExchangeRates**](PaymentApi.md#batchGetExchangeRates) | **GET** /payments/exchange_rates | Batch get exchange rates
 [**cancelRefundById**](PaymentApi.md#cancelRefundById) | **PUT** /payments/refunds/{refund_id}/cancel | Cancel refund order
+[**createBatchAllocation**](PaymentApi.md#createBatchAllocation) | **POST** /payments/batch_allocations | Create batch allocation
 [**createCounterparty**](PaymentApi.md#createCounterparty) | **POST** /payments/counterparty | Create counterparty
 [**createCounterpartyWalletAddress**](PaymentApi.md#createCounterpartyWalletAddress) | **POST** /payments/counterparty/wallet_address | Create counterparty wallet address
 [**createCryptoAddress**](PaymentApi.md#createCryptoAddress) | **POST** /payments/crypto_addresses | Create crypto address
@@ -16,6 +17,7 @@ Method | HTTP request | Description
 [**createMerchant**](PaymentApi.md#createMerchant) | **POST** /payments/merchants | Create merchant
 [**createOrderLink**](PaymentApi.md#createOrderLink) | **POST** /payments/links/orders | Create order link
 [**createPaymentOrder**](PaymentApi.md#createPaymentOrder) | **POST** /payments/orders | Create pay-in order
+[**createPayout**](PaymentApi.md#createPayout) | **POST** /payments/payouts | Create payout
 [**createRefund**](PaymentApi.md#createRefund) | **POST** /payments/refunds | Create refund order
 [**createRefundLink**](PaymentApi.md#createRefundLink) | **POST** /payments/links/refunds | Create refund link
 [**createSettlementRequest**](PaymentApi.md#createSettlementRequest) | **POST** /payments/settlement_requests | Create settlement request
@@ -26,18 +28,23 @@ Method | HTTP request | Description
 [**deleteDestinationBankAccount**](PaymentApi.md#deleteDestinationBankAccount) | **PUT** /payments/destination/bank_account/{bank_account_id}/delete | Delete destination bank account
 [**deleteDestinationWalletAddress**](PaymentApi.md#deleteDestinationWalletAddress) | **PUT** /payments/destination/wallet_address/{wallet_address_id}/delete | Delete destination wallet address
 [**enableDestinationWhitelist**](PaymentApi.md#enableDestinationWhitelist) | **POST** /payments/destination/enable_whitelist | Enable or disable destination whitelist
+[**getAvailableAllocationAmount**](PaymentApi.md#getAvailableAllocationAmount) | **GET** /payments/allocation_amount | Get available allocation amount
+[**getBatchAllocationById**](PaymentApi.md#getBatchAllocationById) | **GET** /payments/batch_allocations/{batch_allocation_id} | Get batch allocation by id
 [**getCounterpartyDetailById**](PaymentApi.md#getCounterpartyDetailById) | **GET** /payments/counterparty/{counterparty_id}/detail | Get counterparty information
 [**getDestinationBankAccountDetailById**](PaymentApi.md#getDestinationBankAccountDetailById) | **GET** /payments/destination/bank_account/{bank_account_id}/detail | Get destination bank account information
 [**getDestinationDetailById**](PaymentApi.md#getDestinationDetailById) | **GET** /payments/destination/{destination_id}/detail | Get destination information
 [**getExchangeRate**](PaymentApi.md#getExchangeRate) | **GET** /payments/exchange_rates/{token_id}/{currency} | Get exchange rate
 [**getPaymentOrderDetailById**](PaymentApi.md#getPaymentOrderDetailById) | **GET** /payments/orders/{order_id} | Get pay-in order information
+[**getPayoutById**](PaymentApi.md#getPayoutById) | **GET** /payments/payouts/{payout_id} | Get payout information
 [**getPspBalance**](PaymentApi.md#getPspBalance) | **GET** /payments/balance/psp | Get developer balance
 [**getRefundDetailById**](PaymentApi.md#getRefundDetailById) | **GET** /payments/refunds/{refund_id} | Get refund order information
 [**getRefunds**](PaymentApi.md#getRefunds) | **GET** /payments/refunds | List all refund orders
 [**getSettlementById**](PaymentApi.md#getSettlementById) | **GET** /payments/settlement_requests/{settlement_request_id} | Get settlement request information
 [**getSettlementInfoByIds**](PaymentApi.md#getSettlementInfoByIds) | **GET** /payments/settlement_info | Get withdrawable balances
 [**getTopUpAddress**](PaymentApi.md#getTopUpAddress) | **GET** /payments/topup/address | Create/Get top-up address
+[**listAllocations**](PaymentApi.md#listAllocations) | **GET** /payments/allocation_records | List all allocations
 [**listBankAccounts**](PaymentApi.md#listBankAccounts) | **GET** /payments/bank_accounts | List all bank accounts
+[**listBatchAllocations**](PaymentApi.md#listBatchAllocations) | **GET** /payments/batch_allocations | List all batch allocations
 [**listCounterparties**](PaymentApi.md#listCounterparties) | **GET** /payments/counterparty | List all counterparties
 [**listCounterpartyWalletAddress**](PaymentApi.md#listCounterpartyWalletAddress) | **GET** /payments/counterparty/wallet_address | List counterparty wallet addresses
 [**listCryptoAddresses**](PaymentApi.md#listCryptoAddresses) | **GET** /payments/crypto_addresses | List crypto addresses
@@ -50,6 +57,8 @@ Method | HTTP request | Description
 [**listPaymentOrders**](PaymentApi.md#listPaymentOrders) | **GET** /payments/orders | List all pay-in orders
 [**listPaymentSupportedTokens**](PaymentApi.md#listPaymentSupportedTokens) | **GET** /payments/supported_tokens | List all supported tokens
 [**listPaymentWalletBalances**](PaymentApi.md#listPaymentWalletBalances) | **GET** /payments/balance/payment_wallets | List payment wallet balances
+[**listPayoutItems**](PaymentApi.md#listPayoutItems) | **GET** /payments/payout_items | List all payout items
+[**listPayouts**](PaymentApi.md#listPayouts) | **GET** /payments/payouts | List all payouts
 [**listSettlementDetails**](PaymentApi.md#listSettlementDetails) | **GET** /payments/settlement_details | List all settlement details
 [**listSettlementRequests**](PaymentApi.md#listSettlementRequests) | **GET** /payments/settlement_requests | List all settlement requests
 [**listTopUpPayerAccounts**](PaymentApi.md#listTopUpPayerAccounts) | **GET** /payments/topup/payer_accounts | List top-up payer accounts
@@ -73,7 +82,7 @@ Method | HTTP request | Description
 
 Batch get exchange rates
 
-This operation retrieves the current exchange rates between a specified currency and a list of token IDs. 
+This operation retrieves the current exchange rates between multiple fiat currencies and cryptocurrencies. 
 
 ### Example
 
@@ -102,8 +111,8 @@ apiInstance.batchGetExchangeRates(token_ids, currencies).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **token_ids** | **String**| A list of token IDs, separated by comma. The token ID is the unique identifier of a token. You can retrieve the IDs of all the tokens you can use by calling [List enabled tokens](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-tokens).  | 
- **currencies** | **String**| List of the fiat currencies, separated by comma. Currently, only &#x60;USD&#x60; is supported.  | 
+ **token_ids** | **String**|  A list of token IDs, separated by comma. Supported values include:          - USDC: &#x60;ETH_USDC&#x60;, &#x60;ARBITRUM_USDCOIN&#x60;, &#x60;SOL_USDC&#x60;, &#x60;BASE_USDC&#x60;, &#x60;MATIC_USDC2&#x60;, &#x60;BSC_USDC&#x60;   - USDT: &#x60;TRON_USDT&#x60;, &#x60;ETH_USDT&#x60;, &#x60;ARBITRUM_USDT&#x60;, &#x60;SOL_USDT&#x60;, &#x60;BASE_USDT&#x60;, &#x60;MATIC_USDT&#x60;, &#x60;BSC_USDT&#x60;  | 
+ **currencies** | **String**| A list of fiat currencies, separated by comma. Currently, only &#x60;USD&#x60; is supported.  | 
 
 ### Return type
 
@@ -166,6 +175,58 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## createBatchAllocation
+
+> BatchAllocation createBatchAllocation(opts)
+
+Create batch allocation
+
+This operation creates a batch allocation to withdraw available balances.   You can include multiple merchants and cryptocurrencies in a single batch allocation. 
+
+### Example
+
+```javascript
+const CoboWaas2 = require('@cobo/cobo-waas2');
+// Initialize the API client
+const apiClient = CoboWaas2.ApiClient.instance
+// Select the development environment. To use the production environment, replace `Env.DEV` with `Env.PROD`
+apiClient.setEnv(CoboWaas2.Env.DEV);
+// Replace `<YOUR_PRIVATE_KEY>` with your private key
+apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
+// Call the API
+const apiInstance = new CoboWaas2.PaymentApi();
+const opts = {
+  'CreateBatchAllocationRequest': new CoboWaas2.CreateBatchAllocationRequest()
+};
+apiInstance.createBatchAllocation(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **CreateBatchAllocationRequest** | [**CreateBatchAllocationRequest**](CreateBatchAllocationRequest.md)| The request body to create a settlement request. | [optional] 
+
+### Return type
+
+[**BatchAllocation**](BatchAllocation.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [CoboAuth](../README.md#CoboAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 
@@ -539,7 +600,7 @@ Name | Type | Description  | Notes
 
 Create merchant
 
-This operation creates a merchant. Upon successful creation, a merchant ID is generated and returned along with the merchant&#39;s information. For more information on merchant creation, please refer to [Preparation](https://www.cobo.com/developers/v2/payments/preparation#create-merchant). 
+This operation creates a merchant. Upon successful creation, a merchant ID is generated and returned along with the merchant&#39;s information. For more information on merchant creation, please refer to [Preparation](https://www.cobo.com/payments/en/guides/preparation#create-merchant). 
 
 ### Example
 
@@ -591,7 +652,7 @@ Name | Type | Description  | Notes
 
 Create order link
 
-This operation generates a payment link for a pay-in order. The link directs users to a hosted payment page where they can complete their payment for the order. You can share the link directly with users or embed the payment page in your website or application using an iframe.  For more details, see [Payment Link](https://www.cobo.com/developers/v2/payments/payment-link). 
+This operation generates a payment link for a pay-in order. The link directs users to a hosted payment page where they can complete their payment for the order. You can share the link directly with users or embed the payment page in your website or application using an iframe.  For more details, see [Payment Link](https://www.cobo.com/payments/en/guides/payment-link). 
 
 ### Example
 
@@ -689,6 +750,58 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
+## createPayout
+
+> PaymentPayout createPayout(opts)
+
+Create payout
+
+This operation creates a payout to withdraw available balances.   You can include multiple merchants and cryptocurrencies in a single payout record. 
+
+### Example
+
+```javascript
+const CoboWaas2 = require('@cobo/cobo-waas2');
+// Initialize the API client
+const apiClient = CoboWaas2.ApiClient.instance
+// Select the development environment. To use the production environment, replace `Env.DEV` with `Env.PROD`
+apiClient.setEnv(CoboWaas2.Env.DEV);
+// Replace `<YOUR_PRIVATE_KEY>` with your private key
+apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
+// Call the API
+const apiInstance = new CoboWaas2.PaymentApi();
+const opts = {
+  'CreatePayoutRequest': new CoboWaas2.CreatePayoutRequest()
+};
+apiInstance.createPayout(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **CreatePayoutRequest** | [**CreatePayoutRequest**](CreatePayoutRequest.md)| The request body to create a payout. | [optional] 
+
+### Return type
+
+[**PaymentPayout**](PaymentPayout.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [CoboAuth](../README.md#CoboAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
 ## createRefund
 
 > Refund createRefund(opts)
@@ -747,7 +860,7 @@ Name | Type | Description  | Notes
 
 Create refund link
 
-This operation creates a link that points to a Cobo-hosted refund page. The user can submit their desired refund address on the page.  Once the address is submitted, Cobo will automatically create a refund order and initiate the refund process according to your configuration.  For details, see [Create refund link](https://www.cobo.com/developers/v2/payments/create-refund-link). 
+This operation creates a link that points to a Cobo-hosted refund page. The user can submit their desired refund address on the page.  Once the address is submitted, Cobo will automatically create a refund order and initiate the refund process according to your configuration.  For details, see [Create refund link](https://www.cobo.com/payments/en/guides/create-refund-link). 
 
 ### Example
 
@@ -1197,6 +1310,110 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
+## getAvailableAllocationAmount
+
+> PaymentAllocationAmount getAvailableAllocationAmount(token_id, source_account, destination_account)
+
+Get available allocation amount
+
+This operation retrieves the information of available allocation amount. 
+
+### Example
+
+```javascript
+const CoboWaas2 = require('@cobo/cobo-waas2');
+// Initialize the API client
+const apiClient = CoboWaas2.ApiClient.instance
+// Select the development environment. To use the production environment, replace `Env.DEV` with `Env.PROD`
+apiClient.setEnv(CoboWaas2.Env.DEV);
+// Replace `<YOUR_PRIVATE_KEY>` with your private key
+apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
+// Call the API
+const apiInstance = new CoboWaas2.PaymentApi();
+const token_id = "ETH_USDT";
+const source_account = "source_account_example";
+const destination_account = "destination_account_example";
+apiInstance.getAvailableAllocationAmount(token_id, source_account, destination_account).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token_id** | **String**| The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format &#x60;{CHAIN}_{TOKEN}&#x60;. Supported values include:   - USDC: &#x60;ETH_USDC&#x60;, &#x60;ARBITRUM_USDCOIN&#x60;, &#x60;SOL_USDC&#x60;, &#x60;BASE_USDC&#x60;, &#x60;MATIC_USDC2&#x60;, &#x60;BSC_USDC&#x60;   - USDT: &#x60;TRON_USDT&#x60;, &#x60;ETH_USDT&#x60;, &#x60;ARBITRUM_USDT&#x60;, &#x60;SOL_USDT&#x60;, &#x60;BASE_USDT&#x60;, &#x60;MATIC_USDT&#x60;, &#x60;BSC_USDT&#x60;  | 
+ **source_account** | **String**|  | 
+ **destination_account** | **String**|  | 
+
+### Return type
+
+[**PaymentAllocationAmount**](PaymentAllocationAmount.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [CoboAuth](../README.md#CoboAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## getBatchAllocationById
+
+> BatchAllocationDetail getBatchAllocationById(batch_allocation_id)
+
+Get batch allocation by id
+
+This operation retrieves the information of a batch allocation. 
+
+### Example
+
+```javascript
+const CoboWaas2 = require('@cobo/cobo-waas2');
+// Initialize the API client
+const apiClient = CoboWaas2.ApiClient.instance
+// Select the development environment. To use the production environment, replace `Env.DEV` with `Env.PROD`
+apiClient.setEnv(CoboWaas2.Env.DEV);
+// Replace `<YOUR_PRIVATE_KEY>` with your private key
+apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
+// Call the API
+const apiInstance = new CoboWaas2.PaymentApi();
+const batch_allocation_id = "5b0ed293-f728-40b4-b1f6-86b88cd51384";
+apiInstance.getBatchAllocationById(batch_allocation_id).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **batch_allocation_id** | **String**| The batch allocation ID. | 
+
+### Return type
+
+[**BatchAllocationDetail**](BatchAllocationDetail.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [CoboAuth](../README.md#CoboAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## getCounterpartyDetailById
 
 > CounterpartyDetail getCounterpartyDetailById(counterparty_id)
@@ -1449,13 +1666,63 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
+## getPayoutById
+
+> PaymentPayoutDetail getPayoutById(payout_id)
+
+Get payout information
+
+This operation retrieves the information of a specific payout. 
+
+### Example
+
+```javascript
+const CoboWaas2 = require('@cobo/cobo-waas2');
+// Initialize the API client
+const apiClient = CoboWaas2.ApiClient.instance
+// Select the development environment. To use the production environment, replace `Env.DEV` with `Env.PROD`
+apiClient.setEnv(CoboWaas2.Env.DEV);
+// Replace `<YOUR_PRIVATE_KEY>` with your private key
+apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
+// Call the API
+const apiInstance = new CoboWaas2.PaymentApi();
+const payout_id = "aff0e1cb-15b2-4e1f-9b9d-a9133715986f";
+apiInstance.getPayoutById(payout_id).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payout_id** | **String**| The payout ID. | 
+
+### Return type
+
+[**PaymentPayoutDetail**](PaymentPayoutDetail.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [CoboAuth](../README.md#CoboAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## getPspBalance
 
 > PspBalance getPspBalance(token_id)
 
 Get developer balance
 
-This operation retrieves the balance information for you as the developer. The balance information is grouped by token.  For more information, please refer to [Funds allocation and balances](https://www.cobo.com/developers/v2/payments/amounts-and-balances). 
+This operation retrieves the balance information for you as the developer. The balance information is grouped by token.  For more information, please refer to [Funds allocation and balances](https://www.cobo.com/payments/en/guides/amounts-and-balances). 
 
 ### Example
 
@@ -1595,7 +1862,7 @@ Name | Type | Description  | Notes
  **after** | **String**| A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response.  | [optional] 
  **merchant_id** | **String**| The merchant ID. | [optional] 
  **request_id** | **String**| The request ID. | [optional] 
- **statuses** | **String**| A list of order, refund or settlement statuses. You can refer to the following operations for the possible status values:  - [Get pay-in order information](https://www.cobo.com/developers/v2/api-references/payment/get-pay-in-order-information)  - [Get refund order information](https://www.cobo.com/developers/v2/api-references/payment/get-refund-order-information)  - [List all settlement details](https://www.cobo.com/developers/v2/api-references/payment/list-all-settlement-details)  | [optional] 
+ **statuses** | **String**| A list of order, refund or settlement statuses. You can refer to the following operations for the possible status values:  - [Get pay-in order information](https://www.cobo.com/payments/en/api-references/payment/get-pay-in-order-information)  - [Get refund order information](https://www.cobo.com/payments/en/api-references/payment/get-refund-order-information)  - [List all settlement details](https://www.cobo.com/payments/en/api-references/payment/list-all-settlement-details)  | [optional] 
 
 ### Return type
 
@@ -1773,6 +2040,70 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
+## listAllocations
+
+> ListAllocations200Response listAllocations(opts)
+
+List all allocations
+
+This operation retrieves the information of all allocations. 
+
+### Example
+
+```javascript
+const CoboWaas2 = require('@cobo/cobo-waas2');
+// Initialize the API client
+const apiClient = CoboWaas2.ApiClient.instance
+// Select the development environment. To use the production environment, replace `Env.DEV` with `Env.PROD`
+apiClient.setEnv(CoboWaas2.Env.DEV);
+// Replace `<YOUR_PRIVATE_KEY>` with your private key
+apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
+// Call the API
+const apiInstance = new CoboWaas2.PaymentApi();
+const opts = {
+  'limit': 10,
+  'before': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGmk1",
+  'after': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk",
+  'source_account': "source_account_example",
+  'destination_account': "destination_account_example",
+  'token_id': "ETH_USDT",
+  'batch_allocation_id': "5b0ed293-f728-40b4-b1f6-86b88cd51384"
+};
+apiInstance.listAllocations(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **Number**| The maximum number of objects to return. For most operations, the value range is [1, 50]. | [optional] [default to 10]
+ **before** | **String**| A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response.  | [optional] 
+ **after** | **String**| A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response.  | [optional] 
+ **source_account** | **String**|  | [optional] 
+ **destination_account** | **String**|  | [optional] 
+ **token_id** | **String**| The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format &#x60;{CHAIN}_{TOKEN}&#x60;. Supported values include:   - USDC: &#x60;ETH_USDC&#x60;, &#x60;ARBITRUM_USDCOIN&#x60;, &#x60;SOL_USDC&#x60;, &#x60;BASE_USDC&#x60;, &#x60;MATIC_USDC2&#x60;, &#x60;BSC_USDC&#x60;   - USDT: &#x60;TRON_USDT&#x60;, &#x60;ETH_USDT&#x60;, &#x60;ARBITRUM_USDT&#x60;, &#x60;SOL_USDT&#x60;, &#x60;BASE_USDT&#x60;, &#x60;MATIC_USDT&#x60;, &#x60;BSC_USDT&#x60;  | [optional] 
+ **batch_allocation_id** | **String**| The batch allocation ID. | [optional] 
+
+### Return type
+
+[**ListAllocations200Response**](ListAllocations200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [CoboAuth](../README.md#CoboAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## listBankAccounts
 
 > [BankAccount] listBankAccounts()
@@ -1808,6 +2139,64 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**[BankAccount]**](BankAccount.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [CoboAuth](../README.md#CoboAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## listBatchAllocations
+
+> ListBatchAllocations200Response listBatchAllocations(opts)
+
+List all batch allocations
+
+This operation retrieves the information of all batch allocations. 
+
+### Example
+
+```javascript
+const CoboWaas2 = require('@cobo/cobo-waas2');
+// Initialize the API client
+const apiClient = CoboWaas2.ApiClient.instance
+// Select the development environment. To use the production environment, replace `Env.DEV` with `Env.PROD`
+apiClient.setEnv(CoboWaas2.Env.DEV);
+// Replace `<YOUR_PRIVATE_KEY>` with your private key
+apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
+// Call the API
+const apiInstance = new CoboWaas2.PaymentApi();
+const opts = {
+  'limit': 10,
+  'before': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGmk1",
+  'after': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk",
+  'request_id': "random_request_id"
+};
+apiInstance.listBatchAllocations(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **Number**| The maximum number of objects to return. For most operations, the value range is [1, 50]. | [optional] [default to 10]
+ **before** | **String**| A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response.  | [optional] 
+ **after** | **String**| A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response.  | [optional] 
+ **request_id** | **String**| The request ID. | [optional] 
+
+### Return type
+
+[**ListBatchAllocations200Response**](ListBatchAllocations200Response.md)
 
 ### Authorization
 
@@ -1906,7 +2295,7 @@ const opts = {
   'before': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGmk1",
   'after': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk",
   'counterparty_id': "5b0ed293-f728-40b4-b1f6-86b88cd51384",
-  'chain_ids': "BTC,ETH",
+  'chain_ids': "ETH",
   'wallet_address': "0x1234567890abcdef..."
 };
 apiInstance.listCounterpartyWalletAddress(opts).then((data) => {
@@ -1926,7 +2315,7 @@ Name | Type | Description  | Notes
  **before** | **String**| A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response.  | [optional] 
  **after** | **String**| A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response.  | [optional] 
  **counterparty_id** | **String**| The counterparty ID. | [optional] 
- **chain_ids** | **String**| The chain ID, which is the unique identifier of a blockchain. You can retrieve the IDs of all the chains you can use by calling [List enabled chains](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-chains). | [optional] 
+ **chain_ids** | **String**| The chain ID, which is the unique identifier of a blockchain. | [optional] 
  **wallet_address** | **String**| The wallet address. | [optional] 
 
 ### Return type
@@ -2082,7 +2471,7 @@ const opts = {
   'before': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGmk1",
   'after': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk",
   'destination_id': "46beeab4-6a8e-476e-bc69-99b89aacbc6f",
-  'chain_ids': "BTC,ETH",
+  'chain_ids': "ETH",
   'wallet_address': "0x1234567890abcdef..."
 };
 apiInstance.listDestinationWalletAddresses(opts).then((data) => {
@@ -2102,7 +2491,7 @@ Name | Type | Description  | Notes
  **before** | **String**| A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response.  | [optional] 
  **after** | **String**| A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response.  | [optional] 
  **destination_id** | **String**| The destination ID. | [optional] 
- **chain_ids** | **String**| The chain ID, which is the unique identifier of a blockchain. You can retrieve the IDs of all the chains you can use by calling [List enabled chains](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-chains). | [optional] 
+ **chain_ids** | **String**| The chain ID, which is the unique identifier of a blockchain. | [optional] 
  **wallet_address** | **String**| The wallet address. | [optional] 
 
 ### Return type
@@ -2243,11 +2632,11 @@ Name | Type | Description  | Notes
 
 ## listMerchantBalances
 
-> ListMerchantBalances200Response listMerchantBalances(token_id, acquiring_type, opts)
+> ListMerchantBalances200Response listMerchantBalances(token_id, opts)
 
 List merchant balances
 
- This operation retrieves the balance information for specified merchants. The balance information is grouped by token and acquiring type. If you do not specify the &#x60;merchant_ids&#x60; parameter, the balance information for all merchants will be returned.  For more information, please refer to [Funds allocation and balances](https://www.cobo.com/developers/v2/payments/amounts-and-balances). 
+ This operation retrieves the balance information for specified merchants.   The balance information is grouped by token and acquiring type. If you do not specify the &#x60;merchant_ids&#x60; parameter, the balance information for all merchants will be returned.  For more information, please refer to [Funds allocation and balances](https://www.cobo.com/payments/en/guides/amounts-and-balances). 
 
 ### Example
 
@@ -2262,11 +2651,11 @@ apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
 // Call the API
 const apiInstance = new CoboWaas2.PaymentApi();
 const token_id = "ETH_USDT";
-const acquiring_type = new CoboWaas2.AcquiringType();
 const opts = {
-  'merchant_ids': "M1001,M1002,M1003"
+  'merchant_ids': "M1001,M1002,M1003",
+  'acquiring_type': new CoboWaas2.AcquiringType()
 };
-apiInstance.listMerchantBalances(token_id, acquiring_type, opts).then((data) => {
+apiInstance.listMerchantBalances(token_id, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -2280,8 +2669,8 @@ apiInstance.listMerchantBalances(token_id, acquiring_type, opts).then((data) => 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token_id** | **String**| The token ID, which is a unique identifier that specifies both the blockchain network and cryptocurrency token in the format &#x60;{CHAIN}_{TOKEN}&#x60;. Supported values include:   - USDC: &#x60;ETH_USDC&#x60;, &#x60;ARBITRUM_USDCOIN&#x60;, &#x60;SOL_USDC&#x60;, &#x60;BASE_USDC&#x60;, &#x60;MATIC_USDC2&#x60;, &#x60;BSC_USDC&#x60;   - USDT: &#x60;TRON_USDT&#x60;, &#x60;ETH_USDT&#x60;, &#x60;ARBITRUM_USDT&#x60;, &#x60;SOL_USDT&#x60;, &#x60;BASE_USDT&#x60;, &#x60;MATIC_USDT&#x60;, &#x60;BSC_USDT&#x60;  | 
- **acquiring_type** | [**AcquiringType**](.md)| The payment acquisition type. - &#x60;Order&#x60;: Payers pay by fixed-amount orders. Ideal for specific purchases and one-time transactions. - &#x60;TopUp&#x60;: Account recharge flow where payers deposit funds to their dedicated top-up addresses. Ideal for flexible or usage-based payment models.  | 
  **merchant_ids** | **String**| A list of merchant IDs to query. | [optional] 
+ **acquiring_type** | [**AcquiringType**](.md)|  | [optional] 
 
 ### Return type
 
@@ -2405,7 +2794,7 @@ Name | Type | Description  | Notes
  **after** | **String**| A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response.  | [optional] 
  **merchant_id** | **String**| The merchant ID. | [optional] 
  **psp_order_id** | **String**| A unique reference code assigned by the developer to identify this order in their system. | [optional] 
- **statuses** | **String**| A list of order, refund or settlement statuses. You can refer to the following operations for the possible status values:  - [Get pay-in order information](https://www.cobo.com/developers/v2/api-references/payment/get-pay-in-order-information)  - [Get refund order information](https://www.cobo.com/developers/v2/api-references/payment/get-refund-order-information)  - [List all settlement details](https://www.cobo.com/developers/v2/api-references/payment/list-all-settlement-details)  | [optional] 
+ **statuses** | **String**| A list of order, refund or settlement statuses. You can refer to the following operations for the possible status values:  - [Get pay-in order information](https://www.cobo.com/payments/en/api-references/payment/get-pay-in-order-information)  - [Get refund order information](https://www.cobo.com/payments/en/api-references/payment/get-refund-order-information)  - [List all settlement details](https://www.cobo.com/payments/en/api-references/payment/list-all-settlement-details)  | [optional] 
 
 ### Return type
 
@@ -2521,6 +2910,124 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
+## listPayoutItems
+
+> ListPayoutItems200Response listPayoutItems(opts)
+
+List all payout items
+
+This operation retrieves the information of all payout items. You can filter the result by merchant ID or status. 
+
+### Example
+
+```javascript
+const CoboWaas2 = require('@cobo/cobo-waas2');
+// Initialize the API client
+const apiClient = CoboWaas2.ApiClient.instance
+// Select the development environment. To use the production environment, replace `Env.DEV` with `Env.PROD`
+apiClient.setEnv(CoboWaas2.Env.DEV);
+// Replace `<YOUR_PRIVATE_KEY>` with your private key
+apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
+// Call the API
+const apiInstance = new CoboWaas2.PaymentApi();
+const opts = {
+  'limit': 10,
+  'before': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGmk1",
+  'after': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk",
+  'source_account': "source_account_example",
+  'statuses': "Pending,Processing"
+};
+apiInstance.listPayoutItems(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **Number**| The maximum number of objects to return. For most operations, the value range is [1, 50]. | [optional] [default to 10]
+ **before** | **String**| A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response.  | [optional] 
+ **after** | **String**| A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response.  | [optional] 
+ **source_account** | **String**|  | [optional] 
+ **statuses** | **String**| A list of order, refund or settlement statuses. You can refer to the following operations for the possible status values:  - [Get pay-in order information](https://www.cobo.com/payments/en/api-references/payment/get-pay-in-order-information)  - [Get refund order information](https://www.cobo.com/payments/en/api-references/payment/get-refund-order-information)  - [List all settlement details](https://www.cobo.com/payments/en/api-references/payment/list-all-settlement-details)  | [optional] 
+
+### Return type
+
+[**ListPayoutItems200Response**](ListPayoutItems200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [CoboAuth](../README.md#CoboAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## listPayouts
+
+> ListPayouts200Response listPayouts(opts)
+
+List all payouts
+
+This operation retrieves the information of all payouts. 
+
+### Example
+
+```javascript
+const CoboWaas2 = require('@cobo/cobo-waas2');
+// Initialize the API client
+const apiClient = CoboWaas2.ApiClient.instance
+// Select the development environment. To use the production environment, replace `Env.DEV` with `Env.PROD`
+apiClient.setEnv(CoboWaas2.Env.DEV);
+// Replace `<YOUR_PRIVATE_KEY>` with your private key
+apiClient.setPrivateKey("<YOUR_PRIVATE_KEY>");
+// Call the API
+const apiInstance = new CoboWaas2.PaymentApi();
+const opts = {
+  'limit': 10,
+  'before': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGmk1",
+  'after': "RqeEoTkgKG5rpzqYzg2Hd3szmPoj2cE7w5jWwShz3C1vyGSAk",
+  'request_id': "random_request_id"
+};
+apiInstance.listPayouts(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **Number**| The maximum number of objects to return. For most operations, the value range is [1, 50]. | [optional] [default to 10]
+ **before** | **String**| A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response.  | [optional] 
+ **after** | **String**| A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response.  | [optional] 
+ **request_id** | **String**| The request ID. | [optional] 
+
+### Return type
+
+[**ListPayouts200Response**](ListPayouts200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [CoboAuth](../README.md#CoboAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## listSettlementDetails
 
 > ListSettlementDetails200Response listSettlementDetails(opts)
@@ -2565,7 +3072,7 @@ Name | Type | Description  | Notes
  **before** | **String**| A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response.  | [optional] 
  **after** | **String**| A cursor indicating the position after the current page. This value is generated by Cobo and returned in the response. You do not need to provide it on the first request. When paginating forward (to the next page), you should pass the after value returned from the last response.  | [optional] 
  **merchant_id** | **String**| The merchant ID. | [optional] 
- **statuses** | **String**| A list of order, refund or settlement statuses. You can refer to the following operations for the possible status values:  - [Get pay-in order information](https://www.cobo.com/developers/v2/api-references/payment/get-pay-in-order-information)  - [Get refund order information](https://www.cobo.com/developers/v2/api-references/payment/get-refund-order-information)  - [List all settlement details](https://www.cobo.com/developers/v2/api-references/payment/list-all-settlement-details)  | [optional] 
+ **statuses** | **String**| A list of order, refund or settlement statuses. You can refer to the following operations for the possible status values:  - [Get pay-in order information](https://www.cobo.com/payments/en/api-references/payment/get-pay-in-order-information)  - [Get refund order information](https://www.cobo.com/payments/en/api-references/payment/get-refund-order-information)  - [List all settlement details](https://www.cobo.com/payments/en/api-references/payment/list-all-settlement-details)  | [optional] 
 
 ### Return type
 

@@ -329,7 +329,7 @@ SwapActivityDetail.prototype['updated_timestamp'] = undefined;
 SwapActivityDetail.prototype['network_fee'] = undefined;
 
 /**
- * The address of an MPC Wallet or Web3 Wallet that receives the swapped or bridged assets.
+ * The address of an MPC Wallet or Custodial Wallet (Web3 Wallet) that receives the swapped or bridged assets.
  * @member {String} destination_address
  */
 SwapActivityDetail.prototype['destination_address'] = undefined;
@@ -438,7 +438,7 @@ SwapActivity.prototype['updated_timestamp'] = undefined;
  */
 SwapActivity.prototype['network_fee'] = undefined;
 /**
- * The address of an MPC Wallet or Web3 Wallet that receives the swapped or bridged assets.
+ * The address of an MPC Wallet or Custodial Wallet (Web3 Wallet) that receives the swapped or bridged assets.
  * @member {String} destination_address
  */
 SwapActivity.prototype['destination_address'] = undefined;

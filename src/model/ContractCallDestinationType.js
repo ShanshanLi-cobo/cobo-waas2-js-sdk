@@ -46,6 +46,13 @@ export default class ContractCallDestinationType {
 
     
         /**
+         * value: "COSMOS_Contract"
+         * @const
+         */
+        "COSMOS_Contract" = "COSMOS_Contract";
+
+    
+        /**
          * value: "unknown_default_open_api"
          * @const
          */

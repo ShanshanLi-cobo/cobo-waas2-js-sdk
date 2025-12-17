@@ -19,8 +19,8 @@ class OrderLinkBusinessInfoCustomExchangeRatesInner {
     /**
      * Constructs a new <code>OrderLinkBusinessInfoCustomExchangeRatesInner</code>.
      * @alias module:model/OrderLinkBusinessInfoCustomExchangeRatesInner
-     * @param token_id {String} The token ID.
-     * @param exchange_rate {String} The exchange rate to use for this token.
+     * @param token_id {String} The cryptocurrency token ID
+     * @param exchange_rate {String} The fixed exchange rate to use for this token
      */
     constructor(token_id, exchange_rate) { 
         
@@ -88,13 +88,13 @@ class OrderLinkBusinessInfoCustomExchangeRatesInner {
 OrderLinkBusinessInfoCustomExchangeRatesInner.RequiredProperties = ["token_id", "exchange_rate"];
 
 /**
- * The token ID.
+ * The cryptocurrency token ID
  * @member {String} token_id
  */
 OrderLinkBusinessInfoCustomExchangeRatesInner.prototype['token_id'] = undefined;
 
 /**
- * The exchange rate to use for this token.
+ * The fixed exchange rate to use for this token
  * @member {String} exchange_rate
  */
 OrderLinkBusinessInfoCustomExchangeRatesInner.prototype['exchange_rate'] = undefined;

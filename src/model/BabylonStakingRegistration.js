@@ -20,7 +20,7 @@ import StakingSource from './StakingSource';
 class BabylonStakingRegistration {
     /**
      * Constructs a new <code>BabylonStakingRegistration</code>.
-     * The details of aBabylon Phase-2 registration.
+     * The details of a Babylon Phase-2 registration.
      * @alias module:model/BabylonStakingRegistration
      */
     constructor() { 

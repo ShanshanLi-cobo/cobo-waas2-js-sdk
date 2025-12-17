@@ -68,7 +68,7 @@ export default class WalletsApi {
 
     /**
      * Batch check UTXOs
-     * This operation verifies the existence and details of specified unspent transaction outputs (UTXOs) for a given wallet and token. A maximum of 100 UTXOs can be verified per request. <Note>This operation is applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) only.</Note> 
+     * This operation verifies the existence and details of specified **unspent** transaction outputs (UTXOs) for a given wallet and token. A maximum of 100 UTXOs can be verified per request.  <Note>This operation returns only UTXOs that are not used by any transaction. It does not return all UTXOs.</Note>  <Info>This operation is applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) only.</Info> 
      * @param {String} wallet_id The wallet ID.
      * @param {Object} opts Optional parameters
      * @param {module:model/BatchCheckUtxoRequest} [BatchCheckUtxoRequest] The request body of the Batch check UTXOs operation.
@@ -108,7 +108,7 @@ export default class WalletsApi {
 
     /**
      * Batch check UTXOs
-     * This operation verifies the existence and details of specified unspent transaction outputs (UTXOs) for a given wallet and token. A maximum of 100 UTXOs can be verified per request. <Note>This operation is applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) only.</Note> 
+     * This operation verifies the existence and details of specified **unspent** transaction outputs (UTXOs) for a given wallet and token. A maximum of 100 UTXOs can be verified per request.  <Note>This operation returns only UTXOs that are not used by any transaction. It does not return all UTXOs.</Note>  <Info>This operation is applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) only.</Info> 
      * @param {String} wallet_id The wallet ID.
      * @param {Object} opts Optional parameters
      * @param {module:model/BatchCheckUtxoRequest} opts.BatchCheckUtxoRequest The request body of the Batch check UTXOs operation.
@@ -842,7 +842,7 @@ export default class WalletsApi {
 
     /**
      * List address balances by token
-     * This operation retrieves a list of address balances for a specified token within a wallet.  <Note>This operation is applicable to MPC Wallets only.</Note> 
+     * This operation retrieves a list of address balances for a specified token within a wallet.  <Note>This operation is applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) only.</Note> 
      * @param {String} wallet_id The wallet ID.
      * @param {String} token_id The token ID, which is the unique identifier of a token.
      * @param {Object} opts Optional parameters
@@ -895,7 +895,7 @@ export default class WalletsApi {
 
     /**
      * List address balances by token
-     * This operation retrieves a list of address balances for a specified token within a wallet.  <Note>This operation is applicable to MPC Wallets only.</Note> 
+     * This operation retrieves a list of address balances for a specified token within a wallet.  <Note>This operation is applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) only.</Note> 
      * @param {String} wallet_id The wallet ID.
      * @param {String} token_id The token ID, which is the unique identifier of a token.
      * @param {Object} opts Optional parameters
@@ -1247,7 +1247,7 @@ export default class WalletsApi {
 
     /**
      * List token balances by address
-     * The operation retrieves a list of token balances for a specified address within a wallet.   <Note>This operation is applicable to MPC Wallets and Smart Contract Wallets only.</Note> 
+     * The operation retrieves a list of token balances for a specified address within a wallet.   <Note>This operation is applicable to MPC Wallets, Custodial Wallets (Web3 Wallets), and Smart Contract Wallets only.</Note> 
      * @param {String} wallet_id The wallet ID.
      * @param {String} address The wallet address.
      * @param {Object} opts Optional parameters
@@ -1300,7 +1300,7 @@ export default class WalletsApi {
 
     /**
      * List token balances by address
-     * The operation retrieves a list of token balances for a specified address within a wallet.   <Note>This operation is applicable to MPC Wallets and Smart Contract Wallets only.</Note> 
+     * The operation retrieves a list of token balances for a specified address within a wallet.   <Note>This operation is applicable to MPC Wallets, Custodial Wallets (Web3 Wallets), and Smart Contract Wallets only.</Note> 
      * @param {String} wallet_id The wallet ID.
      * @param {String} address The wallet address.
      * @param {Object} opts Optional parameters
@@ -1445,11 +1445,11 @@ export default class WalletsApi {
 
     /**
      * List UTXOs
-     * The operation retrieves a list of unspent transaction outputs (UTXOs) for a specified wallet and token.  <Note>This operation is applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) only.</Note> 
+     * The operation retrieves a list of **unspent** transaction outputs (UTXOs) for a specified wallet and token.  <Note>This operation returns only UTXOs that are not used by any transaction. It does not return all UTXOs.</Note>  <Info>This operation is applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) only.</Info> 
      * @param {String} wallet_id The wallet ID.
      * @param {String} token_id The token ID, which is the unique identifier of a token. You can retrieve the IDs of all the tokens you can use by calling [List enabled tokens](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-tokens).
      * @param {Object} opts Optional parameters
-     * @param {String} [address] The wallet address.
+     * @param {String} [address] 
      * @param {String} [tx_hash] 
      * @param {Number} [limit = 10)] The maximum number of objects to return. For most operations, the value range is [1, 50].
      * @param {String} [before] A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
@@ -1500,11 +1500,11 @@ export default class WalletsApi {
 
     /**
      * List UTXOs
-     * The operation retrieves a list of unspent transaction outputs (UTXOs) for a specified wallet and token.  <Note>This operation is applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) only.</Note> 
+     * The operation retrieves a list of **unspent** transaction outputs (UTXOs) for a specified wallet and token.  <Note>This operation returns only UTXOs that are not used by any transaction. It does not return all UTXOs.</Note>  <Info>This operation is applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) only.</Info> 
      * @param {String} wallet_id The wallet ID.
      * @param {String} token_id The token ID, which is the unique identifier of a token. You can retrieve the IDs of all the tokens you can use by calling [List enabled tokens](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-tokens).
      * @param {Object} opts Optional parameters
-     * @param {String} opts.address The wallet address.
+     * @param {String} opts.address 
      * @param {String} opts.tx_hash 
      * @param {Number} opts.limit The maximum number of objects to return. For most operations, the value range is [1, 50]. (default to 10)
      * @param {String} opts.before A cursor indicating the position before the current page. This value is generated by Cobo and returned in the response. If you are paginating forward from the beginning, you do not need to provide it on the first request. When paginating backward (to the previous page), you should pass the before value returned from the last response. 
@@ -1589,7 +1589,7 @@ export default class WalletsApi {
 
     /**
      * Lock UTXOs
-     * This operation locks the UTXOs with specified transaction hashes. Locked UTXOs cannot be transferred until unlocked.  <Note>This operation is applicable to MPC Wallets only.</Note> 
+     * This operation locks the UTXOs with specified transaction hashes. Locked UTXOs cannot be transferred until unlocked.  <Note>This operation is applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) only.</Note> 
      * @param {String} wallet_id The wallet ID.
      * @param {Object} opts Optional parameters
      * @param {module:model/LockUtxosRequest} [LockUtxosRequest] The request body of the Lock/Unlock UTXOs operation.
@@ -1629,7 +1629,7 @@ export default class WalletsApi {
 
     /**
      * Lock UTXOs
-     * This operation locks the UTXOs with specified transaction hashes. Locked UTXOs cannot be transferred until unlocked.  <Note>This operation is applicable to MPC Wallets only.</Note> 
+     * This operation locks the UTXOs with specified transaction hashes. Locked UTXOs cannot be transferred until unlocked.  <Note>This operation is applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) only.</Note> 
      * @param {String} wallet_id The wallet ID.
      * @param {Object} opts Optional parameters
      * @param {module:model/LockUtxosRequest} opts.LockUtxosRequest The request body of the Lock/Unlock UTXOs operation.
@@ -1708,7 +1708,7 @@ export default class WalletsApi {
 
     /**
      * Unlock UTXOs
-     * This operation unlocks the UTXOs with specified transaction hashes. Locked UTXOs cannot be transferred until unlocked.  <Note>This operation is applicable to MPC Wallets only.</Note> 
+     * This operation unlocks the UTXOs with specified transaction hashes. Locked UTXOs cannot be transferred until unlocked.    <Note>This operation is applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) only.</Note> 
      * @param {String} wallet_id The wallet ID.
      * @param {Object} opts Optional parameters
      * @param {module:model/LockUtxosRequest} [LockUtxosRequest] The request body of the Lock/Unlock UTXOs operation.
@@ -1748,7 +1748,7 @@ export default class WalletsApi {
 
     /**
      * Unlock UTXOs
-     * This operation unlocks the UTXOs with specified transaction hashes. Locked UTXOs cannot be transferred until unlocked.  <Note>This operation is applicable to MPC Wallets only.</Note> 
+     * This operation unlocks the UTXOs with specified transaction hashes. Locked UTXOs cannot be transferred until unlocked.    <Note>This operation is applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) only.</Note> 
      * @param {String} wallet_id The wallet ID.
      * @param {Object} opts Optional parameters
      * @param {module:model/LockUtxosRequest} opts.LockUtxosRequest The request body of the Lock/Unlock UTXOs operation.

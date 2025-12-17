@@ -55,6 +55,9 @@ class PspBalance {
             if (data.hasOwnProperty('settled_amount')) {
                 obj['settled_amount'] = ApiClient.convertToType(data['settled_amount'], 'String');
             }
+            if (data.hasOwnProperty('payout_amount')) {
+                obj['payout_amount'] = ApiClient.convertToType(data['payout_amount'], 'String');
+            }
             if (data.hasOwnProperty('refunded_amount')) {
                 obj['refunded_amount'] = ApiClient.convertToType(data['refunded_amount'], 'String');
             }
@@ -63,6 +66,9 @@ class PspBalance {
             }
             if (data.hasOwnProperty('available_balance')) {
                 obj['available_balance'] = ApiClient.convertToType(data['available_balance'], 'String');
+            }
+            if (data.hasOwnProperty('locked_balance')) {
+                obj['locked_balance'] = ApiClient.convertToType(data['locked_balance'], 'String');
             }
         }
         return obj;
@@ -93,6 +99,10 @@ class PspBalance {
             throw new Error("Expected the field `settled_amount` to be a primitive type in the JSON string but got " + data['settled_amount']);
         }
         // ensure the json data is a string
+        if (data['payout_amount'] && !(typeof data['payout_amount'] === 'string' || data['payout_amount'] instanceof String)) {
+            throw new Error("Expected the field `payout_amount` to be a primitive type in the JSON string but got " + data['payout_amount']);
+        }
+        // ensure the json data is a string
         if (data['refunded_amount'] && !(typeof data['refunded_amount'] === 'string' || data['refunded_amount'] instanceof String)) {
             throw new Error("Expected the field `refunded_amount` to be a primitive type in the JSON string but got " + data['refunded_amount']);
         }
@@ -103,6 +113,10 @@ class PspBalance {
         // ensure the json data is a string
         if (data['available_balance'] && !(typeof data['available_balance'] === 'string' || data['available_balance'] instanceof String)) {
             throw new Error("Expected the field `available_balance` to be a primitive type in the JSON string but got " + data['available_balance']);
+        }
+        // ensure the json data is a string
+        if (data['locked_balance'] && !(typeof data['locked_balance'] === 'string' || data['locked_balance'] instanceof String)) {
+            throw new Error("Expected the field `locked_balance` to be a primitive type in the JSON string but got " + data['locked_balance']);
         }
 
         return true;
@@ -132,22 +146,34 @@ PspBalance.prototype['developer_fee_amount'] = undefined;
 PspBalance.prototype['settled_amount'] = undefined;
 
 /**
+ * The psp payout amount.
+ * @member {String} payout_amount
+ */
+PspBalance.prototype['payout_amount'] = undefined;
+
+/**
  * The total amount of the token that has been refunded from the developer's balance.
  * @member {String} refunded_amount
  */
 PspBalance.prototype['refunded_amount'] = undefined;
 
 /**
- *  The total balance of the token available for payout or refund for the developer.  `total_balance` = `developer_fee_amount` - `settled_amount` - `refunded_amount`  For more information, please refer to [Funds allocation and balances](https://www.cobo.com/developers/v2/payments/amounts-and-balances) 
+ *  The total balance of the token available for payout or refund for the developer.  `total_balance` = `developer_fee_amount` - `settled_amount` - `refunded_amount`  For more information, please refer to [Funds allocation and balances](https://www.cobo.com/payments/en/guides/amounts-and-balances) 
  * @member {String} total_balance
  */
 PspBalance.prototype['total_balance'] = undefined;
 
 /**
- * This field has been deprecated.
+ * The psp available balance.
  * @member {String} available_balance
  */
 PspBalance.prototype['available_balance'] = undefined;
+
+/**
+ * The psp locked balance.
+ * @member {String} locked_balance
+ */
+PspBalance.prototype['locked_balance'] = undefined;
 
 
 
