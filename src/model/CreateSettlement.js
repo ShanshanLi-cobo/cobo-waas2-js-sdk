@@ -132,7 +132,7 @@ CreateSettlement.prototype['token_id'] = undefined;
 CreateSettlement.prototype['amount'] = undefined;
 
 /**
- * The ID of the crypto address used for crypto payouts. Specify this field when `payout_channel` is set to `Crypto`.  Call [List crypto addresses](https://www.cobo.com/developers/v2/api-references/payment/list-crypto-addresses) to retrieve registered crypto addresses. 
+ * The ID of the crypto address used for crypto payouts. Specify this field when `payout_channel` is set to `Crypto`.  Call [List crypto addresses](https://www.cobo.com/payments/en/api-references/payment/list-crypto-addresses) to retrieve registered crypto addresses. 
  * @member {String} crypto_address_id
  */
 CreateSettlement.prototype['crypto_address_id'] = undefined;

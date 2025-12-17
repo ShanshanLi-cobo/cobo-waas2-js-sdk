@@ -94,6 +94,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property cosmos_messages (base name: "cosmos_messages")', function() {
+      // uncomment below and update the code to test the property cosmos_messages
+      //var instance = new CoboWaas2.ContractCallDestination();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

@@ -104,7 +104,7 @@ SwapActivityTimeline.prototype['action'] = undefined;
 SwapActivityTimeline.prototype['status'] = undefined;
 
 /**
- * The time when the action occurred, in Unix timestamp format, measured in milliseconds. 
+ * The time when the action occurred, in Unix timestamp format, measured in milliseconds.  
  * @member {Number} timestamp
  */
 SwapActivityTimeline.prototype['timestamp'] = undefined;

@@ -61,6 +61,9 @@ class BabylonStakeExtra {
             if (data.hasOwnProperty('finality_provider_public_key')) {
                 obj['finality_provider_public_key'] = ApiClient.convertToType(data['finality_provider_public_key'], 'String');
             }
+            if (data.hasOwnProperty('finality_provider_public_keys')) {
+                obj['finality_provider_public_keys'] = ApiClient.convertToType(data['finality_provider_public_keys'], ['String']);
+            }
             if (data.hasOwnProperty('stake_block_time')) {
                 obj['stake_block_time'] = ApiClient.convertToType(data['stake_block_time'], 'Number');
             }
@@ -69,6 +72,9 @@ class BabylonStakeExtra {
             }
             if (data.hasOwnProperty('babylon_address')) {
                 obj['babylon_address'] = StakingSource.constructFromObject(data['babylon_address']);
+            }
+            if (data.hasOwnProperty('original_staking_id')) {
+                obj['original_staking_id'] = ApiClient.convertToType(data['original_staking_id'], 'String');
             }
         }
         return obj;
@@ -90,11 +96,19 @@ class BabylonStakeExtra {
         if (data['finality_provider_public_key'] && !(typeof data['finality_provider_public_key'] === 'string' || data['finality_provider_public_key'] instanceof String)) {
             throw new Error("Expected the field `finality_provider_public_key` to be a primitive type in the JSON string but got " + data['finality_provider_public_key']);
         }
+        // ensure the json data is an array
+        if (!Array.isArray(data['finality_provider_public_keys'])) {
+            throw new Error("Expected the field `finality_provider_public_keys` to be an array in the JSON data but got " + data['finality_provider_public_keys']);
+        }
         // validate the optional field `babylon_address`
         if (data['babylon_address']) { // data not null
           if (!!StakingSource.validateJSON) {
             StakingSource.validateJSON(data['babylon_address']);
           }
+        }
+        // ensure the json data is a string
+        if (data['original_staking_id'] && !(typeof data['original_staking_id'] === 'string' || data['original_staking_id'] instanceof String)) {
+            throw new Error("Expected the field `original_staking_id` to be a primitive type in the JSON string but got " + data['original_staking_id']);
         }
 
         return true;
@@ -117,6 +131,12 @@ BabylonStakeExtra.prototype['pool_type'] = undefined;
 BabylonStakeExtra.prototype['finality_provider_public_key'] = undefined;
 
 /**
+ * The public keys of the finality providers, with each key corresponding to a BSN chain.
+ * @member {Array.<String>} finality_provider_public_keys
+ */
+BabylonStakeExtra.prototype['finality_provider_public_keys'] = undefined;
+
+/**
  * The number of blocks that need to be processed before the locked tokens are unlocked and become accessible.
  * @member {Number} stake_block_time
  */
@@ -132,6 +152,12 @@ BabylonStakeExtra.prototype['auto_broadcast'] = undefined;
  * @member {module:model/StakingSource} babylon_address
  */
 BabylonStakeExtra.prototype['babylon_address'] = undefined;
+
+/**
+ * The original staking ID to expand. Only set this when you want to expand existing staking.
+ * @member {String} original_staking_id
+ */
+BabylonStakeExtra.prototype['original_staking_id'] = undefined;
 
 
 // Implement BaseStakeExtra interface:

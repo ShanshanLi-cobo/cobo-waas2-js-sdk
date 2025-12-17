@@ -69,7 +69,11 @@
 
 * `payment.settlement.status.updated` (value: `"payment.settlement.status.updated"`)
 
+* `payment.payout.status.updated` (value: `"payment.payout.status.updated"`)
+
 * `payment.address.updated` (value: `"payment.address.updated"`)
+
+* `payment.subscription.status.updated` (value: `"payment.subscription.status.updated"`)
 
 * `compliance.disposition.status.updated` (value: `"compliance.disposition.status.updated"`)
 

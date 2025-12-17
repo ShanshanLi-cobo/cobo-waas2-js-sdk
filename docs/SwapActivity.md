@@ -21,6 +21,6 @@ Name | Type | Description | Notes
 **created_timestamp** | **Number** | The time when the swap activity was created, in Unix timestamp format, measured in milliseconds. | [optional] 
 **updated_timestamp** | **Number** | The time when the swap activity was last updated, in Unix timestamp format, measured in milliseconds. | [optional] 
 **network_fee** | [**TransactionRequestFee**](TransactionRequestFee.md) |  | [optional] 
-**destination_address** | **String** | The address of an MPC Wallet or Web3 Wallet that receives the swapped or bridged assets. | [optional] 
+**destination_address** | **String** | The address of an MPC Wallet or Custodial Wallet (Web3 Wallet) that receives the swapped or bridged assets. | [optional] 
 
 

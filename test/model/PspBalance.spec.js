@@ -70,6 +70,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property payout_amount (base name: "payout_amount")', function() {
+      // uncomment below and update the code to test the property payout_amount
+      //var instance = new CoboWaas2.PspBalance();
+      //expect(instance).to.be();
+    });
+
     it('should have the property refunded_amount (base name: "refunded_amount")', function() {
       // uncomment below and update the code to test the property refunded_amount
       //var instance = new CoboWaas2.PspBalance();
@@ -84,6 +90,12 @@
 
     it('should have the property available_balance (base name: "available_balance")', function() {
       // uncomment below and update the code to test the property available_balance
+      //var instance = new CoboWaas2.PspBalance();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property locked_balance (base name: "locked_balance")', function() {
+      // uncomment below and update the code to test the property locked_balance
       //var instance = new CoboWaas2.PspBalance();
       //expect(instance).to.be();
     });

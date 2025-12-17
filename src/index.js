@@ -31,6 +31,8 @@ import AddressTransferDestinationAccountOutput from './model/AddressTransferDest
 import AddressTransferDestinationUtxoOutputsInner from './model/AddressTransferDestinationUtxoOutputsInner';
 import AddressesEventData from './model/AddressesEventData';
 import AddressesEventDataAllOfAddresses from './model/AddressesEventDataAllOfAddresses';
+import AllocationRecord from './model/AllocationRecord';
+import AllocationRequest from './model/AllocationRequest';
 import AmountDetailsInner from './model/AmountDetailsInner';
 import AmountStatus from './model/AmountStatus';
 import ApiLogDetails from './model/ApiLogDetails';
@@ -58,6 +60,7 @@ import BTCBIP137MessageSignDestination from './model/BTCBIP137MessageSignDestina
 import BTCBIP322MessageSignDestination from './model/BTCBIP322MessageSignDestination';
 import BabylonAirdropPop from './model/BabylonAirdropPop';
 import BabylonAirdropRegistration from './model/BabylonAirdropRegistration';
+import BabylonCreateStakingExpansion from './model/BabylonCreateStakingExpansion';
 import BabylonEligibleAirdrop from './model/BabylonEligibleAirdrop';
 import BabylonRegistrationRequestStatus from './model/BabylonRegistrationRequestStatus';
 import BabylonRegistrationStatus from './model/BabylonRegistrationStatus';
@@ -76,6 +79,8 @@ import BaseContractCallSource from './model/BaseContractCallSource';
 import BaseEstimateStakingFee from './model/BaseEstimateStakingFee';
 import BaseStakeExtra from './model/BaseStakeExtra';
 import BaseStakeSource from './model/BaseStakeSource';
+import BatchAllocation from './model/BatchAllocation';
+import BatchAllocationDetail from './model/BatchAllocationDetail';
 import BatchCheckUtxo201Response from './model/BatchCheckUtxo201Response';
 import BatchCheckUtxoRequest from './model/BatchCheckUtxoRequest';
 import BatchUTXOParam from './model/BatchUTXOParam';
@@ -120,6 +125,7 @@ import CreateBabylonAirdropRegistration201Response from './model/CreateBabylonAi
 import CreateBabylonAirdropRegistrationRequest from './model/CreateBabylonAirdropRegistrationRequest';
 import CreateBabylonStakingRegistration201Response from './model/CreateBabylonStakingRegistration201Response';
 import CreateBabylonStakingRegistrationRequest from './model/CreateBabylonStakingRegistrationRequest';
+import CreateBatchAllocationRequest from './model/CreateBatchAllocationRequest';
 import CreateClaimActivity from './model/CreateClaimActivity';
 import CreateClaimActivityRequest from './model/CreateClaimActivityRequest';
 import CreateCounterpartyRequest from './model/CreateCounterpartyRequest';
@@ -139,6 +145,7 @@ import CreateMpcVaultRequest from './model/CreateMpcVaultRequest';
 import CreateMpcWalletParams from './model/CreateMpcWalletParams';
 import CreateOrderLinkRequest from './model/CreateOrderLinkRequest';
 import CreatePaymentOrderRequest from './model/CreatePaymentOrderRequest';
+import CreatePayoutRequest from './model/CreatePayoutRequest';
 import CreatePrimeBrokerAddress201Response from './model/CreatePrimeBrokerAddress201Response';
 import CreatePrimeBrokerAddressRequest from './model/CreatePrimeBrokerAddressRequest';
 import CreateRefundLinkRequest from './model/CreateRefundLinkRequest';
@@ -295,6 +302,7 @@ import LinkDisplayInfo from './model/LinkDisplayInfo';
 import ListAddressBalancesByToken200Response from './model/ListAddressBalancesByToken200Response';
 import ListAddressBooks200Response from './model/ListAddressBooks200Response';
 import ListAddresses200Response from './model/ListAddresses200Response';
+import ListAllocations200Response from './model/ListAllocations200Response';
 import ListApprovalRequests200Response from './model/ListApprovalRequests200Response';
 import ListAssetBalancesForExchangeWallet200Response from './model/ListAssetBalancesForExchangeWallet200Response';
 import ListAutoSweepTask200Response from './model/ListAutoSweepTask200Response';
@@ -303,6 +311,7 @@ import ListBabylonEligibleAirdrops200Response from './model/ListBabylonEligibleA
 import ListBabylonEligibleStakings200Response from './model/ListBabylonEligibleStakings200Response';
 import ListBabylonEligibleStakings200ResponseDataInner from './model/ListBabylonEligibleStakings200ResponseDataInner';
 import ListBabylonStakingRegistrations200Response from './model/ListBabylonStakingRegistrations200Response';
+import ListBatchAllocations200Response from './model/ListBatchAllocations200Response';
 import ListCallbackMessages200Response from './model/ListCallbackMessages200Response';
 import ListCounterparties200Response from './model/ListCounterparties200Response';
 import ListCounterpartyWalletAddress200Response from './model/ListCounterpartyWalletAddress200Response';
@@ -319,6 +328,8 @@ import ListMpcProjects200Response from './model/ListMpcProjects200Response';
 import ListMpcVaults200Response from './model/ListMpcVaults200Response';
 import ListPaymentOrders200Response from './model/ListPaymentOrders200Response';
 import ListPaymentWalletBalances200Response from './model/ListPaymentWalletBalances200Response';
+import ListPayoutItems200Response from './model/ListPayoutItems200Response';
+import ListPayouts200Response from './model/ListPayouts200Response';
 import ListSettlementDetails200Response from './model/ListSettlementDetails200Response';
 import ListSettlementRequests200Response from './model/ListSettlementRequests200Response';
 import ListStakingActivities200Response from './model/ListStakingActivities200Response';
@@ -374,20 +385,31 @@ import MpcTransferSource from './model/MpcTransferSource';
 import Order from './model/Order';
 import OrderLinkBusinessInfo from './model/OrderLinkBusinessInfo';
 import OrderLinkBusinessInfoCustomExchangeRatesInner from './model/OrderLinkBusinessInfoCustomExchangeRatesInner';
+import OrderLinkBusinessInfoPayableAmountsInner from './model/OrderLinkBusinessInfoPayableAmountsInner';
 import OrderStatus from './model/OrderStatus';
 import OrgInfo from './model/OrgInfo';
 import OtcFee from './model/OtcFee';
 import Pagination from './model/Pagination';
 import PayerAccount from './model/PayerAccount';
 import PaymentAddressUpdateEventData from './model/PaymentAddressUpdateEventData';
+import PaymentAllocationAmount from './model/PaymentAllocationAmount';
 import PaymentEstimateFee from './model/PaymentEstimateFee';
 import PaymentEstimateFee201Response from './model/PaymentEstimateFee201Response';
 import PaymentEstimateFeeRequest from './model/PaymentEstimateFeeRequest';
 import PaymentEstimatedFee from './model/PaymentEstimatedFee';
 import PaymentFeeType from './model/PaymentFeeType';
 import PaymentOrderEventData from './model/PaymentOrderEventData';
+import PaymentPayout from './model/PaymentPayout';
+import PaymentPayoutDetail from './model/PaymentPayoutDetail';
+import PaymentPayoutEvent from './model/PaymentPayoutEvent';
+import PaymentPayoutItem from './model/PaymentPayoutItem';
+import PaymentPayoutItemDetail from './model/PaymentPayoutItemDetail';
+import PaymentPayoutItemStatus from './model/PaymentPayoutItemStatus';
+import PaymentPayoutParam from './model/PaymentPayoutParam';
+import PaymentPayoutStatus from './model/PaymentPayoutStatus';
 import PaymentRefundEventData from './model/PaymentRefundEventData';
 import PaymentSettlementEvent from './model/PaymentSettlementEvent';
+import PaymentSourceType from './model/PaymentSourceType';
 import PaymentTransaction from './model/PaymentTransaction';
 import PaymentTransactionEventData from './model/PaymentTransactionEventData';
 import PaymentWalletBalance from './model/PaymentWalletBalance';
@@ -818,7 +840,7 @@ import WalletsSmartContractWalletsApi from './api/WalletsSmartContractWalletsApi
 * </pre>
 * </p>
 * @module index
-* @version 1.27.0
+* @version 1.28.0
 */
 export {
     Env,
@@ -937,6 +959,18 @@ export {
      * @property {module:model/AddressesEventDataAllOfAddresses}
      */
     AddressesEventDataAllOfAddresses,
+
+    /**
+     * The AllocationRecord model constructor.
+     * @property {module:model/AllocationRecord}
+     */
+    AllocationRecord,
+
+    /**
+     * The AllocationRequest model constructor.
+     * @property {module:model/AllocationRequest}
+     */
+    AllocationRequest,
 
     /**
      * The AmountDetailsInner model constructor.
@@ -1101,6 +1135,12 @@ export {
     BabylonAirdropRegistration,
 
     /**
+     * The BabylonCreateStakingExpansion model constructor.
+     * @property {module:model/BabylonCreateStakingExpansion}
+     */
+    BabylonCreateStakingExpansion,
+
+    /**
      * The BabylonEligibleAirdrop model constructor.
      * @property {module:model/BabylonEligibleAirdrop}
      */
@@ -1207,6 +1247,18 @@ export {
      * @property {module:model/BaseStakeSource}
      */
     BaseStakeSource,
+
+    /**
+     * The BatchAllocation model constructor.
+     * @property {module:model/BatchAllocation}
+     */
+    BatchAllocation,
+
+    /**
+     * The BatchAllocationDetail model constructor.
+     * @property {module:model/BatchAllocationDetail}
+     */
+    BatchAllocationDetail,
 
     /**
      * The BatchCheckUtxo201Response model constructor.
@@ -1473,6 +1525,12 @@ export {
     CreateBabylonStakingRegistrationRequest,
 
     /**
+     * The CreateBatchAllocationRequest model constructor.
+     * @property {module:model/CreateBatchAllocationRequest}
+     */
+    CreateBatchAllocationRequest,
+
+    /**
      * The CreateClaimActivity model constructor.
      * @property {module:model/CreateClaimActivity}
      */
@@ -1585,6 +1643,12 @@ export {
      * @property {module:model/CreatePaymentOrderRequest}
      */
     CreatePaymentOrderRequest,
+
+    /**
+     * The CreatePayoutRequest model constructor.
+     * @property {module:model/CreatePayoutRequest}
+     */
+    CreatePayoutRequest,
 
     /**
      * The CreatePrimeBrokerAddress201Response model constructor.
@@ -2523,6 +2587,12 @@ export {
     ListAddresses200Response,
 
     /**
+     * The ListAllocations200Response model constructor.
+     * @property {module:model/ListAllocations200Response}
+     */
+    ListAllocations200Response,
+
+    /**
      * The ListApprovalRequests200Response model constructor.
      * @property {module:model/ListApprovalRequests200Response}
      */
@@ -2569,6 +2639,12 @@ export {
      * @property {module:model/ListBabylonStakingRegistrations200Response}
      */
     ListBabylonStakingRegistrations200Response,
+
+    /**
+     * The ListBatchAllocations200Response model constructor.
+     * @property {module:model/ListBatchAllocations200Response}
+     */
+    ListBatchAllocations200Response,
 
     /**
      * The ListCallbackMessages200Response model constructor.
@@ -2665,6 +2741,18 @@ export {
      * @property {module:model/ListPaymentWalletBalances200Response}
      */
     ListPaymentWalletBalances200Response,
+
+    /**
+     * The ListPayoutItems200Response model constructor.
+     * @property {module:model/ListPayoutItems200Response}
+     */
+    ListPayoutItems200Response,
+
+    /**
+     * The ListPayouts200Response model constructor.
+     * @property {module:model/ListPayouts200Response}
+     */
+    ListPayouts200Response,
 
     /**
      * The ListSettlementDetails200Response model constructor.
@@ -2997,6 +3085,12 @@ export {
     OrderLinkBusinessInfoCustomExchangeRatesInner,
 
     /**
+     * The OrderLinkBusinessInfoPayableAmountsInner model constructor.
+     * @property {module:model/OrderLinkBusinessInfoPayableAmountsInner}
+     */
+    OrderLinkBusinessInfoPayableAmountsInner,
+
+    /**
      * The OrderStatus model constructor.
      * @property {module:model/OrderStatus}
      */
@@ -3031,6 +3125,12 @@ export {
      * @property {module:model/PaymentAddressUpdateEventData}
      */
     PaymentAddressUpdateEventData,
+
+    /**
+     * The PaymentAllocationAmount model constructor.
+     * @property {module:model/PaymentAllocationAmount}
+     */
+    PaymentAllocationAmount,
 
     /**
      * The PaymentEstimateFee model constructor.
@@ -3069,6 +3169,54 @@ export {
     PaymentOrderEventData,
 
     /**
+     * The PaymentPayout model constructor.
+     * @property {module:model/PaymentPayout}
+     */
+    PaymentPayout,
+
+    /**
+     * The PaymentPayoutDetail model constructor.
+     * @property {module:model/PaymentPayoutDetail}
+     */
+    PaymentPayoutDetail,
+
+    /**
+     * The PaymentPayoutEvent model constructor.
+     * @property {module:model/PaymentPayoutEvent}
+     */
+    PaymentPayoutEvent,
+
+    /**
+     * The PaymentPayoutItem model constructor.
+     * @property {module:model/PaymentPayoutItem}
+     */
+    PaymentPayoutItem,
+
+    /**
+     * The PaymentPayoutItemDetail model constructor.
+     * @property {module:model/PaymentPayoutItemDetail}
+     */
+    PaymentPayoutItemDetail,
+
+    /**
+     * The PaymentPayoutItemStatus model constructor.
+     * @property {module:model/PaymentPayoutItemStatus}
+     */
+    PaymentPayoutItemStatus,
+
+    /**
+     * The PaymentPayoutParam model constructor.
+     * @property {module:model/PaymentPayoutParam}
+     */
+    PaymentPayoutParam,
+
+    /**
+     * The PaymentPayoutStatus model constructor.
+     * @property {module:model/PaymentPayoutStatus}
+     */
+    PaymentPayoutStatus,
+
+    /**
      * The PaymentRefundEventData model constructor.
      * @property {module:model/PaymentRefundEventData}
      */
@@ -3079,6 +3227,12 @@ export {
      * @property {module:model/PaymentSettlementEvent}
      */
     PaymentSettlementEvent,
+
+    /**
+     * The PaymentSourceType model constructor.
+     * @property {module:model/PaymentSourceType}
+     */
+    PaymentSourceType,
 
     /**
      * The PaymentTransaction model constructor.

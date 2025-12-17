@@ -56,6 +56,16 @@ import {ApiClient, Env} from "../../src/index.js";
         //});
       });
     });
+    describe('createBatchAllocation', function() {
+      it('should call createBatchAllocation successfully', function() {
+        //uncomment below and update the code to test createBatchAllocation
+        //instance.createBatchAllocation().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('createCounterparty', function() {
       it('should call createCounterparty successfully', function() {
         //uncomment below and update the code to test createCounterparty
@@ -150,6 +160,16 @@ import {ApiClient, Env} from "../../src/index.js";
       it('should call createPaymentOrder successfully', function() {
         //uncomment below and update the code to test createPaymentOrder
         //instance.createPaymentOrder().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('createPayout', function() {
+      it('should call createPayout successfully', function() {
+        //uncomment below and update the code to test createPayout
+        //instance.createPayout().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);
@@ -256,6 +276,26 @@ import {ApiClient, Env} from "../../src/index.js";
         //});
       });
     });
+    describe('getAvailableAllocationAmount', function() {
+      it('should call getAvailableAllocationAmount successfully', function() {
+        //uncomment below and update the code to test getAvailableAllocationAmount
+        //instance.getAvailableAllocationAmount().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('getBatchAllocationById', function() {
+      it('should call getBatchAllocationById successfully', function() {
+        //uncomment below and update the code to test getBatchAllocationById
+        //instance.getBatchAllocationById().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('getCounterpartyDetailById', function() {
       it('should call getCounterpartyDetailById successfully', function() {
         //uncomment below and update the code to test getCounterpartyDetailById
@@ -300,6 +340,16 @@ import {ApiClient, Env} from "../../src/index.js";
       it('should call getPaymentOrderDetailById successfully', function() {
         //uncomment below and update the code to test getPaymentOrderDetailById
         //instance.getPaymentOrderDetailById().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('getPayoutById', function() {
+      it('should call getPayoutById successfully', function() {
+        //uncomment below and update the code to test getPayoutById
+        //instance.getPayoutById().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);
@@ -366,10 +416,30 @@ import {ApiClient, Env} from "../../src/index.js";
         //});
       });
     });
+    describe('listAllocations', function() {
+      it('should call listAllocations successfully', function() {
+        //uncomment below and update the code to test listAllocations
+        //instance.listAllocations().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('listBankAccounts', function() {
       it('should call listBankAccounts successfully', function() {
         //uncomment below and update the code to test listBankAccounts
         //instance.listBankAccounts().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('listBatchAllocations', function() {
+      it('should call listBatchAllocations successfully', function() {
+        //uncomment below and update the code to test listBatchAllocations
+        //instance.listBatchAllocations().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);
@@ -490,6 +560,26 @@ import {ApiClient, Env} from "../../src/index.js";
       it('should call listPaymentWalletBalances successfully', function() {
         //uncomment below and update the code to test listPaymentWalletBalances
         //instance.listPaymentWalletBalances().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('listPayoutItems', function() {
+      it('should call listPayoutItems successfully', function() {
+        //uncomment below and update the code to test listPayoutItems
+        //instance.listPayoutItems().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('listPayouts', function() {
+      it('should call listPayouts successfully', function() {
+        //uncomment below and update the code to test listPayouts
+        //instance.listPayouts().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);
