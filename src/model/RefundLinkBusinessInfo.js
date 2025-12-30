@@ -131,7 +131,7 @@ RefundLinkBusinessInfo.prototype['refund_source'] = undefined;
 RefundLinkBusinessInfo.prototype['merchant_id'] = undefined;
 
 /**
- * The developer fee amount to charge the merchant, denominated in the cryptocurrency of the original payment transaction. This field is only valid when `refund_source` is `Merchant`. For more information, please refer to [Funds allocation and balances](https://www.cobo.com/payments/en/guides/amounts-and-balances). Must be:   - A positive integer with up to two decimal places.   - Less than the refund amount 
+ * The developer fee amount to charge the merchant, denominated in the cryptocurrency of the original payment transaction. This field is only valid when `refund_source` is `Merchant`. For more information, please refer to [Accounts and fund allocation](https://www.cobo.com/payments/en/guides/amounts-and-balances). Must be:   - A positive integer with up to two decimal places.   - Less than the refund amount 
  * @member {String} fee_amount
  */
 RefundLinkBusinessInfo.prototype['fee_amount'] = undefined;

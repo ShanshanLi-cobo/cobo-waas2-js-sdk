@@ -19,9 +19,9 @@ class PaymentPayoutParam {
     /**
      * Constructs a new <code>PaymentPayoutParam</code>.
      * @alias module:model/PaymentPayoutParam
-     * @param source_account {String} 
-     * @param token_id {String} Only used in Crypto payout channel. The ID of the cryptocurrency you want to settle. Supported values:  - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC` - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
-     * @param amount {String} The payout cryptocurrency amount. 
+     * @param source_account {String} The source account from which the payout will be made. - If the source account is a merchant account, provide the merchant's ID (e.g., \"M1001\"). - If the source account is the developer account, use the string `\"developer\"`. 
+     * @param token_id {String} The ID of the cryptocurrency you want to pay out. Specify this field when `payout_channel` is set to `Crypto`. Supported values: - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC` - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @param amount {String} The amount of the cryptocurrency to pay out. 
      */
     constructor(source_account, token_id, amount) { 
         
@@ -111,30 +111,31 @@ class PaymentPayoutParam {
 PaymentPayoutParam.RequiredProperties = ["source_account", "token_id", "amount"];
 
 /**
+ * The source account from which the payout will be made. - If the source account is a merchant account, provide the merchant's ID (e.g., \"M1001\"). - If the source account is the developer account, use the string `\"developer\"`. 
  * @member {String} source_account
  */
 PaymentPayoutParam.prototype['source_account'] = undefined;
 
 /**
- * Only used in Crypto payout channel. The ID of the cryptocurrency you want to settle. Supported values:  - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC` - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+ * The ID of the cryptocurrency you want to pay out. Specify this field when `payout_channel` is set to `Crypto`. Supported values: - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC` - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
  * @member {String} token_id
  */
 PaymentPayoutParam.prototype['token_id'] = undefined;
 
 /**
- * The payout cryptocurrency amount. 
+ * The amount of the cryptocurrency to pay out. 
  * @member {String} amount
  */
 PaymentPayoutParam.prototype['amount'] = undefined;
 
 /**
- * Only used in Crypto payout channel. The ID of the pre-approved crypto address used for Crypto settlements. - The value must refer to a valid address that has been pre-configured and approved for the given token. 
+ * The ID of the crypto address used for crypto payouts. Specify this field when `payout_channel` is set to `Crypto`.  Call [List crypto addresses](https://www.cobo.com/payments/en/api-references/payment/list-crypto-addresses) to retrieve registered crypto addresses. 
  * @member {String} crypto_address_id
  */
 PaymentPayoutParam.prototype['crypto_address_id'] = undefined;
 
 /**
- * Only used in Crypto payout channel. The actual blockchain address to which funds will be transferred. If enable destination whitelist, this address must be associated with a destination. 
+ * The actual blockchain address to which funds will be transferred. Specify this field when `payout_channel` is set to `Crypto`. <Note>   If you have enabled the *Use Destinations as Payout Whitelist* toggle in *Destinations*, you can only transfer to registered destinations. For more details, see [Destinations](https://www.cobo.com/payments/en/guides/destinations). </Note> 
  * @member {String} crypto_address
  */
 PaymentPayoutParam.prototype['crypto_address'] = undefined;

@@ -20,7 +20,7 @@ class PaymentAllocationAmount {
      * Constructs a new <code>PaymentAllocationAmount</code>.
      * @alias module:model/PaymentAllocationAmount
      * @param token_id {String} The ID of the cryptocurrency.
-     * @param allocation_amount {String} The allocation amount.
+     * @param allocation_amount {String} The available amount that can be allocated from the source account to the destination account for the given cryptocurrency.
      */
     constructor(token_id, allocation_amount) { 
         
@@ -94,7 +94,7 @@ PaymentAllocationAmount.RequiredProperties = ["token_id", "allocation_amount"];
 PaymentAllocationAmount.prototype['token_id'] = undefined;
 
 /**
- * The allocation amount.
+ * The available amount that can be allocated from the source account to the destination account for the given cryptocurrency.
  * @member {String} allocation_amount
  */
 PaymentAllocationAmount.prototype['allocation_amount'] = undefined;

@@ -110,7 +110,7 @@ export default class StakingsApi {
 
     /**
      * Expand Babylon BTC staking
-     * This operation initiates a Babylon BTC staking expansion request.   Before calling this operation, please ensure the following: - The BTC staking position is active. - The finality provider public keys are valid. Each BSN chain has a unique finality provider public key at most.  The system first checks whether the provided BTC staking position is active. If active, it creates a new BTC staking position for the Phase-3 expansion.  The expansion is processed asynchronously and may take some time to complete.  For more information, refer to [Babylon's official doc](https://github.com/babylonlabs-io/babylon/tree/main/docs). 
+     * This operation initiates a Babylon BTC staking expansion request.   Before calling this operation, please ensure the following: - The BTC staking position is active. - The finality provider public keys are valid. Each BSN chain can have at most one finality provider public key.  The system first checks whether the provided BTC staking position is active. If active, it creates a new BTC staking position for the Phase-3 expansion.  The expansion is processed asynchronously and may take some time to complete.  For more information, refer to [Babylon's official doc](https://github.com/babylonlabs-io/babylon/tree/main/docs). 
      * @param {Object} opts Optional parameters
      * @param {module:model/BabylonCreateStakingExpansion} [BabylonCreateStakingExpansion] The request body to expand Babylon BTC staking to Phase-3
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Stakings} and HTTP response
@@ -144,7 +144,7 @@ export default class StakingsApi {
 
     /**
      * Expand Babylon BTC staking
-     * This operation initiates a Babylon BTC staking expansion request.   Before calling this operation, please ensure the following: - The BTC staking position is active. - The finality provider public keys are valid. Each BSN chain has a unique finality provider public key at most.  The system first checks whether the provided BTC staking position is active. If active, it creates a new BTC staking position for the Phase-3 expansion.  The expansion is processed asynchronously and may take some time to complete.  For more information, refer to [Babylon's official doc](https://github.com/babylonlabs-io/babylon/tree/main/docs). 
+     * This operation initiates a Babylon BTC staking expansion request.   Before calling this operation, please ensure the following: - The BTC staking position is active. - The finality provider public keys are valid. Each BSN chain can have at most one finality provider public key.  The system first checks whether the provided BTC staking position is active. If active, it creates a new BTC staking position for the Phase-3 expansion.  The expansion is processed asynchronously and may take some time to complete.  For more information, refer to [Babylon's official doc](https://github.com/babylonlabs-io/babylon/tree/main/docs). 
      * @param {Object} opts Optional parameters
      * @param {module:model/BabylonCreateStakingExpansion} opts.BabylonCreateStakingExpansion The request body to expand Babylon BTC staking to Phase-3
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Stakings}

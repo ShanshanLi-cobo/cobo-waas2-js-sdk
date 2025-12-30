@@ -284,6 +284,13 @@ export default class WebhookEventType {
 
     
         /**
+         * value: "compliance.kya.screenings.status.updated"
+         * @const
+         */
+        "compliance.kya.screenings.status.updated" = "compliance.kya.screenings.status.updated";
+
+    
+        /**
          * value: "unknown_default_open_api"
          * @const
          */

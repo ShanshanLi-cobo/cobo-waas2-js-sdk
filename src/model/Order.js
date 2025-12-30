@@ -24,10 +24,10 @@ class Order {
      * @alias module:model/Order
      * @param order_id {String} The order ID.
      * @param psp_order_code {String} A unique reference code assigned by the developer to identify this order in their system.
-     * @param fee_amount {String} The developer fee for the order in fiat currency. It is added to the base amount (`order_amount`) to determine the final charge.
+     * @param fee_amount {String} The developer fee for the order. It is added to the base amount to determine the final charge.
      * @param chain_id {String} The ID of the blockchain network where the payment transaction should be made.
      * @param payable_amount {String} The cryptocurrency amount to be paid for this order.
-     * @param exchange_rate {String} The exchange rate between a currency pair. Expressed as the amount of fiat currency per one unit of cryptocurrency. For example, if the cryptocurrency is USDT and the fiat currency is USD, a rate of \"0.99\" means 1 USDT = 0.99 USD.
+     * @param exchange_rate {String} The exchange rate between `payable_currency` and `pricing_currency`, calculated as (`pricing_amount` + `fee_amount`) / `payable_amount`.    <Note>This field is only returned when `payable_amount` was not provided in the order creation request. </Note> 
      * @param receive_address {String} The recipient wallet address to be used for the payment transaction.
      * @param status {module:model/OrderStatus} 
      * @param received_token_amount {String} The total cryptocurrency amount received for this order. Updates until the expiration time. Precision matches the token standard (e.g., 6 decimals for USDT).
@@ -262,19 +262,19 @@ Order.prototype['merchant_order_code'] = undefined;
 Order.prototype['psp_order_code'] = undefined;
 
 /**
- * The fiat currency of the order.
+ * The pricing currency of the order.
  * @member {String} pricing_currency
  */
 Order.prototype['pricing_currency'] = undefined;
 
 /**
- * The base amount of the order in fiat currency, excluding the developer fee (specified in `fee_amount`).
+ * The base amount of the order, excluding the developer fee (specified in `fee_amount`).
  * @member {String} pricing_amount
  */
 Order.prototype['pricing_amount'] = undefined;
 
 /**
- * The developer fee for the order in fiat currency. It is added to the base amount (`order_amount`) to determine the final charge.
+ * The developer fee for the order. It is added to the base amount to determine the final charge.
  * @member {String} fee_amount
  */
 Order.prototype['fee_amount'] = undefined;
@@ -298,13 +298,13 @@ Order.prototype['chain_id'] = undefined;
 Order.prototype['payable_amount'] = undefined;
 
 /**
- * The exchange rate between a currency pair. Expressed as the amount of fiat currency per one unit of cryptocurrency. For example, if the cryptocurrency is USDT and the fiat currency is USD, a rate of \"0.99\" means 1 USDT = 0.99 USD.
+ * The exchange rate between `payable_currency` and `pricing_currency`, calculated as (`pricing_amount` + `fee_amount`) / `payable_amount`.    <Note>This field is only returned when `payable_amount` was not provided in the order creation request. </Note> 
  * @member {String} exchange_rate
  */
 Order.prototype['exchange_rate'] = undefined;
 
 /**
- * Allowed amount deviation.
+ * The allowed amount deviation, with precision up to 1 decimal place.  For example, if `payable_amount` is `100.00` and `amount_tolerance` is `0.50`: - Payer pays 99.55 → Success (difference of 0.45 ≤ 0.5) - Payer pays 99.40 → Underpaid (difference of 0.60 > 0.5) 
  * @member {String} amount_tolerance
  */
 Order.prototype['amount_tolerance'] = undefined;
@@ -351,19 +351,19 @@ Order.prototype['updated_timestamp'] = undefined;
 Order.prototype['transactions'] = undefined;
 
 /**
- * The fiat currency of the order.
+ * This field has been deprecated. Please use `pricing_currency` instead.
  * @member {String} currency
  */
 Order.prototype['currency'] = undefined;
 
 /**
- * The base amount of the order in fiat currency, excluding the developer fee (specified in `fee_amount`).
+ * This field has been deprecated. Please use `pricing_amount` instead.
  * @member {String} order_amount
  */
 Order.prototype['order_amount'] = undefined;
 
 /**
- * The ID of the cryptocurrency used for payment.
+ * This field has been deprecated. Please use `payable_currency` instead.
  * @member {String} token_id
  */
 Order.prototype['token_id'] = undefined;

@@ -44,7 +44,7 @@ export default class FeeStationApi {
      * Check Fee Station usage
      * This operation evaluates Fee Station usage for the current transaction.   It determines whether Fee station can be used, checks if the Fee Station balance is sufficient, and returns a breakdown of the amounts involved, including any portion that must be covered by the user or sponsored in USD stablecoin. 
      * @param {Object} opts Optional parameters
-     * @param {module:model/FeeStationCheckFeeStationUsage} [FeeStationCheckFeeStationUsage] The information for evaluating Fee Station usage.
+     * @param {module:model/FeeStationCheckFeeStationUsage} [FeeStationCheckFeeStationUsage] The request body for evaluating Fee Station usage.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/FeeStationCheckFeeStationUsageResponse} and HTTP response
      */
     checkFeeStationUsageWithHttpInfo(opts) {
@@ -78,7 +78,7 @@ export default class FeeStationApi {
      * Check Fee Station usage
      * This operation evaluates Fee Station usage for the current transaction.   It determines whether Fee station can be used, checks if the Fee Station balance is sufficient, and returns a breakdown of the amounts involved, including any portion that must be covered by the user or sponsored in USD stablecoin. 
      * @param {Object} opts Optional parameters
-     * @param {module:model/FeeStationCheckFeeStationUsage} opts.FeeStationCheckFeeStationUsage The information for evaluating Fee Station usage.
+     * @param {module:model/FeeStationCheckFeeStationUsage} opts.FeeStationCheckFeeStationUsage The request body for evaluating Fee Station usage.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/FeeStationCheckFeeStationUsageResponse}
      */
     checkFeeStationUsage(opts) {

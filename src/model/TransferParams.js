@@ -25,7 +25,7 @@ class TransferParams {
      * Constructs a new <code>TransferParams</code>.
      * The information about a token transfer.
      * @alias module:model/TransferParams
-     * @param request_id {String} The request ID that is used to track a transaction request. The request ID is provided by you and must be unique within your organization.
+     * @param request_id {String} A client-defined unique request identifier (idempotency key) used to prevent duplicate transfer requests. It must be unique within the same organization. Requests with the same request ID will be rejected with an error. 
      * @param source {module:model/TransferSource} 
      * @param token_id {String} The token ID of the transferred token. You can retrieve the IDs of all the tokens you can use by calling [List enabled tokens](https://www.cobo.com/developers/v2/api-references/wallets/list-enabled-tokens). For transfers from Exchange Wallets, this property value represents the asset ID.
      * @param destination {module:model/TransferDestination} 
@@ -145,7 +145,7 @@ class TransferParams {
 TransferParams.RequiredProperties = ["request_id", "source", "token_id", "destination"];
 
 /**
- * The request ID that is used to track a transaction request. The request ID is provided by you and must be unique within your organization.
+ * A client-defined unique request identifier (idempotency key) used to prevent duplicate transfer requests. It must be unique within the same organization. Requests with the same request ID will be rejected with an error. 
  * @member {String} request_id
  */
 TransferParams.prototype['request_id'] = undefined;

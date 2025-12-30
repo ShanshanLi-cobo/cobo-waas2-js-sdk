@@ -97,7 +97,7 @@ LinkDisplayInfo.prototype['developer_name'] = undefined;
 LinkDisplayInfo.prototype['logo'] = undefined;
 
 /**
- * The URL to redirect to after the operation completes.
+ * The product page URL where end users will be redirected after the payment process ends.  This URL is embedded in a \"Return to Merchant\" button displayed on the following result pages: - Payment success - Payment timeout - Payment rejected - Payment error 
  * @member {String} return_url
  */
 LinkDisplayInfo.prototype['return_url'] = undefined;

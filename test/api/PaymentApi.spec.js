@@ -76,6 +76,16 @@ import {ApiClient, Env} from "../../src/index.js";
         //});
       });
     });
+    describe('createCounterpartyEntry', function() {
+      it('should call createCounterpartyEntry successfully', function() {
+        //uncomment below and update the code to test createCounterpartyEntry
+        //instance.createCounterpartyEntry().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('createCounterpartyWalletAddress', function() {
       it('should call createCounterpartyWalletAddress successfully', function() {
         //uncomment below and update the code to test createCounterpartyWalletAddress
@@ -110,6 +120,16 @@ import {ApiClient, Env} from "../../src/index.js";
       it('should call createDestinationBankAccount successfully', function() {
         //uncomment below and update the code to test createDestinationBankAccount
         //instance.createDestinationBankAccount().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('createDestinationEntry', function() {
+      it('should call createDestinationEntry successfully', function() {
+        //uncomment below and update the code to test createDestinationEntry
+        //instance.createDestinationEntry().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);
@@ -196,6 +216,16 @@ import {ApiClient, Env} from "../../src/index.js";
         //});
       });
     });
+    describe('createReport', function() {
+      it('should call createReport successfully', function() {
+        //uncomment below and update the code to test createReport
+        //instance.createReport().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('createSettlementRequest', function() {
       it('should call createSettlementRequest successfully', function() {
         //uncomment below and update the code to test createSettlementRequest
@@ -210,6 +240,26 @@ import {ApiClient, Env} from "../../src/index.js";
       it('should call deleteCounterparty successfully', function() {
         //uncomment below and update the code to test deleteCounterparty
         //instance.deleteCounterparty().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('deleteCounterpartyById', function() {
+      it('should call deleteCounterpartyById successfully', function() {
+        //uncomment below and update the code to test deleteCounterpartyById
+        //instance.deleteCounterpartyById().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('deleteCounterpartyEntry', function() {
+      it('should call deleteCounterpartyEntry successfully', function() {
+        //uncomment below and update the code to test deleteCounterpartyEntry
+        //instance.deleteCounterpartyEntry().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);
@@ -256,6 +306,26 @@ import {ApiClient, Env} from "../../src/index.js";
         //});
       });
     });
+    describe('deleteDestinationById', function() {
+      it('should call deleteDestinationById successfully', function() {
+        //uncomment below and update the code to test deleteDestinationById
+        //instance.deleteDestinationById().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('deleteDestinationEntry', function() {
+      it('should call deleteDestinationEntry successfully', function() {
+        //uncomment below and update the code to test deleteDestinationEntry
+        //instance.deleteDestinationEntry().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('deleteDestinationWalletAddress', function() {
       it('should call deleteDestinationWalletAddress successfully', function() {
         //uncomment below and update the code to test deleteDestinationWalletAddress
@@ -296,10 +366,40 @@ import {ApiClient, Env} from "../../src/index.js";
         //});
       });
     });
+    describe('getCounterparty', function() {
+      it('should call getCounterparty successfully', function() {
+        //uncomment below and update the code to test getCounterparty
+        //instance.getCounterparty().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('getCounterpartyDetailById', function() {
       it('should call getCounterpartyDetailById successfully', function() {
         //uncomment below and update the code to test getCounterpartyDetailById
         //instance.getCounterpartyDetailById().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('getCounterpartyEntry', function() {
+      it('should call getCounterpartyEntry successfully', function() {
+        //uncomment below and update the code to test getCounterpartyEntry
+        //instance.getCounterpartyEntry().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('getDestination', function() {
+      it('should call getDestination successfully', function() {
+        //uncomment below and update the code to test getDestination
+        //instance.getDestination().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);
@@ -320,6 +420,16 @@ import {ApiClient, Env} from "../../src/index.js";
       it('should call getDestinationDetailById successfully', function() {
         //uncomment below and update the code to test getDestinationDetailById
         //instance.getDestinationDetailById().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('getDestinationEntry', function() {
+      it('should call getDestinationEntry successfully', function() {
+        //uncomment below and update the code to test getDestinationEntry
+        //instance.getDestinationEntry().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);
@@ -380,6 +490,16 @@ import {ApiClient, Env} from "../../src/index.js";
       it('should call getRefunds successfully', function() {
         //uncomment below and update the code to test getRefunds
         //instance.getRefunds().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('getReports', function() {
+      it('should call getReports successfully', function() {
+        //uncomment below and update the code to test getReports
+        //instance.getReports().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);
@@ -456,6 +576,16 @@ import {ApiClient, Env} from "../../src/index.js";
         //});
       });
     });
+    describe('listCounterpartyEntries', function() {
+      it('should call listCounterpartyEntries successfully', function() {
+        //uncomment below and update the code to test listCounterpartyEntries
+        //instance.listCounterpartyEntries().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('listCounterpartyWalletAddress', function() {
       it('should call listCounterpartyWalletAddress successfully', function() {
         //uncomment below and update the code to test listCounterpartyWalletAddress
@@ -480,6 +610,16 @@ import {ApiClient, Env} from "../../src/index.js";
       it('should call listDestinationBankAccounts successfully', function() {
         //uncomment below and update the code to test listDestinationBankAccounts
         //instance.listDestinationBankAccounts().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('listDestinationEntries', function() {
+      it('should call listDestinationEntries successfully', function() {
+        //uncomment below and update the code to test listDestinationEntries
+        //instance.listDestinationEntries().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);
@@ -656,10 +796,30 @@ import {ApiClient, Env} from "../../src/index.js";
         //});
       });
     });
+    describe('updateCounterparty', function() {
+      it('should call updateCounterparty successfully', function() {
+        //uncomment below and update the code to test updateCounterparty
+        //instance.updateCounterparty().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
     describe('updateCounterpartyById', function() {
       it('should call updateCounterpartyById successfully', function() {
         //uncomment below and update the code to test updateCounterpartyById
         //instance.updateCounterpartyById().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('updateDestination', function() {
+      it('should call updateDestination successfully', function() {
+        //uncomment below and update the code to test updateDestination
+        //instance.updateDestination().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);
@@ -680,6 +840,16 @@ import {ApiClient, Env} from "../../src/index.js";
       it('should call updateDestinationById successfully', function() {
         //uncomment below and update the code to test updateDestinationById
         //instance.updateDestinationById().then(function(data) {
+        //    console.log(data);
+        //}, function(error) {
+        //    console.error(error);
+        //});
+      });
+    });
+    describe('updateDestinationEntry', function() {
+      it('should call updateDestinationEntry successfully', function() {
+        //uncomment below and update the code to test updateDestinationEntry
+        //instance.updateDestinationEntry().then(function(data) {
         //    console.log(data);
         //}, function(error) {
         //    console.error(error);

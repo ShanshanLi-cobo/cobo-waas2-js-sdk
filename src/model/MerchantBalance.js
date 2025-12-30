@@ -172,7 +172,7 @@ MerchantBalance.prototype['total_received_amount'] = undefined;
 MerchantBalance.prototype['settled_amount'] = undefined;
 
 /**
- * The merchant payout amount.
+ * This field is reserved for future use.
  * @member {String} payout_amount
  */
 MerchantBalance.prototype['payout_amount'] = undefined;
@@ -184,19 +184,19 @@ MerchantBalance.prototype['payout_amount'] = undefined;
 MerchantBalance.prototype['refunded_amount'] = undefined;
 
 /**
- *  The current balance of this token available to the merchant for payouts or refunds.  `total_balance` = `total_received_amount` - `settled_amount` - `refunded_amount`  For more information, please refer to [Funds allocation and balances](https://www.cobo.com/payments/en/guides/amounts-and-balances) 
+ *  The current balance of this token available to the merchant for payouts or refunds.  For more information, please refer to [Accounts and fund allocation](https://www.cobo.com/payments/en/guides/amounts-and-balances) 
  * @member {String} total_balance
  */
 MerchantBalance.prototype['total_balance'] = undefined;
 
 /**
- * The merchant available balance.
+ * This field has been deprecated. 
  * @member {String} available_balance
  */
 MerchantBalance.prototype['available_balance'] = undefined;
 
 /**
- * The merchant locked balance.
+ * This field is reserved for future use.
  * @member {String} locked_balance
  */
 MerchantBalance.prototype['locked_balance'] = undefined;

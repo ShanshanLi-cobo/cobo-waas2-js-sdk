@@ -146,7 +146,7 @@ PspBalance.prototype['developer_fee_amount'] = undefined;
 PspBalance.prototype['settled_amount'] = undefined;
 
 /**
- * The psp payout amount.
+ * This field is reserved for future use.
  * @member {String} payout_amount
  */
 PspBalance.prototype['payout_amount'] = undefined;
@@ -158,19 +158,19 @@ PspBalance.prototype['payout_amount'] = undefined;
 PspBalance.prototype['refunded_amount'] = undefined;
 
 /**
- *  The total balance of the token available for payout or refund for the developer.  `total_balance` = `developer_fee_amount` - `settled_amount` - `refunded_amount`  For more information, please refer to [Funds allocation and balances](https://www.cobo.com/payments/en/guides/amounts-and-balances) 
+ *  The total balance of the token available for payout or refund for the developer.  For more information, please refer to [Accounts and fund allocation](https://www.cobo.com/payments/en/guides/amounts-and-balances) 
  * @member {String} total_balance
  */
 PspBalance.prototype['total_balance'] = undefined;
 
 /**
- * The psp available balance.
+ * This field has been deprecated. 
  * @member {String} available_balance
  */
 PspBalance.prototype['available_balance'] = undefined;
 
 /**
- * The psp locked balance.
+ * This field is reserved for future use.
  * @member {String} locked_balance
  */
 PspBalance.prototype['locked_balance'] = undefined;

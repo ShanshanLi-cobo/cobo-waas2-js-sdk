@@ -26,13 +26,13 @@ class PaymentOrderEventData {
      * @alias module:model/PaymentOrderEventData
      * @implements module:model/WebhookEventDataType
      * @implements module:model/Order
-     * @param data_type {module:model/PaymentOrderEventData.DataTypeEnum}  The data type of the event. - `Transaction`: The transaction event data. - `TSSRequest`: The TSS request event data. - `Addresses`: The addresses event data. - `WalletInfo`: The wallet information event data. - `MPCVault`: The MPC vault event data. - `Chains`: The enabled chain event data. - `Tokens`: The enabled token event data. - `TokenListing`: The token listing event data.        - `PaymentOrder`: The payment order event data. - `PaymentRefund`: The payment refund event data. - `PaymentSettlement`: The payment settlement event data. - `PaymentTransaction`: The payment transaction event data. - `PaymentAddressUpdate`: The top-up address update event data. - `PaymentPayout`: The payment payout event data. - `BalanceUpdateInfo`: The balance update event data. - `SuspendedToken`: The token suspension event data. - `ComplianceDisposition`: The compliance disposition event data. - `ComplianceKytScreenings`: The compliance KYT screenings event data.
+     * @param data_type {module:model/PaymentOrderEventData.DataTypeEnum}  The data type of the event. - `Transaction`: The transaction event data. - `TSSRequest`: The TSS request event data. - `Addresses`: The addresses event data. - `WalletInfo`: The wallet information event data. - `MPCVault`: The MPC vault event data. - `Chains`: The enabled chain event data. - `Tokens`: The enabled token event data. - `TokenListing`: The token listing event data.        - `PaymentOrder`: The payment order event data. - `PaymentRefund`: The payment refund event data. - `PaymentSettlement`: The payment settlement event data. - `PaymentTransaction`: The payment transaction event data. - `PaymentAddressUpdate`: The top-up address update event data. - `PaymentPayout`: The payment payout event data. - `BalanceUpdateInfo`: The balance update event data. - `SuspendedToken`: The token suspension event data. - `ComplianceDisposition`: The compliance disposition event data. - `ComplianceKytScreenings`: The compliance KYT screenings event data. - `ComplianceKyaScreenings`: The compliance KYA screenings event data.
      * @param order_id {String} The order ID.
      * @param psp_order_code {String} A unique reference code assigned by the developer to identify this order in their system.
-     * @param fee_amount {String} The developer fee for the order in fiat currency. It is added to the base amount (`order_amount`) to determine the final charge.
+     * @param fee_amount {String} The developer fee for the order. It is added to the base amount to determine the final charge.
      * @param chain_id {String} The ID of the blockchain network where the payment transaction should be made.
      * @param payable_amount {String} The cryptocurrency amount to be paid for this order.
-     * @param exchange_rate {String} The exchange rate between a currency pair. Expressed as the amount of fiat currency per one unit of cryptocurrency. For example, if the cryptocurrency is USDT and the fiat currency is USD, a rate of \"0.99\" means 1 USDT = 0.99 USD.
+     * @param exchange_rate {String} The exchange rate between `payable_currency` and `pricing_currency`, calculated as (`pricing_amount` + `fee_amount`) / `payable_amount`.    <Note>This field is only returned when `payable_amount` was not provided in the order creation request. </Note> 
      * @param receive_address {String} The recipient wallet address to be used for the payment transaction.
      * @param status {module:model/OrderStatus} 
      * @param received_token_amount {String} The total cryptocurrency amount received for this order. Updates until the expiration time. Precision matches the token standard (e.g., 6 decimals for USDT).
@@ -253,7 +253,7 @@ class PaymentOrderEventData {
 PaymentOrderEventData.RequiredProperties = ["data_type", "order_id", "psp_order_code", "fee_amount", "chain_id", "payable_amount", "exchange_rate", "receive_address", "status", "received_token_amount"];
 
 /**
- *  The data type of the event. - `Transaction`: The transaction event data. - `TSSRequest`: The TSS request event data. - `Addresses`: The addresses event data. - `WalletInfo`: The wallet information event data. - `MPCVault`: The MPC vault event data. - `Chains`: The enabled chain event data. - `Tokens`: The enabled token event data. - `TokenListing`: The token listing event data.        - `PaymentOrder`: The payment order event data. - `PaymentRefund`: The payment refund event data. - `PaymentSettlement`: The payment settlement event data. - `PaymentTransaction`: The payment transaction event data. - `PaymentAddressUpdate`: The top-up address update event data. - `PaymentPayout`: The payment payout event data. - `BalanceUpdateInfo`: The balance update event data. - `SuspendedToken`: The token suspension event data. - `ComplianceDisposition`: The compliance disposition event data. - `ComplianceKytScreenings`: The compliance KYT screenings event data.
+ *  The data type of the event. - `Transaction`: The transaction event data. - `TSSRequest`: The TSS request event data. - `Addresses`: The addresses event data. - `WalletInfo`: The wallet information event data. - `MPCVault`: The MPC vault event data. - `Chains`: The enabled chain event data. - `Tokens`: The enabled token event data. - `TokenListing`: The token listing event data.        - `PaymentOrder`: The payment order event data. - `PaymentRefund`: The payment refund event data. - `PaymentSettlement`: The payment settlement event data. - `PaymentTransaction`: The payment transaction event data. - `PaymentAddressUpdate`: The top-up address update event data. - `PaymentPayout`: The payment payout event data. - `BalanceUpdateInfo`: The balance update event data. - `SuspendedToken`: The token suspension event data. - `ComplianceDisposition`: The compliance disposition event data. - `ComplianceKytScreenings`: The compliance KYT screenings event data. - `ComplianceKyaScreenings`: The compliance KYA screenings event data.
  * @member {module:model/PaymentOrderEventData.DataTypeEnum} data_type
  */
 PaymentOrderEventData.prototype['data_type'] = undefined;
@@ -283,19 +283,19 @@ PaymentOrderEventData.prototype['merchant_order_code'] = undefined;
 PaymentOrderEventData.prototype['psp_order_code'] = undefined;
 
 /**
- * The fiat currency of the order.
+ * The pricing currency of the order.
  * @member {String} pricing_currency
  */
 PaymentOrderEventData.prototype['pricing_currency'] = undefined;
 
 /**
- * The base amount of the order in fiat currency, excluding the developer fee (specified in `fee_amount`).
+ * The base amount of the order, excluding the developer fee (specified in `fee_amount`).
  * @member {String} pricing_amount
  */
 PaymentOrderEventData.prototype['pricing_amount'] = undefined;
 
 /**
- * The developer fee for the order in fiat currency. It is added to the base amount (`order_amount`) to determine the final charge.
+ * The developer fee for the order. It is added to the base amount to determine the final charge.
  * @member {String} fee_amount
  */
 PaymentOrderEventData.prototype['fee_amount'] = undefined;
@@ -319,13 +319,13 @@ PaymentOrderEventData.prototype['chain_id'] = undefined;
 PaymentOrderEventData.prototype['payable_amount'] = undefined;
 
 /**
- * The exchange rate between a currency pair. Expressed as the amount of fiat currency per one unit of cryptocurrency. For example, if the cryptocurrency is USDT and the fiat currency is USD, a rate of \"0.99\" means 1 USDT = 0.99 USD.
+ * The exchange rate between `payable_currency` and `pricing_currency`, calculated as (`pricing_amount` + `fee_amount`) / `payable_amount`.    <Note>This field is only returned when `payable_amount` was not provided in the order creation request. </Note> 
  * @member {String} exchange_rate
  */
 PaymentOrderEventData.prototype['exchange_rate'] = undefined;
 
 /**
- * Allowed amount deviation.
+ * The allowed amount deviation, with precision up to 1 decimal place.  For example, if `payable_amount` is `100.00` and `amount_tolerance` is `0.50`: - Payer pays 99.55 → Success (difference of 0.45 ≤ 0.5) - Payer pays 99.40 → Underpaid (difference of 0.60 > 0.5) 
  * @member {String} amount_tolerance
  */
 PaymentOrderEventData.prototype['amount_tolerance'] = undefined;
@@ -372,19 +372,19 @@ PaymentOrderEventData.prototype['updated_timestamp'] = undefined;
 PaymentOrderEventData.prototype['transactions'] = undefined;
 
 /**
- * The fiat currency of the order.
+ * This field has been deprecated. Please use `pricing_currency` instead.
  * @member {String} currency
  */
 PaymentOrderEventData.prototype['currency'] = undefined;
 
 /**
- * The base amount of the order in fiat currency, excluding the developer fee (specified in `fee_amount`).
+ * This field has been deprecated. Please use `pricing_amount` instead.
  * @member {String} order_amount
  */
 PaymentOrderEventData.prototype['order_amount'] = undefined;
 
 /**
- * The ID of the cryptocurrency used for payment.
+ * This field has been deprecated. Please use `payable_currency` instead.
  * @member {String} token_id
  */
 PaymentOrderEventData.prototype['token_id'] = undefined;
@@ -397,7 +397,7 @@ PaymentOrderEventData.prototype['settlement_status'] = undefined;
 
 // Implement WebhookEventDataType interface:
 /**
- *  The data type of the event. - `Transaction`: The transaction event data. - `TSSRequest`: The TSS request event data. - `Addresses`: The addresses event data. - `WalletInfo`: The wallet information event data. - `MPCVault`: The MPC vault event data. - `Chains`: The enabled chain event data. - `Tokens`: The enabled token event data. - `TokenListing`: The token listing event data.        - `PaymentOrder`: The payment order event data. - `PaymentRefund`: The payment refund event data. - `PaymentSettlement`: The payment settlement event data. - `PaymentTransaction`: The payment transaction event data. - `PaymentAddressUpdate`: The top-up address update event data. - `PaymentPayout`: The payment payout event data. - `BalanceUpdateInfo`: The balance update event data. - `SuspendedToken`: The token suspension event data. - `ComplianceDisposition`: The compliance disposition event data. - `ComplianceKytScreenings`: The compliance KYT screenings event data.
+ *  The data type of the event. - `Transaction`: The transaction event data. - `TSSRequest`: The TSS request event data. - `Addresses`: The addresses event data. - `WalletInfo`: The wallet information event data. - `MPCVault`: The MPC vault event data. - `Chains`: The enabled chain event data. - `Tokens`: The enabled token event data. - `TokenListing`: The token listing event data.        - `PaymentOrder`: The payment order event data. - `PaymentRefund`: The payment refund event data. - `PaymentSettlement`: The payment settlement event data. - `PaymentTransaction`: The payment transaction event data. - `PaymentAddressUpdate`: The top-up address update event data. - `PaymentPayout`: The payment payout event data. - `BalanceUpdateInfo`: The balance update event data. - `SuspendedToken`: The token suspension event data. - `ComplianceDisposition`: The compliance disposition event data. - `ComplianceKytScreenings`: The compliance KYT screenings event data. - `ComplianceKyaScreenings`: The compliance KYA screenings event data.
  * @member {module:model/WebhookEventDataType.DataTypeEnum} data_type
  */
 WebhookEventDataType.prototype['data_type'] = undefined;
@@ -423,17 +423,17 @@ Order.prototype['merchant_order_code'] = undefined;
  */
 Order.prototype['psp_order_code'] = undefined;
 /**
- * The fiat currency of the order.
+ * The pricing currency of the order.
  * @member {String} pricing_currency
  */
 Order.prototype['pricing_currency'] = undefined;
 /**
- * The base amount of the order in fiat currency, excluding the developer fee (specified in `fee_amount`).
+ * The base amount of the order, excluding the developer fee (specified in `fee_amount`).
  * @member {String} pricing_amount
  */
 Order.prototype['pricing_amount'] = undefined;
 /**
- * The developer fee for the order in fiat currency. It is added to the base amount (`order_amount`) to determine the final charge.
+ * The developer fee for the order. It is added to the base amount to determine the final charge.
  * @member {String} fee_amount
  */
 Order.prototype['fee_amount'] = undefined;
@@ -453,12 +453,12 @@ Order.prototype['chain_id'] = undefined;
  */
 Order.prototype['payable_amount'] = undefined;
 /**
- * The exchange rate between a currency pair. Expressed as the amount of fiat currency per one unit of cryptocurrency. For example, if the cryptocurrency is USDT and the fiat currency is USD, a rate of \"0.99\" means 1 USDT = 0.99 USD.
+ * The exchange rate between `payable_currency` and `pricing_currency`, calculated as (`pricing_amount` + `fee_amount`) / `payable_amount`.    <Note>This field is only returned when `payable_amount` was not provided in the order creation request. </Note> 
  * @member {String} exchange_rate
  */
 Order.prototype['exchange_rate'] = undefined;
 /**
- * Allowed amount deviation.
+ * The allowed amount deviation, with precision up to 1 decimal place.  For example, if `payable_amount` is `100.00` and `amount_tolerance` is `0.50`: - Payer pays 99.55 → Success (difference of 0.45 ≤ 0.5) - Payer pays 99.40 → Underpaid (difference of 0.60 > 0.5) 
  * @member {String} amount_tolerance
  */
 Order.prototype['amount_tolerance'] = undefined;
@@ -497,17 +497,17 @@ Order.prototype['updated_timestamp'] = undefined;
  */
 Order.prototype['transactions'] = undefined;
 /**
- * The fiat currency of the order.
+ * This field has been deprecated. Please use `pricing_currency` instead.
  * @member {String} currency
  */
 Order.prototype['currency'] = undefined;
 /**
- * The base amount of the order in fiat currency, excluding the developer fee (specified in `fee_amount`).
+ * This field has been deprecated. Please use `pricing_amount` instead.
  * @member {String} order_amount
  */
 Order.prototype['order_amount'] = undefined;
 /**
- * The ID of the cryptocurrency used for payment.
+ * This field has been deprecated. Please use `payable_currency` instead.
  * @member {String} token_id
  */
 Order.prototype['token_id'] = undefined;
@@ -632,6 +632,12 @@ PaymentOrderEventData['DataTypeEnum'] = {
      * @const
      */
     "ComplianceKytScreenings": "ComplianceKytScreenings",
+
+    /**
+     * value: "ComplianceKyaScreenings"
+     * @const
+     */
+    "ComplianceKyaScreenings": "ComplianceKyaScreenings",
 
     /**
      * value: "unknown_default_open_api"

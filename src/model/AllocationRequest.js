@@ -19,11 +19,11 @@ class AllocationRequest {
     /**
      * Constructs a new <code>AllocationRequest</code>.
      * @alias module:model/AllocationRequest
-     * @param token_id {String} The ID of the cryptocurrency you want to allocation. Supported values:  - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC` - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
-     * @param amount {String} The allocation amount. 
-     * @param source_account {String} 
-     * @param destination_account {String} 
-     * @param description {String} 
+     * @param token_id {String} The ID of the cryptocurrency you want to allocate. Supported values:  - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC` - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+     * @param amount {String} The amount of the cryptocurrency you want to allocate. 
+     * @param source_account {String} The source account.  - If the source account is a merchant account, provide the merchant's ID (e.g., \"M1001\"). - If the source account is the developer account, use the string `\"developer\"`. 
+     * @param destination_account {String} The destination account.  - If the destination account is a merchant account, provide the merchant's ID (e.g., \"M1001\"). - If the destination account is the developer account, use the string `\"developer\"`. 
+     * @param description {String} The description of the allocation request.
      */
     constructor(token_id, amount, source_account, destination_account, description) { 
         
@@ -115,28 +115,31 @@ class AllocationRequest {
 AllocationRequest.RequiredProperties = ["token_id", "amount", "source_account", "destination_account", "description"];
 
 /**
- * The ID of the cryptocurrency you want to allocation. Supported values:  - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC` - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+ * The ID of the cryptocurrency you want to allocate. Supported values:  - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC` - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
  * @member {String} token_id
  */
 AllocationRequest.prototype['token_id'] = undefined;
 
 /**
- * The allocation amount. 
+ * The amount of the cryptocurrency you want to allocate. 
  * @member {String} amount
  */
 AllocationRequest.prototype['amount'] = undefined;
 
 /**
+ * The source account.  - If the source account is a merchant account, provide the merchant's ID (e.g., \"M1001\"). - If the source account is the developer account, use the string `\"developer\"`. 
  * @member {String} source_account
  */
 AllocationRequest.prototype['source_account'] = undefined;
 
 /**
+ * The destination account.  - If the destination account is a merchant account, provide the merchant's ID (e.g., \"M1001\"). - If the destination account is the developer account, use the string `\"developer\"`. 
  * @member {String} destination_account
  */
 AllocationRequest.prototype['destination_account'] = undefined;
 
 /**
+ * The description of the allocation request.
  * @member {String} description
  */
 AllocationRequest.prototype['description'] = undefined;
