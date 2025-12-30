@@ -20,7 +20,7 @@ class CreateBatchAllocationRequest {
     /**
      * Constructs a new <code>CreateBatchAllocationRequest</code>.
      * @alias module:model/CreateBatchAllocationRequest
-     * @param request_id {String} The request ID that is used to track a allocation request. The request ID is provided by you and must be unique.
+     * @param request_id {String} The request ID that is used to track a batch allocation request. The request ID is provided by you and must be unique.
      * @param allocation_requests {Array.<module:model/AllocationRequest>} 
      */
     constructor(request_id, allocation_requests) { 
@@ -95,7 +95,7 @@ class CreateBatchAllocationRequest {
 CreateBatchAllocationRequest.RequiredProperties = ["request_id", "allocation_requests"];
 
 /**
- * The request ID that is used to track a allocation request. The request ID is provided by you and must be unique.
+ * The request ID that is used to track a batch allocation request. The request ID is provided by you and must be unique.
  * @member {String} request_id
  */
 CreateBatchAllocationRequest.prototype['request_id'] = undefined;

@@ -70,6 +70,18 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property risk_level (base name: "risk_level")', function() {
+      // uncomment below and update the code to test the property risk_level
+      //var instance = new CoboWaas2.WalletAddress();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property screening_timestamp (base name: "screening_timestamp")', function() {
+      // uncomment below and update the code to test the property screening_timestamp
+      //var instance = new CoboWaas2.WalletAddress();
+      //expect(instance).to.be();
+    });
+
     it('should have the property updated_timestamp (base name: "updated_timestamp")', function() {
       // uncomment below and update the code to test the property updated_timestamp
       //var instance = new CoboWaas2.WalletAddress();

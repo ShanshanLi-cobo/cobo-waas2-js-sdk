@@ -136,7 +136,7 @@ BatchAllocation.prototype['request_id'] = undefined;
 BatchAllocation.prototype['allocation_requests'] = undefined;
 
 /**
- * The initiator of this batch allocation, usually the user's API key.
+ * The initiator of this batch allocation, usually the API key you used to create the batch allocation.
  * @member {String} initiator
  */
 BatchAllocation.prototype['initiator'] = undefined;

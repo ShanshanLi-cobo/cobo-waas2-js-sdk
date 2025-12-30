@@ -664,6 +664,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property screening_id (base name: "screening_id")', function() {
+      // uncomment below and update the code to test the property screening_id
+      //var instance = new CoboWaas2.WebhookEventData();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

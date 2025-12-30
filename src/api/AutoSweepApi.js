@@ -267,7 +267,7 @@ export default class AutoSweepApi {
 
     /**
      * List sweep-to addresses
-     * This operation retrieves a list of sweep-to addresses within your wallet. <Note>Sweep-to addresses are only applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) with the auto-sweep feature enabled.</Note> 
+     * This operation retrieves a list of sweep-to addresses within your wallet.  <Note>Sweep-to addresses are only applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) with the auto-sweep feature enabled.</Note>  <Info>For EVM-compatible chains (such as Ethereum and BNB Smart Chain), the same address is used across chains. As a result, when listing sweep-to addresses, only one address entry (shown under Ethereum) is returned for all EVM-compatible chains. Separate entries are not returned for each individual EVM chain.</Info> 
      * @param {String} wallet_id The wallet ID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ListWalletSweepToAddresses200Response} and HTTP response
      */
@@ -304,7 +304,7 @@ export default class AutoSweepApi {
 
     /**
      * List sweep-to addresses
-     * This operation retrieves a list of sweep-to addresses within your wallet. <Note>Sweep-to addresses are only applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) with the auto-sweep feature enabled.</Note> 
+     * This operation retrieves a list of sweep-to addresses within your wallet.  <Note>Sweep-to addresses are only applicable to MPC Wallets and Custodial Wallets (Web3 Wallets) with the auto-sweep feature enabled.</Note>  <Info>For EVM-compatible chains (such as Ethereum and BNB Smart Chain), the same address is used across chains. As a result, when listing sweep-to addresses, only one address entry (shown under Ethereum) is returned for all EVM-compatible chains. Separate entries are not returned for each individual EVM chain.</Info> 
      * @param {String} wallet_id The wallet ID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ListWalletSweepToAddresses200Response}
      */

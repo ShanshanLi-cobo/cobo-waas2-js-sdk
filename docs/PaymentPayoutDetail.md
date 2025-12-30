@@ -10,10 +10,10 @@ Name | Type | Description | Notes
 **payout_item_details** | [**[PaymentPayoutItemDetail]**](PaymentPayoutItemDetail.md) |  | [optional] 
 **created_timestamp** | **Number** | The created time of the payout, represented as a UNIX timestamp in seconds. | [optional] 
 **updated_timestamp** | **Number** | The updated time of the payout, represented as a UNIX timestamp in seconds. | [optional] 
-**initiator** | **String** | The initiator of this payout, usually the user&#39;s API key. | [optional] 
+**initiator** | **String** | The initiator of this payout, usually the API key used to create the payout. | [optional] 
 **payout_channel** | [**PayoutChannel**](PayoutChannel.md) |  | [optional] 
-**currency** | **String** | The fiat currency for the payout. | [optional] 
-**actual_payout_amount** | **String** | The actual amount of this payout.  | [optional] 
+**currency** | **String** | The fiat currency you will receive from the payout. | [optional] 
+**actual_payout_amount** | **String** | The total amount of cryptocurrency actually paid out for this payout.  | [optional] 
 **bank_account** | [**BankAccount**](BankAccount.md) |  | [optional] 
 
 

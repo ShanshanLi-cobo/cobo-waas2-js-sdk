@@ -21,7 +21,7 @@ class CreatePayoutRequest {
     /**
      * Constructs a new <code>CreatePayoutRequest</code>.
      * @alias module:model/CreatePayoutRequest
-     * @param request_id {String} The request ID that is used to track a settlement request. The request ID is provided by you and must be unique.
+     * @param request_id {String} The request ID that is used to track a payout request. The request ID is provided by you and must be unique.
      * @param payout_channel {module:model/PayoutChannel} 
      * @param payout_params {Array.<module:model/PaymentPayoutParam>} 
      */
@@ -122,7 +122,7 @@ class CreatePayoutRequest {
 CreatePayoutRequest.RequiredProperties = ["request_id", "payout_channel", "payout_params"];
 
 /**
- * The request ID that is used to track a settlement request. The request ID is provided by you and must be unique.
+ * The request ID that is used to track a payout request. The request ID is provided by you and must be unique.
  * @member {String} request_id
  */
 CreatePayoutRequest.prototype['request_id'] = undefined;
@@ -138,19 +138,19 @@ CreatePayoutRequest.prototype['payout_channel'] = undefined;
 CreatePayoutRequest.prototype['payout_params'] = undefined;
 
 /**
- * ｜ Only used in OffRamp payout channel. The ID of the bank account where the settled funds will be deposited.
+ * The ID of the bank account where the funds will be deposited. Specify this field when `payout_channel` is set to `OffRamp`.  You can call [List all bank accounts](https://www.cobo.com/payments/en/api-references/payment/list-all-bank-accounts) to retrieve the IDs of registered bank accounts. To add a new bank account, refer to [Destinations](https://www.cobo.com/payments/en/guides/destinations). 
  * @member {String} bank_account_id
  */
 CreatePayoutRequest.prototype['bank_account_id'] = undefined;
 
 /**
- * The fiat currency for the create payouts.
+ * The fiat currency you will receive from the payout. - Required when `payout_channel` is set to `OffRamp`. - Currently, only `USD` is supported. 
  * @member {String} currency
  */
 CreatePayoutRequest.prototype['currency'] = undefined;
 
 /**
- * The remark for the create payouts.
+ * The remark for the payout.
  * @member {String} remark
  */
 CreatePayoutRequest.prototype['remark'] = undefined;

@@ -21,7 +21,7 @@ class CreatePaymentOrderRequest {
      * @alias module:model/CreatePaymentOrderRequest
      * @param merchant_id {String} The merchant ID.
      * @param psp_order_code {String} A unique reference code assigned by the developer to identify this order in their system.
-     * @param fee_amount {String} The developer fee for the order in fiat currency. It is added to the base amount (`order_amount`) to determine the final charge. For example, if order_amount is \"100.00\" and fee_amount is \"2.00\", the customer will be charged \"102.00\" in total, with \"100.00\" being settled to the merchant and \"2.00\" settled to the developer. Values must be greater than 0 and contain two decimal places.
+     * @param fee_amount {String} The developer fee for the order. It is added to the base amount (`pricing_amount`) to determine the final charge. For example, if `pricing_amount` is \"100.00\" and `fee_amount` is \"2.00\", the payer will be charged \"102.00\" in total, with \"100.00\" being settled to the merchant account and \"2.00\" settled to the developer account. Values must be greater than 0 and contain two decimal places.
      */
     constructor(merchant_id, psp_order_code, fee_amount) { 
         
@@ -191,19 +191,19 @@ CreatePaymentOrderRequest.prototype['merchant_order_code'] = undefined;
 CreatePaymentOrderRequest.prototype['psp_order_code'] = undefined;
 
 /**
- * The ID of the cryptocurrency used for payment. Supported values:   - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+ * The pricing currency that denominates `pricing_amount` and `fee_amount`. If left empty, both values will be denominated in `payable_currency`. Currently, only `USD` is supported.
  * @member {String} pricing_currency
  */
 CreatePaymentOrderRequest.prototype['pricing_currency'] = undefined;
 
 /**
- * The base amount of the order in fiat currency, excluding the developer fee (specified in `fee_amount`). Values must be greater than `0` and contain two decimal places.
+ * The base amount of the order, excluding the developer fee (specified in `fee_amount`). Values must be greater than `0` and contain two decimal places.
  * @member {String} pricing_amount
  */
 CreatePaymentOrderRequest.prototype['pricing_amount'] = undefined;
 
 /**
- * The developer fee for the order in fiat currency. It is added to the base amount (`order_amount`) to determine the final charge. For example, if order_amount is \"100.00\" and fee_amount is \"2.00\", the customer will be charged \"102.00\" in total, with \"100.00\" being settled to the merchant and \"2.00\" settled to the developer. Values must be greater than 0 and contain two decimal places.
+ * The developer fee for the order. It is added to the base amount (`pricing_amount`) to determine the final charge. For example, if `pricing_amount` is \"100.00\" and `fee_amount` is \"2.00\", the payer will be charged \"102.00\" in total, with \"100.00\" being settled to the merchant account and \"2.00\" settled to the developer account. Values must be greater than 0 and contain two decimal places.
  * @member {String} fee_amount
  */
 CreatePaymentOrderRequest.prototype['fee_amount'] = undefined;
@@ -215,7 +215,7 @@ CreatePaymentOrderRequest.prototype['fee_amount'] = undefined;
 CreatePaymentOrderRequest.prototype['payable_currency'] = undefined;
 
 /**
- * The actual payable amount of the order in the cryptocurrency.
+ * The total amount the payer needs to pay, denominated in the specified `payable_currency`. If this field is left blank, the system will automatically calculate the amount at order creation using the following formula: (`pricing_amount` + `fee_amount`) / current exchange rate.  Values must be greater than 0 and contain two decimal places. 
  * @member {String} payable_amount
  */
 CreatePaymentOrderRequest.prototype['payable_amount'] = undefined;
@@ -227,38 +227,38 @@ CreatePaymentOrderRequest.prototype['payable_amount'] = undefined;
 CreatePaymentOrderRequest.prototype['expired_in'] = undefined;
 
 /**
- * Allowed amount deviation, precision to 1 decimal place.
+ * The allowed amount deviation, with precision up to 1 decimal place.  For example, if `payable_amount` is `100.00` and `amount_tolerance` is `0.50`: - Payer pays 99.55 → Success (difference of 0.45 ≤ 0.5) - Payer pays 99.40 → Underpaid (difference of 0.60 > 0.5) 
  * @member {String} amount_tolerance
  */
 CreatePaymentOrderRequest.prototype['amount_tolerance'] = undefined;
 
 /**
- * The fiat currency of the order.
+ * This field has been deprecated. Please use `pricing_currency` instead.
  * @member {String} currency
  * @default ''
  */
 CreatePaymentOrderRequest.prototype['currency'] = '';
 
 /**
- * The base amount of the order in fiat currency, excluding the developer fee (specified in `fee_amount`). Values must be greater than `0` and contain two decimal places.
+ * This field has been deprecated. Please use `pricing_amount` instead.
  * @member {String} order_amount
  */
 CreatePaymentOrderRequest.prototype['order_amount'] = undefined;
 
 /**
- * The ID of the cryptocurrency used for payment. Supported values:   - USDC: `ETH_USDC`, `ARBITRUM_USDC`, `SOL_USDC`, `BASE_USDC`, `MATIC_USDC`, `BSC_USDC`   - USDT: `TRON_USDT`, `ETH_USDT`, `ARBITRUM_USDT`, `SOL_USDT`, `BASE_USDT`, `MATIC_USDT`, `BSC_USDT` 
+ * This field has been deprecated. Please use `payable_currency` instead.
  * @member {String} token_id
  */
 CreatePaymentOrderRequest.prototype['token_id'] = undefined;
 
 /**
- * Indicates whether to allocate a dedicated address for this order.  If false, a shared address from the address pool will be used. 
+ * This field has been deprecated.
  * @member {Boolean} use_dedicated_address
  */
 CreatePaymentOrderRequest.prototype['use_dedicated_address'] = undefined;
 
 /**
- * A custom exchange rate specified by the merchant.   - Only effective when `currency` is `\"USD\"`.   - Expressed as the amount of USD per 1 unit of the specified cryptocurrency.   - If not provided, the system will use the default internal rate.   Example: If the cryptocurrency is USDT and `custom_exchange_rate` = `\"0.99\"`, it means 1 USDT = 0.99 USD. 
+ * This field has been deprecated.
  * @member {String} custom_exchange_rate
  */
 CreatePaymentOrderRequest.prototype['custom_exchange_rate'] = undefined;

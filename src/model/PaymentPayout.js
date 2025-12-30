@@ -190,19 +190,19 @@ PaymentPayout.prototype['created_timestamp'] = undefined;
 PaymentPayout.prototype['updated_timestamp'] = undefined;
 
 /**
- * The initiator of this payout, usually the user's API key.
+ * The initiator of this payout, usually the API key used to create the payout.
  * @member {String} initiator
  */
 PaymentPayout.prototype['initiator'] = undefined;
 
 /**
- * The fiat currency for the payout.
+ * The fiat currency you will receive from the payout.
  * @member {String} currency
  */
 PaymentPayout.prototype['currency'] = undefined;
 
 /**
- * The actual amount of this payout. 
+ * The total amount of cryptocurrency actually paid out for this payout. 
  * @member {String} actual_payout_amount
  */
 PaymentPayout.prototype['actual_payout_amount'] = undefined;

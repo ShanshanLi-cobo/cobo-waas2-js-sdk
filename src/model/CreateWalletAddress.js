@@ -20,7 +20,7 @@ class CreateWalletAddress {
      * Constructs a new <code>CreateWalletAddress</code>.
      * @alias module:model/CreateWalletAddress
      * @param address {String} The wallet address.
-     * @param chain_id {String} The chain ID of the cryptocurrency.
+     * @param chain_id {String} The chain ID of the address.
      */
     constructor(address, chain_id) { 
         
@@ -94,7 +94,7 @@ CreateWalletAddress.RequiredProperties = ["address", "chain_id"];
 CreateWalletAddress.prototype['address'] = undefined;
 
 /**
- * The chain ID of the cryptocurrency.
+ * The chain ID of the address.
  * @member {String} chain_id
  */
 CreateWalletAddress.prototype['chain_id'] = undefined;

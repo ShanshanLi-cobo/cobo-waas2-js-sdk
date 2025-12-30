@@ -25,7 +25,7 @@ class CounterpartyWalletAddressDetail {
      * @param counterparty_type {module:model/CounterpartyType} 
      * @param wallet_address_id {String} The wallet address ID.
      * @param address {String} The wallet address.
-     * @param chain_id {String} The chain ID of the cryptocurrency.
+     * @param chain_id {String} The chain ID of the address.
      * @param updated_timestamp {Number} The updated time of the wallet address, represented as a UNIX timestamp in seconds.
      */
     constructor(counterparty_id, counterparty_name, counterparty_type, wallet_address_id, address, chain_id, updated_timestamp) { 
@@ -155,7 +155,7 @@ CounterpartyWalletAddressDetail.prototype['wallet_address_id'] = undefined;
 CounterpartyWalletAddressDetail.prototype['address'] = undefined;
 
 /**
- * The chain ID of the cryptocurrency.
+ * The chain ID of the address.
  * @member {String} chain_id
  */
 CounterpartyWalletAddressDetail.prototype['chain_id'] = undefined;
